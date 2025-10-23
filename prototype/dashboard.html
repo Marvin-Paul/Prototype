@@ -1,0 +1,3149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Campus Mindspace</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard-enhancements.css">
+    <link rel="stylesheet" href="css/therapy-tools.css">
+    <link rel="stylesheet" href="css/meditation-hub.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/visibility-fix.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect" title="Select Language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-brain"></i>
+            <span data-lang="welcome_title">Campus Mindspace</span>
+        </div>
+        <div class="nav-menu">
+            <a href="#home" class="nav-link active" data-lang="nav_home">Home</a>
+            <a href="#therapy" class="nav-link" data-lang="nav_therapy">Therapy</a>
+            <a href="#meditation" class="nav-link" data-lang="nav_meditation">Meditation</a>
+            <a href="#resources" class="nav-link" data-lang="nav_resources">Resources</a>
+            <a href="#appointments" class="nav-link" data-lang="nav_appointments">Appointments</a>
+            <a href="#games" class="nav-link" data-lang="nav_games">Mind Games</a>
+            <a href="#groups" class="nav-link" data-lang="nav_groups">Group Chat</a>
+        </div>
+        <div class="nav-actions">
+            <a href="admin-login.html" class="admin-shortcut" title="Admin Portal">
+                <i class="fas fa-shield-alt"></i>
+                <span>Admin</span>
+            </a>
+            <div class="user-profile">
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle" title="Profile Menu">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <a href="settings.html" class="dropdown-item" data-lang="profile_settings">Settings</a>
+                        <a href="support.html" class="dropdown-item" data-lang="profile_help">Help &amp; Support</a>
+                        <button class="dropdown-item logout-btn" data-lang="profile_logout">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section (Default) -->
+        <section id="home" class="content-section active">
+            <div class="dashboard-container">
+                <!-- Welcome Section -->
+                <div class="welcome-section">
+                    <div class="welcome-header">
+                        <h1 class="welcome-title" id="mainGreeting"></h1>
+                        <p class="welcome-subtitle" data-lang="welcome_subtitle">
+                            Your personal sanctuary for mental wellness and academic success
+                        </p>
+                    </div>
+                    
+                    <!-- User Stats Overview -->
+                    <div class="user-stats-overview">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="streakDays">7</div>
+                                <div class="stat-label">Day Streak</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="wellnessScore">85%</div>
+                                <div class="stat-label">Wellness Score</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-meditation"></i>
+                            </div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="sessionsCompleted">12</div>
+                                <div class="stat-label">Sessions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Daily Tip Section -->
+                <div class="daily-tip-section">
+                    <div class="tip-card">
+                        <div class="tip-header">
+                            <div class="tip-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="tip-badge">
+                                <i class="fas fa-star"></i>
+                                <span>Daily Tip</span>
+                            </div>
+                        </div>
+                        <div class="tip-content">
+                            <h3 data-lang="daily_tip_title">Wellness Insight</h3>
+                            <p id="dailyTipText">Remember to take short breaks during study sessions. Even 5 minutes of deep breathing can help refresh your mind and improve focus.</p>
+                            <div class="tip-actions">
+                                <button class="tip-action-btn" id="nextTipBtn">
+                                    <i class="fas fa-refresh"></i>
+                                    <span>New Tip</span>
+                                </button>
+                                <button class="tip-action-btn" id="saveTipBtn">
+                                    <i class="fas fa-bookmark"></i>
+                                    <span>Save</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions Grid -->
+                <div class="quick-actions-section">
+                    <div class="section-header">
+                        <h2 data-lang="quick_actions">Quick Actions</h2>
+                        <p class="section-subtitle">Access your wellness tools and resources</p>
+                    </div>
+                    <div class="actions-grid">
+                        <div class="action-card therapy-card" data-section="therapy">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="therapy_title">Therapy Resources</h3>
+                                <p data-lang="therapy_description">Access CBT, DBT, and mindfulness exercises</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 75%"></div>
+                                    </div>
+                                    <span class="progress-text">75% Complete</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="card-badge">Popular</div>
+                        </div>
+
+                        <div class="action-card meditation-card" data-section="meditation">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-om"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="meditation_title">Meditation</h3>
+                                <p data-lang="meditation_description">Guided sessions for stress relief and focus</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 60%"></div>
+                                    </div>
+                                    <span class="progress-text">60% Complete</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="action-card resources-card" data-section="resources">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="resources_title">Resources</h3>
+                                <p data-lang="resources_description">Music, videos, and study aids</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 45%"></div>
+                                    </div>
+                                    <span class="progress-text">45% Complete</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="action-card appointment-card" data-section="appointments">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="appointment_title">Book Session</h3>
+                                <p data-lang="appointment_description">Schedule time with a counselor</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 30%"></div>
+                                    </div>
+                                    <span class="progress-text">3 Sessions</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                            <div class="card-badge new">New</div>
+                        </div>
+
+                        <div class="action-card games-card" data-section="games">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="games_title">Mind Games</h3>
+                                <p data-lang="games_description">Fun activities to boost your mood</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                    <span class="progress-text">90% Complete</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="action-card groups-card" data-section="groups">
+                            <div class="card-glow"></div>
+                            <div class="action-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="action-content">
+                                <h3 data-lang="groups_title">Group Chat</h3>
+                                <p data-lang="groups_description">Connect with others feeling the same way</p>
+                                <div class="action-progress">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 55%"></div>
+                                    </div>
+                                    <span class="progress-text">5 Members</span>
+                                </div>
+                            </div>
+                            <div class="action-arrow">
+                                <i class="fas fa-arrow-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Activity Feed -->
+                <div class="live-activity-section">
+                    <div class="section-header">
+                        <h2>Recent Activity</h2>
+                        <div class="activity-indicator">
+                            <div class="pulse-dot"></div>
+                            <span>Live</span>
+                        </div>
+                    </div>
+                    <div class="activity-feed">
+                        <div class="activity-item">
+                            <div class="activity-icon meditation">
+                                <i class="fas fa-om"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Meditation Session Completed</h4>
+                                <p>5-minute breathing exercise • 2 minutes ago</p>
+                            </div>
+                            <div class="activity-time">+10 pts</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon mood">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Mood Check-in</h4>
+                                <p>Feeling positive today • 15 minutes ago</p>
+                            </div>
+                            <div class="activity-time">+5 pts</div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon therapy">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>Therapy Exercise</h4>
+                                <p>CBT worksheet completed • 1 hour ago</p>
+                            </div>
+                            <div class="activity-time">+15 pts</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Achievement Badges -->
+                <div class="achievements-section">
+                    <div class="section-header">
+                        <h2>Your Achievements</h2>
+                        <p>Celebrate your wellness milestones</p>
+                    </div>
+                    <div class="badges-container">
+                        <div class="badge-item earned">
+                            <div class="badge-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="badge-info">
+                                <h4>Streak Master</h4>
+                                <p>7-day wellness streak</p>
+                            </div>
+                        </div>
+                        <div class="badge-item earned">
+                            <div class="badge-icon">
+                                <i class="fas fa-meditation"></i>
+                            </div>
+                            <div class="badge-info">
+                                <h4>Zen Seeker</h4>
+                                <p>10 meditation sessions</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="badge-info">
+                                <h4>Wellness Champion</h4>
+                                <p>Complete 30 activities</p>
+                            </div>
+                        </div>
+                        <div class="badge-item locked">
+                            <div class="badge-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="badge-info">
+                                <h4>Community Helper</h4>
+                                <p>Help 5 peers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enhanced Mood Tracker -->
+                <div class="mood-tracker-section">
+                    <h2 data-lang="mood_tracker_title">How are you feeling today?</h2>
+                    <div class="mood-tracker">
+                        <div class="current-mood">
+                            <div class="mood-display" id="currentMoodDisplay">
+                                <i class="fas fa-smile"></i>
+                                <span data-lang="feeling_great">Feeling great!</span>
+                            </div>
+                        </div>
+                        <button class="mood-update-btn" data-lang="update_mood">Update Mood</button>
+                        <div class="mood-analytics-buttons">
+                            <button class="view-mood-history">View History</button>
+                            <button class="mood-analytics-btn">Analytics</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Therapy Section -->
+        <section id="therapy" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="therapy_title">Therapy Resources</h1>
+                    <p data-lang="therapy_description">Professional techniques and exercises for mental wellness</p>
+                </div>
+                
+                <!-- Crisis Support Banner -->
+                <div class="crisis-support-banner">
+                    <div class="crisis-content">
+                        <div class="crisis-icon">
+                            <i class="fas fa-life-ring"></i>
+                        </div>
+                        <div class="crisis-text">
+                            <h3>Need Immediate Support?</h3>
+                            <p>If you're experiencing a crisis or having thoughts of self-harm, help is available 24/7.</p>
+                        </div>
+                        <button class="crisis-support-btn">
+                            <i class="fas fa-phone"></i> Get Help Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Therapy Progress Overview -->
+                <div class="therapy-progress-overview">
+                    <h3>Your Therapy Progress</h3>
+                    <div class="progress-stats">
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="completedExercises">0</span>
+                                <span class="stat-label">Exercises Completed</span>
+                            </div>
+                        </div>
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="currentStreak">0</span>
+                                <span class="stat-label">Day Streak</span>
+                            </div>
+                        </div>
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="progressPercentage">0%</span>
+                                <span class="stat-label">Overall Progress</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Therapy Categories -->
+                <div class="therapy-categories">
+                    <div class="therapy-card cbt-card">
+                        <div class="therapy-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="therapy-card-content">
+                        <h3 data-lang="cbt_title">Cognitive Behavioral Therapy</h3>
+                        <p data-lang="cbt_description">Learn to identify and change negative thought patterns</p>
+                            <div class="therapy-features">
+                                <span class="feature-tag">Thought Records</span>
+                                <span class="feature-tag">Cognitive Restructuring</span>
+                                <span class="feature-tag">Behavioral Experiments</span>
+                            </div>
+                        </div>
+                        <div class="therapy-actions">
+                            <button class="therapy-btn primary" data-lang="start_exercise">
+                                <i class="fas fa-play"></i> Start Exercise
+                            </button>
+                            <button class="therapy-btn secondary" data-lang="read_more">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="therapy-card dbt-card">
+                        <div class="therapy-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="therapy-card-content">
+                        <h3 data-lang="dbt_title">Dialectical Behavior Therapy</h3>
+                        <p data-lang="dbt_description">Build skills for emotional regulation and distress tolerance</p>
+                            <div class="therapy-features">
+                                <span class="feature-tag">Distress Tolerance</span>
+                                <span class="feature-tag">Emotion Regulation</span>
+                                <span class="feature-tag">Interpersonal Skills</span>
+                            </div>
+                        </div>
+                        <div class="therapy-actions">
+                            <button class="therapy-btn primary" data-lang="start_exercise">
+                                <i class="fas fa-play"></i> Start Exercise
+                            </button>
+                            <button class="therapy-btn secondary" data-lang="read_more">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="therapy-card mbsr-card">
+                        <div class="therapy-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="therapy-card-content">
+                        <h3 data-lang="mbsr_title">Mindfulness-Based Stress Reduction</h3>
+                        <p data-lang="mbsr_description">Cultivate present-moment awareness and reduce stress</p>
+                            <div class="therapy-features">
+                                <span class="feature-tag">Body Scan</span>
+                                <span class="feature-tag">Mindful Breathing</span>
+                                <span class="feature-tag">Loving-Kindness</span>
+                            </div>
+                        </div>
+                        <div class="therapy-actions">
+                            <button class="therapy-btn primary" data-lang="start_exercise">
+                                <i class="fas fa-play"></i> Start Exercise
+                            </button>
+                            <button class="therapy-btn secondary" data-lang="read_more">
+                                <i class="fas fa-info-circle"></i> Learn More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive CBT Tools -->
+                <div class="cbt-tools-section">
+                    <h3>Interactive CBT Tools</h3>
+                    <div class="cbt-tools-grid">
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4>Thought Record</h4>
+                                <div class="tool-badge">CBT</div>
+                            </div>
+                            <p>Challenge negative thoughts with evidence-based techniques</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="thoughtRecordBtn">
+                                    <i class="fas fa-edit"></i> Start Recording
+                                </button>
+                                <button class="tool-btn secondary" id="viewThoughtHistoryBtn">
+                                    <i class="fas fa-history"></i> View History
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-lungs"></i>
+                                </div>
+                                <h4>Breathing Exercise</h4>
+                                <div class="tool-badge">Relaxation</div>
+                            </div>
+                            <p>Interactive breathing guide for anxiety and stress relief</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="breathingExerciseBtn">
+                                    <i class="fas fa-play"></i> Start Exercise
+                                </button>
+                                <div class="breathing-presets">
+                                    <button class="preset-btn" data-duration="5">5 min</button>
+                                    <button class="preset-btn" data-duration="10">10 min</button>
+                                    <button class="preset-btn" data-duration="15">15 min</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <h4>Mood Tracker</h4>
+                                <div class="tool-badge">Analytics</div>
+                            </div>
+                            <p>Track your mood patterns and identify triggers over time</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="moodTrackerBtn">
+                                    <i class="fas fa-plus"></i> Log Mood
+                                </button>
+                                <button class="tool-btn secondary" id="viewMoodAnalyticsBtn">
+                                    <i class="fas fa-chart-bar"></i> View Analytics
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <h4>Gratitude Journal</h4>
+                                <div class="tool-badge">Positive</div>
+                            </div>
+                            <p>Build positive thinking through daily gratitude practice</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="gratitudeJournalBtn">
+                                    <i class="fas fa-book"></i> Start Journaling
+                                </button>
+                                <div class="gratitude-streak">
+                                    <span class="streak-count">7</span>
+                                    <span class="streak-text">day streak</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h4>Coping Strategies</h4>
+                                <div class="tool-badge">DBT</div>
+                            </div>
+                            <p>Learn and practice evidence-based coping techniques</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="copingStrategiesBtn">
+                                    <i class="fas fa-tools"></i> Explore Tools
+                                </button>
+                                <button class="tool-btn secondary" id="crisisPlanBtn">
+                                    <i class="fas fa-exclamation-triangle"></i> Crisis Plan
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="cbt-tool-card">
+                            <div class="tool-header">
+                                <div class="tool-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <h4>Progress Sharing</h4>
+                                <div class="tool-badge">Support</div>
+                            </div>
+                            <p>Share your progress with your counselor or support group</p>
+                            <div class="tool-actions">
+                                <button class="tool-btn primary" id="shareProgressBtn">
+                                    <i class="fas fa-share"></i> Share Progress
+                                </button>
+                                <button class="tool-btn secondary" id="scheduleSessionBtn">
+                                    <i class="fas fa-calendar"></i> Book Session
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Therapy Features -->
+                <div class="therapy-features-section">
+                    <h3>Additional Therapy Tools</h3>
+                    <div class="therapy-tools-grid">
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-journal-whills"></i>
+                            </div>
+                            <h4>Mood Journal</h4>
+                            <p>Track your emotional patterns and identify triggers</p>
+                            <button class="tool-btn">Start Journaling</button>
+                        </div>
+                        
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h4>Gratitude Practice</h4>
+                            <p>Build positive thinking through daily gratitude exercises</p>
+                            <button class="tool-btn">Begin Practice</button>
+                        </div>
+                        
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-lungs"></i>
+                            </div>
+                            <h4>Breathing Exercises</h4>
+                            <p>Calm your nervous system with guided breathing techniques</p>
+                            <button class="tool-btn">Start Breathing</button>
+                        </div>
+                        
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h4>Progress Tracking</h4>
+                            <p>Monitor your mental health journey with detailed analytics</p>
+                            <button class="tool-btn">View Progress</button>
+                        </div>
+                        
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Support Groups</h4>
+                            <p>Connect with others on similar mental health journeys</p>
+                            <button class="tool-btn">Find Groups</button>
+                        </div>
+                        
+                        <div class="therapy-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h4>Resource Library</h4>
+                            <p>Access articles, worksheets, and self-help materials</p>
+                            <button class="tool-btn">Browse Library</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Therapy Goals Section -->
+                <div class="therapy-goals-section">
+                    <h3>Set Your Therapy Goals</h3>
+                    <div class="goals-container">
+                        <div class="goal-input-section">
+                            <textarea id="therapyGoalInput" placeholder="What would you like to work on? For example: 'I want to manage my anxiety better' or 'I want to improve my sleep patterns'"></textarea>
+                            <button id="addGoalBtn" class="add-goal-btn">
+                                <i class="fas fa-plus"></i> Add Goal
+                            </button>
+                        </div>
+                        <div class="current-goals" id="currentGoals">
+                            <!-- Goals will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Therapy Tool Modals -->
+        
+        <!-- Thought Record Modal -->
+        <div class="therapy-modal" id="thoughtRecordModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Thought Record</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="thought-record-form">
+                        <div class="form-section">
+                            <label>What situation triggered this thought?</label>
+                            <textarea id="situationInput" placeholder="Describe the situation..."></textarea>
+                        </div>
+                        <div class="form-section">
+                            <label>What thoughts went through your mind?</label>
+                            <textarea id="thoughtsInput" placeholder="Write your thoughts..."></textarea>
+                        </div>
+                        <div class="form-section">
+                            <label>How did you feel? (Rate 1-10)</label>
+                            <div class="emotion-rating">
+                                <div class="emotion-item">
+                                    <span>Anxiety</span>
+                                    <input type="range" id="anxietyRating" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                                <div class="emotion-item">
+                                    <span>Sadness</span>
+                                    <input type="range" id="sadnessRating" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                                <div class="emotion-item">
+                                    <span>Anger</span>
+                                    <input type="range" id="angerRating" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-section">
+                            <label>Evidence FOR this thought:</label>
+                            <textarea id="evidenceForInput" placeholder="What evidence supports this thought?"></textarea>
+                        </div>
+                        <div class="form-section">
+                            <label>Evidence AGAINST this thought:</label>
+                            <textarea id="evidenceAgainstInput" placeholder="What evidence contradicts this thought?"></textarea>
+                        </div>
+                        <div class="form-section">
+                            <label>Balanced thought:</label>
+                            <textarea id="balancedThoughtInput" placeholder="What's a more balanced way to think about this?"></textarea>
+                        </div>
+                        <div class="form-section">
+                            <label>How do you feel now? (Rate 1-10)</label>
+                            <div class="emotion-rating">
+                                <div class="emotion-item">
+                                    <span>Anxiety</span>
+                                    <input type="range" id="anxietyRatingAfter" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                                <div class="emotion-item">
+                                    <span>Sadness</span>
+                                    <input type="range" id="sadnessRatingAfter" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                                <div class="emotion-item">
+                                    <span>Anger</span>
+                                    <input type="range" id="angerRatingAfter" min="1" max="10" value="5">
+                                    <span class="rating-value">5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" id="saveThoughtRecord">Save Record</button>
+                    <button class="btn-primary" id="completeThoughtRecord">Complete</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Breathing Exercise Modal -->
+        <div class="therapy-modal" id="breathingExerciseModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Breathing Exercise</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="breathing-exercise">
+                        <div class="breathing-circle">
+                            <div class="circle-outer">
+                                <div class="circle-inner" id="breathingCircle">
+                                    <span class="breathing-instruction" id="breathingInstruction">Click Start to Begin</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="breathing-controls">
+                            <div class="breathing-timer">
+                                <span id="breathingTimer">00:00</span>
+                            </div>
+                            <div class="breathing-buttons">
+                                <button class="btn-primary" id="startBreathing">Start</button>
+                                <button class="btn-secondary" id="pauseBreathing">Pause</button>
+                                <button class="btn-secondary" id="stopBreathing">Stop</button>
+                            </div>
+                            <div class="breathing-settings">
+                                <label>Inhale Duration:</label>
+                                <input type="range" id="inhaleDuration" min="3" max="8" value="4">
+                                <span id="inhaleValue">4</span>s
+                                
+                                <label>Exhale Duration:</label>
+                                <input type="range" id="exhaleDuration" min="3" max="8" value="6">
+                                <span id="exhaleValue">6</span>s
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mood Tracker Modal -->
+        <div class="therapy-modal" id="moodTrackerModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Mood Tracker</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="mood-tracker-form">
+                        <div class="mood-selection">
+                            <h4>How are you feeling right now?</h4>
+                            <div class="mood-options">
+                                <div class="mood-option" data-mood="1">
+                                    <div class="mood-emoji">😢</div>
+                                    <span>Very Low</span>
+                                </div>
+                                <div class="mood-option" data-mood="2">
+                                    <div class="mood-emoji">😔</div>
+                                    <span>Low</span>
+                                </div>
+                                <div class="mood-option" data-mood="3">
+                                    <div class="mood-emoji">😐</div>
+                                    <span>Neutral</span>
+                                </div>
+                                <div class="mood-option" data-mood="4">
+                                    <div class="mood-emoji">😊</div>
+                                    <span>Good</span>
+                                </div>
+                                <div class="mood-option" data-mood="5">
+                                    <div class="mood-emoji">😄</div>
+                                    <span>Great</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mood-factors">
+                            <h4>What's influencing your mood?</h4>
+                            <div class="factor-checkboxes">
+                                <label><input type="checkbox" value="sleep"> Sleep</label>
+                                <label><input type="checkbox" value="exercise"> Exercise</label>
+                                <label><input type="checkbox" value="social"> Social interaction</label>
+                                <label><input type="checkbox" value="work"> Work/studies</label>
+                                <label><input type="checkbox" value="weather"> Weather</label>
+                                <label><input type="checkbox" value="health"> Physical health</label>
+                                <label><input type="checkbox" value="stress"> Stress</label>
+                                <label><input type="checkbox" value="medication"> Medication</label>
+                            </div>
+                        </div>
+                        <div class="mood-note">
+                            <label>Additional notes:</label>
+                            <textarea id="moodNoteInput" placeholder="Any additional thoughts or context..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary" id="saveMoodEntry">Save Entry</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gratitude Journal Modal -->
+        <div class="therapy-modal" id="gratitudeJournalModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Gratitude Journal</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="gratitude-journal">
+                        <div class="gratitude-prompt">
+                            <h4>Today, I'm grateful for...</h4>
+                            <p>Take a moment to reflect on what you're thankful for today.</p>
+                        </div>
+                        <div class="gratitude-entries">
+                            <div class="gratitude-entry">
+                                <input type="text" placeholder="Something good that happened today..." class="gratitude-input">
+                                <button class="remove-entry">&times;</button>
+                            </div>
+                            <div class="gratitude-entry">
+                                <input type="text" placeholder="Someone who made you smile..." class="gratitude-input">
+                                <button class="remove-entry">&times;</button>
+                            </div>
+                            <div class="gratitude-entry">
+                                <input type="text" placeholder="Something you're looking forward to..." class="gratitude-input">
+                                <button class="remove-entry">&times;</button>
+                            </div>
+                        </div>
+                        <button class="btn-secondary" id="addGratitudeEntry">+ Add More</button>
+                        <div class="gratitude-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">7</span>
+                                <span class="stat-label">Day Streak</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-number">23</span>
+                                <span class="stat-label">Total Entries</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary" id="saveGratitudeJournal">Save Journal</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meditation Modals -->
+        
+        <!-- Guided Meditation Modal -->
+        <div class="meditation-modal" id="guidedMeditationModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="meditationTitle">Guided Meditation</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="meditation-player">
+                        <div class="meditation-visualization">
+                            <div class="breathing-circle-large">
+                                <div class="circle-outer-large">
+                                    <div class="circle-inner-large" id="meditationCircle">
+                                        <div class="meditation-instruction" id="meditationInstruction">
+                                            Click Start to Begin
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="meditation-controls">
+                            <div class="meditation-timer">
+                                <span id="meditationTimer">00:00</span>
+                            </div>
+                            <div class="meditation-buttons">
+                                <button class="meditation-btn start" id="meditationStart">
+                                    <i class="fas fa-play"></i> Start
+                                </button>
+                                <button class="meditation-btn pause" id="meditationPause">
+                                    <i class="fas fa-pause"></i> Pause
+                                </button>
+                                <button class="meditation-btn stop" id="meditationStop">
+                                    <i class="fas fa-stop"></i> Stop
+                                </button>
+                            </div>
+                            <div class="meditation-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="meditationProgressFill"></div>
+                                </div>
+                                <span class="progress-text" id="meditationProgressText">0% Complete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ambient Sounds Modal -->
+        <div class="meditation-modal" id="ambientSoundsModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Ambient Soundscapes</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="ambient-sounds-player">
+                        <div class="soundscape-visualization">
+                            <div class="sound-waves" id="soundWaves">
+                                <div class="wave wave-1"></div>
+                                <div class="wave wave-2"></div>
+                                <div class="wave wave-3"></div>
+                                <div class="wave wave-4"></div>
+                                <div class="wave wave-5"></div>
+                            </div>
+                        </div>
+                        <div class="soundscape-controls">
+                            <div class="current-sound" id="currentSound">
+                                <h4>No Sound Playing</h4>
+                                <p>Select a soundscape to begin</p>
+                            </div>
+                            <div class="soundscape-grid-modal">
+                                <div class="soundscape-card" data-sound="rain">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-cloud-rain"></i>
+                                    </div>
+                                    <h5>Gentle Rain</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-toggle" data-sound="rain">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <i class="fas fa-volume-down"></i>
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <i class="fas fa-volume-up"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-card" data-sound="ocean">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-water"></i>
+                                    </div>
+                                    <h5>Ocean Waves</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-toggle" data-sound="ocean">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <i class="fas fa-volume-down"></i>
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <i class="fas fa-volume-up"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-card" data-sound="forest">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-tree"></i>
+                                    </div>
+                                    <h5>Forest Birds</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-toggle" data-sound="forest">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <i class="fas fa-volume-down"></i>
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <i class="fas fa-volume-up"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-card" data-sound="zen">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-om"></i>
+                                    </div>
+                                    <h5>Zen Garden</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-toggle" data-sound="zen">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <i class="fas fa-volume-down"></i>
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <i class="fas fa-volume-up"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meditation Section -->
+        <section id="meditation" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="meditation_title">Meditation & Mindfulness</h1>
+                    <p data-lang="meditation_description">Guided practices for inner peace and focus</p>
+                </div>
+                
+                <!-- Meditation Progress Overview -->
+                <div class="meditation-progress-overview">
+                    <h3>Your Meditation Journey</h3>
+                    <div class="progress-stats">
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-meditation"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="meditationSessionsCompleted">0</span>
+                                <span class="stat-label">Sessions Completed</span>
+                            </div>
+                        </div>
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="meditationMinutesTotal">0</span>
+                                <span class="stat-label">Total Minutes</span>
+                            </div>
+                        </div>
+                        <div class="progress-stat">
+                            <div class="stat-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="meditationStreak">0</span>
+                                <span class="stat-label">Day Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interactive Meditation Hub -->
+                <div class="meditation-hub-section">
+                    <h3>Interactive Meditation Hub</h3>
+                    <div class="meditation-hub-grid">
+                        <!-- Guided Meditation Sessions -->
+                        <div class="meditation-session-card">
+                            <div class="session-header">
+                                <div class="session-icon">
+                                    <i class="fas fa-headphones"></i>
+                                </div>
+                                <div class="session-info">
+                                    <h4>Guided Sessions</h4>
+                                    <p>Professional voice-guided meditations</p>
+                                </div>
+                                <div class="session-badge">12 Sessions</div>
+                            </div>
+                            <div class="session-options">
+                                <div class="session-option" data-session="body-scan">
+                                    <div class="option-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="option-content">
+                                        <h5>Body Scan</h5>
+                                        <p>15 min • Beginner</p>
+                                    </div>
+                                    <button class="play-btn" data-session="body-scan">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="session-option" data-session="breathing">
+                                    <div class="option-icon">
+                                        <i class="fas fa-lungs"></i>
+                                    </div>
+                                    <div class="option-content">
+                                        <h5>Breathing Focus</h5>
+                                        <p>10 min • Beginner</p>
+                                    </div>
+                                    <button class="play-btn" data-session="breathing">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="session-option" data-session="mindfulness">
+                                    <div class="option-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="option-content">
+                                        <h5>Mindfulness</h5>
+                                        <p>20 min • Intermediate</p>
+                                    </div>
+                                    <button class="play-btn" data-session="mindfulness">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ambient Soundscapes -->
+                        <div class="meditation-session-card">
+                            <div class="session-header">
+                                <div class="session-icon">
+                                    <i class="fas fa-music"></i>
+                                </div>
+                                <div class="session-info">
+                                    <h4>Ambient Soundscapes</h4>
+                                    <p>Nature sounds and peaceful atmospheres</p>
+                                </div>
+                                <div class="session-badge">8 Sounds</div>
+                            </div>
+                            <div class="soundscape-grid">
+                                <div class="soundscape-option" data-sound="rain">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-cloud-rain"></i>
+                                    </div>
+                                    <h5>Gentle Rain</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-play-btn" data-sound="rain">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-option" data-sound="ocean">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-water"></i>
+                                    </div>
+                                    <h5>Ocean Waves</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-play-btn" data-sound="ocean">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-option" data-sound="forest">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-tree"></i>
+                                    </div>
+                                    <h5>Forest Birds</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-play-btn" data-sound="forest">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="soundscape-option" data-sound="zen">
+                                    <div class="sound-icon">
+                                        <i class="fas fa-om"></i>
+                                    </div>
+                                    <h5>Zen Garden</h5>
+                                    <div class="sound-controls">
+                                        <button class="sound-play-btn" data-sound="zen">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <div class="volume-control">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Meditation Timer -->
+                        <div class="meditation-session-card">
+                            <div class="session-header">
+                                <div class="session-icon">
+                                    <i class="fas fa-stopwatch"></i>
+                                </div>
+                                <div class="session-info">
+                                    <h4>Meditation Timer</h4>
+                                    <p>Customizable timer with intervals</p>
+                                </div>
+                                <div class="session-badge">Custom</div>
+                            </div>
+                            <div class="timer-interface">
+                                <div class="timer-display">
+                                    <div class="timer-circle">
+                                        <div class="timer-progress" id="timerProgress">
+                                            <span class="timer-text" id="timerText">00:00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="timer-controls">
+                                    <div class="timer-presets">
+                                        <button class="preset-btn" data-minutes="5">5m</button>
+                                        <button class="preset-btn" data-minutes="10">10m</button>
+                                        <button class="preset-btn" data-minutes="15">15m</button>
+                                        <button class="preset-btn" data-minutes="20">20m</button>
+                                        <button class="preset-btn" data-minutes="30">30m</button>
+                                    </div>
+                                    <div class="timer-buttons">
+                                        <button class="timer-btn start" id="timerStart">
+                                            <i class="fas fa-play"></i>
+                                        </button>
+                                        <button class="timer-btn pause" id="timerPause">
+                                            <i class="fas fa-pause"></i>
+                                        </button>
+                                        <button class="timer-btn stop" id="timerStop">
+                                            <i class="fas fa-stop"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Meditation -->
+                        <div class="meditation-session-card">
+                            <div class="session-header">
+                                <div class="session-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div class="session-info">
+                                    <h4>Quick Meditation</h4>
+                                    <p>Instant calm in minutes</p>
+                                </div>
+                                <div class="session-badge">Fast</div>
+                            </div>
+                            <div class="quick-meditation-options">
+                                <div class="quick-option" data-duration="3">
+                                    <div class="quick-icon">
+                                        <i class="fas fa-zap"></i>
+                                    </div>
+                                    <h5>3-Min Reset</h5>
+                                    <p>Quick breathing</p>
+                                    <button class="quick-start-btn">Start</button>
+                                </div>
+                                <div class="quick-option" data-duration="5">
+                                    <div class="quick-icon">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                    <h5>5-Min Break</h5>
+                                    <p>Study break</p>
+                                    <button class="quick-start-btn">Start</button>
+                                </div>
+                                <div class="quick-option" data-duration="10">
+                                    <div class="quick-icon">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                    <h5>10-Min Calm</h5>
+                                    <p>Deep relaxation</p>
+                                    <button class="quick-start-btn">Start</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guided Meditation Sessions -->
+                <div class="meditation-sessions-section">
+                    <h3>Guided Meditation Sessions</h3>
+                <div class="meditation-grid">
+                        <div class="meditation-card body-scan-card">
+                        <div class="meditation-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                            <div class="meditation-content">
+                        <h3 data-lang="body_scan_title">Body Scan Meditation</h3>
+                        <p data-lang="body_scan_description">A systematic journey through physical sensations</p>
+                                <div class="meditation-features">
+                                    <span class="feature-tag">Relaxation</span>
+                                    <span class="feature-tag">Body Awareness</span>
+                                    <span class="feature-tag">Stress Relief</span>
+                                </div>
+                            </div>
+                        <div class="meditation-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 15 min</span>
+                                <span class="difficulty beginner">Beginner</span>
+                        </div>
+                            <button class="meditation-btn" data-lang="start_meditation">
+                                <i class="fas fa-play"></i> Start Session
+                            </button>
+                    </div>
+                    
+                        <div class="meditation-card breathing-card">
+                        <div class="meditation-icon">
+                            <i class="fas fa-wind"></i>
+                        </div>
+                            <div class="meditation-content">
+                        <h3 data-lang="breathing_title">Focused Breathing</h3>
+                        <p data-lang="breathing_description">Simple breath awareness for stress relief</p>
+                                <div class="meditation-features">
+                                    <span class="feature-tag">Calming</span>
+                                    <span class="feature-tag">Focus</span>
+                                    <span class="feature-tag">Quick Practice</span>
+                                </div>
+                            </div>
+                        <div class="meditation-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 10 min</span>
+                                <span class="difficulty beginner">Beginner</span>
+                        </div>
+                            <button class="meditation-btn" data-lang="start_meditation">
+                                <i class="fas fa-play"></i> Start Session
+                            </button>
+                    </div>
+                    
+                        <div class="meditation-card walking-card">
+                        <div class="meditation-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                            <div class="meditation-content">
+                        <h3 data-lang="walking_title">Walking Meditation</h3>
+                        <p data-lang="walking_description">Mindful movement for active relaxation</p>
+                                <div class="meditation-features">
+                                    <span class="feature-tag">Movement</span>
+                                    <span class="feature-tag">Active</span>
+                                    <span class="feature-tag">Outdoor</span>
+                                </div>
+                            </div>
+                        <div class="meditation-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 20 min</span>
+                                <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                            <button class="meditation-btn" data-lang="start_meditation">
+                                <i class="fas fa-play"></i> Start Session
+                            </button>
+                    </div>
+                    
+                        <div class="meditation-card loving-kindness-card">
+                        <div class="meditation-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                            <div class="meditation-content">
+                        <h3 data-lang="loving_kindness_title">Loving-Kindness</h3>
+                        <p data-lang="loving_kindness_description">Cultivate compassion for yourself and others</p>
+                                <div class="meditation-features">
+                                    <span class="feature-tag">Compassion</span>
+                                    <span class="feature-tag">Relationships</span>
+                                    <span class="feature-tag">Emotional</span>
+                                </div>
+                            </div>
+                        <div class="meditation-meta">
+                            <span class="duration"><i class="fas fa-clock"></i> 12 min</span>
+                                <span class="difficulty intermediate">Intermediate</span>
+                        </div>
+                            <button class="meditation-btn" data-lang="start_meditation">
+                                <i class="fas fa-play"></i> Start Session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meditation Tools -->
+                <div class="meditation-tools-section">
+                    <h3>Meditation Tools</h3>
+                    <div class="meditation-tools-grid">
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-stopwatch"></i>
+                            </div>
+                            <h4>Meditation Timer</h4>
+                            <p>Customizable timer with interval bells and ambient sounds</p>
+                            <button class="meditation-tool-btn">Open Timer</button>
+                        </div>
+                        
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Progress Tracker</h4>
+                            <p>Track your meditation sessions and monitor your progress</p>
+                            <button class="meditation-tool-btn">View Progress</button>
+                        </div>
+                        
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-volume-up"></i>
+                            </div>
+                            <h4>Ambient Sounds</h4>
+                            <p>Create the perfect meditation atmosphere with nature sounds</p>
+                            <button class="meditation-tool-btn">Explore Sounds</button>
+                        </div>
+                        
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h4>Meditation Goals</h4>
+                            <p>Set and track your meditation goals and achievements</p>
+                            <button class="meditation-tool-btn">Set Goals</button>
+                        </div>
+                        
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-play-circle"></i>
+                            </div>
+                            <h4>Guided Sessions</h4>
+                            <p>Access a library of guided meditation sessions</p>
+                            <button class="meditation-tool-btn">Browse Library</button>
+                        </div>
+                        
+                        <div class="meditation-tool">
+                            <div class="tool-icon">
+                                <i class="fas fa-book-open"></i>
+                            </div>
+                            <h4>Meditation Library</h4>
+                            <p>Articles, tips, and resources for your meditation practice</p>
+                            <button class="meditation-tool-btn">Read More</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Meditation Options -->
+                <div class="quick-meditation-section">
+                    <h3>Quick Meditation Options</h3>
+                    <div class="quick-meditation-grid">
+                        <div class="quick-meditation-option">
+                            <div class="quick-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4>3-Minute Reset</h4>
+                            <p>Quick breathing exercise for instant calm</p>
+                            <button class="quick-meditation-btn" data-duration="3">Start Now</button>
+                        </div>
+                        
+                        <div class="quick-meditation-option">
+                            <div class="quick-icon">
+                                <i class="fas fa-coffee"></i>
+                            </div>
+                            <h4>5-Minute Break</h4>
+                            <p>Perfect for study breaks and stress relief</p>
+                            <button class="quick-meditation-btn" data-duration="5">Start Now</button>
+                        </div>
+                        
+                        <div class="quick-meditation-option">
+                            <div class="quick-icon">
+                                <i class="fas fa-moon"></i>
+                            </div>
+                            <h4>10-Minute Wind Down</h4>
+                            <p>Evening meditation for better sleep</p>
+                            <button class="quick-meditation-btn" data-duration="10">Start Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meditation Goals Section -->
+                <div class="meditation-goals-section">
+                    <h3>Set Your Meditation Goals</h3>
+                    <div class="goals-container">
+                        <div class="goal-input-section">
+                            <textarea id="meditationGoalInput" placeholder="What would you like to achieve with meditation? For example: 'Meditate for 10 minutes daily' or 'Complete 5 body scan sessions this week'"></textarea>
+                            <button id="addMeditationGoalBtn" class="add-goal-btn">
+                                <i class="fas fa-plus"></i> Add Goal
+                            </button>
+                        </div>
+                        <div class="current-goals" id="currentMeditationGoals">
+                            <!-- Goals will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Section -->
+        <section id="resources" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="resources_title">Resources & Support</h1>
+                    <p data-lang="resources_description">Tools and materials for your wellness journey</p>
+                </div>
+                
+                <!-- Resource Categories Navigation -->
+                <div class="resource-categories">
+                    <button class="category-btn active" data-category="music">Music & Audio</button>
+                    <button class="category-btn" data-category="videos">Videos & Content</button>
+                    <button class="category-btn" data-category="articles">Articles & Guides</button>
+                    <button class="category-btn" data-category="tools">Study Tools</button>
+                    <button class="category-btn" data-category="emergency">Emergency Resources</button>
+                </div>
+
+                <!-- Music & Audio Section -->
+                <div class="resource-category active" id="music-category">
+                    <h3><i class="fas fa-music"></i> Music & Audio Resources</h3>
+                <div class="resources-grid">
+                        <!-- Enhanced Music Player -->
+                    <div class="resource-card music-card">
+                        <div class="resource-header">
+                            <h3><i class="fas fa-music"></i> Calming Music</h3>
+                                <div class="music-controls">
+                                    <button class="shuffle-btn" id="shuffleBtn">
+                                        <i class="fas fa-random"></i>
+                                    </button>
+                                    <button class="repeat-btn" id="repeatBtn">
+                                        <i class="fas fa-redo"></i>
+                                    </button>
+                                </div>
+                        </div>
+                        <div class="music-player">
+                            <div class="player-controls">
+                                <button class="play-btn" id="playBtn">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <button class="pause-btn hidden" id="pauseBtn">
+                                    <i class="fas fa-pause"></i>
+                                </button>
+                                <div class="progress-bar">
+                                    <div class="progress" id="progress"></div>
+                                </div>
+                                <span class="time-display">0:00 / 3:45</span>
+                            </div>
+                            <div class="playlist">
+                                <div class="track active" data-track="peaceful-piano">
+                                    <span>Peaceful Piano</span>
+                                        <span class="track-duration">3:45</span>
+                                </div>
+                                <div class="track" data-track="ocean-waves">
+                                    <span>Ocean Waves</span>
+                                        <span class="track-duration">5:20</span>
+                                </div>
+                                <div class="track" data-track="forest-sounds">
+                                    <span>Forest Sounds</span>
+                                        <span class="track-duration">4:15</span>
+                                </div>
+                                    <div class="track" data-track="rain-sounds">
+                                        <span>Rain Sounds</span>
+                                        <span class="track-duration">6:30</span>
+                                    </div>
+                                    <div class="track" data-track="meditation-bells">
+                                        <span>Meditation Bells</span>
+                                        <span class="track-duration">8:00</span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                        <!-- Podcast Section -->
+                        <div class="resource-card podcast-card">
+                        <div class="resource-header">
+                                <h3><i class="fas fa-podcast"></i> Wellness Podcasts</h3>
+                        </div>
+                            <div class="podcast-list">
+                                <div class="podcast-item">
+                                    <div class="podcast-info">
+                                        <h4>The Mindful Student</h4>
+                                        <p>Weekly episodes on student mental health and study tips</p>
+                                        <span class="episode-count">24 episodes</span>
+                                    </div>
+                                    <button class="listen-btn">
+                                        <i class="fas fa-play"></i> Listen
+                                    </button>
+                                </div>
+                                <div class="podcast-item">
+                                    <div class="podcast-info">
+                                        <h4>Stress-Free Study</h4>
+                                        <p>Techniques for managing academic pressure</p>
+                                        <span class="episode-count">18 episodes</span>
+                                    </div>
+                                    <button class="listen-btn">
+                                        <i class="fas fa-play"></i> Listen
+                                    </button>
+                                </div>
+                                <div class="podcast-item">
+                                    <div class="podcast-info">
+                                        <h4>College Wellness</h4>
+                                        <p>Mental health resources for college students</p>
+                                        <span class="episode-count">32 episodes</span>
+                                    </div>
+                                    <button class="listen-btn">
+                                        <i class="fas fa-play"></i> Listen
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Guided Audio Section -->
+                        <div class="resource-card guided-audio-card">
+                            <div class="resource-header">
+                                <h3><i class="fas fa-headphones"></i> Guided Audio</h3>
+                            </div>
+                            <div class="guided-audio-list">
+                                <div class="audio-item">
+                                    <div class="audio-icon">
+                                        <i class="fas fa-spa"></i>
+                                    </div>
+                                    <div class="audio-info">
+                                        <h4>Progressive Muscle Relaxation</h4>
+                                        <p>15-minute guided relaxation exercise</p>
+                                    </div>
+                                    <button class="play-audio-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="audio-item">
+                                    <div class="audio-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <div class="audio-info">
+                                        <h4>Sleep Stories</h4>
+                                        <p>Calming stories for better sleep</p>
+                                    </div>
+                                    <button class="play-audio-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="audio-item">
+                                    <div class="audio-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="audio-info">
+                                        <h4>Study Focus Music</h4>
+                                        <p>Concentration-enhancing background sounds</p>
+                                    </div>
+                                    <button class="play-audio-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Videos & Content Section -->
+                <div class="resource-category" id="videos-category">
+                    <h3><i class="fab fa-youtube"></i> Educational Videos & Content</h3>
+                    <div class="videos-grid">
+                        <div class="video-category">
+                            <h4>Study & Academic Success</h4>
+                        <div class="video-links">
+                            <a href="https://www.youtube.com/watch?v=NTmHz-3wAQo" class="video-link" target="_blank">
+                                <div class="video-thumb">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="video-info">
+                                        <h5>Study Motivation</h5>
+                                    <p>Tips for staying motivated during exam season</p>
+                                        <span class="video-duration">12:30</span>
+                                </div>
+                            </a>
+                                <a href="#" class="video-link">
+                                    <div class="video-thumb">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="video-info">
+                                        <h5>Effective Note-Taking</h5>
+                                        <p>Learn the Cornell method and other techniques</p>
+                                        <span class="video-duration">8:45</span>
+                                    </div>
+                                </a>
+                                <a href="#" class="video-link">
+                                    <div class="video-thumb">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="video-info">
+                                        <h5>Time Management</h5>
+                                        <p>Pomodoro technique and productivity hacks</p>
+                                        <span class="video-duration">15:20</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="video-category">
+                            <h4>Mental Health & Wellness</h4>
+                            <div class="video-links">
+                            <a href="https://www.youtube.com/watch?v=wcoCmg-Uq-E" class="video-link" target="_blank">
+                                <div class="video-thumb">
+                                    <i class="fas fa-heart"></i>
+                                </div>
+                                <div class="video-info">
+                                        <h5>Self-Compassion</h5>
+                                    <p>Learning to be kind to yourself</p>
+                                        <span class="video-duration">18:15</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=LO1mTELoj6o" class="video-link" target="_blank">
+                                <div class="video-thumb">
+                                    <i class="fas fa-balance-scale"></i>
+                                </div>
+                                <div class="video-info">
+                                        <h5>Work-Life Balance</h5>
+                                    <p>Managing academic and personal life</p>
+                                        <span class="video-duration">22:10</span>
+                                </div>
+                            </a>
+                                <a href="#" class="video-link">
+                                    <div class="video-thumb">
+                                        <i class="fas fa-smile"></i>
+                        </div>
+                                    <div class="video-info">
+                                        <h5>Anxiety Management</h5>
+                                        <p>Breathing techniques and grounding exercises</p>
+                                        <span class="video-duration">14:30</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Articles & Guides Section -->
+                <div class="resource-category" id="articles-category">
+                    <h3><i class="fas fa-newspaper"></i> Articles & Guides</h3>
+                    <div class="articles-grid">
+                        <div class="article-category">
+                            <h4>Study Tips & Techniques</h4>
+                            <div class="article-list">
+                                <div class="article-item">
+                                    <div class="article-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="article-content">
+                                        <h5>The Science of Memory</h5>
+                                        <p>Understanding how your brain stores and retrieves information</p>
+                                        <div class="article-meta">
+                                            <span class="read-time">5 min read</span>
+                                            <span class="article-tags">Memory, Study Tips</span>
+                                        </div>
+                                    </div>
+                                    <button class="read-article-btn">Read</button>
+                                </div>
+                                <div class="article-item">
+                                    <div class="article-icon">
+                                        <i class="fas fa-lightbulb"></i>
+                                    </div>
+                                    <div class="article-content">
+                                        <h5>Active Learning Strategies</h5>
+                                        <p>Move beyond passive reading to engage your mind</p>
+                                        <div class="article-meta">
+                                            <span class="read-time">7 min read</span>
+                                            <span class="article-tags">Learning, Engagement</span>
+                                        </div>
+                                    </div>
+                                    <button class="read-article-btn">Read</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="article-category">
+                            <h4>Mental Health Resources</h4>
+                            <div class="article-list">
+                                <div class="article-item">
+                                    <div class="article-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="article-content">
+                                        <h5>Recognizing Burnout</h5>
+                                        <p>Signs, symptoms, and strategies for academic burnout</p>
+                                        <div class="article-meta">
+                                            <span class="read-time">6 min read</span>
+                                            <span class="article-tags">Burnout, Prevention</span>
+                                        </div>
+                                    </div>
+                                    <button class="read-article-btn">Read</button>
+                                </div>
+                                <div class="article-item">
+                                    <div class="article-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="article-content">
+                                        <h5>Building Support Networks</h5>
+                                        <p>Creating meaningful connections in college</p>
+                                        <div class="article-meta">
+                                            <span class="read-time">8 min read</span>
+                                            <span class="article-tags">Social, Relationships</span>
+                                        </div>
+                                    </div>
+                                    <button class="read-article-btn">Read</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Study Tools Section -->
+                <div class="resource-category" id="tools-category">
+                    <h3><i class="fas fa-tools"></i> Study Tools & Apps</h3>
+                    <div class="tools-grid">
+                        <div class="tool-category">
+                            <h4>Productivity Tools</h4>
+                            <div class="tool-list">
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-timer"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Pomodoro Timer</h5>
+                                        <p>25-minute focused work sessions with breaks</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-tasks"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Study Planner</h5>
+                                        <p>Organize your study schedule and track progress</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-chart-line"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Grade Calculator</h5>
+                                        <p>Calculate your GPA and predict final grades</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="tool-category">
+                            <h4>Wellness Tools</h4>
+                            <div class="tool-list">
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-moon"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Sleep Tracker</h5>
+                                        <p>Monitor your sleep patterns and quality</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-dumbbell"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Exercise Planner</h5>
+                                        <p>Create and track your fitness routine</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                                <div class="tool-item">
+                                    <div class="tool-icon">
+                                        <i class="fas fa-utensils"></i>
+                                    </div>
+                                    <div class="tool-info">
+                                        <h5>Meal Planner</h5>
+                                        <p>Plan healthy meals for busy students</p>
+                                    </div>
+                                    <button class="use-tool-btn">Use Tool</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Emergency Resources Section -->
+                <div class="resource-category" id="emergency-category">
+                    <h3><i class="fas fa-phone-alt"></i> Emergency Resources</h3>
+                    <div class="emergency-resources">
+                        <div class="crisis-banner">
+                            <div class="crisis-content">
+                                <div class="crisis-icon">
+                                    <i class="fas fa-life-ring"></i>
+                                </div>
+                                <div class="crisis-text">
+                                    <h4>Need Immediate Help?</h4>
+                                    <p>If you're experiencing a crisis or having thoughts of self-harm, help is available 24/7.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-contacts">
+                            <h4>Crisis Hotlines</h4>
+                            <div class="contact-list">
+                                <div class="contact-item emergency">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h5>National Suicide Prevention Lifeline</h5>
+                                        <p>988 or 1-800-273-8255</p>
+                                        <span class="contact-note">24/7 crisis support</span>
+                                    </div>
+                                    <button class="call-btn">Call Now</button>
+                                </div>
+                                <div class="contact-item emergency">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h5>Crisis Text Line</h5>
+                                        <p>Text HOME to 741741</p>
+                                        <span class="contact-note">24/7 text support</span>
+                                    </div>
+                                    <button class="text-btn">Text Now</button>
+                                </div>
+                                <div class="contact-item emergency">
+                                    <div class="contact-icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <div class="contact-info">
+                                        <h5>Campus Counseling Center</h5>
+                                        <p>(555) 123-4567</p>
+                                        <span class="contact-note">Mon-Fri 8AM-5PM</span>
+                                    </div>
+                                    <button class="call-btn">Call Now</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="emergency-apps">
+                            <h4>Helpful Apps</h4>
+                            <div class="app-list">
+                                <div class="app-item">
+                                    <div class="app-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="app-info">
+                                        <h5>My3 Support Network</h5>
+                                        <p>Build your support network of 3 trusted contacts</p>
+                                    </div>
+                                    <button class="download-btn">Download</button>
+                                </div>
+                                <div class="app-item">
+                                    <div class="app-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <div class="app-info">
+                                        <h5>Safety Plan</h5>
+                                        <p>Create a personalized safety plan for crisis moments</p>
+                                    </div>
+                                    <button class="download-btn">Download</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appointments Section -->
+        <section id="appointments" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="appointment_title">Counseling Appointments</h1>
+                    <p data-lang="appointment_description">Book sessions with specialized counselors</p>
+                </div>
+                
+                <div class="counselors-grid">
+                    <div class="counselor-card" data-counselor="academic">
+                        <div class="counselor-avatar">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <div class="counselor-info">
+                            <h3 data-lang="counselor_academic_name">Dr. Sarah Johnson</h3>
+                            <p class="counselor-specialty" data-lang="counselor_academic_specialty">Academic Stress & Time Management</p>
+                            <p class="counselor-description" data-lang="counselor_academic_description">Helps students manage academic pressure and develop effective study strategies.</p>
+                        </div>
+                        <div class="counselor-actions">
+                            <button class="book-btn" data-lang="book_session">Book Session</button>
+                        </div>
+                    </div>
+                    
+                    <div class="counselor-card" data-counselor="relationship">
+                        <div class="counselor-avatar">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="counselor-info">
+                            <h3 data-lang="counselor_relationship_name">Dr. Michael Chen</h3>
+                            <p class="counselor-specialty" data-lang="counselor_relationship_specialty">Relationships & Social Life</p>
+                            <p class="counselor-description" data-lang="counselor_relationship_description">Supports students navigating friendships, dating, and family dynamics.</p>
+                        </div>
+                        <div class="counselor-actions">
+                            <button class="book-btn" data-lang="book_session">Book Session</button>
+                        </div>
+                    </div>
+                    
+                    <div class="counselor-card" data-counselor="anxiety">
+                        <div class="counselor-avatar">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="counselor-info">
+                            <h3 data-lang="counselor_anxiety_name">Dr. Emily Rodriguez</h3>
+                            <p class="counselor-specialty" data-lang="counselor_anxiety_specialty">Anxiety & Depression</p>
+                            <p class="counselor-description" data-lang="counselor_anxiety_description">Specializes in treating anxiety disorders and mood-related concerns.</p>
+                        </div>
+                        <div class="counselor-actions">
+                            <button class="book-btn" data-lang="book_session">Book Session</button>
+                        </div>
+                    </div>
+                    
+                    <div class="counselor-card" data-counselor="identity">
+                        <div class="counselor-avatar">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="counselor-info">
+                            <h3 data-lang="counselor_identity_name">Dr. Alex Thompson</h3>
+                            <p class="counselor-specialty" data-lang="counselor_identity_specialty">Identity & Personal Growth</p>
+                            <p class="counselor-description" data-lang="counselor_identity_description">Helps students explore identity, purpose, and personal development.</p>
+                        </div>
+                        <div class="counselor-actions">
+                            <button class="book-btn" data-lang="book_session">Book Session</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Enhanced Mind Games Section -->
+        <section id="games" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="games_title">Mind Games & Activities</h1>
+                    <p data-lang="games_description">Play interactive games to boost your mood and focus</p>
+                </div>
+                
+                <!-- Game Categories Navigation -->
+                <div class="game-categories">
+                    <button class="game-category-btn active" data-category="cognitive">Cognitive Games</button>
+                    <button class="game-category-btn" data-category="wellness">Wellness Activities</button>
+                    <button class="game-category-btn" data-category="creativity">Creative Tools</button>
+                    <button class="game-category-btn" data-category="social">Social Games</button>
+                </div>
+
+                <!-- Cognitive Games Section -->
+                <div class="game-category active" id="cognitive-category">
+                    <h3><i class="fas fa-brain"></i> Cognitive Enhancement Games</h3>
+                    <div class="games-grid">
+                        <!-- Enhanced Memory Challenge Game -->
+                <div class="embedded-game-container">
+                    <div class="game-header">
+                        <h2><i class="fas fa-brain"></i> Memory Challenge</h2>
+                                <p>Match all the emoji pairs to improve your memory!</p>
+                    </div>
+                    <div class="game-stats">
+                        <div class="stat">
+                            <span>Moves:</span>
+                            <span id="memoryMoves">0</span>
+                        </div>
+                        <div class="stat">
+                            <span>Matches:</span>
+                            <span id="memoryMatches">0/8</span>
+                        </div>
+                        <div class="stat">
+                            <span>Time:</span>
+                            <span id="memoryTime">0:00</span>
+                        </div>
+                                <div class="stat">
+                                    <span>Best Score:</span>
+                                    <span id="memoryBestScore">--</span>
+                                </div>
+                    </div>
+                    <div class="memory-grid" id="memoryGrid"></div>
+                            <div class="game-controls">
+                    <button type="button" class="game-reset-btn" id="resetMemory">New Game</button>
+                                <button type="button" class="game-hint-btn" id="hintMemory">Hint</button>
+                            </div>
+                </div>
+
+                        <!-- Word Association Game -->
+                        <div class="embedded-game-container">
+                    <div class="game-header">
+                                <h2><i class="fas fa-puzzle-piece"></i> Word Association</h2>
+                                <p>Connect words to expand your vocabulary and creativity!</p>
+                    </div>
+                            <div class="word-game-stats">
+                                <div class="stat">
+                                    <span>Score:</span>
+                                    <span id="wordScore">0</span>
+                    </div>
+                                <div class="stat">
+                                    <span>Streak:</span>
+                                    <span id="wordStreak">0</span>
+                    </div>
+                                <div class="stat">
+                                    <span>Words:</span>
+                                    <span id="wordCount">0</span>
+                                </div>
+                            </div>
+                            <div class="word-game-area">
+                                <div class="word-display" id="wordDisplay">
+                                    <span class="current-word">STUDY</span>
+                                </div>
+                                <div class="word-input-section">
+                                    <input type="text" id="wordInput" placeholder="Type a related word...">
+                                    <button id="submitWord">Submit</button>
+                                </div>
+                                <div class="word-associations" id="wordAssociations">
+                                    <!-- Generated associations will appear here -->
+                                </div>
+                            </div>
+                            <div class="game-controls">
+                                <button type="button" class="game-reset-btn" id="newWordGame">New Word</button>
+                                <button type="button" class="game-hint-btn" id="wordHint">Hint</button>
+                            </div>
+                        </div>
+
+                        <!-- Number Sequence Game -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-calculator"></i> Number Sequence</h2>
+                                <p>Complete the pattern to sharpen your logical thinking!</p>
+                            </div>
+                            <div class="sequence-game-stats">
+                                <div class="stat">
+                                    <span>Level:</span>
+                                    <span id="sequenceLevel">1</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Score:</span>
+                                    <span id="sequenceScore">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Lives:</span>
+                                    <span id="sequenceLives">3</span>
+                                </div>
+                            </div>
+                            <div class="sequence-game-area">
+                                <div class="sequence-display" id="sequenceDisplay">
+                                    <span class="sequence-numbers">2, 4, 6, ?</span>
+                                </div>
+                                <div class="sequence-options" id="sequenceOptions">
+                                    <!-- Options will be generated here -->
+                                </div>
+                            </div>
+                            <div class="game-controls">
+                                <button type="button" class="game-reset-btn" id="newSequence">New Sequence</button>
+                                <button type="button" class="game-hint-btn" id="sequenceHint">Hint</button>
+                            </div>
+                        </div>
+
+                        <!-- Color Memory Game -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-palette"></i> Color Memory</h2>
+                                <p>Remember the color sequence and repeat it!</p>
+                            </div>
+                            <div class="color-game-stats">
+                                <div class="stat">
+                                    <span>Round:</span>
+                                    <span id="colorRound">1</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Score:</span>
+                                    <span id="colorScore">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Best:</span>
+                                    <span id="colorBest">0</span>
+                                </div>
+                            </div>
+                            <div class="color-game-area">
+                                <div class="color-sequence" id="colorSequence">
+                                    <!-- Color buttons will be generated here -->
+                                </div>
+                                <div class="game-status" id="colorStatus">Watch the sequence...</div>
+                            </div>
+                            <div class="game-controls">
+                                <button type="button" class="game-reset-btn" id="startColorGame">Start Game</button>
+                                <button type="button" class="game-hint-btn" id="colorHint">Hint</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Wellness Activities Section -->
+                <div class="game-category" id="wellness-category">
+                    <h3><i class="fas fa-heart"></i> Wellness & Mindfulness Activities</h3>
+                    <div class="games-grid">
+                        <!-- Enhanced Gratitude Journal -->
+                <div class="embedded-game-container">
+                    <div class="game-header">
+                        <h2><i class="fas fa-heart"></i> Gratitude Journal</h2>
+                                <p>What are you grateful for today? Build a positive mindset!</p>
+                    </div>
+                            <div class="gratitude-stats">
+                                <div class="stat">
+                                    <span>Entries:</span>
+                                    <span id="gratitudeEntriesCount">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Streak:</span>
+                                    <span id="gratitudeStreak">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>This Week:</span>
+                                    <span id="gratitudeThisWeek">0</span>
+                                </div>
+                            </div>
+                            <div class="gratitude-input">
+                                <textarea id="gratitudeText" placeholder="Write down 3 things you're thankful for today..." rows="4"></textarea>
+                                <div class="gratitude-prompts" id="gratitudePrompts">
+                                    <span class="prompt-tag" data-prompt="family">Family</span>
+                                    <span class="prompt-tag" data-prompt="friends">Friends</span>
+                                    <span class="prompt-tag" data-prompt="health">Health</span>
+                                    <span class="prompt-tag" data-prompt="education">Education</span>
+                                    <span class="prompt-tag" data-prompt="nature">Nature</span>
+                                </div>
+                            </div>
+                    <div class="gratitude-actions">
+                        <button type="button" class="gratitude-save-btn" id="saveGratitude">
+                            <i class="fas fa-save"></i> Save Entry
+                        </button>
+                                <button type="button" class="gratitude-random-btn" id="randomGratitude">
+                                    <i class="fas fa-random"></i> Random Prompt
+                                </button>
+                    </div>
+                    <div class="gratitude-entries" id="gratitudeEntries">
+                        <h3>Recent Entries</h3>
+                        <div id="entriesList"></div>
+                    </div>
+                </div>
+
+                        <!-- Enhanced Positive Affirmations -->
+                <div class="embedded-game-container">
+                    <div class="game-header">
+                        <h2><i class="fas fa-star"></i> Positive Affirmations</h2>
+                                <p>Get your daily dose of positivity and self-empowerment!</p>
+                            </div>
+                            <div class="affirmation-stats">
+                                <div class="stat">
+                                    <span>Daily:</span>
+                                    <span id="affirmationDaily">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Favorites:</span>
+                                    <span id="affirmationFavorites">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Streak:</span>
+                                    <span id="affirmationStreak">0</span>
+                                </div>
+                    </div>
+                    <div class="affirmation-wheel" id="affirmationWheel">
+                        <div class="wheel-center">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="affirmation-display" id="affirmationDisplay">
+                                <p>Click the button to receive your daily affirmation!</p>
+                    </div>
+                            <div class="affirmation-controls">
+                    <button type="button" class="spin-btn" id="spinBtn">
+                                    <i class="fas fa-sync-alt"></i> Get Affirmation
+                                </button>
+                                <button type="button" class="favorite-btn" id="favoriteAffirmation">
+                                    <i class="fas fa-heart"></i> Favorite
+                    </button>
+                            </div>
+                            <div class="affirmation-categories">
+                                <button class="category-btn active" data-category="general">General</button>
+                                <button class="category-btn" data-category="academic">Academic</button>
+                                <button class="category-btn" data-category="confidence">Confidence</button>
+                                <button class="category-btn" data-category="motivation">Motivation</button>
+                            </div>
+                </div>
+
+                        <!-- Enhanced Breathing Exercise -->
+                <div class="embedded-game-container">
+                    <div class="game-header">
+                        <h2><i class="fas fa-wind"></i> Breathing Exercise</h2>
+                                <p>Follow the circle to calm your mind and reduce stress!</p>
+                            </div>
+                            <div class="breathing-stats">
+                                <div class="stat">
+                                    <span>Sessions:</span>
+                                    <span id="breathingSessions">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Total Time:</span>
+                                    <span id="breathingTotalTime">0m</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Streak:</span>
+                                    <span id="breathingStreak">0</span>
+                                </div>
+                    </div>
+                    <div class="breathing-circle" id="breathingCircle">
+                        <div class="breathing-text" id="breathingText">Get Ready</div>
+                                <div class="breathing-instruction" id="breathingInstruction">Click Start to begin</div>
+                    </div>
+                    <div class="breathing-controls">
+                                <div class="breathing-presets">
+                                    <button class="preset-btn active" data-preset="4-4-4">4-4-4</button>
+                                    <button class="preset-btn" data-preset="4-7-8">4-7-8</button>
+                                    <button class="preset-btn" data-preset="box">Box</button>
+                                    <button class="preset-btn" data-preset="custom">Custom</button>
+                                </div>
+                        <button type="button" class="breathing-btn" id="startBreathing">
+                            <i class="fas fa-play"></i> Start Exercise
+                        </button>
+                                <button type="button" class="breathing-btn secondary" id="stopBreathing" style="display: none;">
+                            <i class="fas fa-stop"></i> Stop
+                        </button>
+                    </div>
+                    </div>
+
+                        <!-- Mood Check-in -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-smile"></i> Mood Check-in</h2>
+                                <p>Track your emotional well-being and get personalized insights!</p>
+                            </div>
+                            <div class="mood-check-stats">
+                                <div class="stat">
+                                    <span>Today:</span>
+                                    <span id="moodToday">😊</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Week Avg:</span>
+                                    <span id="moodWeekAvg">😐</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Trend:</span>
+                                    <span id="moodTrend">📈</span>
+                                </div>
+                            </div>
+                            <div class="mood-selector">
+                                <div class="mood-options">
+                                    <button class="mood-option" data-mood="terrible">😢</button>
+                                    <button class="mood-option" data-mood="poor">😔</button>
+                                    <button class="mood-option" data-mood="okay">😐</button>
+                                    <button class="mood-option active" data-mood="good">😊</button>
+                                    <button class="mood-option" data-mood="excellent">😄</button>
+                                </div>
+                                <div class="mood-factors">
+                                    <label class="factor-label">
+                                        <input type="checkbox" name="factors" value="sleep"> Sleep
+                                    </label>
+                                    <label class="factor-label">
+                                        <input type="checkbox" name="factors" value="exercise"> Exercise
+                                    </label>
+                                    <label class="factor-label">
+                                        <input type="checkbox" name="factors" value="social"> Social
+                                    </label>
+                                    <label class="factor-label">
+                                        <input type="checkbox" name="factors" value="work"> Work/Study
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mood-actions">
+                                <button type="button" class="save-mood-btn" id="saveMoodCheck">
+                                    <i class="fas fa-save"></i> Save Check-in
+                                </button>
+                                <button type="button" class="mood-insights-btn" id="viewMoodInsights">
+                                    <i class="fas fa-chart-line"></i> View Insights
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Creative Tools Section -->
+                <div class="game-category" id="creativity-category">
+                    <h3><i class="fas fa-paint-brush"></i> Creative Expression Tools</h3>
+                    <div class="games-grid">
+                        <!-- Digital Art Canvas -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-paint-brush"></i> Digital Canvas</h2>
+                                <p>Express your creativity with digital art and doodling!</p>
+                            </div>
+                            <div class="canvas-tools">
+                                <div class="tool-group">
+                                    <button class="tool-btn active" data-tool="brush">🖌️</button>
+                                    <button class="tool-btn" data-tool="eraser">🧽</button>
+                                    <button class="tool-btn" data-tool="text">📝</button>
+                                    <button class="tool-btn" data-tool="shapes">🔷</button>
+                                </div>
+                                <div class="color-picker">
+                                    <input type="color" id="colorPicker" value="#000000">
+                                    <div class="color-presets">
+                                        <div class="color-preset" style="background: #ff0000"></div>
+                                        <div class="color-preset" style="background: #00ff00"></div>
+                                        <div class="color-preset" style="background: #0000ff"></div>
+                                        <div class="color-preset" style="background: #ffff00"></div>
+                                        <div class="color-preset" style="background: #ff00ff"></div>
+                                    </div>
+                                </div>
+                                <div class="brush-settings">
+                                    <label>Size: <span id="brushSize">5</span></label>
+                                    <input type="range" id="brushSizeSlider" min="1" max="20" value="5">
+                                </div>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="artCanvas" width="400" height="300"></canvas>
+                            </div>
+                            <div class="canvas-actions">
+                                <button type="button" class="canvas-btn" id="clearCanvas">Clear</button>
+                                <button type="button" class="canvas-btn" id="saveCanvas">Save</button>
+                                <button type="button" class="canvas-btn" id="downloadCanvas">Download</button>
+                            </div>
+                        </div>
+
+                        <!-- Poetry Generator -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-feather-alt"></i> Poetry Generator</h2>
+                                <p>Create beautiful poetry with guided prompts and inspiration!</p>
+                            </div>
+                            <div class="poetry-controls">
+                                <div class="poetry-type">
+                                    <label>Poetry Type:</label>
+                                    <select id="poetryType">
+                                        <option value="haiku">Haiku</option>
+                                        <option value="limerick">Limerick</option>
+                                        <option value="free-verse">Free Verse</option>
+                                        <option value="sonnet">Sonnet</option>
+                                    </select>
+                                </div>
+                                <div class="poetry-theme">
+                                    <label>Theme:</label>
+                                    <select id="poetryTheme">
+                                        <option value="nature">Nature</option>
+                                        <option value="love">Love</option>
+                                        <option value="hope">Hope</option>
+                                        <option value="friendship">Friendship</option>
+                                        <option value="dreams">Dreams</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="poetry-prompt" id="poetryPrompt">
+                                Write a haiku about nature...
+                            </div>
+                            <div class="poetry-input">
+                                <textarea id="poetryText" placeholder="Start writing your poem here..." rows="8"></textarea>
+                            </div>
+                            <div class="poetry-actions">
+                                <button type="button" class="poetry-btn" id="generatePrompt">New Prompt</button>
+                                <button type="button" class="poetry-btn" id="savePoetry">Save Poem</button>
+                                <button type="button" class="poetry-btn" id="sharePoetry">Share</button>
+                            </div>
+                        </div>
+
+                        <!-- Story Builder -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-book-open"></i> Story Builder</h2>
+                                <p>Create collaborative stories with random prompts and characters!</p>
+                            </div>
+                            <div class="story-controls">
+                                <div class="story-settings">
+                                    <label>Genre:</label>
+                                    <select id="storyGenre">
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="mystery">Mystery</option>
+                                        <option value="romance">Romance</option>
+                                        <option value="sci-fi">Sci-Fi</option>
+                                        <option value="adventure">Adventure</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="story-btn" id="generateStoryElements">Generate Elements</button>
+                            </div>
+                            <div class="story-elements" id="storyElements">
+                                <div class="element">
+                                    <strong>Character:</strong> <span id="storyCharacter">--</span>
+                                </div>
+                                <div class="element">
+                                    <strong>Setting:</strong> <span id="storySetting">--</span>
+                                </div>
+                                <div class="element">
+                                    <strong>Conflict:</strong> <span id="storyConflict">--</span>
+                                </div>
+                            </div>
+                            <div class="story-input">
+                                <textarea id="storyText" placeholder="Start writing your story here..." rows="10"></textarea>
+                            </div>
+                            <div class="story-actions">
+                                <button type="button" class="story-btn" id="saveStory">Save Story</button>
+                                <button type="button" class="story-btn" id="continueStory">Continue</button>
+                                <button type="button" class="story-btn" id="shareStory">Share</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Games Section -->
+                <div class="game-category" id="social-category">
+                    <h3><i class="fas fa-users"></i> Social & Collaborative Games</h3>
+                    <div class="games-grid">
+                        <!-- Would You Rather -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-question-circle"></i> Would You Rather</h2>
+                                <p>Make tough choices and see what your friends would pick!</p>
+                            </div>
+                            <div class="wyr-stats">
+                                <div class="stat">
+                                    <span>Questions:</span>
+                                    <span id="wyrCount">0</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Category:</span>
+                                    <span id="wyrCategory">Random</span>
+                                </div>
+                            </div>
+                            <div class="wyr-question" id="wyrQuestion">
+                                <div class="option" data-option="a">
+                                    <span class="option-text">Option A</span>
+                                    <span class="option-percentage">--%</span>
+                                </div>
+                                <div class="wyr-divider">VS</div>
+                                <div class="option" data-option="b">
+                                    <span class="option-text">Option B</span>
+                                    <span class="option-percentage">--%</span>
+                                </div>
+                            </div>
+                            <div class="wyr-categories">
+                                <button class="category-btn active" data-category="random">Random</button>
+                                <button class="category-btn" data-category="academic">Academic</button>
+                                <button class="category-btn" data-category="lifestyle">Lifestyle</button>
+                                <button class="category-btn" data-category="funny">Funny</button>
+                            </div>
+                            <div class="wyr-actions">
+                                <button type="button" class="wyr-btn" id="newWyrQuestion">New Question</button>
+                                <button type="button" class="wyr-btn" id="shareWyrQuestion">Share</button>
+                            </div>
+                        </div>
+
+                        <!-- Truth or Dare -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-dice"></i> Truth or Dare</h2>
+                                <p>Play with friends or challenge yourself with fun questions and dares!</p>
+                            </div>
+                            <div class="tod-stats">
+                                <div class="stat">
+                                    <span>Round:</span>
+                                    <span id="todRound">1</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Mode:</span>
+                                    <span id="todMode">Solo</span>
+                                </div>
+                            </div>
+                            <div class="tod-game-area">
+                                <div class="tod-question" id="todQuestion">
+                                    Choose Truth or Dare to begin!
+                                </div>
+                                <div class="tod-rating">
+                                    <label>Difficulty:</label>
+                                    <select id="todDifficulty">
+                                        <option value="easy">Easy</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="hard">Hard</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="tod-actions">
+                                <button type="button" class="tod-btn truth-btn" id="chooseTruth">Truth</button>
+                                <button type="button" class="tod-btn dare-btn" id="chooseDare">Dare</button>
+                                <button type="button" class="tod-btn" id="nextTod">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Collaborative Drawing -->
+                        <div class="embedded-game-container">
+                            <div class="game-header">
+                                <h2><i class="fas fa-palette"></i> Collaborative Drawing</h2>
+                                <p>Draw together with friends in real-time or take turns adding to a masterpiece!</p>
+                            </div>
+                            <div class="collab-drawing-stats">
+                                <div class="stat">
+                                    <span>Players:</span>
+                                    <span id="collabPlayers">1</span>
+                                </div>
+                                <div class="stat">
+                                    <span>Rounds:</span>
+                                    <span id="collabRounds">0</span>
+                                </div>
+                            </div>
+                            <div class="collab-canvas-container">
+                                <canvas id="collabCanvas" width="300" height="200"></canvas>
+                                <div class="collab-timer" id="collabTimer">3:00</div>
+                            </div>
+                            <div class="collab-controls">
+                                <button type="button" class="collab-btn" id="startCollabDrawing">Start Game</button>
+                                <button type="button" class="collab-btn" id="inviteFriends">Invite Friends</button>
+                                <button type="button" class="collab-btn" id="saveCollabDrawing">Save Drawing</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cat with Us Section -->
+        <section id="insights" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="insights_title">Cat with Us</h1>
+                    <p data-lang="insights_description">Get personalized insights and recommendations based on your wellness data</p>
+                </div>
+
+                <!-- Insights Overview -->
+                <div class="insights-overview">
+                    <div class="insights-header">
+                        <h2><i class="fas fa-chart-line"></i> Your Wellness Analysis</h2>
+                        <p>Discover patterns and insights from your wellness journey</p>
+                    </div>
+                    <div id="insightsOverview">
+                        <!-- Insights will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Personalized Recommendations -->
+                <div class="recommendations-section">
+                    <div class="recommendations-header">
+                        <h2><i class="fas fa-lightbulb"></i> Personalized Recommendations</h2>
+                        <p>Tailored suggestions to improve your wellness</p>
+                    </div>
+                    <div id="recommendationsList">
+                        <!-- Recommendations will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Progress Tracking -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <h2><i class="fas fa-trophy"></i> Wellness Progress</h2>
+                        <p>Track your overall wellness improvement over time</p>
+                    </div>
+                    <div id="wellnessProgress">
+                        <!-- Progress tracking will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Wellness Goals -->
+                <div class="wellness-goals-section">
+                    <div class="goals-header">
+                        <h2><i class="fas fa-bullseye"></i> Wellness Goals</h2>
+                        <p>Set and track your personal wellness objectives</p>
+                    </div>
+                    <div class="goals-content">
+                        <div class="goal-input-section">
+                            <input type="text" id="wellnessGoalInput" placeholder="Enter a new wellness goal...">
+                            <button id="addWellnessGoalBtn" class="add-goal-btn">
+                                <i class="fas fa-plus"></i> Add Goal
+                            </button>
+                        </div>
+                        <div class="current-wellness-goals" id="currentWellnessGoals">
+                            <!-- Goals will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mood-Based Group Chat Section -->
+        <section id="groups" class="content-section">
+            <div class="section-container">
+                <div class="section-header">
+                    <h1 data-lang="groups_title">Group Chat</h1>
+                    <p data-lang="groups_description">Connect with others who understand what you're going through</p>
+                </div>
+
+                <!-- Crisis Support Section -->
+                <div class="crisis-support-section">
+                    <div class="crisis-support-card">
+                        <div class="crisis-header">
+                            <h3><i class="fas fa-shield-alt"></i> Crisis Support & Safety</h3>
+                            <p>If you're in immediate danger or having thoughts of self-harm, please reach out for help</p>
+                        </div>
+                        <div class="crisis-resources">
+                            <div class="emergency-contacts">
+                                <h4><i class="fas fa-phone"></i> Emergency Contacts</h4>
+                                <div class="contact-buttons">
+                                    <button class="emergency-btn crisis-hotline" onclick="window.moodGroupManager.showCrisisModal()">
+                                        <i class="fas fa-phone-alt"></i>
+                                        Crisis Hotline: 988
+                                    </button>
+                                    <button class="emergency-btn text-crisis" onclick="window.moodGroupManager.showCrisisModal('text')">
+                                        <i class="fas fa-comment"></i>
+                                        Text Crisis: 741741
+                                    </button>
+                                    <button class="emergency-btn emergency-911" onclick="window.moodGroupManager.showCrisisModal('911')">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        Emergency: 911
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="crisis-info">
+                                <div class="info-item">
+                                    <i class="fas fa-heart"></i>
+                                    <span>You are not alone. Help is available 24/7.</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>Your group members care about you.</span>
+                                </div>
+                                <div class="info-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>Crisis support is confidential and free.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Resources Section -->
+                <div class="group-resources-section" id="groupResourcesSection" style="display: none;">
+                    <div class="resources-header">
+                        <h3><i class="fas fa-book"></i> Group Resources</h3>
+                        <p>Helpful resources and tips for your current mood group</p>
+                    </div>
+                    <div class="resources-content" id="groupResourcesContent">
+                        <!-- Resources will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Interactive Polls Section -->
+                <div class="polls-section" id="pollsSection" style="display: none;">
+                    <div class="polls-header">
+                        <h3><i class="fas fa-poll"></i> Group Polls & Activities</h3>
+                        <p>Participate in group activities and share your thoughts</p>
+                    </div>
+                    <div class="polls-content" id="pollsContent">
+                        <!-- Polls will be populated by JavaScript -->
+                    </div>
+                    <div class="create-poll-section">
+                        <button class="create-poll-btn" onclick="window.moodGroupManager.showCreatePollModal()">
+                            <i class="fas fa-plus"></i>
+                            Create New Poll
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Personal Analytics Section -->
+                <div class="personal-analytics-section" id="personalAnalyticsSection" style="display: none;">
+                    <div class="analytics-header">
+                        <h3><i class="fas fa-chart-line"></i> Your Group Activity</h3>
+                        <p>Track your participation and growth in mood groups</p>
+                    </div>
+                    <div class="analytics-content" id="personalAnalyticsContent">
+                        <!-- Analytics will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Group Challenges Section -->
+                <div class="group-challenges-section" id="groupChallengesSection" style="display: none;">
+                    <div class="challenges-header">
+                        <h3><i class="fas fa-trophy"></i> Group Challenges & Activities</h3>
+                        <p>Participate in group challenges to support each other's growth</p>
+                    </div>
+                    <div class="challenges-tabs">
+                        <button class="challenge-tab active" data-tab="active">
+                            <i class="fas fa-fire"></i>
+                            Active Challenges
+                        </button>
+                        <button class="challenge-tab" data-tab="completed">
+                            <i class="fas fa-check-circle"></i>
+                            Completed
+                        </button>
+                        <button class="challenge-tab" data-tab="create">
+                            <i class="fas fa-plus-circle"></i>
+                            Create Challenge
+                        </button>
+                    </div>
+                    <div class="challenges-content" id="challengesContent">
+                        <!-- Challenges will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Available Groups Preview -->
+                <div class="available-groups-section">
+                    <div class="groups-preview-header">
+                        <h3><i class="fas fa-users"></i> Available Mood Groups</h3>
+                        <p>Join a group that matches your current emotional state</p>
+                    </div>
+                    <div class="groups-preview-grid" id="groupsPreviewGrid">
+                        <!-- Groups will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Mood Reporting Section -->
+                <div class="mood-reporting-section">
+                    <div class="mood-report-card">
+                        <div class="mood-report-content">
+                            <div class="mood-report-header">
+                                <h2><i class="fas fa-heart"></i> Join a Supportive Community</h2>
+                                <p>Share your current mood and connect with others who feel the same way</p>
+                            </div>
+                            <div class="mood-report-actions">
+                                <button class="mood-report-btn" id="moodReportBtn">
+                                    <i class="fas fa-users"></i>
+                                    Report My Mood & Join Group
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Group Display -->
+                <div class="current-group-section" id="currentGroupSection" style="display: none;">
+                    <div class="current-group-info" id="currentGroupInfo">
+                        <!-- Group info will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Group Chat Interface -->
+                <div class="group-chat-section" id="groupChatSection" style="display: none;">
+                    <div class="group-chat-card">
+                        <div class="group-chat-header">
+                            <div class="chat-header-info">
+                                <h2><i class="fas fa-comments"></i> Group Chat</h2>
+                                <p>Share your thoughts and support others in your mood group</p>
+                            </div>
+                            <div class="chat-header-actions">
+                                <button class="chat-action-btn" onclick="window.moodGroupManager.toggleChatSettings()" title="Chat Settings">
+                                    <i class="fas fa-cog"></i>
+                                </button>
+                                <button class="chat-action-btn" onclick="window.moodGroupManager.clearChat()" title="Clear Chat">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="group-chat-container">
+                            <!-- Enhanced Chat Area -->
+                            <div class="chat-main-area">
+                                <div class="chat-messages-container">
+                                    <div class="chat-messages-header">
+                                        <div class="chat-status">
+                                            <div class="online-indicator">
+                                                <div class="status-dot"></div>
+                                                <span id="onlineCount">0 members online</span>
+                                            </div>
+                                            <div class="chat-info">
+                                                <span id="messageCount">0 messages</span>
+                                            </div>
+                                        </div>
+                                        <div class="chat-controls">
+                                            <button class="chat-control-btn" onclick="window.moodGroupManager.scrollToBottom()" title="Scroll to bottom">
+                                                <i class="fas fa-arrow-down"></i>
+                                            </button>
+                                            <button class="chat-control-btn" onclick="window.moodGroupManager.toggleAutoScroll()" title="Auto-scroll">
+                                                <i class="fas fa-magic"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="group-chat-messages" id="groupChatMessages">
+                                        <!-- Chat messages will be populated by JavaScript -->
+                                    </div>
+                                    
+                                    <!-- Typing Indicator -->
+                                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                                        <div class="typing-dots">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>
+                                        </div>
+                                        <span class="typing-text">Someone is typing...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Enhanced Sidebar -->
+                            <div class="group-members-sidebar">
+                                <div class="sidebar-header">
+                                    <div class="members-header">
+                                        <i class="fas fa-users"></i>
+                                        <h4>Group Members</h4>
+                                        <span class="members-count" id="membersCount">0</span>
+                                    </div>
+                                    <button class="sidebar-toggle" onclick="window.moodGroupManager.toggleSidebar()">
+                                        <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="sidebar-content">
+                                    <div class="group-members-list" id="groupMembersList">
+                                        <!-- Members will be populated by JavaScript -->
+                                    </div>
+                                    
+                                    <!-- Group Actions -->
+                                    <div class="group-actions-sidebar">
+                                <button class="group-action-btn" onclick="window.moodGroupManager.showGroupInfo()">
+                                    <i class="fas fa-info-circle"></i>
+                                    Group Info
+                                </button>
+                                <button class="group-action-btn" onclick="window.moodGroupManager.showGroupResources()">
+                                    <i class="fas fa-book"></i>
+                                    Resources
+                                </button>
+                                <button class="group-action-btn" onclick="window.moodGroupManager.showGroupPolls()">
+                                    <i class="fas fa-poll"></i>
+                                    Polls
+                                </button>
+                                <button class="group-action-btn" onclick="window.moodGroupManager.showGroupChallenges()">
+                                    <i class="fas fa-trophy"></i>
+                                    Challenges
+                                </button>
+                                <button class="group-action-btn" onclick="window.moodGroupManager.showPersonalAnalytics()">
+                                    <i class="fas fa-chart-line"></i>
+                                    My Activity
+                                </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                                <!-- Enhanced Chat Input -->
+                                <div class="group-chat-input">
+                                    <div class="input-container">
+                                        <div class="input-wrapper">
+                                            <input type="text" class="group-message-input" placeholder="Type your message..." maxlength="500" id="messageInput">
+                                            <div class="input-actions">
+                                                <button class="voice-message-btn" id="voiceMessageBtn" title="Record voice message">
+                                                    <i class="fas fa-microphone"></i>
+                                                </button>
+                                                <button class="emoji-btn" id="emojiBtn" title="Add emoji">
+                                                    <i class="fas fa-smile"></i>
+                                                </button>
+                                                <button class="attachment-btn" id="attachmentBtn" title="Attach file">
+                                                    <i class="fas fa-paperclip"></i>
+                                                </button>
+                                                <button class="send-message-btn" id="sendMessageBtn">
+                                                    <i class="fas fa-paper-plane"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="input-footer">
+                                            <span class="char-count" id="charCount">0/500</span>
+                                            <span class="input-hint">Press Enter to send, Shift+Enter for new line</span>
+                                        </div>
+                                    </div>
+                        
+                        <!-- Voice Recording Interface -->
+                        <div class="voice-recording-interface" id="voiceRecordingInterface" style="display: none;">
+                            <div class="recording-controls">
+                                <div class="recording-status">
+                                    <div class="recording-indicator">
+                                        <div class="pulse-dot"></div>
+                                        <span id="recordingStatus">Recording...</span>
+                                    </div>
+                                    <div class="recording-timer" id="recordingTimer">00:00</div>
+                                </div>
+                                <div class="recording-actions">
+                                    <button class="stop-recording-btn" id="stopRecordingBtn">
+                                        <i class="fas fa-stop"></i>
+                                        Stop
+                                    </button>
+                                    <button class="cancel-recording-btn" id="cancelRecordingBtn">
+                                        <i class="fas fa-times"></i>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="recording-visualizer" id="recordingVisualizer">
+                                <div class="audio-bars">
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                    <div class="bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Voice Message Playback -->
+                        <div class="voice-playback-interface" id="voicePlaybackInterface" style="display: none;">
+                            <div class="playback-controls">
+                                <button class="play-voice-btn" id="playVoiceBtn">
+                                    <i class="fas fa-play"></i>
+                                </button>
+                                <div class="voice-waveform" id="voiceWaveform">
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                    <div class="waveform-bar"></div>
+                                </div>
+                                <div class="voice-duration" id="voiceDuration">0:00</div>
+                            </div>
+                            <div class="voice-actions">
+                                <button class="send-voice-btn" id="sendVoiceBtn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Voice Message
+                                </button>
+                                <button class="re-record-btn" id="reRecordBtn">
+                                    <i class="fas fa-redo"></i>
+                                    Re-record
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Guidelines -->
+                <div class="group-guidelines">
+                    <div class="guidelines-card">
+                        <h3><i class="fas fa-shield-alt"></i> Community Guidelines</h3>
+                        <div class="guidelines-list">
+                            <div class="guideline-item">
+                                <i class="fas fa-heart"></i>
+                                <span>Be kind and supportive to all members</span>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-lock"></i>
+                                <span>Respect privacy - don't share personal information</span>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-comments"></i>
+                                <span>Share your experiences to help others</span>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-handshake"></i>
+                                <span>Remember this is a safe space for everyone</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Action Button -->
+    <div class="floating-action-menu">
+        <button class="fab-main" id="fabMain" title="Quick Actions">
+            <i class="fas fa-plus"></i>
+        </button>
+        <div class="fab-options" id="fabOptions">
+            <button class="fab-option" data-action="mood" title="Quick Mood Check">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button class="fab-option" data-action="meditation" title="Start Meditation">
+                <i class="fas fa-om"></i>
+            </button>
+            <button class="fab-option" data-action="emergency" title="Emergency Support">
+                <i class="fas fa-phone"></i>
+            </button>
+            <button class="fab-option" data-action="journal" title="Quick Journal">
+                <i class="fas fa-pen"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-brain"></i>
+            <p data-lang="loading">Loading...</p>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/error-handler.js"></script>
+    <script src="js/theme-manager.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/therapy-tools.js"></script>
+    <script src="js/meditation-hub.js"></script>
+    <script src="js/music-player.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/therapy-system.js"></script>
+    <script src="js/meditation-system.js"></script>
+    <script src="js/mood-tracker.js"></script>
+    <script src="js/appointment-system.js"></script>
+    <script src="js/resources-system.js"></script>
+    <script src="js/enhanced-games.js"></script>
+    <script src="js/wellness-insights.js"></script>
+    <script src="js/mood-groups.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/dashboard-enhancements.js"></script>
+    <link rel="stylesheet" href="css/therapy-system.css">
+    <link rel="stylesheet" href="css/meditation-system.css">
+    <link rel="stylesheet" href="css/mood-tracker.css">
+    <link rel="stylesheet" href="css/resources-system.css">
+    <link rel="stylesheet" href="css/enhanced-games.css">
+    <link rel="stylesheet" href="css/wellness-insights.css">
+    <link rel="stylesheet" href="css/mood-groups.css">
+</body>
+</html>

@@ -1,0 +1,205 @@
+{
+  "translations": {
+    "en": {
+      "common": {
+        "welcome": "Welcome",
+        "login": "Login",
+        "logout": "Logout",
+        "settings": "Settings",
+        "dashboard": "Dashboard",
+        "save": "Save",
+        "cancel": "Cancel",
+        "delete": "Delete",
+        "edit": "Edit",
+        "back": "Back",
+        "next": "Next",
+        "previous": "Previous",
+        "loading": "Loading...",
+        "error": "Error",
+        "success": "Success"
+      },
+      "mood": {
+        "track_mood": "Track Your Mood",
+        "how_are_you_feeling": "How are you feeling today?",
+        "mood_history": "Mood History",
+        "mood_insights": "Mood Insights",
+        "very_happy": "Very Happy",
+        "happy": "Happy",
+        "neutral": "Neutral",
+        "sad": "Sad",
+        "very_sad": "Very Sad",
+        "anxious": "Anxious",
+        "calm": "Calm",
+        "energetic": "Energetic",
+        "tired": "Tired"
+      },
+      "meditation": {
+        "start_meditation": "Start Meditation",
+        "meditation_timer": "Meditation Timer",
+        "guided_meditation": "Guided Meditation",
+        "breathing_exercises": "Breathing Exercises",
+        "body_scan": "Body Scan",
+        "loving_kindness": "Loving-Kindness",
+        "mindful_breathing": "Mindful Breathing"
+      },
+      "therapy": {
+        "therapy_tools": "Therapy Tools",
+        "cbt_exercises": "CBT Exercises",
+        "dbt_skills": "DBT Skills",
+        "mbsr_practices": "MBSR Practices",
+        "thought_record": "Thought Record",
+        "distress_tolerance": "Distress Tolerance",
+        "emotion_regulation": "Emotion Regulation"
+      },
+      "games": {
+        "wellness_games": "Wellness Games",
+        "mood_matching": "Mood Matching",
+        "breathing_game": "Breathing Game",
+        "gratitude_journal": "Gratitude Journal",
+        "mindfulness_challenge": "Mindfulness Challenge"
+      },
+      "resources": {
+        "resources": "Resources",
+        "articles": "Articles",
+        "videos": "Videos",
+        "podcasts": "Podcasts",
+        "worksheets": "Worksheets",
+        "emergency_contacts": "Emergency Contacts"
+      }
+    },
+    "es": {
+      "common": {
+        "welcome": "Bienvenido",
+        "login": "Iniciar Sesión",
+        "logout": "Cerrar Sesión",
+        "settings": "Configuración",
+        "dashboard": "Panel de Control",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "delete": "Eliminar",
+        "edit": "Editar",
+        "back": "Atrás",
+        "next": "Siguiente",
+        "previous": "Anterior",
+        "loading": "Cargando...",
+        "error": "Error",
+        "success": "Éxito"
+      },
+      "mood": {
+        "track_mood": "Registra tu Estado de Ánimo",
+        "how_are_you_feeling": "¿Cómo te sientes hoy?",
+        "mood_history": "Historial de Estados de Ánimo",
+        "mood_insights": "Perspectivas del Estado de Ánimo",
+        "very_happy": "Muy Feliz",
+        "happy": "Feliz",
+        "neutral": "Neutral",
+        "sad": "Triste",
+        "very_sad": "Muy Triste",
+        "anxious": "Ansioso",
+        "calm": "Tranquilo",
+        "energetic": "Energético",
+        "tired": "Cansado"
+      },
+      "meditation": {
+        "start_meditation": "Iniciar Meditación",
+        "meditation_timer": "Temporizador de Meditación",
+        "guided_meditation": "Meditación Guiada",
+        "breathing_exercises": "Ejercicios de Respiración",
+        "body_scan": "Escaneo Corporal",
+        "loving_kindness": "Amor Benevolente",
+        "mindful_breathing": "Respiración Consciente"
+      },
+      "therapy": {
+        "therapy_tools": "Herramientas de Terapia",
+        "cbt_exercises": "Ejercicios TCC",
+        "dbt_skills": "Habilidades DBT",
+        "mbsr_practices": "Prácticas MBSR",
+        "thought_record": "Registro de Pensamientos",
+        "distress_tolerance": "Tolerancia al Malestar",
+        "emotion_regulation": "Regulación Emocional"
+      },
+      "games": {
+        "wellness_games": "Juegos de Bienestar",
+        "mood_matching": "Coincidencia de Estados de Ánimo",
+        "breathing_game": "Juego de Respiración",
+        "gratitude_journal": "Diario de Gratitud",
+        "mindfulness_challenge": "Desafío de Atención Plena"
+      },
+      "resources": {
+        "resources": "Recursos",
+        "articles": "Artículos",
+        "videos": "Videos",
+        "podcasts": "Podcasts",
+        "worksheets": "Hojas de Trabajo",
+        "emergency_contacts": "Contactos de Emergencia"
+      }
+    },
+    "fr": {
+      "common": {
+        "welcome": "Bienvenue",
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "settings": "Paramètres",
+        "dashboard": "Tableau de Bord",
+        "save": "Enregistrer",
+        "cancel": "Annuler",
+        "delete": "Supprimer",
+        "edit": "Modifier",
+        "back": "Retour",
+        "next": "Suivant",
+        "previous": "Précédent",
+        "loading": "Chargement...",
+        "error": "Erreur",
+        "success": "Succès"
+      },
+      "mood": {
+        "track_mood": "Suivre votre Humeur",
+        "how_are_you_feeling": "Comment vous sentez-vous aujourd'hui?",
+        "mood_history": "Historique de l'Humeur",
+        "mood_insights": "Perspectives de l'Humeur",
+        "very_happy": "Très Heureux",
+        "happy": "Heureux",
+        "neutral": "Neutre",
+        "sad": "Triste",
+        "very_sad": "Très Triste",
+        "anxious": "Anxieux",
+        "calm": "Calme",
+        "energetic": "Énergique",
+        "tired": "Fatigué"
+      },
+      "meditation": {
+        "start_meditation": "Commencer la Méditation",
+        "meditation_timer": "Minuteur de Méditation",
+        "guided_meditation": "Méditation Guidée",
+        "breathing_exercises": "Exercices de Respiration",
+        "body_scan": "Balayage Corporel",
+        "loving_kindness": "Bienveillance",
+        "mindful_breathing": "Respiration Consciente"
+      },
+      "therapy": {
+        "therapy_tools": "Outils de Thérapie",
+        "cbt_exercises": "Exercices TCC",
+        "dbt_skills": "Compétences DBT",
+        "mbsr_practices": "Pratiques MBSR",
+        "thought_record": "Enregistrement des Pensées",
+        "distress_tolerance": "Tolérance à la Détresse",
+        "emotion_regulation": "Régulation Émotionnelle"
+      },
+      "games": {
+        "wellness_games": "Jeux de Bien-être",
+        "mood_matching": "Correspondance d'Humeur",
+        "breathing_game": "Jeu de Respiration",
+        "gratitude_journal": "Journal de Gratitude",
+        "mindfulness_challenge": "Défi de Pleine Conscience"
+      },
+      "resources": {
+        "resources": "Ressources",
+        "articles": "Articles",
+        "videos": "Vidéos",
+        "podcasts": "Podcasts",
+        "worksheets": "Feuilles de Travail",
+        "emergency_contacts": "Contacts d'Urgence"
+      }
+    }
+  }
+}

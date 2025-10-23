@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Mindspace - Mental Health & Wellness Platform</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/video-background.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Optimized Ocean Waves Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop playsinline preload="metadata" id="oceanVideo">
+            <source src="https://cdn.pixabay.com/video/2016/03/29/2569-160748715_large.mp4" type="video/mp4">
+            <!-- Fallback for slow connections -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyMCIgaGVpZ2h0PSIxMDgwIiB2aWV3Qm94PSIwIDAgMTkyMCAxMDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiMyZDZhNWYiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMxZDRhM2YiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWRpZW50KSIvPjwvc3ZnPg==" alt="Ocean background">
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect" title="Select Language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+        <div class="theme-options" id="themeOptions">
+            <button class="theme-option active" data-theme="ocean">
+                <div class="theme-preview ocean"></div>
+                <span>Ocean</span>
+            </button>
+            <button class="theme-option" data-theme="sunset">
+                <div class="theme-preview sunset"></div>
+                <span>Sunset</span>
+            </button>
+            <button class="theme-option" data-theme="forest">
+                <div class="theme-preview forest"></div>
+                <span>Forest</span>
+            </button>
+            <button class="theme-option" data-theme="cosmic">
+                <div class="theme-preview cosmic"></div>
+                <span>Cosmic</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Launch Page -->
+    <div class="launch-container">
+        <div class="launch-content">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <div class="hero-content">
+                    <div class="brand-section">
+                        <h1 class="brand-title typing-animation" data-lang="welcome_title">Campus Mindspace</h1>
+                        <p class="brand-subtitle" data-lang="welcome_subtitle">Your personal sanctuary for mental wellness</p>
+                        <div class="brand-description" data-lang="welcome_description">
+                            A comprehensive mental health and wellness platform designed specifically for university students. 
+                            Find support, resources, and tools to navigate the challenges of academic life.
+                        </div>
+                        
+                        <!-- Key Features Preview -->
+                        <div class="features-preview">
+                            <div class="feature-item">
+                                <i class="fas fa-user-md"></i>
+                                <span>Professional Counseling</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-brain"></i>
+                                <span>Mental Health Tools</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-users"></i>
+                                <span>Peer Support Groups</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Progress Tracking</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mood-visualization">
+                        <div class="mood-circle">
+                            <i class="fas fa-brain"></i>
+                            <div class="mood-pulse"></div>
+                        </div>
+                        <div class="mood-particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Statistics Section -->
+                <div class="stats-section">
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Students Helped</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">95%</div>
+                        <div class="stat-label">Success Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Counselors</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonials Section -->
+            <div class="testimonials-section">
+                <div class="testimonials-header">
+                    <h2>What Students Say</h2>
+                    <p>Real experiences from our community</p>
+                </div>
+                <div class="testimonials-carousel">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"Campus Mindspace helped me manage my anxiety during finals. The meditation sessions were a game-changer!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Sarah M.</h4>
+                                    <span>Psychology Major</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"The group chat feature connected me with amazing people going through similar struggles. I feel less alone now."</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Alex K.</h4>
+                                    <span>Engineering Student</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon">
+                                <i class="fas fa-quote-left"></i>
+                            </div>
+                            <p>"The progress tracking helped me see how much I've improved. It's incredibly motivating!"</p>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="author-info">
+                                    <h4>Maria L.</h4>
+                                    <span>Business Major</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-indicators">
+                    <button class="indicator active" data-slide="0"></button>
+                    <button class="indicator" data-slide="1"></button>
+                    <button class="indicator" data-slide="2"></button>
+                </div>
+            </div>
+
+            <!-- Quick Start Guide -->
+            <div class="quick-start-section">
+                <div class="quick-start-header">
+                    <h2>Get Started in 3 Steps</h2>
+                    <p>Your wellness journey begins here</p>
+                </div>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Create Account</h3>
+                            <p>Sign up with your university email to access all features</p>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Check Your Mood</h3>
+                            <p>Complete a quick mood assessment to personalize your experience</p>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                    </div>
+                    <div class="step-connector"></div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Start Your Journey</h3>
+                            <p>Access therapy resources, meditation, and connect with peers</p>
+                        </div>
+                        <div class="step-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="auth-section">
+                <!-- Tab Navigation -->
+                <div class="auth-tabs">
+                    <button type="button" class="auth-tab active" data-tab="login" data-lang="login_tab">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                    </button>
+                    <button type="button" class="auth-tab" data-tab="register" data-lang="register_tab">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Register</span>
+                    </button>
+                </div>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="auth-form active">
+                    <div class="form-header">
+                        <h2 data-lang="login_title">Welcome Back!</h2>
+                        <p class="form-description" data-lang="login_description">Sign in to access your personalized mental wellness dashboard</p>
+                    </div>
+                    
+                    <form id="loginFormData">
+                        <div class="form-group">
+                            <label for="loginEmail">
+                                <i class="fas fa-envelope"></i>
+                                <span data-lang="email_label">University Email</span>
+                            </label>
+                            <input type="email" id="loginEmail" name="email" required placeholder="your.email@university.edu" autocomplete="email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="loginPassword">
+                                <i class="fas fa-lock"></i>
+                                <span data-lang="password_label">Password</span>
+                            </label>
+                            <div class="password-input-wrapper">
+                                <input type="password" id="loginPassword" name="password" required placeholder="Enter your password" autocomplete="current-password">
+                                <button type="button" class="toggle-password" data-target="loginPassword" title="Toggle password visibility">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <span data-lang="remember_me">Remember me</span>
+                            </label>
+                            <a href="#" class="forgot-password" data-lang="forgot_password">Forgot Password?</a>
+                        </div>
+                        
+                        <button type="submit" class="auth-btn primary" data-lang="login_btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Sign In</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p data-lang="no_account">Don't have an account? 
+                            <a href="#" class="switch-tab" data-tab="register" data-lang="register_link">Register here</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div id="registerForm" class="auth-form">
+                    <div class="form-header">
+                        <h2 data-lang="register_title">Join Campus Mindspace</h2>
+                        <p class="form-description" data-lang="register_description">Create your account and start your wellness journey today</p>
+                    </div>
+                    
+                    <form id="registerFormData">
+                        <!-- Personal Information -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-user"></i>
+                                <span data-lang="personal_info">Personal Information</span>
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label for="fullName">
+                                    <i class="fas fa-id-card"></i>
+                                    <span data-lang="full_name_label">Full Name</span>
+                                </label>
+                                <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" autocomplete="name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="registerEmail">
+                                    <i class="fas fa-envelope"></i>
+                                    <span data-lang="email_label">University Email</span>
+                                </label>
+                                <input type="email" id="registerEmail" name="email" required placeholder="your.email@university.edu" autocomplete="email">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="contactNumber">
+                                    <i class="fas fa-phone"></i>
+                                    <span data-lang="phone_label">Contact Number</span>
+                                </label>
+                                <input type="tel" id="contactNumber" name="contactNumber" required placeholder="+1 (555) 123-4567" autocomplete="tel">
+                            </div>
+                        </div>
+                        
+                        <!-- Security -->
+                        <div class="form-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-shield-alt"></i>
+                                <span data-lang="security">Security</span>
+                            </h3>
+                            
+                            <div class="form-group">
+                                <label for="registerPassword">
+                                    <i class="fas fa-lock"></i>
+                                    <span data-lang="password_label">Password</span>
+                                </label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="registerPassword" name="password" required placeholder="Create a secure password" autocomplete="new-password">
+                                    <button type="button" class="toggle-password" data-target="registerPassword" title="Toggle password visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="password-strength" id="passwordStrength"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-lang="confirm_password_label">Confirm Password</span>
+                                </label>
+                                <div class="password-input-wrapper">
+                                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password" autocomplete="new-password">
+                                    <button type="button" class="toggle-password" data-target="confirmPassword" title="Toggle password visibility">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Mood Check-in Section -->
+                        <div class="form-section mood-checkin-section">
+                            <h3 class="section-title">
+                                <i class="fas fa-heart"></i>
+                                <span data-lang="mood_checkin_label">How are you feeling today?</span>
+                            </h3>
+                            <p class="mood-subtitle" data-lang="mood_checkin_subtitle">This helps us personalize your experience and provide better support</p>
+                            
+                            <div class="mood-options">
+                                <div class="mood-option" data-mood="overwhelmed">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_overwhelmed">Overwhelmed by studies</div>
+                                </div>
+                                
+                                <div class="mood-option" data-mood="sleep">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-bed"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_sleep">Difficulty sleeping</div>
+                                </div>
+                                
+                                <div class="mood-option" data-mood="social">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_social">Social stress</div>
+                                </div>
+                                
+                                <div class="mood-option" data-mood="happy">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-smile"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_happy">Happy/Stable</div>
+                                </div>
+                                
+                                <div class="mood-option" data-mood="anxious">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_anxious">Anxious/Worried</div>
+                                </div>
+                                
+                                <div class="mood-option" data-mood="lonely">
+                                    <div class="mood-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <div class="mood-text" data-lang="mood_lonely">Isolated/Lonely</div>
+                                </div>
+                            </div>
+                            
+                            <input type="hidden" id="selectedMood" name="mood" required>
+                        </div>
+                        
+                        <button type="submit" class="auth-btn primary" data-lang="register_btn">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Create Account</span>
+                        </button>
+                    </form>
+                    
+                    <div class="auth-footer">
+                        <p data-lang="have_account">Already have an account? 
+                            <a href="#" class="switch-tab" data-tab="login" data-lang="login_link">Login here</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trust-indicators">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-lang="secure_trusted">Secure & Trusted</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-user-md"></i>
+                    <span data-lang="professional_counselors">Professional Counselors</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-lock"></i>
+                    <span data-lang="privacy_protected">Privacy Protected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div class="loading-text">
+                <h2>Campus Mindspace</h2>
+                <p>Loading your wellness journey...</p>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+                <div class="loading-percentage" id="loadingPercentage">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Critical scripts - load immediately -->
+    <script src="js/utils.js"></script>
+    <script src="js/error-handler.js"></script>
+    <script src="js/performance-monitor.js"></script>
+    
+    <!-- Non-critical scripts - defer loading -->
+    <script src="js/video-background.js" defer></script>
+    <script src="js/language.js" defer></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/mood-checkin.js" defer></script>
+    <script src="js/advanced-features.js" defer></script>
+    <script src="js/landing-page-test.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>

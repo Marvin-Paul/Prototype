@@ -1,0 +1,86 @@
+{
+  "wellness_resources": {
+    "articles": [
+      {
+        "id": "stress-management",
+        "title": "Understanding and Managing Stress",
+        "category": "stress",
+        "difficulty": "beginner",
+        "read_time": 8,
+        "summary": "Learn about the causes of stress and effective strategies to manage it",
+        "tags": ["stress", "mental-health", "wellness"],
+        "content_file": "articles/stress-management.md"
+      },
+      {
+        "id": "anxiety-coping",
+        "title": "Coping Strategies for Anxiety",
+        "category": "anxiety",
+        "difficulty": "intermediate",
+        "read_time": 12,
+        "summary": "Evidence-based techniques to reduce anxiety and panic symptoms",
+        "tags": ["anxiety", "coping", "techniques"],
+        "content_file": "articles/anxiety-coping.md"
+      },
+      {
+        "id": "sleep-hygiene",
+        "title": "Sleep Hygiene for Better Rest",
+        "category": "sleep",
+        "difficulty": "beginner",
+        "read_time": 6,
+        "summary": "Simple habits to improve your sleep quality and duration",
+        "tags": ["sleep", "habits", "wellness"],
+        "content_file": "articles/sleep-hygiene.md"
+      }
+    ],
+    "worksheets": [
+      {
+        "id": "mood-tracker",
+        "title": "Daily Mood Tracker",
+        "description": "Track your daily mood patterns and identify triggers",
+        "category": "tracking",
+        "file": "worksheets/mood-tracker.pdf"
+      },
+      {
+        "id": "gratitude-journal",
+        "title": "Gratitude Journal Template",
+        "description": "Practice gratitude with guided prompts",
+        "category": "journaling",
+        "file": "worksheets/gratitude-journal.pdf"
+      },
+      {
+        "id": "thought-challenge",
+        "title": "Thought Challenge Worksheet",
+        "description": "Challenge negative thoughts using CBT techniques",
+        "category": "cbt",
+        "file": "worksheets/thought-challenge.pdf"
+      }
+    ],
+    "emergency_resources": {
+      "crisis_hotlines": [
+        {
+          "name": "National Suicide Prevention Lifeline",
+          "number": "988",
+          "description": "24/7 crisis support and suicide prevention",
+          "available": "24/7"
+        },
+        {
+          "name": "Crisis Text Line",
+          "number": "Text HOME to 741741",
+          "description": "Free 24/7 crisis support via text",
+          "available": "24/7"
+        },
+        {
+          "name": "National Alliance on Mental Illness (NAMI)",
+          "number": "1-800-950-NAMI",
+          "description": "Mental health support and resources",
+          "available": "Monday-Friday, 10am-6pm ET"
+        }
+      ],
+      "emergency_contacts_template": {
+        "personal_contacts": [],
+        "healthcare_providers": [],
+        "crisis_contacts": []
+      }
+    }
+  }
+}

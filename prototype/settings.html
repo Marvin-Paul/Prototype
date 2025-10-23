@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Campus Mindspace</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/visibility-fix.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-brain"></i>
+            <span>Campus Mindspace</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="settings.html" class="nav-link active">
+                <i class="fas fa-cog"></i> Settings
+            </a>
+        </div>
+        <div class="nav-actions">
+            <div class="user-profile">
+                <span class="user-name" id="userGreeting"></span>
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle" type="button">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <a href="settings.html" class="dropdown-item">Settings</a>
+                        <a href="support.html" class="dropdown-item">Help &amp; Support</a>
+                        <button class="dropdown-item logout-btn" type="button">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content settings-page">
+        <div class="settings-container">
+            <!-- Settings Header -->
+            <div class="settings-header">
+                <h1><i class="fas fa-cog"></i> Settings</h1>
+                <p>Customize your Campus Mindspace experience</p>
+            </div>
+
+            <!-- Settings Sections -->
+            <div class="settings-grid">
+                
+                <!-- Account Settings -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h2>Account Settings</h2>
+                    
+                    <div class="setting-item">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your.email@example.com" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="studentId">Student ID</label>
+                        <input type="text" id="studentId" placeholder="Enter your student ID" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="department">Department</label>
+                        <select id="department">
+                            <option value="">Select your department</option>
+                            <option value="cs">Computer Science</option>
+                            <option value="eng">Engineering</option>
+                            <option value="business">Business</option>
+                            <option value="arts">Arts &amp; Humanities</option>
+                            <option value="science">Natural Sciences</option>
+                            <option value="health">Health Sciences</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-save"></i> Save Changes
+                    </button>
+                </section>
+
+                <!-- Privacy & Security -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2>Privacy &amp; Security</h2>
+
+                    <div class="setting-item">
+                        <label for="currentPassword">Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter new password" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password" />
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Two-Factor Authentication</h3>
+                            <p>Add an extra layer of security to your account</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="twoFactor" />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Anonymous Mode</h3>
+                            <p>Hide your identity in group sessions</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="anonymousMode" />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-lock"></i> Update Security
+                    </button>
+                </section>
+
+                <!-- Notifications -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h2>Notifications</h2>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Email Notifications</h3>
+                            <p>Receive updates and reminders via email</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="emailNotif" checked />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Appointment Reminders</h3>
+                            <p>Get notified before scheduled sessions</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="appointmentReminders" checked />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Daily Wellness Tips</h3>
+                            <p>Receive daily mental health tips</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="dailyTips" checked />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Mood Check-in Reminders</h3>
+                            <p>Get reminded to log your mood</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="moodReminders" />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-bell"></i> Save Preferences
+                    </button>
+                </section>
+
+                <!-- Appearance -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h2>Appearance</h2>
+
+                    <div class="setting-item">
+                        <label>Theme</label>
+                        <div class="theme-options">
+                            <button type="button" class="theme-btn active" data-theme="light">
+                                <i class="fas fa-sun"></i>
+                                <span>Light</span>
+                            </button>
+                            <button type="button" class="theme-btn" data-theme="dark">
+                                <i class="fas fa-moon"></i>
+                                <span>Dark</span>
+                            </button>
+                            <button type="button" class="theme-btn" data-theme="auto">
+                                <i class="fas fa-adjust"></i>
+                                <span>Auto</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="fontSize">Font Size</label>
+                        <select id="fontSize">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Reduce Animations</h3>
+                            <p>Minimize motion for better accessibility</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="reduceMotion" />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-palette"></i> Apply Theme
+                    </button>
+                </section>
+
+                <!-- Language & Region -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h2>Language &amp; Region</h2>
+
+                    <div class="setting-item">
+                        <label for="language">Preferred Language</label>
+                        <select id="language">
+                            <option value="en">English</option>
+                            <option value="es">Español</option>
+                            <option value="fr">Français</option>
+                            <option value="de">Deutsch</option>
+                            <option value="zh">中文</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="timezone">Timezone</label>
+                        <select id="timezone">
+                            <option value="UTC">UTC</option>
+                            <option value="EST">Eastern Time (EST)</option>
+                            <option value="CST">Central Time (CST)</option>
+                            <option value="PST">Pacific Time (PST)</option>
+                            <option value="GMT">GMT</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="dateFormat">Date Format</label>
+                        <select id="dateFormat">
+                            <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                            <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                            <option value="YYYY-MM-DD">YYYY-MM-DD</option>
+                        </select>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-globe"></i> Update Settings
+                    </button>
+                </section>
+
+                <!-- Data & Privacy -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h2>Data &amp; Privacy</h2>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Share Anonymous Usage Data</h3>
+                            <p>Help us improve by sharing anonymous usage statistics</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="shareData" />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-toggle">
+                        <div class="toggle-info">
+                            <h3>Personalized Recommendations</h3>
+                            <p>Get content suggestions based on your activity</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="personalizedRecs" checked />
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="data-actions">
+                        <button type="button" class="action-btn download-btn">
+                            <i class="fas fa-download"></i> Download My Data
+                        </button>
+                        <button type="button" class="action-btn delete-btn">
+                            <i class="fas fa-trash-alt"></i> Delete Account
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Emergency Contacts -->
+                <section class="settings-section">
+                    <div class="section-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h2>Emergency Contacts</h2>
+
+                    <div class="setting-item">
+                        <label for="emergencyName">Contact Name</label>
+                        <input type="text" id="emergencyName" placeholder="Enter contact name" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="emergencyPhone">Phone Number</label>
+                        <input type="tel" id="emergencyPhone" placeholder="+1 (555) 123-4567" />
+                    </div>
+
+                    <div class="setting-item">
+                        <label for="relationship">Relationship</label>
+                        <select id="relationship">
+                            <option value="">Select relationship</option>
+                            <option value="parent">Parent/Guardian</option>
+                            <option value="sibling">Sibling</option>
+                            <option value="friend">Friend</option>
+                            <option value="partner">Partner</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="crisis-hotlines">
+                        <h3>Crisis Hotlines</h3>
+                        <div class="hotline-item">
+                            <strong>National Crisis Line:</strong> 988
+                        </div>
+                        <div class="hotline-item">
+                            <strong>Crisis Text Line:</strong> Text HOME to 741741
+                        </div>
+                        <div class="hotline-item">
+                            <strong>Campus Counseling:</strong> (555) 123-4567
+                        </div>
+                    </div>
+
+                    <button type="button" class="save-btn">
+                        <i class="fas fa-phone-alt"></i> Save Contact
+                    </button>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/theme-manager.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

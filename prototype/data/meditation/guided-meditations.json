@@ -1,0 +1,73 @@
+{
+  "guided_meditations": [
+    {
+      "id": "body-scan",
+      "title": "Body Scan Meditation",
+      "description": "A mindfulness practice to connect with your body and release tension",
+      "duration": 20,
+      "difficulty": "beginner",
+      "script": [
+        "Find a comfortable position lying down or sitting",
+        "Close your eyes and take three deep breaths",
+        "Bring your attention to the top of your head",
+        "Notice any sensations - warmth, coolness, tingling, or tension",
+        "Slowly move your attention down through your face",
+        "Notice your jaw, cheeks, and forehead",
+        "Continue down through your neck and shoulders",
+        "Feel the weight of your arms resting by your sides",
+        "Move through your chest and abdomen",
+        "Notice your breathing without trying to change it",
+        "Continue down through your hips and legs",
+        "Feel your feet resting on the ground",
+        "Take a moment to feel your whole body",
+        "When ready, slowly open your eyes"
+      ],
+      "benefits": ["Reduces physical tension", "Improves body awareness", "Promotes relaxation"]
+    },
+    {
+      "id": "loving-kindness",
+      "title": "Loving-Kindness Meditation",
+      "description": "Cultivate compassion for yourself and others",
+      "duration": 15,
+      "difficulty": "intermediate",
+      "script": [
+        "Sit comfortably and close your eyes",
+        "Take a few deep breaths to center yourself",
+        "Begin by directing loving-kindness toward yourself",
+        "Repeat silently: 'May I be happy, may I be healthy, may I be safe, may I live with ease'",
+        "Think of someone you love deeply",
+        "Direct these same wishes toward them",
+        "Think of a neutral person - someone you neither like nor dislike",
+        "Send them the same loving wishes",
+        "Think of someone you have difficulty with",
+        "Try to send them loving-kindness as well",
+        "Finally, extend these wishes to all beings everywhere",
+        "Take a moment to feel the warmth of compassion",
+        "Slowly return your attention to the present moment"
+      ],
+      "benefits": ["Increases compassion", "Reduces anger", "Improves relationships"]
+    },
+    {
+      "id": "mindful-breathing",
+      "title": "Mindful Breathing",
+      "description": "Focus on the breath to anchor yourself in the present moment",
+      "duration": 10,
+      "difficulty": "beginner",
+      "script": [
+        "Sit in a comfortable position with your back straight",
+        "Close your eyes or soften your gaze",
+        "Bring your attention to your breath",
+        "Notice the sensation of air entering your nostrils",
+        "Feel your chest and belly rise with each inhale",
+        "Notice the pause between inhale and exhale",
+        "Feel the air leaving your body",
+        "Notice the pause before the next breath",
+        "When your mind wanders, gently return to the breath",
+        "Don't judge your thoughts - just observe them",
+        "Continue for the full duration",
+        "Slowly open your eyes when ready"
+      ],
+      "benefits": ["Improves focus", "Reduces stress", "Increases present-moment awareness"]
+    }
+  ]
+}

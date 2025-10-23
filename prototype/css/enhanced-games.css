@@ -1,0 +1,1546 @@
+/* Enhanced Games System Styles */
+
+/* Game Categories Navigation */
+.game-categories {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.game-categories::-webkit-scrollbar {
+    height: 6px;
+}
+
+.game-categories::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.game-categories::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+.game-category-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 2rem;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    backdrop-filter: blur(10px);
+}
+
+.game-category-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+.game-category-btn.active {
+    background: rgba(255, 255, 255, 0.9);
+    color: #667eea;
+    border-color: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Game Categories */
+.game-category {
+    display: none;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.game-category.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.game-category h3 {
+    margin-bottom: 2rem;
+    color: #1f2937;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.game-category h3 i {
+    color: #667eea;
+}
+
+/* Games Grid */
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+/* Enhanced Game Containers */
+.embedded-game-container {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+    position: relative;
+}
+
+.embedded-game-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.game-header {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.game-header h2 {
+    margin: 0 0 0.5rem 0;
+    color: #1f2937;
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.game-header h2 i {
+    color: #667eea;
+}
+
+.game-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Game Stats */
+.game-stats,
+.word-game-stats,
+.sequence-game-stats,
+.color-game-stats,
+.gratitude-stats,
+.affirmation-stats,
+.breathing-stats,
+.mood-check-stats,
+.wyr-stats,
+.tod-stats,
+.collab-drawing-stats {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 80px;
+}
+
+.stat span:first-child {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stat span:last-child {
+    font-size: 1rem;
+    color: #1f2937;
+    font-weight: 600;
+}
+
+/* Memory Game Styles */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    padding: 1.5rem;
+    background: #f9fafb;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.memory-card:hover {
+    border-color: #667eea;
+    transform: scale(1.05);
+}
+
+.memory-card.flipped {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.memory-card.matched {
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
+    animation: matchPulse 0.6s ease-in-out;
+}
+
+@keyframes matchPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.card-back {
+    font-size: 1.25rem;
+    color: #9ca3af;
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.game-reset-btn,
+.game-hint-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.game-reset-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.game-hint-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.game-reset-btn:hover,
+.game-hint-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Word Association Game */
+.word-game-area {
+    padding: 1.5rem;
+    background: #f9fafb;
+}
+
+.word-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.current-word {
+    display: inline-block;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.word-input-section {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+#wordInput {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+#wordInput:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+#submitWord {
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#submitWord:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.word-associations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.association-word {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Sequence Game */
+.sequence-game-area {
+    padding: 1.5rem;
+    background: #f9fafb;
+    text-align: center;
+}
+
+.sequence-display {
+    margin-bottom: 1.5rem;
+}
+
+.sequence-numbers {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1f2937;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid #e5e7eb;
+    display: inline-block;
+}
+
+.sequence-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.sequence-option {
+    padding: 1rem 1.5rem;
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 60px;
+}
+
+.sequence-option:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+/* Color Memory Game */
+.color-game-area {
+    padding: 1.5rem;
+    background: #f9fafb;
+    text-align: center;
+}
+
+.color-sequence {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.color-btn {
+    aspect-ratio: 1;
+    border: 3px solid #e5e7eb;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+    border-color: #667eea;
+}
+
+.color-btn.active {
+    animation: colorFlash 0.5s ease-in-out;
+}
+
+@keyframes colorFlash {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.game-status {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+/* Gratitude Journal */
+.gratitude-input {
+    padding: 1.5rem;
+    background: #f9fafb;
+}
+
+#gratitudeText {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+#gratitudeText:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.gratitude-prompts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.prompt-tag {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.prompt-tag:hover {
+    background: #bfdbfe;
+    transform: translateY(-1px);
+}
+
+.gratitude-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.gratitude-save-btn,
+.gratitude-random-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gratitude-save-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.gratitude-random-btn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.gratitude-save-btn:hover,
+.gratitude-random-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gratitude-entries {
+    padding: 1.5rem;
+    background: white;
+}
+
+.gratitude-entries h3 {
+    margin: 0 0 1rem 0;
+    color: #1f2937;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.gratitude-entry {
+    background: #f9fafb;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border-left: 4px solid #10b981;
+}
+
+.entry-date {
+    font-size: 0.75rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.entry-text {
+    color: #374151;
+    line-height: 1.5;
+}
+
+/* Affirmations */
+.affirmation-wheel {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.affirmation-wheel:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.wheel-center {
+    color: white;
+    font-size: 2rem;
+}
+
+.affirmation-display {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+
+.affirmation-text {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #374151;
+    font-style: italic;
+    background: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid #667eea;
+}
+
+.affirmation-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.spin-btn,
+.favorite-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.spin-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.favorite-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.spin-btn:hover,
+.favorite-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.affirmation-categories {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: #f9fafb;
+}
+
+.affirmation-categories .category-btn {
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6b7280;
+}
+
+.affirmation-categories .category-btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+}
+
+.affirmation-categories .category-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+/* Breathing Exercise */
+.breathing-circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+}
+
+.breathing-text {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.breathing-instruction {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    text-align: center;
+}
+
+.breathing-controls {
+    padding: 1.5rem;
+    background: white;
+    text-align: center;
+}
+
+.breathing-presets {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    padding: 0.5rem 1rem;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: #6b7280;
+}
+
+.preset-btn:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+}
+
+.preset-btn.active {
+    background: #06b6d4;
+    color: white;
+    border-color: #06b6d4;
+}
+
+.breathing-btn {
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+}
+
+.breathing-btn:not(.secondary) {
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    color: white;
+}
+
+.breathing-btn.secondary {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.breathing-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Mood Check-in */
+.mood-selector {
+    padding: 1.5rem;
+    background: #f9fafb;
+}
+
+.mood-options {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.mood-option {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid #e5e7eb;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.mood-option:hover {
+    transform: scale(1.1);
+    border-color: #667eea;
+}
+
+.mood-option.active {
+    border-color: #667eea;
+    background: #f0f4ff;
+    transform: scale(1.1);
+}
+
+.mood-factors {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.factor-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #374151;
+    cursor: pointer;
+}
+
+.factor-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #667eea;
+}
+
+.mood-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.save-mood-btn,
+.mood-insights-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.save-mood-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.mood-insights-btn {
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.save-mood-btn:hover,
+.mood-insights-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Digital Canvas */
+.canvas-tools {
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tool-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tool-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #e5e7eb;
+    background: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+}
+
+.tool-btn:hover {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.tool-btn.active {
+    border-color: #667eea;
+    background: #667eea;
+    color: white;
+}
+
+.color-picker {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.color-presets {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.color-preset {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #e5e7eb;
+    transition: all 0.2s ease;
+}
+
+.color-preset:hover {
+    transform: scale(1.1);
+    border-color: #667eea;
+}
+
+.brush-settings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.brush-settings label {
+    font-size: 0.875rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+#brushSizeSlider {
+    width: 100px;
+}
+
+.canvas-container {
+    padding: 1.5rem;
+    background: white;
+    text-align: center;
+}
+
+#artCanvas {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    cursor: crosshair;
+    background: white;
+}
+
+.canvas-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.canvas-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #374151;
+}
+
+.canvas-btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+/* Poetry Generator */
+.poetry-controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+}
+
+.poetry-type,
+.poetry-theme {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.poetry-type label,
+.poetry-theme label {
+    font-size: 0.875rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.poetry-type select,
+.poetry-theme select {
+    padding: 0.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: white;
+}
+
+.poetry-prompt {
+    padding: 1rem 1.5rem;
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left: 4px solid #f59e0b;
+    margin: 0;
+    font-style: italic;
+    color: #92400e;
+}
+
+.poetry-input {
+    padding: 1.5rem;
+    background: white;
+}
+
+#poetryText {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+#poetryText:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.poetry-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.poetry-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: 1px solid #e5e7eb;
+    background: white;
+    color: #374151;
+}
+
+.poetry-btn:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+}
+
+/* Story Builder */
+.story-controls {
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.story-settings {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.story-settings label {
+    font-size: 0.875rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.story-settings select {
+    padding: 0.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: white;
+}
+
+.story-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.story-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+.story-elements {
+    padding: 1rem 1.5rem;
+    background: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.element {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    background: white;
+    border-radius: 0.5rem;
+    border-left: 4px solid #8b5cf6;
+}
+
+.element strong {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.story-input {
+    padding: 1.5rem;
+    background: white;
+}
+
+#storyText {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+#storyText:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.story-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+/* Would You Rather */
+.wyr-question {
+    padding: 1.5rem;
+    background: #f9fafb;
+}
+
+.option {
+    background: white;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.option:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.1);
+}
+
+.option.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.option-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.option-percentage {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.wyr-divider {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #9ca3af;
+    margin: 1rem 0;
+}
+
+.wyr-categories {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.wyr-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.wyr-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.wyr-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Truth or Dare */
+.tod-game-area {
+    padding: 1.5rem;
+    background: #f9fafb;
+    text-align: center;
+}
+
+.tod-question {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #8b5cf6;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #374151;
+}
+
+.tod-rating {
+    margin-bottom: 1.5rem;
+}
+
+.tod-rating label {
+    font-size: 0.875rem;
+    color: #374151;
+    font-weight: 500;
+    margin-right: 0.5rem;
+}
+
+.tod-rating select {
+    padding: 0.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    background: white;
+}
+
+.tod-actions {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.tod-btn {
+    padding: 1rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    border: none;
+    color: white;
+}
+
+.truth-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+}
+
+.dare-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+}
+
+.tod-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Collaborative Drawing */
+.collab-canvas-container {
+    position: relative;
+    padding: 1.5rem;
+    background: white;
+    text-align: center;
+}
+
+#collabCanvas {
+    border: 2px solid #e5e7eb;
+    border-radius: 0.5rem;
+    cursor: crosshair;
+    background: white;
+    margin-bottom: 1rem;
+}
+
+.collab-timer {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: #ef4444;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.collab-controls {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: white;
+    justify-content: center;
+}
+
+.collab-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+    border: none;
+    background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+    color: white;
+}
+
+.collab-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+}
+
+/* Notifications */
+.game-notification {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    z-index: 10001;
+    min-width: 300px;
+    border-left: 4px solid #667eea;
+}
+
+.game-notification.success {
+    border-left-color: #10b981;
+}
+
+.game-notification.error {
+    border-left-color: #dc2626;
+}
+
+.game-notification.warning {
+    border-left-color: #f59e0b;
+}
+
+.game-notification .notification-content {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.game-notification .notification-content span {
+    color: #374151;
+    font-weight: 500;
+}
+
+.game-notification .close-notification {
+    background: none;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+.game-notification .close-notification:hover {
+    background: #f3f4f6;
+    color: #374151;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-categories {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .game-category-btn {
+        text-align: center;
+        padding: 1rem;
+    }
+    
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-stats,
+    .word-game-stats,
+    .sequence-game-stats,
+    .color-game-stats,
+    .gratitude-stats,
+    .affirmation-stats,
+    .breathing-stats,
+    .mood-check-stats,
+    .wyr-stats,
+    .tod-stats,
+    .collab-drawing-stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .memory-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.25rem;
+    }
+    
+    .word-input-section {
+        flex-direction: column;
+    }
+    
+    .sequence-options {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .color-sequence {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 250px;
+    }
+    
+    .mood-options {
+        flex-wrap: wrap;
+    }
+    
+    .mood-factors {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .canvas-tools {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .poetry-controls {
+        grid-template-columns: 1fr;
+    }
+    
+    .story-controls {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .wyr-question {
+        padding: 1rem;
+    }
+    
+    .option {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .tod-actions,
+    .collab-controls {
+        flex-direction: column;
+    }
+    
+    .game-notification {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .memory-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .color-sequence {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 200px;
+    }
+    
+    .breathing-circle {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .breathing-text {
+        font-size: 1.25rem;
+    }
+    
+    .affirmation-wheel {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .wheel-center {
+        font-size: 1.5rem;
+    }
+    
+    #artCanvas,
+    #collabCanvas {
+        width: 100%;
+        height: auto;
+    }
+}

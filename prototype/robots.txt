@@ -1,0 +1,24 @@
+# Campus Mindspace - Robots.txt
+# SEO optimization for search engines
+
+User-agent: *
+Allow: /
+
+# Disallow sensitive directories
+Disallow: /admin/
+Disallow: /data/
+Disallow: /includes/
+Disallow: /*.json$
+Disallow: /*.md$
+
+# Allow important pages
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /audio/
+
+# Sitemap location
+Sitemap: https://your-domain.com/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1

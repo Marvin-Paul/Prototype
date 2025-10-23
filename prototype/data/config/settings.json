@@ -1,0 +1,45 @@
+{
+  "app_settings": {
+    "default_language": "en",
+    "supported_languages": ["en", "es", "fr"],
+    "auto_save_interval": 30000,
+    "session_timeout": 1800000,
+    "max_file_size": 10485760,
+    "enable_notifications": true,
+    "enable_sound_effects": true,
+    "enable_haptic_feedback": false
+  },
+  "meditation_settings": {
+    "default_duration": 10,
+    "bell_interval": 5,
+    "ambient_sounds": true,
+    "guided_voice": true,
+    "background_music": false
+  },
+  "therapy_settings": {
+    "reminder_frequency": "daily",
+    "progress_tracking": true,
+    "anonymous_data_sharing": false,
+    "personalized_recommendations": true
+  },
+  "privacy_settings": {
+    "data_retention_days": 365,
+    "encrypt_local_data": true,
+    "share_usage_analytics": false,
+    "allow_data_export": true,
+    "allow_data_deletion": true
+  },
+  "accessibility_settings": {
+    "high_contrast_mode": false,
+    "large_text_mode": false,
+    "screen_reader_support": true,
+    "keyboard_navigation": true,
+    "reduced_motion": false
+  },
+  "emergency_settings": {
+    "crisis_hotline": "988",
+    "emergency_contacts": [],
+    "auto_alert_contacts": false,
+    "location_sharing": false
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "campus-mindspace",
+  "version": "1.0.0",
+  "description": "Mental Health & Wellness Platform for University Students",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "build": "echo 'Building for production...'",
+    "deploy": "echo 'Deploying to production...'"
+  },
+  "keywords": [
+    "mental-health",
+    "wellness",
+    "university",
+    "students",
+    "counseling",
+    "meditation"
+  ],
+  "author": "Campus Mindspace Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/campus-mindspace.git"
+  },
+  "homepage": "https://your-domain.com",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

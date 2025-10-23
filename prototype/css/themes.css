@@ -1,0 +1,379 @@
+/* Theme System - Light, Dark, and Auto */
+
+/* Light Theme (Default) */
+:root[data-theme="light"] {
+    --primary-color: #2d6a5f;
+    --primary-light: #3d8a7a;
+    --primary-dark: #1d4a3f;
+    --primary-gradient: linear-gradient(135deg, #2d6a5f 0%, #1d4a3f 100%);
+    
+    --secondary-color: #3d8a7a;
+    --secondary-light: #4da393;
+    --secondary-dark: #2d6a5f;
+    
+    --accent-pink: #f472b6;
+    --accent-purple: #a78bfa;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --accent-red: #f87171;
+    
+    --background: #f0f4f3;
+    --surface: #ffffff;
+    --surface-elevated: #fafbfb;
+    --surface-hover: #e8f0ee;
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-muted: #6b7280;
+    --border: #d1d5db;
+    --border-light: #e5e7eb;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-glow: 0 0 20px rgba(45, 106, 95, 0.3);
+}
+
+/* Dark Theme */
+:root[data-theme="dark"] {
+    --primary-color: #8b5cf6;
+    --primary-light: #a78bfa;
+    --primary-dark: #7c3aed;
+    --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+    
+    --secondary-color: #a78bfa;
+    --secondary-light: #c4b5fd;
+    --secondary-dark: #7c3aed;
+    
+    --accent-pink: #f472b6;
+    --accent-purple: #a78bfa;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --accent-red: #f87171;
+    
+    --background: #1e1b4b;
+    --surface: #2d2a5f;
+    --surface-elevated: #3730a3;
+    --surface-hover: #4338ca;
+    --text-primary: #f3f4f6;
+    --text-secondary: #d1d5db;
+    --text-muted: #9ca3af;
+    --border: #4338ca;
+    --border-light: #3730a3;
+    
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+    --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.6);
+}
+
+/* Dark Theme Specific Adjustments */
+:root[data-theme="dark"] body {
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+:root[data-theme="dark"] .navbar {
+    background: rgba(30, 27, 75, 0.98);
+    border-bottom-color: var(--border);
+}
+
+:root[data-theme="dark"] .language-selector {
+    background: rgba(30, 27, 75, 0.95);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] #languageSelect {
+    color: var(--text-primary);
+    background: transparent;
+}
+
+:root[data-theme="dark"] .launch-container {
+    background: var(--primary-gradient);
+}
+
+:root[data-theme="dark"] .auth-section {
+    background: rgba(30, 27, 75, 0.98);
+}
+
+:root[data-theme="dark"] .auth-section::before {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(109, 40, 217, 0.08) 100%);
+}
+
+:root[data-theme="dark"] .auth-tabs {
+    background: var(--surface);
+}
+
+:root[data-theme="dark"] .auth-tab.active {
+    background: var(--surface-elevated);
+}
+
+:root[data-theme="dark"] .form-group input,
+:root[data-theme="dark"] .setting-item input,
+:root[data-theme="dark"] .setting-item select {
+    background: var(--surface);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .form-group input:focus,
+:root[data-theme="dark"] .setting-item input:focus,
+:root[data-theme="dark"] .setting-item select:focus {
+    background: var(--surface-elevated);
+}
+
+:root[data-theme="dark"] .mood-option {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .mood-option.selected {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(109, 40, 217, 0.15) 100%);
+}
+
+:root[data-theme="dark"] .tip-card {
+    background: var(--primary-gradient);
+}
+
+:root[data-theme="dark"] .action-card,
+:root[data-theme="dark"] .therapy-card,
+:root[data-theme="dark"] .meditation-card,
+:root[data-theme="dark"] .resource-card,
+:root[data-theme="dark"] .counselor-card,
+:root[data-theme="dark"] .game-card,
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .settings-section {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .action-card::before,
+:root[data-theme="dark"] .therapy-card::before,
+:root[data-theme="dark"] .meditation-card::before,
+:root[data-theme="dark"] .resource-card::before,
+:root[data-theme="dark"] .counselor-card::before,
+:root[data-theme="dark"] .game-card::before,
+:root[data-theme="dark"] .stat-card::before {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(109, 40, 217, 0.08) 100%);
+}
+
+:root[data-theme="dark"] .dropdown-menu {
+    background: var(--surface);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .dropdown-item:hover {
+    background: var(--surface-hover);
+}
+
+:root[data-theme="dark"] .memory-card,
+:root[data-theme="dark"] .puzzle-tile {
+    background: var(--surface-elevated);
+}
+
+:root[data-theme="dark"] .memory-card.flipped .card-back {
+    background: var(--surface);
+}
+
+:root[data-theme="dark"] .embedded-game-container {
+    background: var(--surface);
+}
+
+:root[data-theme="dark"] #gratitudeText {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .gratitude-entry {
+    background: var(--surface-elevated);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .breathing-circle {
+    background: var(--surface-elevated);
+    border-color: var(--primary-color);
+}
+
+:root[data-theme="dark"] .chatbot-window {
+    background: var(--surface);
+}
+
+:root[data-theme="dark"] .chatbot-messages {
+    background: var(--background);
+}
+
+:root[data-theme="dark"] .bot-message .message-content {
+    background: var(--surface-elevated);
+}
+
+:root[data-theme="dark"] .chatbot-input {
+    background: var(--surface-elevated);
+    color: var(--text-primary);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .quick-reply-btn {
+    background: var(--surface-elevated);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+:root[data-theme="dark"] .quick-reply-btn:hover {
+    background: var(--primary-color);
+    color: white;
+}
+
+:root[data-theme="dark"] .setting-toggle {
+    background: var(--surface-elevated);
+}
+
+:root[data-theme="dark"] .setting-toggle:hover {
+    background: var(--surface-hover);
+}
+
+:root[data-theme="dark"] .theme-btn {
+    background: var(--surface-elevated);
+    border-color: var(--border);
+}
+
+:root[data-theme="dark"] .theme-btn.active {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(109, 40, 217, 0.25) 100%);
+}
+
+:root[data-theme="dark"] .crisis-hotlines {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(109, 40, 217, 0.2) 100%);
+}
+
+:root[data-theme="dark"] .hotline-item {
+    border-bottom-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Auto Theme - Uses system preference */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] {
+        --primary-color: #8b5cf6;
+        --primary-light: #a78bfa;
+        --primary-dark: #7c3aed;
+        --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        
+        --secondary-color: #a78bfa;
+        --secondary-light: #c4b5fd;
+        --secondary-dark: #7c3aed;
+        
+        --accent-pink: #f472b6;
+        --accent-purple: #a78bfa;
+        --accent-green: #34d399;
+        --accent-orange: #fb923c;
+        --accent-red: #f87171;
+        
+        --background: #1e1b4b;
+        --surface: #2d2a5f;
+        --surface-elevated: #3730a3;
+        --surface-hover: #4338ca;
+        --text-primary: #f3f4f6;
+        --text-secondary: #d1d5db;
+        --text-muted: #9ca3af;
+        --border: #4338ca;
+        --border-light: #3730a3;
+        
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+        --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+        --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.6);
+    }
+
+    :root[data-theme="auto"] body {
+        background: var(--background);
+        color: var(--text-primary);
+    }
+
+    :root[data-theme="auto"] .navbar {
+        background: rgba(30, 27, 75, 0.98);
+        border-bottom-color: var(--border);
+    }
+
+    :root[data-theme="auto"] .language-selector {
+        background: rgba(30, 27, 75, 0.95);
+        border-color: var(--border);
+    }
+
+    :root[data-theme="auto"] #languageSelect {
+        color: var(--text-primary);
+        background: transparent;
+    }
+
+    :root[data-theme="auto"] .auth-section {
+        background: rgba(30, 27, 75, 0.98);
+    }
+
+    :root[data-theme="auto"] .auth-tabs {
+        background: var(--surface);
+    }
+
+    :root[data-theme="auto"] .auth-tab.active {
+        background: var(--surface-elevated);
+    }
+
+    :root[data-theme="auto"] .form-group input,
+    :root[data-theme="auto"] .setting-item input,
+    :root[data-theme="auto"] .setting-item select {
+        background: var(--surface);
+        color: var(--text-primary);
+        border-color: var(--border);
+    }
+
+    :root[data-theme="auto"] .action-card,
+    :root[data-theme="auto"] .therapy-card,
+    :root[data-theme="auto"] .meditation-card,
+    :root[data-theme="auto"] .resource-card,
+    :root[data-theme="auto"] .counselor-card,
+    :root[data-theme="auto"] .game-card,
+    :root[data-theme="auto"] .stat-card,
+    :root[data-theme="auto"] .settings-section {
+        background: var(--surface);
+        border-color: var(--border);
+    }
+
+    :root[data-theme="auto"] .dropdown-menu {
+        background: var(--surface);
+        border-color: var(--border);
+    }
+
+    :root[data-theme="auto"] .embedded-game-container {
+        background: var(--surface);
+    }
+
+    :root[data-theme="auto"] .chatbot-window {
+        background: var(--surface);
+    }
+
+    :root[data-theme="auto"] .chatbot-messages {
+        background: var(--background);
+    }
+
+    :root[data-theme="auto"] .bot-message .message-content {
+        background: var(--surface-elevated);
+    }
+
+    :root[data-theme="auto"] .chatbot-input {
+        background: var(--surface-elevated);
+        color: var(--text-primary);
+        border-color: var(--border);
+    }
+}
+
+/* Smooth theme transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Preserve animations and transforms */
+*:is(:hover, :focus, :active) {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}

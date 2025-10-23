@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help & Support - Campus Mindspace</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="css/visibility-fix.css">
+    <link rel="stylesheet" href="css/support.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Language Selector -->
+    <div class="language-selector">
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <i class="fas fa-brain"></i>
+            <span>Campus Mindspace</span>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="support.html" class="nav-link active">
+                <i class="fas fa-life-ring"></i> Support
+            </a>
+        </div>
+        <div class="nav-actions">
+            <div class="user-profile">
+                <div class="profile-dropdown">
+                    <button class="profile-btn" id="profileToggle" type="button">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu" id="profileMenu">
+                        <a href="settings.html" class="dropdown-item">Settings</a>
+                        <a href="support.html" class="dropdown-item">Help &amp; Support</a>
+                        <button class="dropdown-item logout-btn" type="button">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content support-page">
+        <div class="support-container">
+            <!-- Support Header -->
+            <div class="support-header">
+                <h1><i class="fas fa-life-ring"></i> Help &amp; Support</h1>
+                <p>We're here to help you on your wellness journey</p>
+            </div>
+
+            <!-- Crisis Alert Banner -->
+            <div class="crisis-banner">
+                <div class="crisis-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="crisis-content">
+                    <h3>In Crisis? Get Immediate Help</h3>
+                    <p>If you're experiencing a mental health emergency, please reach out immediately:</p>
+                    <div class="crisis-contacts">
+                        <a href="tel:988" class="crisis-btn">
+                            <i class="fas fa-phone"></i> Call 988 (Crisis Line)
+                        </a>
+                        <a href="sms:741741&body=HOME" class="crisis-btn">
+                            <i class="fas fa-sms"></i> Text HOME to 741741
+                        </a>
+                        <a href="tel:911" class="crisis-btn emergency">
+                            <i class="fas fa-ambulance"></i> Call 911 (Emergency)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Help Cards -->
+            <div class="quick-help-section">
+                <h2>Quick Help</h2>
+                <div class="quick-help-grid">
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h3>FAQs</h3>
+                        <p>Find answers to commonly asked questions</p>
+                        <button type="button" class="help-btn" onclick="showSection('faq')">
+                            View FAQs
+                        </button>
+                    </div>
+
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>User Guide</h3>
+                        <p>Learn how to use Campus Mindspace</p>
+                        <button type="button" class="help-btn" onclick="showSection('guide')">
+                            Read Guide
+                        </button>
+                    </div>
+
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Contact Us</h3>
+                        <p>Get in touch with our support team</p>
+                        <button type="button" class="help-btn" onclick="showSection('contact')">
+                            Contact Support
+                        </button>
+                    </div>
+
+                    <div class="help-card">
+                        <div class="help-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3>Video Tutorials</h3>
+                        <p>Watch step-by-step video guides</p>
+                        <button type="button" class="help-btn" onclick="showSection('videos')">
+                            Watch Videos
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="content-section" id="faq-section">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                
+                <div class="faq-category">
+                    <h3>Getting Started</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>How do I create an account?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>To create an account, click the "Sign Up" button on the homepage. Fill in your student information, create a secure password, and verify your email address. Once verified, you can start using all Campus Mindspace features.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Is my information confidential?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes! Your privacy is our top priority. All your data is encrypted and stored securely. We never share your personal information or mental health data with third parties without your explicit consent. You can also use anonymous mode for group sessions.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>What features are available?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Campus Mindspace offers therapy resources (CBT, DBT, MBSR), guided meditation, counseling appointments, mental health games, mood tracking, gratitude journaling, breathing exercises, and 24/7 AI chatbot support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category">
+                    <h3>Appointments & Counseling</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>How do I book a counseling session?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Navigate to the Appointments section, browse available counselors by specialty, select your preferred counselor, choose an available time slot, and confirm your booking. You'll receive email and in-app reminders before your session.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Can I cancel or reschedule an appointment?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Yes, you can cancel or reschedule up to 24 hours before your appointment. Go to your profile, select "My Appointments," and choose the cancel or reschedule option. Please note that late cancellations may incur a fee.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Are counseling sessions free?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Most campus counseling services are free for enrolled students. Some specialized services may have a nominal fee. Check with your specific counselor or campus health services for details.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-category">
+                    <h3>Technical Support</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>The app isn't loading properly. What should I do?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Try these steps: 1) Clear your browser cache and cookies, 2) Update your browser to the latest version, 3) Disable browser extensions, 4) Try a different browser. If issues persist, contact our technical support team.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>I forgot my password. How do I reset it?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Click "Forgot Password" on the login page, enter your email address, and you'll receive a password reset link. Follow the link to create a new password. Make sure to check your spam folder if you don't see the email.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <button type="button" class="faq-question">
+                                <span>Which browsers are supported?</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                            <div class="faq-answer">
+                                <p>Campus Mindspace works best on the latest versions of Chrome, Firefox, Safari, and Edge. We recommend keeping your browser updated for the best experience and security.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Guide Section -->
+            <div class="content-section" id="guide-section" style="display: none;">
+                <h2><i class="fas fa-book"></i> User Guide</h2>
+                
+                <div class="guide-grid">
+                    <div class="guide-card">
+                        <div class="guide-number">1</div>
+                        <h3>Set Up Your Profile</h3>
+                        <p>Complete your profile with your information, preferences, and emergency contacts. This helps us personalize your experience.</p>
+                        <ul>
+                            <li>Add your student ID and department</li>
+                            <li>Set notification preferences</li>
+                            <li>Add emergency contact information</li>
+                            <li>Choose your preferred theme</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">2</div>
+                        <h3>Explore Resources</h3>
+                        <p>Browse our comprehensive mental health resources tailored for students.</p>
+                        <ul>
+                            <li>Try guided meditation sessions</li>
+                            <li>Practice CBT and DBT exercises</li>
+                            <li>Listen to calming music</li>
+                            <li>Watch motivational videos</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">3</div>
+                        <h3>Track Your Wellness</h3>
+                        <p>Use our tools to monitor and improve your mental health over time.</p>
+                        <ul>
+                            <li>Log your daily mood</li>
+                            <li>Write gratitude journal entries</li>
+                            <li>Practice breathing exercises</li>
+                            <li>Play mind games for relaxation</li>
+                        </ul>
+                    </div>
+
+                    <div class="guide-card">
+                        <div class="guide-number">4</div>
+                        <h3>Get Professional Help</h3>
+                        <p>Connect with licensed counselors when you need professional support.</p>
+                        <ul>
+                            <li>Browse counselors by specialty</li>
+                            <li>Book appointments online</li>
+                            <li>Attend virtual or in-person sessions</li>
+                            <li>Access crisis support 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="content-section" id="contact-section" style="display: none;">
+                <h2><i class="fas fa-envelope"></i> Contact Support</h2>
+                
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p>Our support team is here to help you Monday through Friday, 9 AM - 5 PM.</p>
+                        
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <h4>Email Support</h4>
+                                    <a href="mailto:support@campusmindspace.edu">support@campusmindspace.edu</a>
+                                    <p>Response within 24 hours</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <h4>Phone Support</h4>
+                                    <a href="tel:+15551234567">+1 (555) 123-4567</a>
+                                    <p>Mon-Fri, 9 AM - 5 PM</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <i class="fas fa-comments"></i>
+                                <div>
+                                    <h4>Live Chat</h4>
+                                    <button type="button" class="chat-btn" onclick="openChatbot()">Start Chat</button>
+                                    <p>Available 24/7</p>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div>
+                                    <h4>Campus Location</h4>
+                                    <p>Student Health Center, Room 205<br>123 University Ave<br>Campus, ST 12345</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-container">
+                        <h3>Send Us a Message</h3>
+                        <form class="contact-form" id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName">Your Name</label>
+                                <input type="text" id="contactName" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address</label>
+                                <input type="email" id="contactEmail" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactSubject">Subject</label>
+                                <select id="contactSubject" required>
+                                    <option value="">Select a topic</option>
+                                    <option value="technical">Technical Issue</option>
+                                    <option value="appointment">Appointment Question</option>
+                                    <option value="account">Account Help</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message</label>
+                                <textarea id="contactMessage" rows="6" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Video Tutorials Section -->
+            <div class="content-section" id="videos-section" style="display: none;">
+                <h2><i class="fas fa-video"></i> Video Tutorials</h2>
+                
+                <div class="videos-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">3:45</span>
+                        </div>
+                        <h3>Getting Started with Campus Mindspace</h3>
+                        <p>Learn the basics and set up your account</p>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">5:20</span>
+                        </div>
+                        <h3>Booking Your First Counseling Session</h3>
+                        <p>Step-by-step guide to scheduling appointments</p>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">4:15</span>
+                        </div>
+                        <h3>Using Meditation & Mindfulness Tools</h3>
+                        <p>Maximize your meditation practice</p>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">6:30</span>
+                        </div>
+                        <h3>Mood Tracking & Wellness Journaling</h3>
+                        <p>Track your mental health journey effectively</p>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">3:00</span>
+                        </div>
+                        <h3>Privacy & Security Settings</h3>
+                        <p>Keep your information safe and private</p>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <i class="fas fa-play-circle"></i>
+                            <span class="video-duration">4:45</span>
+                        </div>
+                        <h3>Using the AI Chatbot for Support</h3>
+                        <p>Get 24/7 help from our AI assistant</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Resources -->
+            <div class="resources-section">
+                <h2>Additional Resources</h2>
+                <div class="resource-links">
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Download User Manual (PDF)</span>
+                    </a>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-keyboard"></i>
+                        <span>Keyboard Shortcuts Guide</span>
+                    </a>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-universal-access"></i>
+                        <span>Accessibility Features</span>
+                    </a>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy Policy</span>
+                    </a>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-file-contract"></i>
+                        <span>Terms of Service</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/theme-manager.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/support.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

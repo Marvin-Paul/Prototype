@@ -1,0 +1,170 @@
+{
+  "games": {
+    "mood_matching": {
+      "title": "Mood Matching Game",
+      "description": "Match emotions with appropriate coping strategies",
+      "difficulty": "beginner",
+      "duration": 5,
+      "instructions": [
+        "Look at the emotion card displayed",
+        "Choose the best coping strategy from the options",
+        "Learn why each strategy works",
+        "Complete all 10 matches to finish"
+      ],
+      "scenarios": [
+        {
+          "emotion": "anxious",
+          "strategies": [
+            {"text": "Deep breathing", "correct": true, "explanation": "Deep breathing activates the parasympathetic nervous system, reducing anxiety"},
+            {"text": "Avoid the situation", "correct": false, "explanation": "Avoidance can increase anxiety over time"},
+            {"text": "Drink caffeine", "correct": false, "explanation": "Caffeine can increase anxiety symptoms"}
+          ]
+        },
+        {
+          "emotion": "sad",
+          "strategies": [
+            {"text": "Call a friend", "correct": true, "explanation": "Social connection can help improve mood"},
+            {"text": "Isolate yourself", "correct": false, "explanation": "Isolation can worsen depression"},
+            {"text": "Exercise", "correct": true, "explanation": "Physical activity releases endorphins that improve mood"}
+          ]
+        }
+      ]
+    },
+    "breathing_game": {
+      "title": "Breathing Rhythm Game",
+      "description": "Follow visual cues to practice different breathing patterns",
+      "difficulty": "beginner",
+      "duration": 3,
+      "patterns": [
+        {
+          "name": "Box Breathing",
+          "inhale": 4,
+          "hold": 4,
+          "exhale": 4,
+          "pause": 4,
+          "description": "Equal counts for each phase"
+        },
+        {
+          "name": "4-7-8 Breathing",
+          "inhale": 4,
+          "hold": 7,
+          "exhale": 8,
+          "pause": 0,
+          "description": "Longer exhale for relaxation"
+        },
+        {
+          "name": "Triangle Breathing",
+          "inhale": 4,
+          "hold": 4,
+          "exhale": 4,
+          "pause": 0,
+          "description": "Three-phase breathing pattern"
+        }
+      ]
+    },
+    "gratitude_challenge": {
+      "title": "Daily Gratitude Challenge",
+      "description": "Practice gratitude with daily prompts and reflections",
+      "difficulty": "beginner",
+      "duration": 5,
+      "prompts": [
+        "What made you smile today?",
+        "Who are you grateful for in your life?",
+        "What skill or ability are you thankful for?",
+        "What experience from this week are you grateful for?",
+        "What about your living situation are you grateful for?",
+        "What food are you grateful to have access to?",
+        "What natural beauty did you notice today?",
+        "What challenge helped you grow recently?",
+        "What memory brings you joy?",
+        "What are you looking forward to?"
+      ],
+      "reflection_questions": [
+        "How did focusing on gratitude affect your mood?",
+        "What patterns do you notice in what you're grateful for?",
+        "How can you incorporate more gratitude into your daily routine?"
+      ]
+    },
+    "mindfulness_challenge": {
+      "title": "Mindfulness Moments",
+      "description": "Complete daily mindfulness exercises to build awareness",
+      "difficulty": "intermediate",
+      "duration": 10,
+      "exercises": [
+        {
+          "name": "Mindful Eating",
+          "description": "Eat a raisin or small piece of food with full attention",
+          "steps": [
+            "Look at the food - notice its color, texture, shape",
+            "Smell the food - what aromas do you notice?",
+            "Place it in your mouth without chewing",
+            "Notice the taste and texture",
+            "Chew slowly and mindfully",
+            "Notice how the taste changes",
+            "Swallow mindfully"
+          ]
+        },
+        {
+          "name": "Body Scan",
+          "description": "Bring awareness to different parts of your body",
+          "steps": [
+            "Start at the top of your head",
+            "Notice any sensations - warmth, coolness, tension",
+            "Slowly move down through your face",
+            "Continue through your neck and shoulders",
+            "Feel your arms and hands",
+            "Move through your chest and abdomen",
+            "Continue down through your legs",
+            "Feel your feet resting on the ground"
+          ]
+        },
+        {
+          "name": "Mindful Walking",
+          "description": "Walk slowly and pay attention to each step",
+          "steps": [
+            "Stand still and notice your body",
+            "Begin walking slowly",
+            "Focus on the sensation of your feet touching the ground",
+            "Notice the shifting of weight from foot to foot",
+            "If your mind wanders, return to your feet",
+            "Continue for 5-10 minutes"
+          ]
+        }
+      ]
+    }
+  },
+  "progress_tracking": {
+    "streaks": {
+      "daily_mood_check": 0,
+      "meditation_practice": 0,
+      "gratitude_journal": 0,
+      "breathing_exercises": 0
+    },
+    "achievements": [
+      {
+        "id": "first_week",
+        "title": "First Week Complete",
+        "description": "Used the app for 7 consecutive days",
+        "unlocked": false
+      },
+      {
+        "id": "meditation_master",
+        "title": "Meditation Master",
+        "description": "Completed 30 meditation sessions",
+        "unlocked": false
+      },
+      {
+        "id": "gratitude_guru",
+        "title": "Gratitude Guru",
+        "description": "Wrote 50 gratitude entries",
+        "unlocked": false
+      },
+      {
+        "id": "breathing_buddy",
+        "title": "Breathing Buddy",
+        "description": "Completed 100 breathing exercises",
+        "unlocked": false
+      }
+    ]
+  }
+}

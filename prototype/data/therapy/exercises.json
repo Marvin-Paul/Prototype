@@ -1,0 +1,106 @@
+{
+  "therapy_exercises": {
+    "cbt": [
+      {
+        "id": "thought-record",
+        "title": "Thought Record Worksheet",
+        "description": "Track and challenge negative thoughts using CBT techniques",
+        "difficulty": "beginner",
+        "steps": [
+          "Identify the situation that triggered your thoughts",
+          "Write down your automatic thoughts",
+          "Rate your emotions (0-10 scale)",
+          "Identify cognitive distortions",
+          "Challenge your thoughts with evidence",
+          "Create balanced thoughts",
+          "Rate your emotions again"
+        ],
+        "cognitive_distortions": [
+          "All-or-nothing thinking",
+          "Catastrophizing", 
+          "Mind reading",
+          "Fortune telling",
+          "Personalization",
+          "Should statements",
+          "Mental filtering"
+        ]
+      },
+      {
+        "id": "behavioral-activation",
+        "title": "Behavioral Activation",
+        "description": "Increase positive activities to improve mood",
+        "difficulty": "intermediate",
+        "steps": [
+          "List activities you used to enjoy",
+          "Rate each activity for pleasure and mastery",
+          "Schedule at least one pleasurable activity daily",
+          "Start with small, manageable activities",
+          "Track your mood before and after activities",
+          "Gradually increase activity level"
+        ]
+      }
+    ],
+    "dbt": [
+      {
+        "id": "distress-tolerance-tip",
+        "title": "TIPP Technique",
+        "description": "Quick distress tolerance skills for crisis moments",
+        "difficulty": "beginner",
+        "steps": [
+          "Temperature: Hold ice cubes or splash cold water on face",
+          "Intense exercise: Do jumping jacks or run in place",
+          "Paced breathing: Slow down your breathing",
+          "Paired muscle relaxation: Tense and release muscle groups"
+        ]
+      },
+      {
+        "id": "emotion-regulation-check",
+        "title": "Emotion Regulation Check",
+        "description": "Identify and manage intense emotions",
+        "difficulty": "intermediate",
+        "steps": [
+          "Identify the emotion you're feeling",
+          "Rate the intensity (0-10)",
+          "Identify what triggered the emotion",
+          "Use opposite action if the emotion doesn't fit the facts",
+          "Practice mindfulness of the emotion",
+          "Use coping strategies if needed"
+        ]
+      }
+    ],
+    "mbsr": [
+      {
+        "id": "mindful-eating",
+        "title": "Mindful Eating Exercise",
+        "description": "Practice mindfulness while eating",
+        "difficulty": "beginner",
+        "steps": [
+          "Choose a small piece of food (raisin, chocolate)",
+          "Look at it carefully - notice color, texture, shape",
+          "Smell the food - what aromas do you notice?",
+          "Place it in your mouth without chewing",
+          "Notice the taste and texture",
+          "Chew slowly and mindfully",
+          "Notice how the taste changes",
+          "Swallow mindfully"
+        ]
+      },
+      {
+        "id": "walking-meditation",
+        "title": "Walking Meditation",
+        "description": "Practice mindfulness while walking",
+        "difficulty": "intermediate",
+        "steps": [
+          "Find a quiet place to walk",
+          "Stand still and notice your body",
+          "Begin walking slowly",
+          "Focus on the sensation of your feet touching the ground",
+          "Notice the shifting of weight from foot to foot",
+          "If your mind wanders, return to your feet",
+          "Walk for 10-15 minutes",
+          "End by standing still and noticing your body"
+        ]
+      }
+    ]
+  }
+}

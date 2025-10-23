@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Campus Mindspace</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/admin-styles.css">
+    <link rel="stylesheet" href="css/admin-enhancements.css">
+    <link rel="stylesheet" href="css/admin-responsive.css">
+    <link rel="stylesheet" href="css/admin-mood-groups.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="admin-dashboard">
+    <!-- Top Right Controls -->
+    <div class="admin-top-controls">
+        <!-- Logout Button -->
+        <button class="admin-logout-btn-top" id="adminLogoutBtn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Enhanced Admin Navigation Header -->
+    <nav class="admin-navbar-enhanced">
+        <div class="nav-container" style="max-width: 1400px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 70px;">
+            <div class="admin-nav-brand">
+                <i class="fas fa-shield-alt"></i>
+                <span>Campus Mindspace Admin</span>
+            </div>
+            <div class="admin-nav-actions">
+                <div class="admin-user-info">
+                    <i class="fas fa-user-shield"></i>
+                    <span id="adminUsername">Administrator</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Admin Content -->
+    <main class="main-content">
+        <div class="admin-container">
+            <!-- Admin Header -->
+            <div class="admin-header">
+                <h1>Administrator Dashboard</h1>
+                <p>Comprehensive analytics and management for Campus Mindspace</p>
+            </div>
+
+            <!-- Enhanced Admin Statistics -->
+            <div class="admin-stats-grid-enhanced">
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); color: #667eea;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="admin-stat-label">Total Users</h3>
+                        <p class="admin-stat-number" id="totalUsers">0</p>
+                        <span class="admin-stat-change positive">+12% this month</span>
+                    </div>
+                </div>
+                
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%); color: #10b981;">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="admin-stat-label">Active Sessions</h3>
+                        <p class="admin-stat-number" id="activeSessions">0</p>
+                        <span class="admin-stat-change positive">Live now</span>
+                    </div>
+                </div>
+                
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%); color: #f59e0b;">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="admin-stat-label">Appointments</h3>
+                        <p class="admin-stat-number" id="totalAppointments">0</p>
+                        <span class="admin-stat-change">This week</span>
+                    </div>
+                </div>
+                
+                <div class="admin-stat-card">
+                    <div class="admin-stat-icon" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(219, 39, 119, 0.1) 100%); color: #ec4899;">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 class="admin-stat-label">Games Played</h3>
+                        <p class="admin-stat-number" id="gamesPlayed">0</p>
+                        <span class="admin-stat-change positive">+8% engagement</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mood Distribution Section -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-chart-pie"></i> Initial Mood Distribution</h2>
+                    <p>User mood check-in data from registration</p>
+                </div>
+                <div class="mood-distribution-chart">
+                    <div id="moodDistributionChart" class="chart-container"></div>
+                </div>
+            </div>
+
+            <!-- Enhanced Feature Usage Section -->
+            <div class="admin-section-enhanced">
+                <div class="section-header-admin-enhanced">
+                    <h2><i class="fas fa-chart-bar"></i> Feature Usage Analytics</h2>
+                    <p>Most and least frequently used platform sections</p>
+                </div>
+                <div class="feature-usage-grid-enhanced">
+                    <div class="feature-card-enhanced">
+                        <div class="feature-header">
+                            <div class="feature-icon-enhanced therapy">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="feature-info">
+                                <h4 class="feature-title">Therapy Resources</h4>
+                                <div class="usage-bar-enhanced">
+                                    <div class="usage-fill-enhanced" style="width: 85%; background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);"></div>
+                                </div>
+                                <span class="usage-percent-enhanced">85% usage</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-enhanced">
+                        <div class="feature-header">
+                            <div class="feature-icon-enhanced meditation">
+                                <i class="fas fa-om"></i>
+                            </div>
+                            <div class="feature-info">
+                                <h4 class="feature-title">Meditation</h4>
+                                <div class="usage-bar-enhanced">
+                                    <div class="usage-fill-enhanced" style="width: 72%; background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);"></div>
+                                </div>
+                                <span class="usage-percent-enhanced">72% usage</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-enhanced">
+                        <div class="feature-header">
+                            <div class="feature-icon-enhanced resources">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="feature-info">
+                                <h4 class="feature-title">Resources</h4>
+                                <div class="usage-bar-enhanced">
+                                    <div class="usage-fill-enhanced" style="width: 68%; background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);"></div>
+                                </div>
+                                <span class="usage-percent-enhanced">68% usage</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-enhanced">
+                        <div class="feature-header">
+                            <div class="feature-icon-enhanced appointments">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="feature-info">
+                                <h4 class="feature-title">Appointments</h4>
+                                <div class="usage-bar-enhanced">
+                                    <div class="usage-fill-enhanced" style="width: 45%; background: linear-gradient(90deg, #43e97b 0%, #38f9d7 100%);"></div>
+                                </div>
+                                <span class="usage-percent-enhanced">45% usage</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card-enhanced">
+                        <div class="feature-header">
+                            <div class="feature-icon-enhanced games">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="feature-info">
+                                <h4 class="feature-title">Mind Games</h4>
+                                <div class="usage-bar-enhanced">
+                                    <div class="usage-fill-enhanced" style="width: 91%; background: linear-gradient(90deg, #fa709a 0%, #fee140 100%);"></div>
+                                </div>
+                                <span class="usage-percent-enhanced">91% usage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counseling Demand Section -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-user-md"></i> Counseling Demand by Specialization</h2>
+                    <p>Appointment booking rates per counselor specialty</p>
+                </div>
+                <div class="counseling-demand-grid">
+                    <div class="demand-card">
+                        <div class="demand-header">
+                            <h4>Academic Stress</h4>
+                            <span class="demand-count">156 bookings</span>
+                        </div>
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width: 95%; background: var(--primary-color);"></div>
+                        </div>
+                        <span class="demand-status high">High Demand</span>
+                    </div>
+                    
+                    <div class="demand-card">
+                        <div class="demand-header">
+                            <h4>Anxiety & Depression</h4>
+                            <span class="demand-count">142 bookings</span>
+                        </div>
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width: 88%; background: var(--accent-red);"></div>
+                        </div>
+                        <span class="demand-status high">High Demand</span>
+                    </div>
+                    
+                    <div class="demand-card">
+                        <div class="demand-header">
+                            <h4>Relationships & Social</h4>
+                            <span class="demand-count">98 bookings</span>
+                        </div>
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width: 60%; background: var(--accent-pink);"></div>
+                        </div>
+                        <span class="demand-status medium">Medium Demand</span>
+                    </div>
+                    
+                    <div class="demand-card">
+                        <div class="demand-header">
+                            <h4>Identity & Growth</h4>
+                            <span class="demand-count">67 bookings</span>
+                        </div>
+                        <div class="demand-bar">
+                            <div class="demand-fill" style="width: 42%; background: var(--accent-purple);"></div>
+                        </div>
+                        <span class="demand-status low">Moderate Demand</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Registration Trends -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-chart-line"></i> User Registration Trends</h2>
+                    <p>New user registrations over time</p>
+                </div>
+                <div class="trends-container">
+                    <div id="registrationTrends" class="trends-chart"></div>
+                </div>
+            </div>
+
+            <!-- Enhanced Admin Actions -->
+            <div class="admin-actions-section-enhanced">
+                <div class="section-header-admin-enhanced">
+                    <h2><i class="fas fa-cogs"></i> Administrative Actions</h2>
+                    <p>Manage and export system data</p>
+                </div>
+                <div class="admin-actions-grid-enhanced">
+                    <button class="admin-action-btn-enhanced primary" id="exportDataBtn">
+                        <i class="fas fa-download"></i>
+                        <span>Export All Data</span>
+                    </button>
+                    
+                    <button class="admin-action-btn-enhanced secondary" id="generateReportBtn">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Generate Report</span>
+                    </button>
+                    
+                    <button class="admin-action-btn-enhanced secondary" id="viewLogsBtn">
+                        <i class="fas fa-list"></i>
+                        <span>View Activity Logs</span>
+                    </button>
+                    
+                    <button class="admin-action-btn-enhanced secondary" id="manageUsersBtn">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Manage Users</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-history"></i> Recent Activity</h2>
+                    <p>Latest platform activities and events</p>
+                </div>
+                <div class="activity-list" id="recentActivity">
+                    <!-- Activity items will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Mood Groups Management Section -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-users"></i> Mood Groups Management</h2>
+                    <p>Monitor and manage mood-based group chats</p>
+                </div>
+                
+                <!-- Active Groups Overview -->
+                <div class="groups-overview">
+                    <div class="groups-stats-grid">
+                        <div class="group-stat-card" id="totalGroupsCard">
+                            <div class="stat-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Active Groups</h3>
+                                <p class="stat-number" id="totalActiveGroups">0</p>
+                            </div>
+                        </div>
+                        <div class="group-stat-card" id="totalMembersCard">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-friends"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Members</h3>
+                                <p class="stat-number" id="totalGroupMembers">0</p>
+                            </div>
+                        </div>
+                        <div class="group-stat-card" id="messagesTodayCard">
+                            <div class="stat-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Messages Today</h3>
+                                <p class="stat-number" id="messagesToday">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Group Monitoring -->
+                <div class="groups-monitoring">
+                    <h3><i class="fas fa-eye"></i> Real-Time Group Monitoring</h3>
+                    <div class="groups-list" id="groupsList">
+                        <!-- Groups will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- User Movement Log -->
+                <div class="user-movements-section">
+                    <h3><i class="fas fa-exchange-alt"></i> User Movement Log</h3>
+                    <div class="movements-controls">
+                        <div class="filter-controls">
+                            <select id="moodFilter">
+                                <option value="">All Moods</option>
+                                <option value="happy">Happy</option>
+                                <option value="anxious">Anxious</option>
+                                <option value="stressed">Stressed</option>
+                                <option value="excited">Excited</option>
+                                <option value="sad">Sad</option>
+                                <option value="motivated">Motivated</option>
+                                <option value="overwhelmed">Overwhelmed</option>
+                                <option value="lonely">Lonely</option>
+                            </select>
+                            <input type="date" id="dateFilter" placeholder="Filter by date">
+                            <button id="exportMovementsBtn" class="export-btn">
+                                <i class="fas fa-download"></i> Export Log
+                            </button>
+                        </div>
+                    </div>
+                    <div class="movements-table-container">
+                        <table class="movements-table" id="movementsTable">
+                            <thead>
+                                <tr>
+                                    <th>User</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                </tr>
+                            </thead>
+                            <tbody id="movementsTableBody">
+                                <!-- Movements will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Mood Management -->
+                <div class="mood-management-section">
+                    <h3><i class="fas fa-cog"></i> Mood Categories Management</h3>
+                    <div class="mood-categories-list" id="moodCategoriesList">
+                        <!-- Mood categories will be populated by JavaScript -->
+                    </div>
+                    <div class="mood-actions">
+                        <button id="addMoodCategoryBtn" class="admin-action-btn">
+                            <i class="fas fa-plus"></i> Add New Mood Category
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Analytics Report -->
+                <div class="analytics-section">
+                    <h3><i class="fas fa-chart-bar"></i> Mood Distribution Analytics</h3>
+                    <div class="analytics-controls">
+                        <select id="analyticsPeriod">
+                            <option value="today">Today</option>
+                            <option value="week">This Week</option>
+                            <option value="month">This Month</option>
+                            <option value="all">All Time</option>
+                        </select>
+                        <button id="generateAnalyticsBtn" class="admin-action-btn">
+                            <i class="fas fa-chart-line"></i> Generate Report
+                        </button>
+                    </div>
+                    <div class="analytics-chart" id="analyticsChart">
+                        <!-- Chart will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appointment Management Section -->
+            <div class="admin-section">
+                <div class="section-header-admin">
+                    <h2><i class="fas fa-calendar-check"></i> Appointment Management</h2>
+                    <p>Track and manage all counseling appointments</p>
+                </div>
+                
+                <!-- Appointment Statistics -->
+                <div class="appointment-stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-day"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="todayAppointments">0</h3>
+                            <p>Today's Appointments</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-week"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="weekAppointments">0</h3>
+                            <p>This Week</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="pendingAppointments">0</h3>
+                            <p>Pending</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="completedAppointments">0</h3>
+                            <p>Completed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appointment Filters -->
+                <div class="appointment-filters">
+                    <div class="filter-group">
+                        <label for="appointmentDateFilter">Date Range:</label>
+                        <input type="date" id="appointmentDateFilter" class="filter-input">
+                    </div>
+                    <div class="filter-group">
+                        <label for="counselorFilter">Counselor:</label>
+                        <select id="counselorFilter" class="filter-input">
+                            <option value="">All Counselors</option>
+                            <option value="academic">Dr. Sarah Johnson</option>
+                            <option value="relationship">Dr. Michael Chen</option>
+                            <option value="anxiety">Dr. Emily Rodriguez</option>
+                            <option value="identity">Dr. Alex Thompson</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="statusFilter">Status:</label>
+                        <select id="statusFilter" class="filter-input">
+                            <option value="">All Statuses</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="no-show">No Show</option>
+                        </select>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="filter-btn" onclick="window.adminAppointmentManager.applyFilters()">
+                            <i class="fas fa-filter"></i> Apply Filters
+                        </button>
+                        <button class="export-btn" onclick="window.adminAppointmentManager.exportAppointments()">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Appointments Table -->
+                <div class="appointments-table-container">
+                    <div class="table-header">
+                        <h3>All Appointments</h3>
+                        <div class="table-actions">
+                            <button class="refresh-btn" onclick="window.adminAppointmentManager.refreshAppointments()">
+                                <i class="fas fa-sync"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="appointments-table-wrapper">
+                        <table class="appointments-table" id="appointmentsTable">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Counselor</th>
+                                    <th>Date & Time</th>
+                                    <th>Session Type</th>
+                                    <th>Status</th>
+                                    <th>Contact Info</th>
+                                    <th>Session Focus</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTableBody">
+                                <!-- Appointments will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Appointment Details Modal -->
+                <div class="appointment-details-modal" id="appointmentDetailsModal" style="display: none;">
+                    <div class="modal-overlay" onclick="window.adminAppointmentManager.closeDetailsModal()"></div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Appointment Details</h2>
+                            <button class="close-modal" onclick="window.adminAppointmentManager.closeDetailsModal()">&times;</button>
+                        </div>
+                        <div class="modal-body" id="appointmentDetailsContent">
+                            <!-- Details will be populated by JavaScript -->
+                        </div>
+                        <div class="modal-actions">
+                            <button class="edit-appointment-btn" onclick="window.adminAppointmentManager.editAppointment()">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                            <button class="cancel-appointment-btn" onclick="window.adminAppointmentManager.cancelAppointment()">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button class="complete-appointment-btn" onclick="window.adminAppointmentManager.completeAppointment()">
+                                <i class="fas fa-check"></i> Mark Complete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/language.js"></script>
+    <script src="js/admin-auth.js"></script>
+    <script src="js/admin-dashboard.js"></script>
+    <script src="js/admin-mood-groups.js"></script>
+    <script src="js/admin-appointment-manager.js"></script>
+</body>
+</html>

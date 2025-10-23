@@ -1,0 +1,52 @@
+{
+  "breathing_exercises": [
+    {
+      "id": "box-breathing",
+      "title": "Box Breathing",
+      "description": "A simple 4-count breathing technique to calm the mind",
+      "duration": 5,
+      "difficulty": "beginner",
+      "instructions": [
+        "Sit comfortably with your back straight",
+        "Inhale slowly for 4 counts",
+        "Hold your breath for 4 counts", 
+        "Exhale slowly for 4 counts",
+        "Hold empty for 4 counts",
+        "Repeat for 5 minutes"
+      ],
+      "benefits": ["Reduces stress", "Improves focus", "Calms nervous system"]
+    },
+    {
+      "id": "4-7-8-breathing",
+      "title": "4-7-8 Breathing",
+      "description": "A powerful technique for deep relaxation",
+      "duration": 10,
+      "difficulty": "intermediate",
+      "instructions": [
+        "Place the tip of your tongue behind your upper front teeth",
+        "Exhale completely through your mouth",
+        "Close your mouth and inhale through your nose for 4 counts",
+        "Hold your breath for 7 counts",
+        "Exhale through your mouth for 8 counts",
+        "Repeat 4 cycles"
+      ],
+      "benefits": ["Promotes sleep", "Reduces anxiety", "Balances nervous system"]
+    },
+    {
+      "id": "belly-breathing",
+      "title": "Diaphragmatic Breathing",
+      "description": "Deep breathing using your diaphragm for maximum oxygen intake",
+      "duration": 8,
+      "difficulty": "beginner",
+      "instructions": [
+        "Lie down or sit comfortably",
+        "Place one hand on your chest, one on your belly",
+        "Breathe in slowly through your nose, letting your belly rise",
+        "Keep your chest still",
+        "Exhale slowly through your mouth",
+        "Feel your belly fall as you breathe out"
+      ],
+      "benefits": ["Reduces blood pressure", "Improves lung function", "Relieves tension"]
+    }
+  ]
+}

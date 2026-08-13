@@ -107,9 +107,9 @@ class TherapyToolsManager {
     }
 
     setupBreathingExercise() {
-        const startBtn = document.getElementById('startBreathing');
-        const pauseBtn = document.getElementById('pauseBreathing');
-        const stopBtn = document.getElementById('stopBreathing');
+        const startBtn = document.getElementById('startBreathingModal');
+        const pauseBtn = document.getElementById('pauseBreathingModal');
+        const stopBtn = document.getElementById('stopBreathingModal');
         const inhaleSlider = document.getElementById('inhaleDuration');
         const exhaleSlider = document.getElementById('exhaleDuration');
         const inhaleValue = document.getElementById('inhaleValue');
@@ -145,18 +145,6 @@ class TherapyToolsManager {
                 exhaleValue.textContent = exhaleSlider.value;
             });
         }
-
-        // Breathing presets
-        document.querySelectorAll('.preset-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const duration = parseInt(btn.dataset.duration);
-                this.setBreathingPreset(duration);
-                
-                // Update active state
-                document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
     }
 
     startBreathingExercise() {
@@ -166,9 +154,9 @@ class TherapyToolsManager {
         this.breathingTimer = 0;
         this.breathingPhase = 'inhale';
 
-        const startBtn = document.getElementById('startBreathing');
-        const pauseBtn = document.getElementById('pauseBreathing');
-        const stopBtn = document.getElementById('stopBreathing');
+        const startBtn = document.getElementById('startBreathingModal');
+        const pauseBtn = document.getElementById('pauseBreathingModal');
+        const stopBtn = document.getElementById('stopBreathingModal');
 
         if (startBtn) startBtn.style.display = 'none';
         if (pauseBtn) pauseBtn.style.display = 'inline-flex';
@@ -185,8 +173,8 @@ class TherapyToolsManager {
             this.breathingInterval = null;
         }
 
-        const startBtn = document.getElementById('startBreathing');
-        const pauseBtn = document.getElementById('pauseBreathing');
+        const startBtn = document.getElementById('startBreathingModal');
+        const pauseBtn = document.getElementById('pauseBreathingModal');
 
         if (startBtn) startBtn.style.display = 'inline-flex';
         if (pauseBtn) pauseBtn.style.display = 'none';
@@ -200,9 +188,9 @@ class TherapyToolsManager {
             this.breathingInterval = null;
         }
 
-        const startBtn = document.getElementById('startBreathing');
-        const pauseBtn = document.getElementById('pauseBreathing');
-        const stopBtn = document.getElementById('stopBreathing');
+        const startBtn = document.getElementById('startBreathingModal');
+        const pauseBtn = document.getElementById('pauseBreathingModal');
+        const stopBtn = document.getElementById('stopBreathingModal');
         const instruction = document.getElementById('breathingInstruction');
         const timer = document.getElementById('breathingTimer');
         const circle = document.getElementById('breathingCircle');

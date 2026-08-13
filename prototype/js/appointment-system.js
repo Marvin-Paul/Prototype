@@ -1,15 +1,29 @@
 // Comprehensive Appointment Booking System
 class AppointmentSystem {
     constructor() {
-        this.appointments = JSON.parse(localStorage.getItem('appointments')) || [];
+        this.appointments = [];
         this.counselors = this.getCounselorsData();
         this.availableTimeSlots = this.generateTimeSlots();
         this.init();
     }
 
-    init() {
+    async init() {
         this.setupEventListeners();
-        this.updateAppointmentDisplay();
+        await this.loadAppointments();
+    }
+
+    async loadAppointments() {
+        const user = GuestUser.get();
+        const { data, error } = await window.supabaseClient
+            .from('appointments')
+            .select('*')
+            .eq('user_id', user.id)
+            .order('appointment_date', { ascending: true });
+        
+        if (!error && data) {
+            this.appointments = data;
+            this.updateAppointmentDisplay();
+        }
     }
 
     setupEventListeners() {
@@ -94,6 +108,46 @@ class AppointmentSystem {
                 timeSlots: ['09:00', '11:00', '14:00', '16:00', '18:00']
             }
         };
+    }
+
+    async confirmBooking() {
+        const counselorTypeInput = document.getElementById('bookingCounselorType');
+        const dateInput = document.getElementById('appointmentDate');
+        const timeInput = document.getElementById('appointmentTime');
+        
+        if (!counselorTypeInput || !dateInput || !timeInput) return;
+        
+        const counselorType = counselorTypeInput.value;
+        const date = dateInput.value;
+        const time = timeInput.value;
+        
+        if (!date || !time) {
+            AppUtils.showNotification('Please select a date and time', 'warning');
+            return;
+        }
+
+        const user = GuestUser.get();
+
+        const counselor = this.counselors[counselorType];
+        const { error } = await window.supabaseClient
+            .from('appointments')
+            .insert([{
+                user_id: user.id,
+                counselor_id: counselorType,
+                counselor_name: counselor.name,
+                appointment_date: date,
+                appointment_time: time,
+                status: 'scheduled'
+            }]);
+
+        if (!error) {
+            AppUtils.showNotification('Appointment booked successfully!', 'success');
+            this.closeModal();
+            await this.loadAppointments();
+        } else {
+            console.error('Booking error:', error);
+            AppUtils.showNotification('Failed to book appointment', 'error');
+        }
     }
 
     generateTimeSlots() {

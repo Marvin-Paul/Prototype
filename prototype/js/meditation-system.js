@@ -6,14 +6,13 @@ class MeditationSystem {
         this.timer = null;
         this.remainingTime = 0;
         this.sessionData = {};
-        this.userProgress = JSON.parse(localStorage.getItem('meditationProgress')) || {};
         this.ambientSounds = this.getAmbientSounds();
         this.init();
     }
 
-    init() {
+    async init() {
         this.setupEventListeners();
-        this.loadUserProgress();
+        await this.loadUserProgress();
         this.initializeMeditations();
         this.updateProgressDisplay();
     }
@@ -512,25 +511,29 @@ class MeditationSystem {
         };
     }
 
-    completeMeditationSession() {
+    async completeMeditationSession() {
         if (!this.currentSession) return;
 
+        const user = GuestUser.get();
+
         const sessionData = {
+            user_id: user.id,
             type: this.currentSession.type,
             duration: this.currentSession.duration,
-            completedAt: new Date().toISOString(),
-            actualTime: this.currentSession.duration - (this.remainingTime / 60)
+            completed_at: new Date().toISOString()
         };
 
-        if (!this.userProgress.sessions) {
-            this.userProgress.sessions = [];
+        const { error } = await window.supabaseClient
+            .from('meditation_sessions')
+            .insert([sessionData]);
+
+        if (!error) {
+            await this.loadUserProgress();
+            this.updateProgressDisplay();
+            this.showNotification('Meditation session completed! Great work!', 'success');
+        } else {
+            console.error('Error saving session:', error);
         }
-        
-        this.userProgress.sessions.push(sessionData);
-        this.saveUserProgress();
-        this.updateProgressDisplay();
-        
-        this.showNotification('Meditation session completed! Great work!', 'success');
     }
 
     openMeditationTool(toolName) {
@@ -718,7 +721,7 @@ class MeditationSystem {
         this.renderMeditationGoals();
     }
 
-    addMeditationGoal() {
+    async addMeditationGoal() {
         const goalInput = document.getElementById('meditationGoalInput');
         const goalText = goalInput.value.trim();
         
@@ -727,42 +730,54 @@ class MeditationSystem {
             return;
         }
 
-        const goal = {
-            id: Date.now().toString(),
-            text: goalText,
-            createdAt: new Date().toISOString(),
-            completed: false,
-            completedAt: null
-        };
+        const user = GuestUser.get();
 
-        if (!this.userProgress.goals) {
-            this.userProgress.goals = [];
+        const { error } = await window.supabaseClient
+            .from('meditation_goals')
+            .insert([{
+                user_id: user.id,
+                goal_text: goalText
+            }]);
+
+        if (!error) {
+            goalInput.value = '';
+            await this.loadUserProgress();
+            this.renderMeditationGoals();
+            this.showNotification('Meditation goal added!', 'success');
+        } else {
+            console.error('Error adding goal:', error);
         }
-        
-        this.userProgress.goals.push(goal);
-        this.saveUserProgress();
-        goalInput.value = '';
-        this.renderMeditationGoals();
-        this.showNotification('Meditation goal added!', 'success');
     }
 
-    completeGoal(goalId) {
-        const goal = this.userProgress.goals?.find(g => g.id === goalId);
-        if (goal) {
-            goal.completed = true;
-            goal.completedAt = new Date().toISOString();
-            this.saveUserProgress();
+    async completeGoal(goalId) {
+        const { error } = await window.supabaseClient
+            .from('meditation_goals')
+            .update({ is_completed: true, completed_at: new Date().toISOString() })
+            .eq('id', goalId);
+
+        if (!error) {
+            await this.loadUserProgress();
             this.renderMeditationGoals();
             this.showNotification('Goal completed! Great job!', 'success');
+        } else {
+            console.error('Error completing goal:', error);
         }
     }
 
-    deleteGoal(goalId) {
+    async deleteGoal(goalId) {
         if (confirm('Are you sure you want to delete this goal?')) {
-            this.userProgress.goals = this.userProgress.goals.filter(g => g.id !== goalId);
-            this.saveUserProgress();
-            this.renderMeditationGoals();
-            this.showNotification('Goal deleted', 'info');
+            const { error } = await window.supabaseClient
+                .from('meditation_goals')
+                .delete()
+                .eq('id', goalId);
+
+            if (!error) {
+                await this.loadUserProgress();
+                this.renderMeditationGoals();
+                this.showNotification('Goal deleted', 'info');
+            } else {
+                console.error('Error deleting goal:', error);
+            }
         }
     }
 
@@ -782,10 +797,10 @@ class MeditationSystem {
         }
 
         goalsContainer.innerHTML = goals.map(goal => `
-            <div class="goal-item ${goal.completed ? 'completed' : ''}" data-goal-id="${goal.id}">
-                <div class="goal-text">${goal.text}</div>
+            <div class="goal-item ${goal.is_completed ? 'completed' : ''}" data-goal-id="${goal.id}">
+                <div class="goal-text">${goal.goal_text}</div>
                 <div class="goal-actions">
-                    ${!goal.completed ? `
+                    ${!goal.is_completed ? `
                         <button class="goal-btn complete">Complete</button>
                     ` : ''}
                     <button class="goal-btn delete">Delete</button>

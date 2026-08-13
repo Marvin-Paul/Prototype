@@ -85,10 +85,10 @@ class EnhancedGamesSystem {
             }
 
             // Breathing Exercise
-            if (e.target.id === 'startBreathing') {
+            if (e.target.id === 'startBreathingWellness') {
                 this.startBreathingExercise();
             }
-            if (e.target.id === 'stopBreathing') {
+            if (e.target.id === 'stopBreathingWellness') {
                 this.stopBreathingExercise();
             }
             if (e.target.classList.contains('preset-btn')) {
@@ -413,7 +413,7 @@ class EnhancedGamesSystem {
         
         if (timeSpent < bestTime) {
             this.gameStats.memoryBestTime = timeSpent;
-            this.showNotification('New best time! 🎉', 'success');
+            this.showNotification('New best time!', 'success');
         }
         
         this.showNotification(`Game completed in ${timeSpent} seconds with ${this.memoryGame.moves} moves!`, 'success');
@@ -734,8 +734,8 @@ class EnhancedGamesSystem {
         this.currentBreathingCycle = cycle;
         this.isBreathing = true;
         
-        document.getElementById('startBreathing').style.display = 'none';
-        document.getElementById('stopBreathing').style.display = 'inline-block';
+        document.getElementById('startBreathingWellness').style.display = 'none';
+        document.getElementById('stopBreathingWellness').style.display = 'inline-block';
         
         this.runBreathingCycle();
     }
@@ -744,9 +744,9 @@ class EnhancedGamesSystem {
         if (!this.isBreathing) return;
         
         const cycle = this.currentBreathingCycle;
-        const circle = document.getElementById('breathingCircle');
+        const circle = document.getElementById('breathingGameCircle');
         const text = document.getElementById('breathingText');
-        const instruction = document.getElementById('breathingInstruction');
+        const instruction = document.getElementById('breathingGameInstruction');
         
         // Inhale
         text.textContent = 'Breathe In';
@@ -779,12 +779,12 @@ class EnhancedGamesSystem {
 
     stopBreathingExercise() {
         this.isBreathing = false;
-        document.getElementById('startBreathing').style.display = 'inline-block';
-        document.getElementById('stopBreathing').style.display = 'none';
+        document.getElementById('startBreathingWellness').style.display = 'inline-block';
+        document.getElementById('stopBreathingWellness').style.display = 'none';
         
-        const circle = document.getElementById('breathingCircle');
+        const circle = document.getElementById('breathingGameCircle');
         const text = document.getElementById('breathingText');
-        const instruction = document.getElementById('breathingInstruction');
+        const instruction = document.getElementById('breathingGameInstruction');
         
         circle.style.transform = 'scale(1)';
         text.textContent = 'Get Ready';

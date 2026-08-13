@@ -1,0 +1,230 @@
+/* ============================================================
+   Campus Mindspace - Design Tokens (Single Source of Truth)
+   All brand colors, neutrals, typography, spacing, radius,
+   shadows and motion live here. Feature CSS must only use
+   these variables - never hardcode values.
+   ============================================================ */
+
+/* ---------- Light (default) ---------- */
+:root,
+:root[data-theme="light"] {
+    color-scheme: light;
+
+    /* Brand */
+    --primary-color: #00b5ad;
+    --primary-light: #00d4cc;
+    --primary-dark: #009690;
+    --primary-gradient: linear-gradient(135deg, #00b5ad 0%, #008b85 100%);
+
+    --secondary-color: #00d4cc;
+    --secondary-light: #5febe3;
+    --secondary-dark: #00b5ad;
+
+    /* Accents */
+    --accent-pink: #e91e63;
+    --accent-purple: #7c6cd6;
+    --accent-green: #00c853;
+    --accent-orange: #ff9800;
+    --accent-red: #f44336;
+
+    /* Status colors */
+    --danger-color: #dc2626;
+    --success-color: #16a34a;
+    --warning-color: #d97706;
+
+    /* Mood colors */
+    --mood-overwhelmed: #ff9800;
+    --mood-sleep: #00b5ad;
+    --mood-social: #e91e63;
+    --mood-happy: #00c853;
+    --mood-anxious: #f44336;
+    --mood-lonely: #607d8b;
+
+    /* Neutrals */
+    --background: #f4f7f6;
+    --surface: #ffffff;
+    --surface-elevated: #fafcfb;
+    --surface-hover: #e8f4f3;
+    --text-primary: #1f2a29;
+    --text-secondary: #4c5d5b;
+    --text-muted: #7b8c89;
+    --border: #dce4e2;
+    --border-light: #edf2f1;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.2);
+    --shadow-glow: 0 0 20px rgba(0, 181, 173, 0.25);
+
+    /* Spacing (4px base) */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.6;
+
+    /* Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Motion */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 600ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ---------- Dark ---------- */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --primary-color: #00c4bb;
+    --primary-light: #3fd9d1;
+    --primary-dark: #00a8a0;
+    --primary-gradient: linear-gradient(135deg, #00b5ad 0%, #008b85 100%);
+
+    --secondary-color: #3fd9d1;
+    --secondary-light: #6ee6df;
+    --secondary-dark: #00b5ad;
+
+    --accent-pink: #f472b6;
+    --accent-purple: #a78bfa;
+    --accent-green: #34d399;
+    --accent-orange: #fb923c;
+    --accent-red: #f87171;
+
+    --danger-color: #f87171;
+    --success-color: #4ade80;
+    --warning-color: #fbbf24;
+
+    --mood-overwhelmed: #ffb74d;
+    --mood-sleep: #4dd0e1;
+    --mood-social: #f06292;
+    --mood-happy: #66bb6a;
+    --mood-anxious: #ef5350;
+    --mood-lonely: #90a4ae;
+
+    --background: #0e1a18;
+    --surface: #16241f;
+    --surface-elevated: #1b2e28;
+    --surface-hover: #223830;
+    --text-primary: #e8efed;
+    --text-secondary: #b6c7c2;
+    --text-muted: #8ba19b;
+    --border: #2b423c;
+    --border-light: #223830;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.35);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+    --shadow-glow: 0 0 24px rgba(0, 196, 187, 0.35);
+}
+
+/* ---------- Auto (follows system) ---------- */
+@media (prefers-color-scheme: dark) {
+    :root[data-theme="auto"] {
+        --primary-color: #00c4bb;
+        --primary-light: #3fd9d1;
+        --primary-dark: #00a8a0;
+        --primary-gradient: linear-gradient(135deg, #00b5ad 0%, #008b85 100%);
+
+        --secondary-color: #3fd9d1;
+        --secondary-light: #6ee6df;
+        --secondary-dark: #00b5ad;
+
+        --accent-pink: #f472b6;
+        --accent-purple: #a78bfa;
+        --accent-green: #34d399;
+        --accent-orange: #fb923c;
+        --accent-red: #f87171;
+
+        --danger-color: #f87171;
+        --success-color: #4ade80;
+        --warning-color: #fbbf24;
+
+        --mood-overwhelmed: #ffb74d;
+        --mood-sleep: #4dd0e1;
+        --mood-social: #f06292;
+        --mood-happy: #66bb6a;
+        --mood-anxious: #ef5350;
+        --mood-lonely: #90a4ae;
+
+        --background: #0e1a18;
+        --surface: #16241f;
+        --surface-elevated: #1b2e28;
+        --surface-hover: #223830;
+        --text-primary: #e8efed;
+        --text-secondary: #b6c7c2;
+        --text-muted: #8ba19b;
+        --border: #2b423c;
+        --border-light: #223830;
+
+        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.35);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+        --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+        --shadow-glow: 0 0 24px rgba(0, 196, 187, 0.35);
+    }
+}
+
+/* ---------- Landing accent themes (brand modes) ----------
+   Applied via data-theme on <html>. Only the brand color
+   changes; everything else inherits the active light/dark set. */
+:root[data-theme="ocean"] {
+    --primary-color: #00b5ad;
+    --primary-light: #00d4cc;
+    --primary-dark: #009690;
+    --primary-gradient: linear-gradient(135deg, #00b5ad 0%, #008b85 100%);
+}
+
+:root[data-theme="sunset"] {
+    --primary-color: #ff6b6b;
+    --primary-light: #ff8787;
+    --primary-dark: #e03131;
+    --primary-gradient: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+}
+
+:root[data-theme="forest"] {
+    --primary-color: #51cf66;
+    --primary-light: #69db7c;
+    --primary-dark: #40c057;
+    --primary-gradient: linear-gradient(135deg, #51cf66 0%, #40c057 100%);
+}
+
+:root[data-theme="cosmic"] {
+    --primary-color: #9775fa;
+    --primary-light: #b197fc;
+    --primary-dark: #845ef7;
+    --primary-gradient: linear-gradient(135deg, #9775fa 0%, #748ffc 100%);
+}

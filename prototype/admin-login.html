@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Login - Campus Mindspace</title>
+    <meta http-equiv="refresh" content="0; url=admin-dashboard.html">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/design-tokens.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/admin-styles.css">
     <link rel="stylesheet" href="css/admin-enhancements.css">
@@ -114,22 +122,8 @@
     <script src="js/language.js"></script>
     <script src="js/admin-auth.js"></script>
     <script>
-        // Password toggle functionality for admin login
-        document.addEventListener('DOMContentLoaded', function() {
-            const togglePassword = document.querySelector('.toggle-password');
-            const passwordInput = document.getElementById('adminPassword');
-            
-            if (togglePassword && passwordInput) {
-                togglePassword.addEventListener('click', function() {
-                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-                    passwordInput.setAttribute('type', type);
-                    
-                    const icon = this.querySelector('i');
-                    icon.classList.toggle('fa-eye');
-                    icon.classList.toggle('fa-eye-slash');
-                });
-            }
-        });
+        // Authentication is removed - send visitors straight to the admin dashboard.
+        window.location.replace('admin-dashboard.html');
     </script>
 </body>
 </html>

@@ -27,11 +27,7 @@ class DashboardManager {
     }
     
     checkAuthentication() {
-        this.currentUser = AppUtils.get('campusMindspace_currentUser');
-        if (!this.currentUser) {
-            window.location.href = 'index.html';
-            return;
-        }
+        this.currentUser = GuestUser.get();
         this.updateUserGreeting();
     }
     
@@ -365,10 +361,7 @@ class DashboardManager {
     }
     
     logout() {
-        if (confirm(languageManager.getText('confirm_logout') || 'Are you sure you want to logout?')) {
-            localStorage.removeItem('campusMindspace_currentUser');
-            window.location.href = 'index.html';
-        }
+        window.location.href = 'index.html';
     }
     
     showMessage(message, type = 'info') {

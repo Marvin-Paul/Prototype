@@ -3,45 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindSpace AI Assistant</title>
+    <meta name="description" content="Chat with MindBot, the Campus Mindspace mental wellness companion. Get 24/7 support for stress, anxiety, study pressure and more.">
+    <title>MindSpace AI Assistant - Campus Mindspace</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/design-tokens.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
+        body.chat-page {
             margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            min-height: 100vh;
+            background: linear-gradient(160deg, #0a1f1c 0%, #0e2a26 55%, #12332c 100%);
+            color: #e8efed;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .chat-page-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 3rem;
         }
 
-        /* Chatbot Button */
-        .chatbot-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #00b5ad 0%, #008b85 100%);
-            border-radius: 50%;
+        .chat-topbar {
             display: flex;
             align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .chat-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .chat-brand i {
+            font-size: 1.4rem;
+            color: var(--primary-color, #00b5ad);
+        }
+
+        .chat-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: rgba(232, 239, 237, 0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.06);
+            transition: all 0.2s ease;
+        }
+
+        .chat-back-link:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .chat-hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .chat-hero .chat-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 1.1rem;
+            border-radius: 2rem;
+            background: rgba(0, 181, 173, 0.16);
+            border: 1px solid rgba(0, 181, 173, 0.4);
+            color: #7dd3d0;
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1.25rem;
+        }
+
+        .chat-hero .chat-title {
+            font-size: clamp(2.2rem, 6vw, 4rem);
+            font-weight: 800;
+            margin: 0 0 0.75rem;
+            background: linear-gradient(135deg, #ffffff 0%, #a5e8e4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.02em;
+        }
+
+        .chat-hero .chat-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 300;
+            color: rgba(232, 239, 237, 0.9);
+            margin: 0 auto 1.25rem;
+            max-width: 640px;
+            line-height: 1.6;
+        }
+
+        .chat-hero .chat-cta {
+            margin-top: 1.5rem;
+        }
+
+        .chat-hero .chat-cta .auth-btn.primary {
+            font-size: 1rem;
+            padding: 0.95rem 2.4rem;
+        }
+
+        .chat-pills {
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 181, 173, 0.4);
-            z-index: 1000;
-            transition: all 0.3s ease;
+            gap: 0.75rem;
+            margin-top: 2rem;
         }
 
-        .chatbot-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 181, 173, 0.6);
+        .chat-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.55rem 1.1rem;
+            border-radius: 2rem;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: rgba(232, 239, 237, 0.92);
+            font-size: 0.88rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
         }
 
-        .chatbot-button svg {
-            width: 30px;
-            height: 30px;
-            fill: white;
+        .chat-pill i {
+            color: var(--primary-color, #00b5ad);
         }
 
-        .
+        .chat-pill:hover {
+            background: rgba(255, 255, 255, 0.13);
+            transform: translateY(-2px);
+        }
+
+        .chat-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .chat-feature {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 1.1rem;
+            padding: 1.75rem 1.5rem;
+            text-align: left;
+            backdrop-filter: blur(6px);
+            transition: all 0.25s ease;
+        }
+
+        .chat-feature:hover {
+            background: rgba(255, 255, 255, 0.09);
+            transform: translateY(-4px);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.25);
+        }
+
+        .chat-feature i {
+            font-size: 1.6rem;
+            color: var(--primary-color, #00b5ad);
+            margin-bottom: 0.9rem;
+            display: inline-block;
+        }
+
+        .chat-feature h3 {
+            margin: 0 0 0.5rem;
+            font-size: 1.05rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .chat-feature p {
+            margin: 0;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: rgba(232, 239, 237, 0.75);
+        }
+
+        .chat-note {
+            text-align: center;
+            font-size: 0.85rem;
+            color: rgba(232, 239, 237, 0.65);
+            margin: -1rem 0 3rem;
+        }
+
+        .chat-note a {
+            color: #7dd3d0;
+            text-decoration: none;
+        }
+
+        .chat-note a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .chat-page-inner {
+                padding: 1.25rem 1rem 2rem;
+            }
+
+            .chat-topbar {
+                margin-bottom: 2rem;
+            }
+
+            .chat-feature {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="chat-page">
+    <div class="chat-page-inner">
+        <header class="chat-topbar">
+            <a class="chat-brand" href="index.html">
+                <i class="fas fa-brain"></i>
+                <span>Campus Mindspace</span>
+            </a>
+            <a class="chat-back-link" href="index.html">
+                <i class="fas fa-arrow-left"></i>
+                Back to Home
+            </a>
+        </header>
+
+        <main>
+            <section class="chat-hero">
+                <span class="chat-badge"><i class="fas fa-robot"></i> AI Assistant</span>
+                <h1 class="chat-title">MindBot</h1>
+                <p class="chat-subtitle">
+                    Your mental wellness companion. Talk through stress, anxiety, study pressure, sleep difficulties and more —
+                    any time, in confidence.
+                </p>
+                <div class="chat-cta">
+                    <button type="button" id="openChatBtn" class="auth-btn primary">
+                        <i class="fas fa-comments" aria-hidden="true"></i> Start Chatting
+                    </button>
+                </div>
+                <div class="chat-pills">
+                    <span class="chat-pill"><i class="fas fa-clock"></i> Available 24/7</span>
+                    <span class="chat-pill"><i class="fas fa-heart"></i> Stress & anxiety</span>
+                    <span class="chat-pill"><i class="fas fa-book-open"></i> Study tips</span>
+                    <span class="chat-pill"><i class="fas fa-moon"></i> Sleep guidance</span>
+                </div>
+            </section>
+
+            <section class="chat-features">
+                <div class="chat-feature">
+                    <i class="fas fa-comment-dots"></i>
+                    <h3>Always Here to Listen</h3>
+                    <p>Vent, reflect, or get perspective. MindBot is available day and night, whenever you need a safe space to talk.</p>
+                </div>
+                <div class="chat-feature">
+                    <i class="fas fa-compass"></i>
+                    <h3>Practical Support</h3>
+                    <p>From exam-season stress to social anxiety, get gentle guidance, grounding techniques and practical next steps.</p>
+                </div>
+                <div class="chat-feature">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Care with Limits</h3>
+                    <p>MindBot is a companion, not a therapist. For urgent needs it will point you to the crisis line and counselling services.</p>
+                </div>
+            </section>
+
+            <p class="chat-note">
+                Have questions for our team? <a href="support.html">Visit Help &amp; Support</a>.
+            </p>
+
+            <div class="landing-footer">
+                <div class="crisis-note">
+                    <i class="fas fa-heart"></i>
+                    <p><strong>In crisis? You are not alone.</strong> Call or text the National Crisis Lifeline at <strong>988</strong> — free, confidential and available 24/7. You matter.</p>
+                </div>
+                <div class="landing-footer-grid">
+                    <div>
+                        <h4>Campus Mindspace</h4>
+                        <p>Confidential mental wellness support designed for university students — mood tracking, therapy tools, meditation and peer support groups, all in one private space.</p>
+                    </div>
+                    <div>
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="support.html">Contact Support</a></li>
+                            <li><a href="dashboard.html">Student Dashboard</a></li>
+                            <li><a href="admin-dashboard.html">Counselor Portal</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Your Privacy</h4>
+                        <p>Your data stays private and confidential. Your mood entries, messages and appointments are never shared without your consent.</p>
+                    </div>
+                </div>
+                <div class="landing-footer-bottom">
+                    <span>&copy; 2026 Campus Mindspace. All rights reserved.</span>
+                    <span>Not a medical service. For emergencies, call 911.</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/chatbot.js"></script>
+    <script>
+        const openChatBtn = document.getElementById('openChatBtn');
+        if (openChatBtn) {
+            openChatBtn.addEventListener('click', () => {
+                const chatbotButton = document.getElementById('chatbotButton');
+                if (chatbotButton) chatbotButton.click();
+            });
+        }
+
+        window.addEventListener('load', () => {
+            const chatbotButton = document.getElementById('chatbotButton');
+            if (chatbotButton) chatbotButton.click();
+        });
+    </script>
+</body>
+</html>

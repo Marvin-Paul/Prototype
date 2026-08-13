@@ -65,7 +65,7 @@ class MindGames {
                 
                 if (gameState.matchedPairs === 8) {
                     clearInterval(gameState.timerInterval);
-                    setTimeout(() => AppUtils.showNotification(`🎉 Congratulations! You won in ${gameState.moves} moves!`, 'success'), 500);
+                    setTimeout(() => AppUtils.showNotification(`Congratulations! You won in ${gameState.moves} moves!`, 'success'), 500);
                 }
             } else {
                 setTimeout(() => {
@@ -262,20 +262,20 @@ class MindGames {
             let statusType = 'info';
             
             if (result === 'tie') {
-                message = "It's a tie! 🤝";
+                message = "It's a tie!";
                 statusType = 'tie';
             } else if ((result === 'player1' && opponent === 'computer') || 
                       (result === 'player1' && opponent === 'player2')) {
                 playerScore++;
-                message = `You win! 🎉`;
+                message = `You win!`;
                 statusType = 'win';
             } else {
                 if (opponent === 'computer') {
                     computerScore++;
-                    message = `Computer wins! 🤖`;
+                    message = `Computer wins!`;
                 } else {
                     player2Score++;
-                    message = `Opponent wins! 👤`;
+                    message = `Opponent wins!`;
                 }
                 statusType = 'lose';
             }
@@ -306,13 +306,13 @@ class MindGames {
             let finalType = 'info';
             
             if (playerScore > (gameMode === 'computer' ? computerScore : player2Score)) {
-                finalMessage = `🎉 You won the game! Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
+                finalMessage = `You won the game! Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
                 finalType = 'win';
             } else if (playerScore < (gameMode === 'computer' ? computerScore : player2Score)) {
-                finalMessage = `😔 You lost the game. Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
+                finalMessage = `You lost the game. Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
                 finalType = 'lose';
             } else {
-                finalMessage = `🤝 It's a tie! Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
+                finalMessage = `It's a tie! Final score: ${playerScore}-${gameMode === 'computer' ? computerScore : player2Score}`;
                 finalType = 'tie';
             }
             
@@ -646,7 +646,7 @@ class MindGames {
                 timeLeft = Math.max(15, 30 - currentLevel * 2); // Decrease time as level increases
                 
                 if (statusEl) {
-                    statusEl.innerHTML = '🎉 Correct! Well done!';
+                    statusEl.innerHTML = 'Correct! Well done!';
                     statusEl.className = 'pattern-status success';
                 }
                 
@@ -658,7 +658,7 @@ class MindGames {
                 }, 1500);
             } else {
                 if (statusEl) {
-                    statusEl.innerHTML = `❌ Incorrect! The answer was: ${pattern.answer}<br><small>${pattern.explanation}</small>`;
+                    statusEl.innerHTML = `Incorrect! The answer was: ${pattern.answer}<br><small>${pattern.explanation}</small>`;
                     statusEl.className = 'pattern-status error';
                 }
                 
@@ -810,7 +810,7 @@ class MindGames {
                     localStorage.setItem('gratitudeEntries', JSON.stringify(entries.slice(0, 10)));
                     document.getElementById('gratitudeText').value = '';
                     this.loadGratitudeEntries();
-                    alert('✨ Your gratitude has been saved!');
+                    alert('Your gratitude has been saved!');
                 }
             });
         }
@@ -836,21 +836,21 @@ class MindGames {
     
     initAffirmationWheel() {
         const affirmations = [
-            "You are capable of amazing things! 🌟",
-            "Your potential is limitless! 🚀",
-            "You deserve happiness and success! 💫",
-            "You are stronger than you think! 💪",
-            "Today is full of possibilities! 🌈",
-            "You are making progress every day! 📈",
-            "Your efforts will pay off! 🎯",
-            "You are worthy of love and respect! ❤️",
-            "You have the power to create change! ⚡",
-            "Your best days are ahead of you! 🌅",
-            "You are enough, just as you are! ✨",
-            "You bring value to the world! 🌍",
-            "Your journey is unique and beautiful! 🦋",
-            "You are resilient and brave! 🦁",
-            "Great things are coming your way! 🎁"
+            "You are capable of amazing things.",
+            "Your potential is limitless.",
+            "You deserve happiness and success.",
+            "You are stronger than you think.",
+            "Today is full of possibilities.",
+            "You are making progress every day.",
+            "Your efforts will pay off.",
+            "You are worthy of love and respect.",
+            "You have the power to create change.",
+            "Your best days are ahead of you.",
+            "You are enough, just as you are.",
+            "You bring value to the world.",
+            "Your journey is unique and beautiful.",
+            "You are resilient and brave.",
+            "Great things are coming your way."
         ];
         
         const spinBtn = document.getElementById('spinBtn');

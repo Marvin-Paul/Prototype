@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Build output / deployment artifacts
+dist/
+build/
+prototype/backups/
+prototype/domain-config.json
+prototype/ssl-config.txt
+prototype/dns-config.txt
+prototype/favicon-placeholder.txt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/
+
+# Logs
+*.log
+npm-debug.log*

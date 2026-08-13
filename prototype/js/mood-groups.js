@@ -90,22 +90,32 @@ class MoodGroupManager {
         };
     }
 
-    loadCurrentUser() {
-        const savedUser = localStorage.getItem('campusMindspace_currentUser');
-        if (savedUser) {
-            this.currentUser = JSON.parse(savedUser);
-        }
+    async loadCurrentUser() {
+        const user = GuestUser.get();
+        const { data: profile } = await window.supabaseClient
+            .from('profiles')
+            .select('*')
+            .eq('id', user.id)
+            .single();
+        
+        this.currentUser = { ...user, ...profile };
+        this.loadUserMood();
     }
 
-    loadUserMood() {
+    async loadUserMood() {
         if (!this.currentUser) return;
         
-        // Check if user has a current mood set
-        this.currentMood = this.currentUser.currentMood || this.currentUser.initialMood;
-        
-        if (this.currentMood) {
-            this.assignToGroup(this.currentMood);
-        }
+        // Fetch latest mood from profile or mood_entries
+        const { data: moodEntry } = await window.supabaseClient
+            .from('mood_entries')
+            .select('mood')
+            .eq('user_id', this.currentUser.id)
+            .order('timestamp', { ascending: false })
+            .limit(1)
+            .single();
+            
+        this.currentMood = moodEntry?.mood || 'happy'; // Default if none found
+        this.assignToGroup(this.currentMood);
     }
 
     setupEventListeners() {
@@ -210,7 +220,7 @@ class MoodGroupManager {
         document.body.appendChild(modal);
     }
 
-    selectMoodForGroup(moodKey) {
+    async selectMoodForGroup(moodKey) {
         if (!this.currentUser) {
             this.showNotification('Please log in first', 'error');
             return;
@@ -219,13 +229,23 @@ class MoodGroupManager {
         const previousMood = this.currentMood;
         this.currentMood = moodKey;
         
-        // Update user's current mood
-        this.currentUser.currentMood = moodKey;
-        localStorage.setItem('campusMindspace_currentUser', JSON.stringify(this.currentUser));
+        // Update user's mood in Supabase
+        const { error } = await window.supabaseClient
+            .from('mood_entries')
+            .insert([{ 
+                user_id: this.currentUser.id, 
+                mood: moodKey,
+                timestamp: new Date().toISOString()
+            }]);
+
+        if (error) {
+            this.showNotification('Failed to update mood', 'error');
+            return;
+        }
         
         // Record movement if changing groups
         if (previousMood && previousMood !== moodKey) {
-            this.recordUserMovement(previousMood, moodKey);
+            await this.recordUserMovement(previousMood, moodKey);
         }
         
         // Assign to new group
@@ -242,49 +262,55 @@ class MoodGroupManager {
         this.updateGroupDisplay();
     }
 
-    assignToGroup(moodKey) {
+    async assignToGroup(moodKey) {
         this.currentGroup = moodKey;
         
-        // Load group members (simulated - in real app, this would come from server)
-        this.loadGroupMembers(moodKey);
+        // Load group members from profiles
+        await this.loadGroupMembers(moodKey);
         
         // Load chat messages for this group
-        this.loadGroupChat(moodKey);
+        await this.loadGroupChat(moodKey);
         
-        // Update group data in localStorage
-        this.updateGroupData(moodKey);
+        // Update UI after data is loaded
+        this.updateGroupDisplay();
     }
 
-    loadGroupMembers(moodKey) {
-        // Simulate group members - in real app, this would fetch from server
-        const allUsers = JSON.parse(localStorage.getItem('campusMindspace_users') || '[]');
-        const groupUsers = allUsers.filter(user => user.currentMood === moodKey || user.initialMood === moodKey);
+    async loadGroupMembers(moodKey) {
+        // Fetch users with the matching latest mood entry
+        // This is simplified for the prototype - in production we'd use a view or join
+        const { data, error } = await window.supabaseClient
+            .from('profiles')
+            .select('*');
         
-        // Add current user if not already in list
-        if (!groupUsers.find(user => user.id === this.currentUser?.id)) {
-            groupUsers.push(this.currentUser);
+        if (!error && data) {
+            this.groupMembers = data;
         }
-        
-        this.groupMembers = groupUsers;
     }
 
-    loadGroupChat(moodKey) {
-        const groupChatKey = `group_chat_${moodKey}`;
-        this.chatMessages = JSON.parse(localStorage.getItem(groupChatKey) || '[]');
+    async loadGroupChat(moodKey) {
+        const { data, error } = await window.supabaseClient
+            .from('group_messages')
+            .select('*')
+            .eq('group_id', moodKey)
+            .order('timestamp', { ascending: true });
         
-        // Initialize with welcome message if empty
+        if (!error && data) {
+            this.chatMessages = data;
+        }
+
+        // Initialize with welcome message if truly empty in DB
         if (this.chatMessages.length === 0) {
-            const welcomeMessage = {
-                id: Date.now().toString(),
-                userId: 'system',
-                userName: 'System',
-                message: `Welcome to the ${this.moodCategories[moodKey].groupName}! This is a safe space to share and connect with others who understand what you're going through.`,
-                timestamp: new Date().toISOString(),
+            const welcomeMsg = {
+                group_id: moodKey,
+                user_id: null,
+                user_name: 'System',
+                message: `Welcome to the ${this.moodCategories[moodKey].groupName}!`,
                 type: 'system'
             };
-            this.chatMessages.push(welcomeMessage);
-            this.saveGroupChat(moodKey);
+            this.chatMessages.push(welcomeMsg);
         }
+        
+        this.updateChatDisplay();
     }
 
     saveGroupChat(moodKey) {
@@ -320,31 +346,25 @@ class MoodGroupManager {
         localStorage.setItem('user_movements', JSON.stringify(movements));
     }
 
-    sendMessage() {
+    async sendMessage() {
         const messageInput = document.querySelector('.group-message-input');
-        if (!messageInput || !messageInput.value.trim()) return;
+        if (!messageInput || !messageInput.value.trim() || !this.currentUser) return;
         
         const messageText = messageInput.value.trim();
-        const message = {
-            id: Date.now().toString(),
-            userId: this.currentUser.id,
-            userName: this.currentUser.fullName,
-            message: messageText,
-            timestamp: new Date().toISOString(),
-            type: 'user'
-        };
+        const { error } = await window.supabaseClient
+            .from('group_messages')
+            .insert([{
+                group_id: this.currentGroup,
+                user_id: this.currentUser.id,
+                user_name: this.currentUser.full_name || this.currentUser.email,
+                message: messageText,
+                type: 'user'
+            }]);
         
-        this.chatMessages.push(message);
-        this.saveGroupChat(this.currentGroup);
-        
-        // Clear input
-        messageInput.value = '';
-        
-        // Update chat display
-        this.updateChatDisplay();
-        
-        // Show typing indicator briefly
-        this.showTypingIndicator();
+        if (!error) {
+            messageInput.value = '';
+            await this.loadGroupChat(this.currentGroup);
+        }
     }
 
     updateChatDisplay() {
@@ -2208,7 +2228,7 @@ class MoodGroupManager {
                     id: (Date.now() + 1).toString(),
                     userId: 'user1',
                     userName: 'Sarah Johnson',
-                    message: "Hey everyone! Just finished my presentation and it went amazing! 🎉",
+                    message: "Hey everyone! Just finished my presentation and it went amazing!",
                     timestamp: new Date(Date.now() - 3600000).toISOString(),
                     type: 'user'
                 },
@@ -2224,7 +2244,7 @@ class MoodGroupManager {
                     id: (Date.now() + 3).toString(),
                     userId: 'user3',
                     userName: 'Emma Davis',
-                    message: "Congratulations! 🎊 I'm feeling great today too - just got accepted into my dream internship!",
+                    message: "Congratulations! I'm feeling great today too - just got accepted into my dream internship!",
                     timestamp: new Date(Date.now() - 1800000).toISOString(),
                     type: 'user'
                 }
@@ -2286,7 +2306,7 @@ class MoodGroupManager {
                     id: (Date.now() + 1).toString(),
                     userId: 'user13',
                     userName: 'River Garcia',
-                    message: "OMG! I just got the news I've been waiting for! 🚀 Can't contain my excitement!",
+                    message: "OMG! I just got the news I've been waiting for! Can't contain my excitement!",
                     timestamp: new Date(Date.now() - 3600000).toISOString(),
                     type: 'user'
                 },
@@ -2302,7 +2322,7 @@ class MoodGroupManager {
                     id: (Date.now() + 3).toString(),
                     userId: 'user15',
                     userName: 'Skyler White',
-                    message: "I'm excited too! Just started a new creative project and the ideas are flowing! ✨",
+                    message: "I'm excited too! Just started a new creative project and the ideas are flowing!",
                     timestamp: new Date(Date.now() - 1800000).toISOString(),
                     type: 'user'
                 }
@@ -2320,7 +2340,7 @@ class MoodGroupManager {
                     id: (Date.now() + 2).toString(),
                     userId: 'user18',
                     userName: 'Indigo Foster',
-                    message: "I'm here with you Dakota. Those days are really hard, but they don't last forever. 💙",
+                    message: "I'm here with you Dakota. Those days are really hard, but they don't last forever.",
                     timestamp: new Date(Date.now() - 3000000).toISOString(),
                     type: 'user'
                 },
@@ -2338,7 +2358,7 @@ class MoodGroupManager {
                     id: (Date.now() + 1).toString(),
                     userId: 'user21',
                     userName: 'Aspen Hill',
-                    message: "Feeling super motivated today! Just crushed my workout and ready to tackle my goals! 💪",
+                    message: "Feeling super motivated today! Just crushed my workout and ready to tackle my goals!",
                     timestamp: new Date(Date.now() - 3600000).toISOString(),
                     type: 'user'
                 },
@@ -2354,7 +2374,7 @@ class MoodGroupManager {
                     id: (Date.now() + 3).toString(),
                     userId: 'user23',
                     userName: 'Sage Moon',
-                    message: "I'm feeling motivated too! Just finished planning my week and I'm ready to make it count! 🎯",
+                    message: "I'm feeling motivated too! Just finished planning my week and I'm ready to make it count!",
                     timestamp: new Date(Date.now() - 1800000).toISOString(),
                     type: 'user'
                 }

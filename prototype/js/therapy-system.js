@@ -3,16 +3,16 @@ class TherapySystem {
     constructor() {
         this.currentExercise = null;
         this.exerciseData = {};
-        this.userProgress = JSON.parse(localStorage.getItem('therapyProgress')) || {};
+        this.userProgress = {};
         this.crisisResources = this.getCrisisResources();
         this.init();
     }
 
-    init() {
+    async init() {
         this.setupEventListeners();
-        this.loadUserProgress();
+        await this.loadUserProgress();
         this.initializeExercises();
-        this.setupGoalsSystem();
+        await this.setupGoalsSystem();
         this.updateProgressDisplay();
     }
 
@@ -344,21 +344,34 @@ class TherapySystem {
         }
     }
 
-    saveProgress() {
+    async saveProgress() {
         const notes = document.querySelector('.exercise-notes-textarea').value;
-        if (!this.userProgress[this.currentExercise.id]) {
-            this.userProgress[this.currentExercise.id] = {
-                completedSteps: [],
-                notes: '',
-                completionDate: null
-            };
+        const user = JSON.parse(localStorage.getItem('campusMindspace_currentUser'));
+        if (!user) return;
+
+        try {
+            const { error } = await window.supabaseClient
+                .from('therapy_progress')
+                .upsert({
+                    user_id: user.id,
+                    exercise_id: this.currentExercise.id,
+                    completed_steps: this.userProgress[this.currentExercise.id]?.completedSteps || [],
+                    notes: notes,
+                    last_updated: new Date().toISOString()
+                }, { onConflict: 'user_id, exercise_id' });
+
+            if (error) throw error;
+            
+            if (!this.userProgress[this.currentExercise.id]) {
+                this.userProgress[this.currentExercise.id] = { completedSteps: [], notes: '', completionDate: null };
+            }
+            this.userProgress[this.currentExercise.id].notes = notes;
+            
+            this.showNotification('Progress saved to Supabase!', 'success');
+        } catch (error) {
+            console.error('Error saving therapy progress:', error);
+            this.showNotification('Failed to save progress', 'error');
         }
-        
-        this.userProgress[this.currentExercise.id].notes = notes;
-        this.saveUserProgress();
-        
-        // Show success message
-        this.showNotification('Progress saved successfully!', 'success');
     }
 
     completeExercise() {
@@ -859,12 +872,33 @@ class TherapySystem {
         console.log(`Therapy Progress: ${percentage}% (${completed}/${total} exercises completed)`);
     }
 
-    saveUserProgress() {
-        localStorage.setItem('therapyProgress', JSON.stringify(this.userProgress));
+    async loadUserProgress() {
+        const user = JSON.parse(localStorage.getItem('campusMindspace_currentUser'));
+        if (!user) return;
+
+        try {
+            const { data, error } = await window.supabaseClient
+                .from('therapy_progress')
+                .select('*')
+                .eq('user_id', user.id);
+
+            if (error) throw error;
+
+            this.userProgress = {};
+            data.forEach(item => {
+                this.userProgress[item.exercise_id] = {
+                    completedSteps: item.completed_steps || [],
+                    notes: item.notes || '',
+                    completionDate: item.completion_date
+                };
+            });
+        } catch (error) {
+            console.error('Error loading user progress:', error);
+        }
     }
 
-    loadUserProgress() {
-        this.userProgress = JSON.parse(localStorage.getItem('therapyProgress')) || {};
+    async saveUserProgress() {
+        // This is now handled by saveProgress() and completeExercise()
     }
 
     createModal(className) {

@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Campus Mindspace</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="stylesheet" href="css/design-tokens.css">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/dashboard-enhancements.css">
     <link rel="stylesheet" href="css/therapy-tools.css">
     <link rel="stylesheet" href="css/meditation-hub.css">
     <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/therapy-system.css">
+    <link rel="stylesheet" href="css/meditation-system.css">
+    <link rel="stylesheet" href="css/mood-tracker.css">
+    <link rel="stylesheet" href="css/resources-system.css">
+    <link rel="stylesheet" href="css/enhanced-games.css">
+    <link rel="stylesheet" href="css/wellness-insights.css">
+    <link rel="stylesheet" href="css/mood-groups.css">
     <link rel="stylesheet" href="css/chatbot.css">
     <link rel="stylesheet" href="css/visibility-fix.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -41,7 +55,7 @@
             <a href="#groups" class="nav-link" data-lang="nav_groups">Group Chat</a>
         </div>
         <div class="nav-actions">
-            <a href="admin-login.html" class="admin-shortcut" title="Admin Portal">
+            <a href="admin-dashboard.html" class="admin-shortcut" title="Admin Portal">
                 <i class="fas fa-shield-alt"></i>
                 <span>Admin</span>
             </a>
@@ -53,7 +67,7 @@
                     <div class="dropdown-menu" id="profileMenu">
                         <a href="settings.html" class="dropdown-item" data-lang="profile_settings">Settings</a>
                         <a href="support.html" class="dropdown-item" data-lang="profile_help">Help &amp; Support</a>
-                        <button class="dropdown-item logout-btn" data-lang="profile_logout">Logout</button>
+                        <button class="dropdown-item logout-btn">Exit to Home</button>
                     </div>
                 </div>
             </div>
@@ -152,7 +166,7 @@
                                 <p data-lang="therapy_description">Access CBT, DBT, and mindfulness exercises</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 75%"></div>
+                                        <div class="progress-fill w-75"></div>
                                     </div>
                                     <span class="progress-text">75% Complete</span>
                                 </div>
@@ -173,7 +187,7 @@
                                 <p data-lang="meditation_description">Guided sessions for stress relief and focus</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 60%"></div>
+                                        <div class="progress-fill w-60"></div>
                                     </div>
                                     <span class="progress-text">60% Complete</span>
                                 </div>
@@ -193,7 +207,7 @@
                                 <p data-lang="resources_description">Music, videos, and study aids</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 45%"></div>
+                                        <div class="progress-fill w-45"></div>
                                     </div>
                                     <span class="progress-text">45% Complete</span>
                                 </div>
@@ -213,7 +227,7 @@
                                 <p data-lang="appointment_description">Schedule time with a counselor</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 30%"></div>
+                                        <div class="progress-fill w-30"></div>
                                     </div>
                                     <span class="progress-text">3 Sessions</span>
                                 </div>
@@ -234,7 +248,7 @@
                                 <p data-lang="games_description">Fun activities to boost your mood</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 90%"></div>
+                                        <div class="progress-fill w-90"></div>
                                     </div>
                                     <span class="progress-text">90% Complete</span>
                                 </div>
@@ -254,7 +268,7 @@
                                 <p data-lang="groups_description">Connect with others feeling the same way</p>
                                 <div class="action-progress">
                                     <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 55%"></div>
+                                        <div class="progress-fill w-55"></div>
                                     </div>
                                     <span class="progress-text">5 Members</span>
                                 </div>
@@ -730,17 +744,17 @@
                             <div class="emotion-rating">
                                 <div class="emotion-item">
                                     <span>Anxiety</span>
-                                    <input type="range" id="anxietyRating" min="1" max="10" value="5">
+                                    <input type="range" id="anxietyRating" min="1" max="10" value="5" title="Anxiety Rating Before" aria-label="Anxiety Rating Before">
                                     <span class="rating-value">5</span>
                                 </div>
                                 <div class="emotion-item">
                                     <span>Sadness</span>
-                                    <input type="range" id="sadnessRating" min="1" max="10" value="5">
+                                    <input type="range" id="sadnessRating" min="1" max="10" value="5" title="Sadness Rating Before" aria-label="Sadness Rating Before">
                                     <span class="rating-value">5</span>
                                 </div>
                                 <div class="emotion-item">
                                     <span>Anger</span>
-                                    <input type="range" id="angerRating" min="1" max="10" value="5">
+                                    <input type="range" id="angerRating" min="1" max="10" value="5" title="Anger Rating Before" aria-label="Anger Rating Before">
                                     <span class="rating-value">5</span>
                                 </div>
                             </div>
@@ -762,17 +776,17 @@
                             <div class="emotion-rating">
                                 <div class="emotion-item">
                                     <span>Anxiety</span>
-                                    <input type="range" id="anxietyRatingAfter" min="1" max="10" value="5">
+                                    <input type="range" id="anxietyRatingAfter" min="1" max="10" value="5" title="Anxiety Rating After" aria-label="Anxiety Rating After">
                                     <span class="rating-value">5</span>
                                 </div>
                                 <div class="emotion-item">
                                     <span>Sadness</span>
-                                    <input type="range" id="sadnessRatingAfter" min="1" max="10" value="5">
+                                    <input type="range" id="sadnessRatingAfter" min="1" max="10" value="5" title="Sadness Rating After" aria-label="Sadness Rating After">
                                     <span class="rating-value">5</span>
                                 </div>
                                 <div class="emotion-item">
                                     <span>Anger</span>
-                                    <input type="range" id="angerRatingAfter" min="1" max="10" value="5">
+                                    <input type="range" id="angerRatingAfter" min="1" max="10" value="5" title="Anger Rating After" aria-label="Anger Rating After">
                                     <span class="rating-value">5</span>
                                 </div>
                             </div>
@@ -807,17 +821,17 @@
                                 <span id="breathingTimer">00:00</span>
                             </div>
                             <div class="breathing-buttons">
-                                <button class="btn-primary" id="startBreathing">Start</button>
-                                <button class="btn-secondary" id="pauseBreathing">Pause</button>
-                                <button class="btn-secondary" id="stopBreathing">Stop</button>
+                                <button class="btn-primary" id="startBreathingModal" title="Start Breathing Exercise">Start</button>
+                                <button class="btn-secondary" id="pauseBreathingModal" title="Pause Breathing Exercise">Pause</button>
+                                <button class="btn-secondary" id="stopBreathingModal" title="Stop Breathing Exercise">Stop</button>
                             </div>
                             <div class="breathing-settings">
                                 <label>Inhale Duration:</label>
-                                <input type="range" id="inhaleDuration" min="3" max="8" value="4">
+                                <input type="range" id="inhaleDuration" min="3" max="8" value="4" title="Inhale Duration" aria-label="Inhale Duration">
                                 <span id="inhaleValue">4</span>s
                                 
                                 <label>Exhale Duration:</label>
-                                <input type="range" id="exhaleDuration" min="3" max="8" value="6">
+                                <input type="range" id="exhaleDuration" min="3" max="8" value="6" title="Exhale Duration" aria-label="Exhale Duration">
                                 <span id="exhaleValue">6</span>s
                             </div>
                         </div>
@@ -1010,12 +1024,12 @@
                                     </div>
                                     <h5>Gentle Rain</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-toggle" data-sound="rain">
+                                        <button class="sound-toggle" data-sound="rain" title="Play Gentle Rain">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
                                             <i class="fas fa-volume-down"></i>
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Rain Volume" aria-label="Rain Volume">
                                             <i class="fas fa-volume-up"></i>
                                         </div>
                                     </div>
@@ -1026,12 +1040,12 @@
                                     </div>
                                     <h5>Ocean Waves</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-toggle" data-sound="ocean">
+                                        <button class="sound-toggle" data-sound="ocean" title="Play Ocean Waves">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
                                             <i class="fas fa-volume-down"></i>
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Ocean Volume" aria-label="Ocean Volume">
                                             <i class="fas fa-volume-up"></i>
                                         </div>
                                     </div>
@@ -1042,12 +1056,12 @@
                                     </div>
                                     <h5>Forest Birds</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-toggle" data-sound="forest">
+                                        <button class="sound-toggle" data-sound="forest" title="Play Forest Birds">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
                                             <i class="fas fa-volume-down"></i>
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Forest Volume" aria-label="Forest Volume">
                                             <i class="fas fa-volume-up"></i>
                                         </div>
                                     </div>
@@ -1058,12 +1072,12 @@
                                     </div>
                                     <h5>Zen Garden</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-toggle" data-sound="zen">
+                                        <button class="sound-toggle" data-sound="zen" title="Play Zen Garden">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
                                             <i class="fas fa-volume-down"></i>
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Zen Volume" aria-label="Zen Volume">
                                             <i class="fas fa-volume-up"></i>
                                         </div>
                                     </div>
@@ -1142,7 +1156,7 @@
                                         <h5>Body Scan</h5>
                                         <p>15 min • Beginner</p>
                                     </div>
-                                    <button class="play-btn" data-session="body-scan">
+                                    <button class="play-btn" data-session="body-scan" title="Play Body Scan">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1154,7 +1168,7 @@
                                         <h5>Breathing Focus</h5>
                                         <p>10 min • Beginner</p>
                                     </div>
-                                    <button class="play-btn" data-session="breathing">
+                                    <button class="play-btn" data-session="breathing" title="Play Breathing Focus">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1166,7 +1180,7 @@
                                         <h5>Mindfulness</h5>
                                         <p>20 min • Intermediate</p>
                                     </div>
-                                    <button class="play-btn" data-session="mindfulness">
+                                    <button class="play-btn" data-session="mindfulness" title="Play Mindfulness">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1192,11 +1206,11 @@
                                     </div>
                                     <h5>Gentle Rain</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-play-btn" data-sound="rain">
+                                        <button class="sound-play-btn" data-sound="rain" title="Play Rain">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Volume" aria-label="Rain Volume">
                                         </div>
                                     </div>
                                 </div>
@@ -1206,11 +1220,11 @@
                                     </div>
                                     <h5>Ocean Waves</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-play-btn" data-sound="ocean">
+                                        <button class="sound-play-btn" data-sound="ocean" title="Play Ocean">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Volume" aria-label="Ocean Volume">
                                         </div>
                                     </div>
                                 </div>
@@ -1220,11 +1234,11 @@
                                     </div>
                                     <h5>Forest Birds</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-play-btn" data-sound="forest">
+                                        <button class="sound-play-btn" data-sound="forest" title="Play Forest">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Volume" aria-label="Forest Volume">
                                         </div>
                                     </div>
                                 </div>
@@ -1234,11 +1248,11 @@
                                     </div>
                                     <h5>Zen Garden</h5>
                                     <div class="sound-controls">
-                                        <button class="sound-play-btn" data-sound="zen">
+                                        <button class="sound-play-btn" data-sound="zen" title="Play Zen Garden">
                                             <i class="fas fa-play"></i>
                                         </button>
                                         <div class="volume-control">
-                                            <input type="range" class="volume-slider" min="0" max="100" value="50">
+                                            <input type="range" class="volume-slider" min="0" max="100" value="50" title="Volume" aria-label="Zen Volume">
                                         </div>
                                     </div>
                                 </div>
@@ -1274,13 +1288,13 @@
                                         <button class="preset-btn" data-minutes="30">30m</button>
                                     </div>
                                     <div class="timer-buttons">
-                                        <button class="timer-btn start" id="timerStart">
+                                        <button class="timer-btn start" id="timerStart" title="Start Timer">
                                             <i class="fas fa-play"></i>
                                         </button>
-                                        <button class="timer-btn pause" id="timerPause">
+                                        <button class="timer-btn pause" id="timerPause" title="Pause Timer">
                                             <i class="fas fa-pause"></i>
                                         </button>
-                                        <button class="timer-btn stop" id="timerStop">
+                                        <button class="timer-btn stop" id="timerStop" title="Stop Timer">
                                             <i class="fas fa-stop"></i>
                                         </button>
                                     </div>
@@ -1561,20 +1575,20 @@
                         <div class="resource-header">
                             <h3><i class="fas fa-music"></i> Calming Music</h3>
                                 <div class="music-controls">
-                                    <button class="shuffle-btn" id="shuffleBtn">
+                                    <button class="shuffle-btn" id="shuffleBtn" title="Shuffle Playlist">
                                         <i class="fas fa-random"></i>
                                     </button>
-                                    <button class="repeat-btn" id="repeatBtn">
+                                    <button class="repeat-btn" id="repeatBtn" title="Repeat Track">
                                         <i class="fas fa-redo"></i>
                                     </button>
                                 </div>
                         </div>
                         <div class="music-player">
                             <div class="player-controls">
-                                <button class="play-btn" id="playBtn">
+                                <button class="play-btn" id="playBtn" title="Play Music">
                                     <i class="fas fa-play"></i>
                                 </button>
-                                <button class="pause-btn hidden" id="pauseBtn">
+                                <button class="pause-btn hidden" id="pauseBtn" title="Pause Music">
                                     <i class="fas fa-pause"></i>
                                 </button>
                                 <div class="progress-bar">
@@ -1660,7 +1674,7 @@
                                         <h4>Progressive Muscle Relaxation</h4>
                                         <p>15-minute guided relaxation exercise</p>
                                     </div>
-                                    <button class="play-audio-btn">
+                                    <button class="play-audio-btn" title="Play Progressive Muscle Relaxation">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1672,7 +1686,7 @@
                                         <h4>Sleep Stories</h4>
                                         <p>Calming stories for better sleep</p>
                                     </div>
-                                    <button class="play-audio-btn">
+                                    <button class="play-audio-btn" title="Play Sleep Stories">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1684,7 +1698,7 @@
                                         <h4>Study Focus Music</h4>
                                         <p>Concentration-enhancing background sounds</p>
                                     </div>
-                                    <button class="play-audio-btn">
+                                    <button class="play-audio-btn" title="Play Study Focus Music">
                                         <i class="fas fa-play"></i>
                                     </button>
                                 </div>
@@ -1700,7 +1714,7 @@
                         <div class="video-category">
                             <h4>Study & Academic Success</h4>
                         <div class="video-links">
-                            <a href="https://www.youtube.com/watch?v=NTmHz-3wAQo" class="video-link" target="_blank">
+                            <a href="https://www.youtube.com/watch?v=NTmHz-3wAQo" class="video-link" target="_blank" rel="noopener noreferrer">
                                 <div class="video-thumb">
                                     <i class="fas fa-graduation-cap"></i>
                                 </div>
@@ -1736,7 +1750,7 @@
                         <div class="video-category">
                             <h4>Mental Health & Wellness</h4>
                             <div class="video-links">
-                            <a href="https://www.youtube.com/watch?v=wcoCmg-Uq-E" class="video-link" target="_blank">
+                            <a href="https://www.youtube.com/watch?v=wcoCmg-Uq-E" class="video-link" target="_blank" rel="noopener noreferrer">
                                 <div class="video-thumb">
                                     <i class="fas fa-heart"></i>
                                 </div>
@@ -1746,7 +1760,7 @@
                                         <span class="video-duration">18:15</span>
                                 </div>
                             </a>
-                            <a href="https://www.youtube.com/watch?v=LO1mTELoj6o" class="video-link" target="_blank">
+                            <a href="https://www.youtube.com/watch?v=LO1mTELoj6o" class="video-link" target="_blank" rel="noopener noreferrer">
                                 <div class="video-thumb">
                                     <i class="fas fa-balance-scale"></i>
                                 </div>
@@ -2345,9 +2359,9 @@
                                     <span id="breathingStreak">0</span>
                                 </div>
                     </div>
-                    <div class="breathing-circle" id="breathingCircle">
+                    <div class="breathing-circle" id="breathingGameCircle">
                         <div class="breathing-text" id="breathingText">Get Ready</div>
-                                <div class="breathing-instruction" id="breathingInstruction">Click Start to begin</div>
+                                <div class="breathing-instruction" id="breathingGameInstruction">Click Start to begin</div>
                     </div>
                     <div class="breathing-controls">
                                 <div class="breathing-presets">
@@ -2356,10 +2370,10 @@
                                     <button class="preset-btn" data-preset="box">Box</button>
                                     <button class="preset-btn" data-preset="custom">Custom</button>
                                 </div>
-                        <button type="button" class="breathing-btn" id="startBreathing">
+                        <button type="button" class="breathing-btn" id="startBreathingWellness" title="Start Breathing Exercise">
                             <i class="fas fa-play"></i> Start Exercise
                         </button>
-                                <button type="button" class="breathing-btn secondary" id="stopBreathing" style="display: none;">
+                                <button type="button" class="breathing-btn secondary hidden" id="stopBreathingWellness" title="Stop Breathing Exercise">
                             <i class="fas fa-stop"></i> Stop
                         </button>
                     </div>
@@ -2438,18 +2452,18 @@
                                     <button class="tool-btn" data-tool="shapes">🔷</button>
                                 </div>
                                 <div class="color-picker">
-                                    <input type="color" id="colorPicker" value="#000000">
+                                    <input type="color" id="colorPicker" value="#000000" title="Choose Brush Color" aria-label="Brush Color">
                                     <div class="color-presets">
-                                        <div class="color-preset" style="background: #ff0000"></div>
-                                        <div class="color-preset" style="background: #00ff00"></div>
-                                        <div class="color-preset" style="background: #0000ff"></div>
-                                        <div class="color-preset" style="background: #ffff00"></div>
-                                        <div class="color-preset" style="background: #ff00ff"></div>
+                                        <div class="color-preset bg-red"></div>
+                                        <div class="color-preset bg-green"></div>
+                                        <div class="color-preset bg-blue"></div>
+                                        <div class="color-preset bg-yellow"></div>
+                                        <div class="color-preset bg-purple"></div>
                                     </div>
                                 </div>
                                 <div class="brush-settings">
-                                    <label>Size: <span id="brushSize">5</span></label>
-                                    <input type="range" id="brushSizeSlider" min="1" max="20" value="5">
+                                    <label for="brushSizeSlider">Size: <span id="brushSize">5</span></label>
+                                    <input type="range" id="brushSizeSlider" min="1" max="20" value="5" title="Brush Size" aria-label="Brush Size">
                                 </div>
                             </div>
                             <div class="canvas-container">
@@ -2470,8 +2484,8 @@
                             </div>
                             <div class="poetry-controls">
                                 <div class="poetry-type">
-                                    <label>Poetry Type:</label>
-                                    <select id="poetryType">
+                                    <label for="poetryType">Poetry Type:</label>
+                                    <select id="poetryType" title="Select Poetry Type">
                                         <option value="haiku">Haiku</option>
                                         <option value="limerick">Limerick</option>
                                         <option value="free-verse">Free Verse</option>
@@ -2479,8 +2493,8 @@
                                     </select>
                                 </div>
                                 <div class="poetry-theme">
-                                    <label>Theme:</label>
-                                    <select id="poetryTheme">
+                                    <label for="poetryTheme">Theme:</label>
+                                    <select id="poetryTheme" title="Select Poetry Theme">
                                         <option value="nature">Nature</option>
                                         <option value="love">Love</option>
                                         <option value="hope">Hope</option>
@@ -2510,8 +2524,8 @@
                             </div>
                             <div class="story-controls">
                                 <div class="story-settings">
-                                    <label>Genre:</label>
-                                    <select id="storyGenre">
+                                    <label for="storyGenre">Genre:</label>
+                                    <select id="storyGenre" title="Select Story Genre">
                                         <option value="fantasy">Fantasy</option>
                                         <option value="mystery">Mystery</option>
                                         <option value="romance">Romance</option>
@@ -2608,8 +2622,8 @@
                                     Choose Truth or Dare to begin!
                                 </div>
                                 <div class="tod-rating">
-                                    <label>Difficulty:</label>
-                                    <select id="todDifficulty">
+                                    <label for="todDifficulty">Difficulty:</label>
+                                    <select id="todDifficulty" title="Select Difficulty Level">
                                         <option value="easy">Easy</option>
                                         <option value="medium" selected>Medium</option>
                                         <option value="hard">Hard</option>
@@ -2768,7 +2782,7 @@
                 </div>
 
                 <!-- Group Resources Section -->
-                <div class="group-resources-section" id="groupResourcesSection" style="display: none;">
+                <div class="group-resources-section hidden" id="groupResourcesSection">
                     <div class="resources-header">
                         <h3><i class="fas fa-book"></i> Group Resources</h3>
                         <p>Helpful resources and tips for your current mood group</p>
@@ -2779,7 +2793,7 @@
                 </div>
 
                 <!-- Interactive Polls Section -->
-                <div class="polls-section" id="pollsSection" style="display: none;">
+                <div class="polls-section hidden" id="pollsSection">
                     <div class="polls-header">
                         <h3><i class="fas fa-poll"></i> Group Polls & Activities</h3>
                         <p>Participate in group activities and share your thoughts</p>
@@ -2796,7 +2810,7 @@
                 </div>
 
                 <!-- Personal Analytics Section -->
-                <div class="personal-analytics-section" id="personalAnalyticsSection" style="display: none;">
+                <div class="personal-analytics-section hidden" id="personalAnalyticsSection">
                     <div class="analytics-header">
                         <h3><i class="fas fa-chart-line"></i> Your Group Activity</h3>
                         <p>Track your participation and growth in mood groups</p>
@@ -2807,7 +2821,7 @@
                 </div>
 
                 <!-- Group Challenges Section -->
-                <div class="group-challenges-section" id="groupChallengesSection" style="display: none;">
+                <div class="group-challenges-section hidden" id="groupChallengesSection">
                     <div class="challenges-header">
                         <h3><i class="fas fa-trophy"></i> Group Challenges & Activities</h3>
                         <p>Participate in group challenges to support each other's growth</p>
@@ -2861,14 +2875,14 @@
                 </div>
 
                 <!-- Current Group Display -->
-                <div class="current-group-section" id="currentGroupSection" style="display: none;">
+                <div class="current-group-section hidden" id="currentGroupSection">
                     <div class="current-group-info" id="currentGroupInfo">
                         <!-- Group info will be populated by JavaScript -->
                     </div>
                 </div>
 
                 <!-- Group Chat Interface -->
-                <div class="group-chat-section" id="groupChatSection" style="display: none;">
+                <div class="group-chat-section hidden" id="groupChatSection">
                     <div class="group-chat-card">
                         <div class="group-chat-header">
                             <div class="chat-header-info">
@@ -2914,7 +2928,7 @@
                                     </div>
                                     
                                     <!-- Typing Indicator -->
-                                    <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                                    <div class="typing-indicator hidden" id="typingIndicator">
                                         <div class="typing-dots">
                                             <span></span>
                                             <span></span>
@@ -2933,7 +2947,7 @@
                                         <h4>Group Members</h4>
                                         <span class="members-count" id="membersCount">0</span>
                                     </div>
-                                    <button class="sidebar-toggle" onclick="window.moodGroupManager.toggleSidebar()">
+                                    <button class="sidebar-toggle" onclick="window.moodGroupManager.toggleSidebar()" title="Toggle Sidebar">
                                         <i class="fas fa-chevron-right"></i>
                                     </button>
                                 </div>
@@ -2986,7 +3000,7 @@
                                                 <button class="attachment-btn" id="attachmentBtn" title="Attach file">
                                                     <i class="fas fa-paperclip"></i>
                                                 </button>
-                                                <button class="send-message-btn" id="sendMessageBtn">
+                                                <button class="send-message-btn" id="sendMessageBtn" title="Send Message">
                                                     <i class="fas fa-paper-plane"></i>
                                                 </button>
                                             </div>
@@ -2998,7 +3012,7 @@
                                     </div>
                         
                         <!-- Voice Recording Interface -->
-                        <div class="voice-recording-interface" id="voiceRecordingInterface" style="display: none;">
+                        <div class="voice-recording-interface hidden" id="voiceRecordingInterface">
                             <div class="recording-controls">
                                 <div class="recording-status">
                                     <div class="recording-indicator">
@@ -3008,11 +3022,11 @@
                                     <div class="recording-timer" id="recordingTimer">00:00</div>
                                 </div>
                                 <div class="recording-actions">
-                                    <button class="stop-recording-btn" id="stopRecordingBtn">
+                                    <button class="stop-recording-btn" id="stopRecordingBtn" title="Stop Recording">
                                         <i class="fas fa-stop"></i>
                                         Stop
                                     </button>
-                                    <button class="cancel-recording-btn" id="cancelRecordingBtn">
+                                    <button class="cancel-recording-btn" id="cancelRecordingBtn" title="Cancel Recording">
                                         <i class="fas fa-times"></i>
                                         Cancel
                                     </button>
@@ -3030,9 +3044,9 @@
                         </div>
                         
                         <!-- Voice Message Playback -->
-                        <div class="voice-playback-interface" id="voicePlaybackInterface" style="display: none;">
+                        <div class="voice-playback-interface hidden" id="voicePlaybackInterface">
                             <div class="playback-controls">
-                                <button class="play-voice-btn" id="playVoiceBtn">
+                                <button class="play-voice-btn" id="playVoiceBtn" title="Play Voice Message">
                                     <i class="fas fa-play"></i>
                                 </button>
                                 <div class="voice-waveform" id="voiceWaveform">
@@ -3118,7 +3132,12 @@
         </div>
     </div>
 
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+
     <script src="js/utils.js"></script>
+    <script src="js/guest-user.js"></script>
     <script src="js/error-handler.js"></script>
     <script src="js/theme-manager.js"></script>
     <script src="js/language.js"></script>
@@ -3136,14 +3155,8 @@
     <script src="js/enhanced-games.js"></script>
     <script src="js/wellness-insights.js"></script>
     <script src="js/mood-groups.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/system-status.js" defer></script>
+    <script src="js/main.js" defer></script>
     <script src="js/dashboard-enhancements.js"></script>
-    <link rel="stylesheet" href="css/therapy-system.css">
-    <link rel="stylesheet" href="css/meditation-system.css">
-    <link rel="stylesheet" href="css/mood-tracker.css">
-    <link rel="stylesheet" href="css/resources-system.css">
-    <link rel="stylesheet" href="css/enhanced-games.css">
-    <link rel="stylesheet" href="css/wellness-insights.css">
-    <link rel="stylesheet" href="css/mood-groups.css">
 </body>
 </html>

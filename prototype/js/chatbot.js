@@ -31,7 +31,7 @@ class MindSpaceChatbot {
                             </svg>
                         </div>
                         <div class="chatbot-info">
-                            <h3>Hi there 👋 I'm MindBot!</h3>
+                            <h3>Hi there, I'm MindBot!</h3>
                             <p>Your mental wellness companion</p>
                         </div>
                     </div>
@@ -230,12 +230,12 @@ class MindSpaceChatbot {
         }
         // Positive responses
         else if (message.includes('good') || message.includes('great') || message.includes('happy') || message.includes('better')) {
-            response = 'That\'s wonderful to hear! 🌟 Keep up the positive momentum. Remember to celebrate your wins, no matter how small. What\'s been helping you feel good?';
+            response = 'That\'s wonderful to hear! Keep up the positive momentum. Remember to celebrate your wins, no matter how small. What\'s been helping you feel good?';
             quickReplies = ['Share gratitude', 'Mood tracker', 'Keep the streak'];
         }
         // Crisis keywords
         else if (message.includes('suicide') || message.includes('hurt myself') || message.includes('end it all')) {
-            response = '🚨 I\'m concerned about you. Please reach out to a crisis counselor immediately. National Crisis Hotline: 988 (available 24/7). You matter, and help is available. Would you like me to connect you with immediate support?';
+            response = 'I\'m concerned about you. Please reach out to a crisis counselor immediately. National Crisis Hotline: 988 (available 24/7). You matter, and help is available. Would you like me to connect you with immediate support?';
             quickReplies = ['Call crisis line', 'Emergency contacts', 'Talk to counselor now'];
         }
         // Default response

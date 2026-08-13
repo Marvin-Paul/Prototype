@@ -42,38 +42,54 @@ class SupportManager {
         }
     }
 
-    loadUserInfo() {
-        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    async loadUserInfo() {
+        const user = GuestUser.get();
         
-        if (userData.fullName) {
-            const nameInput = document.getElementById('contactName');
-            if (nameInput) nameInput.value = userData.fullName;
-        }
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
         
-        if (userData.email) {
-            const emailInput = document.getElementById('contactEmail');
-            if (emailInput) emailInput.value = userData.email;
-        }
+        // Get profile data for full name
+        const { data: profile } = await window.supabaseClient
+            .from('profiles')
+            .select('full_name')
+            .eq('id', user.id)
+            .single();
+
+        if (nameInput && profile) nameInput.value = profile.full_name;
+        if (emailInput) emailInput.value = user.email;
     }
 
-    submitContactForm() {
+    async submitContactForm() {
         const name = document.getElementById('contactName').value;
         const email = document.getElementById('contactEmail').value;
         const subject = document.getElementById('contactSubject').value;
         const message = document.getElementById('contactMessage').value;
 
-        // In a real application, this would send to a server
-        console.log('Contact Form Submitted:', { name, email, subject, message });
+        const user = GuestUser.get();
 
-        // Show success message
-        this.showNotification(
-            'Thank you for contacting us! We\'ll respond within 24 hours.',
-            'success'
-        );
+        const { error } = await window.supabaseClient
+            .from('support_inquiries')
+            .insert([{
+                user_id: user.id,
+                name,
+                email,
+                subject,
+                message,
+                status: 'pending',
+                created_at: new Date().toISOString()
+            }]);
 
-        // Reset form
-        document.getElementById('contactForm').reset();
-        this.loadUserInfo(); // Reload user info
+        if (!error) {
+            this.showNotification(
+                'Thank you for contacting us! We\'ll respond within 24 hours.',
+                'success'
+            );
+            document.getElementById('contactForm').reset();
+            this.loadUserInfo();
+        } else {
+            console.error('Error submitting inquiry:', error);
+            this.showNotification('Failed to send message. Please try again.', 'error');
+        }
     }
 
     showNotification(message, type = 'info') {

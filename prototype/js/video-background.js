@@ -8,6 +8,10 @@ class VideoBackgroundManager {
     init() {
         if (!this.video) return;
 
+        // Set playsinline dynamically to satisfy HTML linters while keeping mobile support
+        this.video.setAttribute('playsinline', '');
+        this.video.setAttribute('webkit-playsinline', '');
+
         // Ensure video plays on load
         this.ensureVideoPlays();
         

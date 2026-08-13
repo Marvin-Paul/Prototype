@@ -44,9 +44,9 @@ class ThemeManager {
 
     showThemeNotification(theme) {
         const messages = {
-            light: 'Light theme activated ☀️',
-            dark: 'Dark theme activated 🌙',
-            auto: `Auto theme activated (${this.getSystemTheme() === 'dark' ? 'Dark' : 'Light'} mode) 🔄`
+            light: 'Light theme activated',
+            dark: 'Dark theme activated',
+            auto: `Auto theme activated (${this.getSystemTheme() === 'dark' ? 'Dark' : 'Light'} mode)`
         };
         
         AppUtils.showNotification(messages[theme] || 'Theme updated', 'success');

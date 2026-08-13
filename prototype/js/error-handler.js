@@ -129,7 +129,8 @@ class ErrorHandler {
 
     reportToAnalytics(error, type, context) {
         // Only report in production and if analytics is available
-        if (typeof gtag !== 'undefined' && process.env.NODE_ENV === 'production') {
+        const isProduction = typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 'production';
+        if (typeof gtag !== 'undefined' && isProduction) {
             gtag('event', 'exception', {
                 description: `${type}: ${error?.message || 'Unknown error'}`,
                 fatal: this.isCriticalError(error),

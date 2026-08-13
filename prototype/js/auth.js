@@ -1,7 +1,6 @@
 // Authentication Management System - Optimized
 class AuthManager {
     constructor() {
-        this.users = AppUtils.get('campusMindspace_users', []);
         this.currentUser = null;
         this.init();
     }
@@ -25,7 +24,13 @@ class AuthManager {
         AppUtils.$$('.auth-tab').forEach(tab => tab.classList.remove('active'));
         AppUtils.$(`[data-tab="${targetTab}"]`)?.classList.add('active');
         
-        AppUtils.$$('.auth-form').forEach(form => form.classList.remove('active'));
+        AppUtils.$$('.auth-form').forEach(form => {
+            form.classList.remove('active');
+            // Clear inputs to prevent auto-fill conflicts
+            form.querySelectorAll('input').forEach(input => {
+                if (input.type !== 'checkbox' && input.type !== 'hidden') input.value = '';
+            });
+        });
         AppUtils.$(`#${targetTab}Form`)?.classList.add('active');
     }
     
@@ -58,20 +63,22 @@ class AuthManager {
         AppUtils.setLoading(AppUtils.$('#loginFormData .auth-btn'), true);
         
         try {
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const { data, error } = await window.supabaseClient.auth.signInWithPassword({
+                email,
+                password
+            });
             
-            const user = this.users.find(u => u.email === email && u.password === password);
+            if (error) throw error;
             
-            if (user) {
-                this.currentUser = user;
-                AppUtils.set('campusMindspace_currentUser', user);
+            if (data.user) {
+                this.currentUser = data.user;
+                AppUtils.set('campusMindspace_currentUser', data.user);
                 AppUtils.showNotification('Login successful! Redirecting to dashboard...', 'success');
                 setTimeout(() => window.location.href = 'dashboard.html', 1500);
-            } else {
-                AppUtils.showNotification('Invalid email or password', 'error');
             }
         } catch (error) {
-            AppUtils.showNotification('Login failed. Please try again.', 'error');
+            console.error('Login error:', error);
+            AppUtils.showNotification(error.message || 'Login failed. Please try again.', 'error');
         } finally {
             AppUtils.setLoading(AppUtils.$('#loginFormData .auth-btn'), false);
         }
@@ -106,58 +113,81 @@ class AuthManager {
             return;
         }
         
-        if (this.users.some(u => u.email === email)) {
-            this.showMessage('An account with this email already exists', 'error');
-            return;
-        }
-        
         // Show loading state
         this.setLoadingState(true);
         
         try {
-            // Simulate API call delay
-            await new Promise(resolve => setTimeout(resolve, 1500));
-            
-            const newUser = {
-                id: Date.now().toString(),
-                fullName,
+            // 1. Sign up with Supabase Auth
+            const { data, error } = await window.supabaseClient.auth.signUp({
                 email,
-                contactNumber,
                 password,
-                initialMood: selectedMood,
-                registrationDate: new Date().toISOString(),
-                preferences: {
-                    language: languageManager.getCurrentLanguage()
+                options: {
+                    data: {
+                        full_name: fullName,
+                        phone: contactNumber,
+                        initial_mood: selectedMood
+                    }
                 }
-            };
+            });
             
-            this.users.push(newUser);
-            this.saveUsers();
+            if (error) throw error;
             
-            this.showMessage('Account created successfully! Redirecting to dashboard...', 'success');
+            // 2. Create profile in public.profiles table
+            if (data.user) {
+                const { error: profileError } = await window.supabaseClient
+                    .from('profiles')
+                    .insert([
+                        { 
+                            id: data.user.id, 
+                            full_name: fullName, 
+                            email: email,
+                            student_id: '', 
+                            university: 'Campus University'
+                        }
+                    ]);
+                
+                if (profileError) {
+                    console.error('Profile creation error:', profileError);
+                    if (profileError.code === 'PGRST116' || profileError.message.includes('relation "public.profiles" does not exist')) {
+                        throw new Error('Database schema not initialized. Please run the SQL setup script in your Supabase dashboard.');
+                    }
+                }
+
+                // 3. Log initial mood
+                const { error: moodError } = await window.supabaseClient
+                    .from('mood_entries')
+                    .insert([
+                        {
+                            user_id: data.user.id,
+                            mood: selectedMood,
+                            factors: [],
+                            notes: 'Initial check-in during registration'
+                        }
+                    ]);
+                
+                if (moodError && moodError.message.includes('relation "public.mood_entries" does not exist')) {
+                    console.warn('Mood entries table missing, but user created.');
+                }
+            }
             
-            // Auto-login after registration
-            this.currentUser = newUser;
-            localStorage.setItem('campusMindspace_currentUser', JSON.stringify(newUser));
+            this.showMessage('Account created successfully!', 'success');
+            
+            this.currentUser = data.user;
+            localStorage.setItem('campusMindspace_currentUser', JSON.stringify(data.user));
             
             setTimeout(() => {
                 window.location.href = 'dashboard.html';
             }, 1500);
             
         } catch (error) {
-            this.showMessage('Registration failed. Please try again.', 'error');
+            console.error('Registration error:', error);
+            const msg = error.message.includes('relation') ? 
+                'Database tables are missing. Please run the provided SQL schema in your Supabase dashboard.' : 
+                (error.message || 'Registration failed. Please try again.');
+            this.showMessage(msg, 'error');
         } finally {
             this.setLoadingState(false);
         }
-    }
-    
-    loadUsers() {
-        const users = localStorage.getItem('campusMindspace_users');
-        return users ? JSON.parse(users) : [];
-    }
-    
-    saveUsers() {
-        localStorage.setItem('campusMindspace_users', JSON.stringify(this.users));
     }
     
     checkAuthStatus() {
@@ -167,7 +197,8 @@ class AuthManager {
         }
     }
     
-    logout() {
+    async logout() {
+        await window.supabaseClient.auth.signOut();
         this.currentUser = null;
         localStorage.removeItem('campusMindspace_currentUser');
         window.location.href = 'index.html';

@@ -1,32 +1,42 @@
+#!/bin/bash
 # Campus Mindspace Favicon Generator
-# This script creates all necessary favicon files
+# Generates all required favicon files from a single SVG source.
 
-# Create a simple SVG favicon
+set -e
+
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$DIR"
+
+# 1. Source SVG (check in)
 cat > favicon.svg << 'EOF'
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="16" cy="16" r="14" fill="#00b5ad"/>
-  <path d="M12 16L15 19L20 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="16" cy="16" r="3" fill="white" opacity="0.3"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="256" cy="256" r="240" fill="#00b5ad"/>
+  <path d="M160 280L232 352L352 192" stroke="white" stroke-width="40" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
 EOF
 
-echo "✅ Created favicon.svg"
+echo "✅ Created favicon.svg (512x512 source)"
 
-# Create favicon.ico placeholder (you'll need to convert SVG to ICO)
-cat > favicon-placeholder.txt << 'EOF'
-# To create favicon.ico:
-# 1. Go to https://favicon.io/favicon-converter/
-# 2. Upload favicon.svg
-# 3. Download the generated favicon.ico
-# 4. Place it in your project root
+# 2. Render PNGs. Uses ImageMagick if available; otherwise skips with a hint.
+if command -v magick >/dev/null 2>&1; then
+    for size in 16 32 180 192 512; do
+        if [ "$size" = "180" ]; then
+            out="apple-touch-icon.png"
+        else
+            out="favicon-${size}x${size}.png"
+            [ "$size" = "192" ] && out="android-chrome-192x192.png"
+            [ "$size" = "512" ] && out="android-chrome-512x512.png"
+        fi
+        magick -background none favicon.svg -resize "${size}x${size}" "$out"
+        echo "✅ Created $out (${size}x${size})"
+    done
 
-# Required favicon files:
-# - favicon.ico (16x16, 32x32)
-# - favicon-16x16.png
-# - favicon-32x32.png
-# - apple-touch-icon.png (180x180)
-# - android-chrome-192x192.png
-# - android-chrome-512x512.png
-EOF
+    # 3. ICO (multi-size, contains 16x16 and 32x32)
+    magick -background none favicon.svg -define icon:auto-resize=16,32 favicon.ico
+    echo "✅ Created favicon.ico"
+else
+    echo "⚠️  ImageMagick not found. PNG/ICO generation skipped."
+    echo "    Re-run this script after installing ImageMagick, or use https://favicon.io/"
+fi
 
-echo "📋 Created favicon instructions"
+echo "🎉 Favicon generation complete!"

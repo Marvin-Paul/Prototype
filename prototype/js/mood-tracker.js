@@ -2,16 +2,16 @@
 class MoodTracker {
     constructor() {
         this.currentMood = null;
-        this.moodHistory = JSON.parse(localStorage.getItem('moodHistory')) || [];
+        this.moodHistory = [];
         this.moodCategories = this.getMoodCategories();
         this.moodFactors = this.getMoodFactors();
         this.insights = [];
         this.init();
     }
 
-    init() {
+    async init() {
         this.setupEventListeners();
-        this.loadMoodHistory();
+        await this.loadMoodHistory();
         this.updateMoodDisplay();
         this.generateInsights();
     }
@@ -75,7 +75,14 @@ class MoodTracker {
                 color: '#dc2626',
                 description: 'Terrible',
                 level: 1
-            }
+            },
+            // Mapping for registration moods
+            overwhelmed: { emoji: '😵', color: '#8b5cf6', description: 'Overwhelmed', level: 2 },
+            sleep: { emoji: '😴', color: '#6366f1', description: 'Tired', level: 3 },
+            social: { emoji: '👫', color: '#ec4899', description: 'Social Stress', level: 3 },
+            happy: { emoji: '😊', color: '#10b981', description: 'Happy', level: 5 },
+            anxious: { emoji: '😰', color: '#f59e0b', description: 'Anxious', level: 2 },
+            lonely: { emoji: '👤', color: '#64748b', description: 'Lonely', level: 2 }
         };
     }
 
@@ -166,7 +173,7 @@ class MoodTracker {
         btn.classList.toggle('selected');
     }
 
-    saveMoodEntry() {
+    async saveMoodEntry() {
         if (!this.currentMood) {
             this.showNotification('Please select your mood first', 'warning');
             return;
@@ -176,23 +183,38 @@ class MoodTracker {
             .map(btn => btn.dataset.factor);
         
         const notes = document.getElementById('moodNotesText').value.trim();
+        const user = JSON.parse(localStorage.getItem('campusMindspace_currentUser'));
+
+        if (!user) {
+            this.showNotification('User not logged in', 'error');
+            return;
+        }
 
         const moodEntry = {
-            id: Date.now().toString(),
+            user_id: user.id,
             mood: this.currentMood,
             factors: selectedFactors,
-            notes: notes,
-            timestamp: new Date().toISOString(),
-            date: new Date().toLocaleDateString()
+            notes: notes
         };
 
-        this.moodHistory.push(moodEntry);
-        this.saveMoodHistory();
-        this.updateMoodDisplay();
-        this.generateInsights();
-        
-        this.showNotification('Mood entry saved successfully!', 'success');
-        this.closeModal(document.querySelector('.mood-tracker-modal').parentNode);
+        try {
+            const { data, error } = await window.supabaseClient
+                .from('mood_entries')
+                .insert([moodEntry])
+                .select();
+
+            if (error) throw error;
+
+            this.moodHistory.push(data[0]);
+            this.updateMoodDisplay();
+            this.generateInsights();
+            
+            this.showNotification('Mood entry saved to Supabase!', 'success');
+            this.closeModal(document.querySelector('.mood-tracker-modal').parentNode);
+        } catch (error) {
+            console.error('Error saving mood:', error);
+            this.showNotification('Failed to save mood entry', 'error');
+        }
     }
 
     updateMoodDisplay() {
@@ -200,7 +222,7 @@ class MoodTracker {
         if (!moodDisplay || this.moodHistory.length === 0) return;
 
         const latestEntry = this.moodHistory[this.moodHistory.length - 1];
-        const moodData = this.moodCategories[latestEntry.mood];
+        const moodData = this.moodCategories[latestEntry.mood] || { emoji: '😐', color: '#64748b', description: 'Neutral' };
         
         moodDisplay.innerHTML = `
             <i class="fas fa-${this.getMoodIcon(latestEntry.mood)}" style="color: ${moodData.color}"></i>
@@ -490,12 +512,28 @@ class MoodTracker {
         return recentAvg - olderAvg;
     }
 
-    saveMoodHistory() {
-        localStorage.setItem('moodHistory', JSON.stringify(this.moodHistory));
-    }
+    // Deprecated: replaced by direct Supabase saves
+    saveMoodHistory() {}
 
-    loadMoodHistory() {
-        this.moodHistory = JSON.parse(localStorage.getItem('moodHistory')) || [];
+    async loadMoodHistory() {
+        const user = JSON.parse(localStorage.getItem('campusMindspace_currentUser'));
+        if (!user) return;
+
+        try {
+            const { data, error } = await window.supabaseClient
+                .from('mood_entries')
+                .select('*')
+                .eq('user_id', user.id)
+                .order('timestamp', { ascending: true });
+
+            if (error) throw error;
+            this.moodHistory = data.map(entry => ({
+                ...entry,
+                date: new Date(entry.timestamp).toLocaleDateString()
+            }));
+        } catch (error) {
+            console.error('Error loading mood history:', error);
+        }
     }
 
     createModal(className) {

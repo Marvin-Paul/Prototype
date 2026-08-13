@@ -79,12 +79,10 @@ class CampusMindspaceApp {
     enhanceAccessibility() {
         AppUtils.$$('.mood-option').forEach((option, index) => {
             const moodType = option.getAttribute('data-mood');
-            Object.assign(option, {
-                role: 'radio',
-                'aria-checked': 'false',
-                'aria-label': `Mood option: ${moodType}`,
-                tabIndex: index === 0 ? 0 : -1
-            });
+            option.setAttribute('role', 'radio');
+            option.setAttribute('aria-checked', 'false');
+            option.setAttribute('aria-label', `Mood option: ${moodType}`);
+            option.tabIndex = index === 0 ? 0 : -1;
         });
         
         AppUtils.$$('.auth-form').forEach(form => {

@@ -1,88 +1,38 @@
-/* Theme System - Light, Dark, and Auto */
+/* ============================================================
+   Campus Mindspace - Theme Layer
+   Component-level adjustments per theme. All color tokens live
+   in design-tokens.css (the single source of truth).
+   data-theme values:
+     light | dark | auto              -> app pages
+     ocean | sunset | forest | cosmic -> landing accent modes
+   ============================================================ */
 
-/* Light Theme (Default) */
-:root[data-theme="light"] {
-    --primary-color: #2d6a5f;
-    --primary-light: #3d8a7a;
-    --primary-dark: #1d4a3f;
-    --primary-gradient: linear-gradient(135deg, #2d6a5f 0%, #1d4a3f 100%);
-    
-    --secondary-color: #3d8a7a;
-    --secondary-light: #4da393;
-    --secondary-dark: #2d6a5f;
-    
-    --accent-pink: #f472b6;
-    --accent-purple: #a78bfa;
-    --accent-green: #34d399;
-    --accent-orange: #fb923c;
-    --accent-red: #f87171;
-    
-    --background: #f0f4f3;
-    --surface: #ffffff;
-    --surface-elevated: #fafbfb;
-    --surface-hover: #e8f0ee;
-    --text-primary: #1f2937;
-    --text-secondary: #4b5563;
-    --text-muted: #6b7280;
-    --border: #d1d5db;
-    --border-light: #e5e7eb;
-    
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-    --shadow-glow: 0 0 20px rgba(45, 106, 95, 0.3);
+/* ---------- Landing page (accent modes) ---------- */
+:root[data-theme="sunset"] .video-overlay {
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.82) 0%, rgba(255, 165, 0, 0.88) 100%);
 }
 
-/* Dark Theme */
-:root[data-theme="dark"] {
-    --primary-color: #8b5cf6;
-    --primary-light: #a78bfa;
-    --primary-dark: #7c3aed;
-    --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-    
-    --secondary-color: #a78bfa;
-    --secondary-light: #c4b5fd;
-    --secondary-dark: #7c3aed;
-    
-    --accent-pink: #f472b6;
-    --accent-purple: #a78bfa;
-    --accent-green: #34d399;
-    --accent-orange: #fb923c;
-    --accent-red: #f87171;
-    
-    --background: #1e1b4b;
-    --surface: #2d2a5f;
-    --surface-elevated: #3730a3;
-    --surface-hover: #4338ca;
-    --text-primary: #f3f4f6;
-    --text-secondary: #d1d5db;
-    --text-muted: #9ca3af;
-    --border: #4338ca;
-    --border-light: #3730a3;
-    
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
-    --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.6);
+:root[data-theme="forest"] .video-overlay {
+    background: linear-gradient(135deg, rgba(81, 207, 102, 0.82) 0%, rgba(64, 192, 87, 0.88) 100%);
 }
 
-/* Dark Theme Specific Adjustments */
+:root[data-theme="cosmic"] .video-overlay {
+    background: linear-gradient(135deg, rgba(151, 117, 250, 0.82) 0%, rgba(116, 143, 252, 0.88) 100%);
+}
+
+/* ---------- Dark theme overrides ---------- */
 :root[data-theme="dark"] body {
     background: var(--background);
     color: var(--text-primary);
 }
 
 :root[data-theme="dark"] .navbar {
-    background: rgba(30, 27, 75, 0.98);
+    background: rgba(14, 26, 24, 0.96);
     border-bottom-color: var(--border);
 }
 
 :root[data-theme="dark"] .language-selector {
-    background: rgba(30, 27, 75, 0.95);
+    background: rgba(14, 26, 24, 0.92);
     border-color: var(--border);
 }
 
@@ -96,11 +46,11 @@
 }
 
 :root[data-theme="dark"] .auth-section {
-    background: rgba(30, 27, 75, 0.98);
+    background: rgba(14, 26, 24, 0.96);
 }
 
 :root[data-theme="dark"] .auth-section::before {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(109, 40, 217, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(0, 181, 173, 0.08) 0%, rgba(0, 139, 133, 0.08) 100%);
 }
 
 :root[data-theme="dark"] .auth-tabs {
@@ -131,7 +81,7 @@
 }
 
 :root[data-theme="dark"] .mood-option.selected {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(109, 40, 217, 0.15) 100%);
+    background: linear-gradient(135deg, rgba(0, 181, 173, 0.16) 0%, rgba(0, 139, 133, 0.16) 100%);
 }
 
 :root[data-theme="dark"] .tip-card {
@@ -157,7 +107,7 @@
 :root[data-theme="dark"] .counselor-card::before,
 :root[data-theme="dark"] .game-card::before,
 :root[data-theme="dark"] .stat-card::before {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.08) 0%, rgba(109, 40, 217, 0.08) 100%);
+    background: linear-gradient(135deg, rgba(0, 181, 173, 0.08) 0%, rgba(0, 139, 133, 0.08) 100%);
 }
 
 :root[data-theme="dark"] .dropdown-menu {
@@ -241,65 +191,31 @@
 }
 
 :root[data-theme="dark"] .theme-btn.active {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(109, 40, 217, 0.25) 100%);
+    background: linear-gradient(135deg, rgba(0, 181, 173, 0.25) 0%, rgba(0, 139, 133, 0.25) 100%);
 }
 
 :root[data-theme="dark"] .crisis-hotlines {
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(109, 40, 217, 0.2) 100%);
+    background: linear-gradient(135deg, rgba(0, 181, 173, 0.18) 0%, rgba(0, 139, 133, 0.18) 100%);
 }
 
 :root[data-theme="dark"] .hotline-item {
-    border-bottom-color: rgba(139, 92, 246, 0.4);
+    border-bottom-color: rgba(0, 181, 173, 0.4);
 }
 
-/* Auto Theme - Uses system preference */
+/* ---------- Auto theme (follows system, dark branch) ---------- */
 @media (prefers-color-scheme: dark) {
-    :root[data-theme="auto"] {
-        --primary-color: #8b5cf6;
-        --primary-light: #a78bfa;
-        --primary-dark: #7c3aed;
-        --primary-gradient: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
-        
-        --secondary-color: #a78bfa;
-        --secondary-light: #c4b5fd;
-        --secondary-dark: #7c3aed;
-        
-        --accent-pink: #f472b6;
-        --accent-purple: #a78bfa;
-        --accent-green: #34d399;
-        --accent-orange: #fb923c;
-        --accent-red: #f87171;
-        
-        --background: #1e1b4b;
-        --surface: #2d2a5f;
-        --surface-elevated: #3730a3;
-        --surface-hover: #4338ca;
-        --text-primary: #f3f4f6;
-        --text-secondary: #d1d5db;
-        --text-muted: #9ca3af;
-        --border: #4338ca;
-        --border-light: #3730a3;
-        
-        --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
-        --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
-        --shadow-glow: 0 0 30px rgba(139, 92, 246, 0.6);
-    }
-
     :root[data-theme="auto"] body {
         background: var(--background);
         color: var(--text-primary);
     }
 
     :root[data-theme="auto"] .navbar {
-        background: rgba(30, 27, 75, 0.98);
+        background: rgba(14, 26, 24, 0.96);
         border-bottom-color: var(--border);
     }
 
     :root[data-theme="auto"] .language-selector {
-        background: rgba(30, 27, 75, 0.95);
+        background: rgba(14, 26, 24, 0.92);
         border-color: var(--border);
     }
 
@@ -309,7 +225,7 @@
     }
 
     :root[data-theme="auto"] .auth-section {
-        background: rgba(30, 27, 75, 0.98);
+        background: rgba(14, 26, 24, 0.96);
     }
 
     :root[data-theme="auto"] .auth-tabs {
@@ -368,12 +284,22 @@
     }
 }
 
-/* Smooth theme transitions */
-* {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+/* ---------- Smooth theme transitions ---------- */
+*,
+*::before,
+*::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Preserve animations and transforms */
-*:is(:hover, :focus, :active) {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+:is(:hover, :focus, :active) {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Respect reduced motion for theme transitions */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
 }

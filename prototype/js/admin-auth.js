@@ -124,55 +124,22 @@ class AdminAuth {
     }
     
     // Static method to verify admin access
+    // Authentication is removed for the prototype - admin pages are open.
     static verifyAdminAccess() {
-        const adminSession = localStorage.getItem('campusMindspace_adminSession');
-        const adminAuth = sessionStorage.getItem('campusMindspace_adminAuth');
-        
-        if (!adminSession || adminAuth !== 'true') {
-            // Not authenticated, redirect to login
-            window.location.href = 'admin-login.html';
-            return false;
-        }
-        
-        try {
-            const session = JSON.parse(adminSession);
-            
-            // Check if session is still valid (24 hours)
-            const loginTime = new Date(session.loginTime);
-            const now = new Date();
-            const hoursSinceLogin = (now - loginTime) / (1000 * 60 * 60);
-            
-            if (hoursSinceLogin > 24) {
-                // Session expired
-                AdminAuth.logout();
-                return false;
-            }
-            
-            return session.isAdmin === true;
-        } catch (error) {
-            AdminAuth.logout();
-            return false;
-        }
+        return true;
     }
     
     // Static method to logout admin
     static logout() {
-        localStorage.removeItem('campusMindspace_adminSession');
-        sessionStorage.removeItem('campusMindspace_adminAuth');
-        window.location.href = 'admin-login.html';
+        window.location.href = 'index.html';
     }
     
     // Static method to get admin info
     static getAdminInfo() {
-        const adminSession = localStorage.getItem('campusMindspace_adminSession');
-        if (adminSession) {
-            try {
-                return JSON.parse(adminSession);
-            } catch (error) {
-                return null;
-            }
-        }
-        return null;
+        return {
+            username: 'Administrator',
+            isAdmin: true
+        };
     }
 }
 

@@ -491,8 +491,8 @@ class WellnessInsightsSystem {
                             <p>${rec.description}</p>
                         </div>
                         <div class="recommendation-meta">
-                            <span class="time-estimate">⏱️ ${rec.estimatedTime}</span>
-                            <span class="difficulty">📊 ${rec.difficulty}</span>
+                            <span class="time-estimate">${rec.estimatedTime}</span>
+                            <span class="difficulty">${rec.difficulty}</span>
                         </div>
                         <div class="recommendation-actions">
                             <button class="recommendation-btn" data-recommendation="${rec.id}">

@@ -55,11 +55,8 @@ class AdvancedFeatures {
         this.currentTheme = theme;
         const root = document.documentElement;
         
-        // Remove existing theme classes
-        root.classList.remove('theme-ocean', 'theme-sunset', 'theme-forest', 'theme-cosmic');
-        
-        // Add new theme class
-        root.classList.add(`theme-${theme}`);
+        // Single theme attribute drives the unified design system
+        root.setAttribute('data-theme', theme);
         
         // Update theme variables
         this.updateThemeVariables(theme);
@@ -145,50 +142,25 @@ class AdvancedFeatures {
     }
 
     setup3DEffects() {
+        // Reduced to a subtle lift - full 3D tilt felt unprofessional for a wellness product
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
         const cards = document.querySelectorAll('.action-card, .stat-card, .badge-item');
         
         cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const rotateX = (y - centerY) / 10;
-                const rotateY = (centerX - x) / 10;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'transform 0.2s ease, box-shadow 0.2s ease';
+                card.style.transform = 'translateY(-3px)';
             });
             
             card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+                card.style.transform = '';
             });
         });
     }
 
     setupParallaxEffects() {
-        const parallaxElements = document.querySelectorAll('.mood-visualization, .features-preview');
-        
-        // Use throttled scroll handler for better performance
-        let ticking = false;
-        const handleScroll = () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    const scrolled = window.pageYOffset;
-                    const rate = scrolled * -0.5;
-                    
-                    parallaxElements.forEach(element => {
-                        element.style.transform = `translateY(${rate}px)`;
-                    });
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        };
-        
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        // Parallax on scroll removed - kept scroll-free for calm and performance
     }
 
     setupTypingAnimation() {
@@ -243,6 +215,9 @@ class AdvancedFeatures {
                 document.querySelectorAll('.theme-option').forEach(btn => btn.classList.remove('active'));
                 activeButton.classList.add('active');
             }
+        } else {
+            // Ensure the unified theme attribute is always set (ocean is the default brand)
+            this.applyTheme('ocean');
         }
     }
 
@@ -320,19 +295,17 @@ class AdvancedFeatures {
         
         if (indicators.length === 0 || testimonialCards.length === 0) return;
 
-        let currentTestimonial = 0;
-        let carouselInterval = null;
+        this.currentTestimonial = 0;
+        this.carouselInterval = null;
 
         // Handle indicator clicks
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 this.showTestimonial(index);
-                currentTestimonial = index;
+                this.currentTestimonial = index;
                 
-                // Reset auto-rotation timer
-                if (carouselInterval) {
-                    clearInterval(carouselInterval);
-                }
+                // Restart auto-rotation with a single interval
+                this.stopAutoRotation();
                 this.startAutoRotation();
             });
         });
@@ -343,15 +316,24 @@ class AdvancedFeatures {
 
     startAutoRotation() {
         const testimonialCards = document.querySelectorAll('.testimonial-card');
-        let currentTestimonial = 0;
-        
+        if (testimonialCards.length === 0) return;
+
+        // Guard against multiple concurrent intervals
+        this.stopAutoRotation();
+
         const rotateTestimonials = () => {
-            currentTestimonial = (currentTestimonial + 1) % testimonialCards.length;
-            this.showTestimonial(currentTestimonial);
+            this.currentTestimonial = (this.currentTestimonial + 1) % testimonialCards.length;
+            this.showTestimonial(this.currentTestimonial);
         };
-        
-        // Use longer interval for better performance
-        return setInterval(rotateTestimonials, 8000);
+
+        this.carouselInterval = setInterval(rotateTestimonials, 8000);
+    }
+
+    stopAutoRotation() {
+        if (this.carouselInterval) {
+            clearInterval(this.carouselInterval);
+            this.carouselInterval = null;
+        }
     }
 
     showTestimonial(index) {

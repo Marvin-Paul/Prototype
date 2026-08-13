@@ -25,7 +25,7 @@
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://your-domain.com/admin-login.html</loc>
+    <loc>https://your-domain.com/admin-dashboard.html</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>

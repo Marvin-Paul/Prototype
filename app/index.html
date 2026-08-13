@@ -53,6 +53,16 @@
     <!-- External resources -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Inline critical paint: dark ink background so the first paint matches
+         the loading overlay instead of flashing the light theme first. -->
+    <style>
+        html,
+        body {
+            margin: 0;
+            background-color: #0e0f0c;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>

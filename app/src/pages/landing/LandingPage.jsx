@@ -19,24 +19,6 @@ const STATS = [
   { num: '50+', label: 'Counselors' },
 ]
 
-const TESTIMONIALS = [
-  {
-    quote: 'Campus Mindspace helped me manage my anxiety during finals. The meditation sessions were a game-changer!',
-    name: 'Sarah M.',
-    role: 'Psychology Major',
-  },
-  {
-    quote: 'The group chat feature connected me with amazing people going through similar struggles. I feel less alone now.',
-    name: 'Alex K.',
-    role: 'Engineering Student',
-  },
-  {
-    quote: "The progress tracking helped me see how much I've improved. It's incredibly motivating!",
-    name: 'Maria L.',
-    role: 'Business Major',
-  },
-]
-
 const STEPS = [
   {
     num: '1',
@@ -100,12 +82,12 @@ function LoadingOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(135deg,#10120e_0%,#1c2318_100%)] transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(135deg,#1c2318_0%,#0e0f0c_100%)] transition-opacity duration-500 ${
         phase === 'hiding' ? 'pointer-events-none opacity-0' : 'opacity-100'
       }`}
     >
       <div className="text-center text-white">
-        <div className="mx-auto mb-12 flex h-[120px] w-[120px] animate-pulse-soft items-center justify-center rounded-full border-2 border-white/20 bg-white/10 text-[3rem] backdrop-blur-xl">
+        <div className="mx-auto mb-12 flex h-[120px] w-[120px] animate-pulse-soft items-center justify-center rounded-full border-2 border-[#9fe870]/40 bg-white/10 text-[3rem] text-[#cdffad] shadow-[0_0_50px_rgba(159,232,112,0.35)] backdrop-blur-xl">
           <i className="fas fa-brain" />
         </div>
         <h2 className="mb-4 bg-gradient-to-br from-white to-[#9fe870] bg-clip-text text-3xl font-bold text-transparent">
@@ -113,13 +95,15 @@ function LoadingOverlay() {
         </h2>
         <p className="mb-12 text-lg text-white/80">Loading your wellness journey...</p>
         <div className="mx-auto w-[300px]">
-          <div className="mb-4 h-2 w-full overflow-hidden rounded-full bg-white/20">
+          <div className="mb-4 h-2.5 w-full overflow-hidden rounded-full bg-white/15">
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#9fe870,#cdffad)] shadow-[0_0_20px_rgba(159,232,112,0.5)] transition-all duration-300"
+              className="h-full rounded-full bg-[linear-gradient(90deg,#9fe870,#cdffad)] shadow-[0_0_24px_rgba(159,232,112,0.6)] transition-all duration-300"
               style={{ width: `${Math.round(progress)}%` }}
             />
           </div>
-          <div className="text-center text-lg font-semibold">{Math.round(progress)}%</div>
+          <div className="bg-gradient-to-r from-[#cdffad] to-[#9fe870] bg-clip-text text-center text-lg font-bold text-transparent">
+            {Math.round(progress)}%
+          </div>
         </div>
       </div>
     </div>
@@ -205,26 +189,6 @@ function LanguageSelect() {
 export default function LandingPage() {
   const { overlayGradient } = useTheme()
   const { t } = useLanguage()
-  const [slide, setSlide] = useState(0)
-  const timerRef = useRef(null)
-
-  const restartTimer = () => {
-    clearInterval(timerRef.current)
-    timerRef.current = setInterval(() => {
-      setSlide((s) => (s + 1) % TESTIMONIALS.length)
-    }, 8000)
-  }
-
-  useEffect(() => {
-    restartTimer()
-    return () => clearInterval(timerRef.current)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const goToSlide = (i) => {
-    setSlide(i)
-    restartTimer()
-  }
 
   return (
     <>
@@ -312,51 +276,6 @@ export default function LandingPage() {
             </div>
           </section>
 
-          {/* Testimonials */}
-          <section className="mb-16 text-center">
-            <h2 className="mb-1 text-3xl font-bold text-white">What Students Say</h2>
-            <p className="mb-12 text-lg text-white/80">Real experiences from our community</p>
-            <div className="relative mx-auto max-w-[800px] overflow-hidden rounded-3xl">
-              <div className="animate-fade-up rounded-3xl border border-white/30 bg-white/95 p-12 shadow-xl backdrop-blur-xl">
-                <div className="mb-6 text-[3rem] opacity-30" style={{ color: 'var(--primary-color)' }}>
-                  <i className="fas fa-quote-left" />
-                </div>
-                <p className="relative mb-8 text-lg italic leading-[1.6]" style={{ color: 'var(--text-primary)' }}>
-                  “{TESTIMONIALS[slide].quote}”
-                </p>
-                <div className="flex items-center justify-center gap-6">
-                  <div
-                    className="flex h-[60px] w-[60px] items-center justify-center rounded-full text-[1.5rem] text-white"
-                    style={{ background: 'var(--primary-gradient)' }}
-                  >
-                    <i className="fas fa-user" />
-                  </div>
-                  <div className="text-left">
-                    <h4 className="mb-1 text-lg font-semibold" style={{ color: 'var(--text-primary)' }}>
-                      {TESTIMONIALS[slide].name}
-                    </h4>
-                    <span className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                      {TESTIMONIALS[slide].role}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="mt-8 flex justify-center gap-4">
-              {TESTIMONIALS.map((_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  aria-label={`Go to testimonial slide ${i + 1}`}
-                  onClick={() => goToSlide(i)}
-                  className={`h-3 w-3 rounded-full border-none transition-all duration-300 ${
-                    slide === i ? 'scale-125 bg-white' : 'bg-white/30 hover:bg-white/60'
-                  }`}
-                />
-              ))}
-            </div>
-          </section>
-
           {/* Quick start */}
           <section className="mb-16 text-center">
             <h2 className="mb-1 text-3xl font-bold text-white">Get Started in 3 Steps</h2>
@@ -437,23 +356,6 @@ export default function LandingPage() {
               </div>
             </div>
           </section>
-
-          {/* Trust indicators */}
-          <div className="mt-16 flex flex-wrap justify-center gap-8">
-            {[
-              { icon: 'fa-shield-alt', label: t('secure_trusted') },
-              { icon: 'fa-user-md', label: t('professional_counselors') },
-              { icon: 'fa-lock', label: t('privacy_protected') },
-            ].map((b) => (
-              <div
-                key={b.label}
-                className="flex items-center gap-4 rounded-full border border-white/20 bg-white/10 px-6 py-3 text-base font-medium text-white/90 backdrop-blur-[10px] transition-all duration-150 hover:-translate-y-0.5 hover:bg-white/20 hover:shadow-md"
-              >
-                <i className={`fas ${b.icon} text-xl text-accent-green`} />
-                <span>{b.label}</span>
-              </div>
-            ))}
-          </div>
 
           {/* Footer */}
           <footer className="mt-12 rounded-2xl border border-white/10 bg-[rgba(14,15,12,0.55)] p-6 text-[#e8efed] backdrop-blur-[6px] md:p-8">

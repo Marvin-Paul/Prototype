@@ -98,11 +98,11 @@ export default function AffirmationGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={spin} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={spin} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             <i className="fas fa-sync-alt mr-2" />
             Get Affirmation
           </button>
-          <button type="button" onClick={favorite} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={favorite} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             <i className="fas fa-heart mr-2" />
             Favorite
           </button>
@@ -111,7 +111,7 @@ export default function AffirmationGame() {
     >
       <div className="flex min-h-[90px] items-center justify-center rounded-2xl bg-canvas px-4 py-5 text-center">
         {current ? (
-          <p className="text-base font-semibold text-primary italic">"{current}"</p>
+          <p className="text-base font-semibold text-primary-text italic">"{current}"</p>
         ) : (
           <p className="text-sm text-ink-3">Click the button to receive your daily affirmation!</p>
         )}
@@ -124,8 +124,8 @@ export default function AffirmationGame() {
             onClick={() => setCategory(cat)}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
               category === cat
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary'
+                ? 'border-primary bg-primary/10 text-primary-text'
+                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             {cat}

@@ -7,6 +7,7 @@ import ResourcesSection from './sections/ResourcesSection'
 import AppointmentsSection from './sections/AppointmentsSection'
 import InsightsSection from './sections/InsightsSection'
 import GamesSection from './sections/GamesSection'
+import GroupsSection from './sections/GroupsSection'
 import ComingSoonSection from './sections/ComingSoonSection'
 import Chatbot from './components/Chatbot'
 import SystemStatus from './components/SystemStatus'
@@ -33,7 +34,7 @@ const SECTION_ICONS = {
   insights: 'fa-chart-line',
 }
 
-const COMING_SOON_SECTIONS = ['groups']
+const COMING_SOON_SECTIONS = []
 
 export default function DashboardPage() {
   const { t, lang, setLang } = useLanguage()
@@ -59,14 +60,14 @@ export default function DashboardPage() {
   }
 
   const dropdownItemClass =
-    'block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-ink-2 transition-all duration-200 hover:translate-x-1 hover:bg-surface-hover hover:text-primary'
+    'block w-full rounded-xl px-4 py-2.5 text-left text-sm font-medium text-ink-2 transition-all duration-200 hover:translate-x-1 hover:bg-surface-hover hover:text-primary-text'
 
   return (
     <div className="min-h-screen bg-canvas text-ink">
       {/* Navbar */}
       <nav className="sticky top-0 z-40 border-b border-line-light bg-surface/98 shadow-lg backdrop-blur">
         <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
-          <a href="/index.html" className="flex shrink-0 items-center gap-3 text-xl font-bold text-primary">
+          <a href="index.html" className="flex shrink-0 items-center gap-3 text-xl font-bold text-primary-text">
             <i className="fas fa-brain bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] bg-clip-text text-2xl text-transparent" />
             <span className="hidden sm:inline">{t('welcome_title')}</span>
           </a>
@@ -83,8 +84,8 @@ export default function DashboardPage() {
                 }}
                 className={`relative whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
                   section === item.id
-                    ? 'bg-primary/5 text-primary'
-                    : 'text-ink-2 hover:bg-surface-hover hover:text-primary'
+                    ? 'bg-primary/5 text-primary-text'
+                    : 'text-ink-2 hover:bg-surface-hover hover:text-primary-text'
                 }`}
               >
                 {t(item.key)}
@@ -105,9 +106,9 @@ export default function DashboardPage() {
             </select>
 
             <a
-              href="/admin-dashboard.html"
+              href="admin-dashboard.html"
               title="Admin Portal"
-              className="hidden items-center gap-2 rounded-full border border-line-light px-4 py-2 text-sm font-medium text-ink-2 transition-all duration-200 hover:border-primary hover:text-primary xl:flex"
+              className="hidden items-center gap-2 rounded-full border border-line-light px-4 py-2 text-sm font-medium text-ink-2 transition-all duration-200 hover:border-primary hover:text-primary-text xl:flex"
             >
               <i className="fas fa-shield-alt" />
               <span>{t('admin_shortcut')}</span>
@@ -118,7 +119,7 @@ export default function DashboardPage() {
                 type="button"
                 aria-label="Profile Menu"
                 onClick={() => setMenuOpen((open) => !open)}
-                className="relative flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:scale-105 hover:bg-surface-hover hover:text-primary"
+                className="relative flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:scale-105 hover:bg-surface-hover hover:text-primary-text"
               >
                 <i className="fas fa-user-circle" />
                 <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-success" />
@@ -131,13 +132,13 @@ export default function DashboardPage() {
                     : 'invisible -translate-y-2 scale-95 opacity-0'
                 }`}
               >
-                <a href="/settings.html" className={dropdownItemClass}>
-                  <i className="fas fa-cog mr-3 w-4 text-primary" /> {t('profile_settings')}
+                <a href="settings.html" className={dropdownItemClass}>
+                  <i className="fas fa-cog mr-3 w-4 text-primary-text" /> {t('profile_settings')}
                 </a>
-                <a href="/support.html" className={dropdownItemClass}>
-                  <i className="fas fa-life-ring mr-3 w-4 text-primary" /> {t('profile_help')}
+                <a href="support.html" className={dropdownItemClass}>
+                  <i className="fas fa-life-ring mr-3 w-4 text-primary-text" /> {t('profile_help')}
                 </a>
-                <a href="/index.html" className={`${dropdownItemClass} font-semibold text-danger hover:bg-danger/10 hover:text-danger`}>
+                <a href="index.html" className={`${dropdownItemClass} font-semibold text-danger hover:bg-danger/10 hover:text-danger`}>
                   <i className="fas fa-sign-out-alt mr-3 w-4" /> {t('exit_home')}
                 </a>
               </div>
@@ -148,7 +149,7 @@ export default function DashboardPage() {
               type="button"
               aria-label="Toggle Navigation"
               onClick={() => setMobileOpen((open) => !open)}
-              className="flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:bg-surface-hover hover:text-primary lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:bg-surface-hover hover:text-primary-text lg:hidden"
             >
               <i className={`fas ${mobileOpen ? 'fa-times' : 'fa-bars'}`} />
             </button>
@@ -178,7 +179,7 @@ export default function DashboardPage() {
                     navigateTo(item.id)
                   }}
                   className={`block rounded-xl px-4 py-2.5 text-sm font-medium transition-colors ${
-                    section === item.id ? 'bg-primary/5 text-primary' : 'text-ink-2 hover:bg-surface-hover hover:text-primary'
+                    section === item.id ? 'bg-primary/5 text-primary-text' : 'text-ink-2 hover:bg-surface-hover hover:text-primary-text'
                   }`}
                 >
                   {t(item.key)}
@@ -205,6 +206,8 @@ export default function DashboardPage() {
           <InsightsSection key={section} />
         ) : section === 'games' ? (
           <GamesSection key={section} />
+        ) : section === 'groups' ? (
+          <GroupsSection key={section} />
         ) : COMING_SOON_SECTIONS.includes(section) ? (
           <ComingSoonSection key={section} icon={SECTION_ICONS[section] ?? 'fa-brain'} titleKey={`nav_${section}`} />
         ) : null}

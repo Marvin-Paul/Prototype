@@ -83,7 +83,7 @@ export default function MoodCheckGame() {
         { label: 'Trend', value: trend() },
       ]}
       controls={
-        <button type="button" onClick={save} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+        <button type="button" onClick={save} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
           <i className="fas fa-save mr-2" />
           Save Check-in
         </button>
@@ -112,7 +112,7 @@ export default function MoodCheckGame() {
             type="button"
             onClick={() => toggleFactor(f)}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
-              factors.includes(f) ? 'border-primary bg-primary/10 text-primary' : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary'
+              factors.includes(f) ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             {f}

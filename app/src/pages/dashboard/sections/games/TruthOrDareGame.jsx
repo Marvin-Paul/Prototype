@@ -74,13 +74,13 @@ export default function TruthOrDareGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={getTruth} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={getTruth} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             Truth
           </button>
           <button type="button" onClick={getDare} className="rounded-xl bg-danger px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
             Dare
           </button>
-          <button type="button" onClick={next} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={next} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Next
           </button>
         </>

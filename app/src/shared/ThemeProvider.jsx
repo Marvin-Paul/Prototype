@@ -4,26 +4,26 @@ const ACCENTS = [
   {
     key: 'ocean',
     label: 'Ocean',
-    preview: 'linear-gradient(135deg, #00b5ad, #008b85)',
-    overlay: 'linear-gradient(135deg, rgba(45,106,95,0.85) 0%, rgba(29,74,63,0.90) 100%)',
+    preview: 'linear-gradient(135deg, #9fe870, #7ed24b)',
+    overlay: 'linear-gradient(135deg, rgba(14,15,12,0.85) 0%, rgba(30,42,20,0.92) 100%)',
   },
   {
     key: 'sunset',
     label: 'Sunset',
-    preview: 'linear-gradient(135deg, #ff6b6b, #ffa500)',
-    overlay: 'linear-gradient(135deg, rgba(255,107,107,0.85) 0%, rgba(255,165,0,0.90) 100%)',
+    preview: 'linear-gradient(135deg, #cdffad, #9fe870)',
+    overlay: 'linear-gradient(135deg, rgba(20,26,16,0.85) 0%, rgba(38,52,24,0.92) 100%)',
   },
   {
     key: 'forest',
     label: 'Forest',
-    preview: 'linear-gradient(135deg, #51cf66, #40c057)',
-    overlay: 'linear-gradient(135deg, rgba(81,207,102,0.85) 0%, rgba(64,192,87,0.90) 100%)',
+    preview: 'linear-gradient(135deg, #7ed24b, #4fae2a)',
+    overlay: 'linear-gradient(135deg, rgba(10,16,8,0.85) 0%, rgba(24,36,16,0.92) 100%)',
   },
   {
     key: 'cosmic',
     label: 'Cosmic',
-    preview: 'linear-gradient(135deg, #9775fa, #748ffc)',
-    overlay: 'linear-gradient(135deg, rgba(151,117,250,0.85) 0%, rgba(116,143,252,0.90) 100%)',
+    preview: 'linear-gradient(135deg, #b5e88a, #86d84e)',
+    overlay: 'linear-gradient(135deg, rgba(16,20,12,0.85) 0%, rgba(32,44,22,0.92) 100%)',
   },
 ]
 

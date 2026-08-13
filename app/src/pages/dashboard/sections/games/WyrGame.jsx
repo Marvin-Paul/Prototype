@@ -73,7 +73,7 @@ export default function WyrGame() {
         }`}
       >
         <span className="text-sm font-medium text-ink">{value}</span>
-        <span className={`text-lg font-extrabold ${percents ? (chosen === side ? 'text-primary' : 'text-ink-3') : 'text-ink-3'}`}>
+        <span className={`text-lg font-extrabold ${percents ? (chosen === side ? 'text-primary-text' : 'text-ink-3') : 'text-ink-3'}`}>
           {percents ? `${percents[side]}%` : '--%'}
         </span>
       </button>
@@ -91,10 +91,10 @@ export default function WyrGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={next} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={next} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             New Question
           </button>
-          <button type="button" onClick={share} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={share} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Share
           </button>
         </>
@@ -118,8 +118,8 @@ export default function WyrGame() {
             }}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
               category === cat
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary'
+                ? 'border-primary bg-primary/10 text-primary-text'
+                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             {cat}

@@ -85,7 +85,7 @@ function buildProgress(mood, therapy, meditation) {
 const PRIORITY_STYLES = {
   high: 'bg-danger/10 text-danger',
   medium: 'bg-amber-400/15 text-amber-600',
-  low: 'bg-primary/10 text-primary',
+  low: 'bg-primary/10 text-primary-text',
 }
 
 const BARS = [
@@ -174,7 +174,7 @@ export default function InsightsSection() {
                 <i className={`fas ${card.icon}`} />
               </div>
               <h3 className="mt-4 font-bold text-ink">{card.title}</h3>
-              <p className="mt-1 text-sm font-medium text-primary">{card.summary}</p>
+              <p className="mt-1 text-sm font-medium text-primary-text">{card.summary}</p>
               <p className="mt-3 flex items-center gap-1 text-xs font-semibold text-ink-2">
                 <i className="fas fa-eye" /> View details
               </p>
@@ -194,7 +194,7 @@ export default function InsightsSection() {
               <div key={rec.id} className="rounded-3xl border border-line-light bg-surface p-6 shadow-lg">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-center gap-3">
-                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-lg text-primary"><i className={`fas ${rec.icon}`} /></span>
+                    <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-lg text-primary-text"><i className={`fas ${rec.icon}`} /></span>
                     <h3 className="font-bold text-ink">{rec.title}</h3>
                   </div>
                   <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold capitalize ${PRIORITY_STYLES[rec.priority]}`}>{rec.priority}</span>
@@ -202,7 +202,7 @@ export default function InsightsSection() {
                 <p className="mt-3 text-sm text-ink-2">{rec.description}</p>
                 <ul className="mt-3 space-y-1.5">
                   {rec.actions.map((a) => (
-                    <li key={a} className="flex items-start gap-2 text-xs text-ink-2"><i className="fas fa-check mt-0.5 text-primary" />{a}</li>
+                    <li key={a} className="flex items-start gap-2 text-xs text-ink-2"><i className="fas fa-check mt-0.5 text-primary-text" />{a}</li>
                   ))}
                 </ul>
                 <div className="mt-4 flex items-center justify-between">
@@ -213,7 +213,7 @@ export default function InsightsSection() {
                   <button
                     type="button"
                     onClick={() => notify(`Starting: ${rec.title}`, 'success')}
-                    className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-bold text-white shadow-md transition-transform hover:scale-105"
+                    className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-bold text-on-primary shadow-md transition-transform hover:scale-105"
                   >
                     Start Now
                   </button>
@@ -240,7 +240,7 @@ export default function InsightsSection() {
             {BARS.map((bar) => (
               <div key={bar.id}>
                 <div className="mb-1.5 flex items-center justify-between text-sm">
-                  <span className="flex items-center gap-2 font-semibold text-ink-2"><i className={`fas ${bar.icon} text-primary`} />{bar.label}</span>
+                  <span className="flex items-center gap-2 font-semibold text-ink-2"><i className={`fas ${bar.icon} text-primary-text`} />{bar.label}</span>
                   <span className="font-bold text-ink">{data.progress[bar.id]}%</span>
                 </div>
                 <div className="h-2.5 overflow-hidden rounded-full bg-line">
@@ -263,7 +263,7 @@ export default function InsightsSection() {
             placeholder="Add a wellness goal..."
             className="flex-1 rounded-xl border border-line bg-canvas px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-primary focus:outline-none"
           />
-          <button type="button" onClick={addGoal} className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-5 py-2.5 text-sm font-bold text-white shadow-md transition-transform hover:scale-105">
+          <button type="button" onClick={addGoal} className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-5 py-2.5 text-sm font-bold text-on-primary shadow-md transition-transform hover:scale-105">
             <i className="fas fa-plus" />
           </button>
         </div>
@@ -293,11 +293,11 @@ export default function InsightsSection() {
             <p className="rounded-2xl bg-canvas p-4 text-sm font-semibold text-ink">{detail.summary}</p>
             <ul className="mt-4 space-y-2">
               {detail.details.map((d) => (
-                <li key={d} className="flex items-start gap-2 text-sm text-ink-2"><i className="fas fa-check mt-0.5 text-primary" />{d}</li>
+                <li key={d} className="flex items-start gap-2 text-sm text-ink-2"><i className="fas fa-check mt-0.5 text-primary-text" />{d}</li>
               ))}
             </ul>
             <div className="mt-5 flex gap-2">
-              <button type="button" onClick={() => { setDetail(null); notify('Recommendation added', 'success') }} className="flex-1 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] py-2.5 text-sm font-bold text-white shadow-md transition-transform hover:scale-[1.02]">
+              <button type="button" onClick={() => { setDetail(null); notify('Recommendation added', 'success') }} className="flex-1 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] py-2.5 text-sm font-bold text-on-primary shadow-md transition-transform hover:scale-[1.02]">
                 Get Recommendations
               </button>
             </div>

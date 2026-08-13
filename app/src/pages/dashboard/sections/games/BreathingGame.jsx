@@ -89,7 +89,7 @@ export default function BreathingGame() {
       controls={
         <>
           {!running ? (
-            <button type="button" onClick={start} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+            <button type="button" onClick={start} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
               <i className="fas fa-play mr-2" />
               Start Exercise
             </button>
@@ -107,7 +107,7 @@ export default function BreathingGame() {
                 onClick={() => setPreset(key)}
                 disabled={running}
                 className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
-                  preset === key ? 'border-primary bg-primary/10 text-primary' : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary'
+                  preset === key ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
                 }`}
               >
                 {key}
@@ -122,7 +122,7 @@ export default function BreathingGame() {
           className={`flex h-44 w-44 items-center justify-center rounded-full border-4 border-primary/30 bg-primary/10 transition-transform duration-700 ease-in-out ${scale}`}
         >
           <div className="text-center">
-            <div className="text-lg font-bold text-primary capitalize">{phase === 'ready' ? 'Get Ready' : phase}</div>
+            <div className="text-lg font-bold text-primary-text capitalize">{phase === 'ready' ? 'Get Ready' : phase}</div>
             <div className="mt-1 px-4 text-xs text-ink-2">{instruction}</div>
           </div>
         </div>

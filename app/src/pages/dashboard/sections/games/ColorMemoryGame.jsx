@@ -108,7 +108,7 @@ export default function ColorMemoryGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={start} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={start} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             Start Game
           </button>
           <button
@@ -118,7 +118,7 @@ export default function ColorMemoryGame() {
               setStatus('Watch the sequence...')
               playSequence(sequence)
             }}
-            className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary"
+            className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
           >
             Replay
           </button>

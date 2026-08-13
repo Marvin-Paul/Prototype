@@ -196,8 +196,8 @@ export default function ResourcesSection() {
             onClick={() => switchCategory(cat.id)}
             className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all ${
               category === cat.id
-                ? 'bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-white shadow-md'
-                : 'border border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary'
+                ? 'bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-md'
+                : 'border border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             <i className={`fas ${cat.icon}`} />
@@ -223,7 +223,7 @@ export default function ResourcesSection() {
                     notify(shuffle ? 'Shuffle off' : 'Shuffle on', 'info')
                   }}
                   title="Shuffle"
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${shuffle ? 'border-primary bg-primary/10 text-primary' : 'border-line-light text-ink-2'}`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${shuffle ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light text-ink-2'}`}
                 >
                   <i className="fas fa-random" />
                 </button>
@@ -234,7 +234,7 @@ export default function ResourcesSection() {
                     notify(repeat ? 'Repeat off' : 'Repeat on', 'info')
                   }}
                   title="Repeat"
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${repeat ? 'border-primary bg-primary/10 text-primary' : 'border-line-light text-ink-2'}`}
+                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${repeat ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light text-ink-2'}`}
                 >
                   <i className="fas fa-repeat" />
                 </button>
@@ -242,17 +242,17 @@ export default function ResourcesSection() {
             </div>
 
             <div className="mt-4 flex items-center justify-center gap-4">
-              <button type="button" onClick={prevTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary">
+              <button type="button" onClick={prevTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary-text">
                 <i className="fas fa-step-backward" />
               </button>
               <button
                 type="button"
                 onClick={togglePlay}
-                className="flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-white shadow-glow transition-transform hover:scale-110"
+                className="flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-glow transition-transform hover:scale-110"
               >
                 <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'}`} />
               </button>
-              <button type="button" onClick={nextTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary">
+              <button type="button" onClick={nextTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary-text">
                 <i className="fas fa-step-forward" />
               </button>
             </div>
@@ -284,7 +284,7 @@ export default function ResourcesSection() {
                 <div className="flex min-w-0 items-center gap-4">
                   <span className="w-4 text-sm text-ink-3">{i + 1}</span>
                   <span className={`h-2 w-2 rounded-full ${currentTrackId === track.id && isPlaying ? 'animate-pulse bg-primary' : 'bg-ink-3'}`} />
-                  <span className={`truncate text-sm font-medium ${currentTrackId === track.id ? 'text-primary' : 'text-ink'}`}>{track.title}</span>
+                  <span className={`truncate text-sm font-medium ${currentTrackId === track.id ? 'text-primary-text' : 'text-ink'}`}>{track.title}</span>
                 </div>
                 <span className="shrink-0 text-xs text-ink-2">{track.duration}</span>
               </button>
@@ -305,7 +305,7 @@ export default function ResourcesSection() {
                   >
                     <span className="text-sm font-medium text-ink">{p.title}</span>
                     <span className="flex items-center gap-2 text-xs text-ink-2">
-                      {p.episodes} episodes <i className="fas fa-play text-primary" />
+                      {p.episodes} episodes <i className="fas fa-play text-primary-text" />
                     </span>
                   </button>
                 ))}
@@ -325,7 +325,7 @@ export default function ResourcesSection() {
                       <p className="text-sm font-medium text-ink">{a.title}</p>
                       <p className="text-xs text-ink-3">{a.note}</p>
                     </div>
-                    <i className="fas fa-headphones text-primary" />
+                    <i className="fas fa-headphones text-primary-text" />
                   </button>
                 ))}
               </div>
@@ -348,7 +348,7 @@ export default function ResourcesSection() {
                     rel="noreferrer"
                     className="flex items-center gap-4 rounded-xl bg-canvas px-4 py-3 transition-colors hover:bg-surface-hover"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary">
                       <i className="fas fa-play text-xs" />
                     </span>
                     <div className="min-w-0 flex-1">
@@ -380,7 +380,7 @@ export default function ResourcesSection() {
                     <p className="mt-1 flex flex-wrap gap-1.5">
                       <span className="text-xs text-ink-2">{a.readTime}</span>
                       {a.tags.map((tag) => (
-                        <span key={tag} className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary">{tag}</span>
+                        <span key={tag} className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary-text">{tag}</span>
                       ))}
                     </p>
                     <p className="mt-2 text-xs text-ink-2">Click to read</p>
@@ -408,7 +408,7 @@ export default function ResourcesSection() {
                     }}
                     className="flex items-center gap-3 rounded-2xl border border-line-light bg-canvas px-4 py-4 text-left transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
                   >
-                    <i className="fas fa-toolbox text-primary" />
+                    <i className="fas fa-toolbox text-primary-text" />
                     <span className="text-sm font-medium text-ink">{tool}</span>
                   </button>
                 ))}
@@ -437,7 +437,7 @@ export default function ResourcesSection() {
                   onClick={() => {
                     if (window.confirm(`${c.action === 'call' ? 'Call' : 'Text'} ${c.number}?`)) notify(`${c.action === 'call' ? 'Calling' : 'Texting'} ${c.number}...`, 'info')
                   }}
-                  className="shrink-0 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-bold text-white shadow-md transition-transform hover:scale-105"
+                  className="shrink-0 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-bold text-on-primary shadow-md transition-transform hover:scale-105"
                 >
                   {c.action === 'call' ? 'Call' : 'Text'}
                 </button>
@@ -453,7 +453,7 @@ export default function ResourcesSection() {
                   <button
                     type="button"
                     onClick={() => notify('Download link coming soon', 'info')}
-                    className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-white"
+                    className="rounded-full bg-primary/10 px-3 py-1.5 text-xs font-bold text-primary-text transition-colors hover:bg-primary hover:text-on-primary"
                   >
                     Download
                   </button>
@@ -470,7 +470,7 @@ export default function ResourcesSection() {
           <div>
             <div className="mb-4 flex flex-wrap gap-1.5">
               {articleOpen.tags.map((tag) => (
-                <span key={tag} className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary">{tag}</span>
+                <span key={tag} className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-semibold text-primary-text">{tag}</span>
               ))}
               <span className="rounded-full bg-ink-3/10 px-2.5 py-1 text-[11px] font-semibold text-ink-2">{articleOpen.readTime}</span>
             </div>
@@ -545,7 +545,7 @@ function PomodoroModal({ open, onClose }) {
             type="button"
             onClick={() => switchMode(m.id)}
             className={`rounded-full px-4 py-2 text-xs font-semibold transition-colors ${
-              mode === m.id ? 'bg-primary text-white' : 'bg-canvas text-ink-2 hover:text-primary'
+              mode === m.id ? 'bg-primary text-on-primary' : 'bg-canvas text-ink-2 hover:text-primary-text'
             }`}
           >
             {m.label}
@@ -572,7 +572,7 @@ function PomodoroModal({ open, onClose }) {
         <button
           type="button"
           onClick={() => setRunning((r) => !r)}
-          className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+          className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
         >
           <i className={`fas ${running ? 'fa-pause' : 'fa-play'} mr-2`} />
           {running ? 'Pause' : 'Start'}
@@ -590,7 +590,7 @@ function PomodoroModal({ open, onClose }) {
       </div>
 
       <p className="mt-4 text-center text-sm font-semibold text-ink-2">
-        Focus sessions completed: <span className="text-primary">{completed}</span>
+        Focus sessions completed: <span className="text-primary-text">{completed}</span>
       </p>
     </Modal>
   )

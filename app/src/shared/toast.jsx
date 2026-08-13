@@ -20,7 +20,7 @@ const TYPE_STYLES = {
   danger: { icon: 'fa-exclamation-circle', color: 'text-danger', bar: 'bg-danger' },
   error: { icon: 'fa-exclamation-circle', color: 'text-danger', bar: 'bg-danger' },
   warning: { icon: 'fa-exclamation-triangle', color: 'text-warning', bar: 'bg-warning' },
-  info: { icon: 'fa-info-circle', color: 'text-primary', bar: 'bg-primary' },
+  info: { icon: 'fa-info-circle', color: 'text-primary-text', bar: 'bg-primary' },
 }
 
 export function Toasts() {

@@ -118,7 +118,7 @@ export default function Chatbot() {
         type="button"
         aria-label="Chat"
         onClick={() => setOpen(true)}
-        className={`fixed bottom-5 right-5 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-white shadow-glow transition-all duration-300 hover:scale-110 ${open ? 'hidden' : ''}`}
+        className={`fixed bottom-5 right-5 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-glow transition-all duration-300 hover:scale-110 ${open ? 'hidden' : ''}`}
       >
         <i className="fas fa-comments text-xl" />
       </button>
@@ -129,7 +129,7 @@ export default function Chatbot() {
         style={{ height: 'min(560px, calc(100vh - 2.5rem))' }}
       >
         {/* Header */}
-        <div className="flex items-center justify-between bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-5 py-4 text-white">
+        <div className="flex items-center justify-between bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-5 py-4 text-on-primary">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-lg backdrop-blur">
               <i className="fas fa-robot" />
@@ -159,7 +159,7 @@ export default function Chatbot() {
                     key={reply}
                     type="button"
                     onClick={() => handleQuickReply(reply)}
-                    className="rounded-full border border-primary/40 bg-surface px-3 py-1.5 text-xs font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+                    className="rounded-full border border-primary/40 bg-surface px-3 py-1.5 text-xs font-semibold text-primary-text transition-colors hover:bg-primary hover:text-on-primary"
                   >
                     {reply}
                   </button>
@@ -196,7 +196,7 @@ export default function Chatbot() {
             type="button"
             aria-label="Send"
             onClick={sendMessage}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-white shadow-md transition-transform hover:scale-110"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-md transition-transform hover:scale-110"
           >
             <i className="fas fa-paper-plane text-sm" />
           </button>

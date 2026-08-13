@@ -106,10 +106,10 @@ export default function MemoryGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={reset} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={reset} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             New Game
           </button>
-          <button type="button" onClick={giveHint} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={giveHint} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Hint
           </button>
         </>

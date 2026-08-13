@@ -7,7 +7,7 @@ function PlaceholderPage() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-canvas p-6">
       <div className="max-w-md rounded-3xl border border-line bg-surface p-10 text-center shadow-xl">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-2xl text-white">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-2xl text-on-primary">
           <i className="fas fa-brain" />
         </div>
         <h1 className="mb-2 text-2xl font-extrabold text-ink">{page}</h1>
@@ -16,7 +16,7 @@ function PlaceholderPage() {
         </p>
         <a
           href="/"
-          className="mt-6 inline-block rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-3 font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+          className="mt-6 inline-block rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-3 font-semibold text-on-primary shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
         >
           Back to Home
         </a>

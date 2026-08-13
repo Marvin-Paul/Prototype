@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="mb-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <h4 className="mb-3 flex items-center gap-2 text-[0.95rem] font-normal uppercase tracking-[0.04em] text-white">
-              <i className="fas fa-brain text-primary" /> Campus Mindspace
+              <i className="fas fa-brain text-primary-text" /> Campus Mindspace
             </h4>
             <p className="text-[0.85rem] leading-[1.6] text-[#e8efed]/80">{t('footer_about_desc')}</p>
           </div>
@@ -63,17 +63,17 @@ export default function Footer() {
             <h4 className="mb-3 text-[0.95rem] font-normal uppercase tracking-[0.04em] text-white">{t('footer_support')}</h4>
             <ul className="m-0 list-none p-0">
               <li className="mb-1 text-[0.85rem]">
-                <a href="/support.html" className={linkClass}>
+                <a href="support.html" className={linkClass}>
                   {t('footer_contact_support')}
                 </a>
               </li>
               <li className="mb-1 text-[0.85rem]">
-                <a href="/dashboard.html" className={linkClass}>
+                <a href="dashboard.html" className={linkClass}>
                   {t('footer_student_dashboard')}
                 </a>
               </li>
               <li className="mb-1 text-[0.85rem]">
-                <a href="/admin-dashboard.html" className={linkClass}>
+                <a href="admin-dashboard.html" className={linkClass}>
                   {t('footer_counselor_portal')}
                 </a>
               </li>

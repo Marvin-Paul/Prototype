@@ -72,17 +72,17 @@ export default function WordGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={newWord} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={newWord} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             New Word
           </button>
-          <button type="button" onClick={giveHint} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={giveHint} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Hint
           </button>
         </>
       }
     >
       <div className="rounded-2xl bg-canvas p-4 text-center">
-        <span className="text-2xl font-extrabold tracking-wide text-primary">{current}</span>
+        <span className="text-2xl font-extrabold tracking-wide text-primary-text">{current}</span>
       </div>
       <div className="mt-3 flex gap-2">
         <input
@@ -92,7 +92,7 @@ export default function WordGame() {
           placeholder="Type a related word..."
           className="flex-1 rounded-xl border border-line-light bg-canvas px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-primary focus:outline-none"
         />
-        <button type="button" onClick={submit} className="rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+        <button type="button" onClick={submit} className="rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
           Submit
         </button>
       </div>
@@ -100,7 +100,7 @@ export default function WordGame() {
       {found.length > 0 && (
         <div className="mt-3 flex flex-wrap gap-2">
           {found.map((word, i) => (
-            <span key={i} className="rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+            <span key={i} className="rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary-text">
               {word}
             </span>
           ))}

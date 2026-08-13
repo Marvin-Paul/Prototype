@@ -10,7 +10,7 @@ const EXERCISE_DATA = {
     title: 'Cognitive Behavioral Therapy',
     tagline: 'Change negative thought patterns',
     icon: 'fa-brain',
-    iconBg: 'bg-indigo-100 text-primary',
+    iconBg: 'bg-indigo-100 text-primary-text',
     tagColor: 'bg-indigo-50 text-indigo-800',
     featureTags: ['Thought Records', 'Restructuring', 'Behavioral Experiments'],
     exercises: [
@@ -424,14 +424,14 @@ export default function TherapySection({ onNavigate }) {
               <button
                 type="button"
                 onClick={() => setSelector(key)}
-                className="flex-1 rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.03]"
+                className="flex-1 rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-[1.03]"
               >
                 {t('start_exercise')}
               </button>
               <button
                 type="button"
                 onClick={() => setLearnMore(key)}
-                className="flex-1 rounded-xl border-2 border-primary px-4 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary/5"
+                className="flex-1 rounded-xl border-2 border-primary px-4 py-2.5 text-sm font-semibold text-primary-text transition-colors hover:bg-primary/5"
               >
                 {t('learn_more')}
               </button>
@@ -467,10 +467,10 @@ export default function TherapySection({ onNavigate }) {
             >
               <span className="absolute top-0 left-0 h-1 w-full origin-left scale-x-0 bg-[linear-gradient(90deg,var(--primary-color),var(--secondary-color))] transition-transform duration-300 group-hover:scale-x-100" />
               <div className="flex items-start justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white shadow-md">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary shadow-md">
                   <i className={`fas ${tool.icon}`} />
                 </div>
-                <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary">{tool.badge}</span>
+                <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary-text">{tool.badge}</span>
               </div>
               <h3 className="mt-4 text-lg font-bold text-ink">{tool.title}</h3>
               <p className="mt-1 text-sm text-ink-2">Open the tool to get started</p>
@@ -559,7 +559,7 @@ export default function TherapySection({ onNavigate }) {
                     setActiveExerciseId(ex.id)
                     setSelector(null)
                   }}
-                  className="shrink-0 rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-semibold text-white shadow-md transition-transform hover:scale-105"
+                  className="shrink-0 rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2 text-xs font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
                 >
                   Start
                 </button>
@@ -624,7 +624,7 @@ export default function TherapySection({ onNavigate }) {
               <button
                 type="button"
                 onClick={completeExercise}
-                className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+                className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-4 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
               >
                 {t('complete')}
               </button>
@@ -653,7 +653,7 @@ export default function TherapySection({ onNavigate }) {
               <ul className="space-y-1.5">
                 {LEARN_MORE_INFO[learnMore].techniques.map((tech) => (
                   <li key={tech} className="flex items-start gap-2">
-                    <i className="fas fa-chevron-right mt-0.5 text-primary" /> {tech}
+                    <i className="fas fa-chevron-right mt-0.5 text-primary-text" /> {tech}
                   </li>
                 ))}
               </ul>
@@ -697,7 +697,7 @@ export default function TherapySection({ onNavigate }) {
             <div key={s.title} className="rounded-2xl border border-line-light bg-canvas p-4">
               <h4 className="font-bold text-ink">{s.title}</h4>
               <p className="mt-1 text-xs text-ink-2">{s.description}</p>
-              <p className="mt-2 rounded-lg bg-primary/5 px-3 py-2 text-xs font-medium text-primary">{s.technique}</p>
+              <p className="mt-2 rounded-lg bg-primary/5 px-3 py-2 text-xs font-medium text-primary-text">{s.technique}</p>
             </div>
           ))}
         </div>
@@ -786,7 +786,7 @@ function BreathingModal({ open, onClose }) {
       <div className="flex flex-col items-center">
         <div className="flex items-center justify-center" style={{ width: 260, height: 260 }}>
           <div
-            className="flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-light))] text-white shadow-glow transition-transform ease-in-out"
+            className="flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-light))] text-on-primary shadow-glow transition-transform ease-in-out"
             style={{
               width: 220,
               height: 220,
@@ -803,11 +803,11 @@ function BreathingModal({ open, onClose }) {
 
         <div className="mt-4 w-full space-y-3">
           <label className="block text-xs font-semibold text-ink-2">
-            Inhale duration: <span className="text-primary">{inhale}s</span>
+            Inhale duration: <span className="text-primary-text">{inhale}s</span>
             <input type="range" min={3} max={8} value={inhale} onChange={(e) => setInhale(Number(e.target.value))} className="mt-1 w-full accent-[var(--primary-color)]" />
           </label>
           <label className="block text-xs font-semibold text-ink-2">
-            Exhale duration: <span className="text-primary">{exhale}s</span>
+            Exhale duration: <span className="text-primary-text">{exhale}s</span>
             <input type="range" min={3} max={8} value={exhale} onChange={(e) => setExhale(Number(e.target.value))} className="mt-1 w-full accent-[var(--primary-color)]" />
           </label>
           <div className="flex justify-center gap-2">
@@ -820,7 +820,7 @@ function BreathingModal({ open, onClose }) {
                 key={p.l}
                 type="button"
                 onClick={() => setPreset(p.i, p.e)}
-                className="rounded-full border border-line-light px-3 py-1.5 text-xs font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary"
+                className="rounded-full border border-line-light px-3 py-1.5 text-xs font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
               >
                 {p.l}
               </button>
@@ -831,7 +831,7 @@ function BreathingModal({ open, onClose }) {
               <button
                 type="button"
                 onClick={() => setRunning(true)}
-                className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+                className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
               >
                 <i className="fas fa-play mr-2" />Start
               </button>
@@ -914,7 +914,7 @@ function MoodModal({ open, onClose }) {
             type="button"
             onClick={() => toggleFactor(f)}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold capitalize transition-colors ${
-              factors.includes(f) ? 'border-primary bg-primary text-white' : 'border-line-light bg-canvas text-ink-2 hover:border-primary'
+              factors.includes(f) ? 'border-primary bg-primary text-on-primary' : 'border-line-light bg-canvas text-ink-2 hover:border-primary'
             }`}
           >
             {f}
@@ -932,7 +932,7 @@ function MoodModal({ open, onClose }) {
         <button
           type="button"
           onClick={save}
-          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
         >
           {t('save')}
         </button>
@@ -960,7 +960,7 @@ function GratitudeModal({ open, onClose, prompt }) {
 
   return (
     <Modal open={open} onClose={onClose} title="Gratitude Journal" icon="fa-heart" maxWidth="max-w-md">
-      <div className="mb-4 rounded-xl bg-primary/5 px-4 py-3 text-sm font-medium text-primary">
+      <div className="mb-4 rounded-xl bg-primary/5 px-4 py-3 text-sm font-medium text-primary-text">
         <i className="fas fa-lightbulb mr-2" />
         {prompt}
       </div>
@@ -978,7 +978,7 @@ function GratitudeModal({ open, onClose, prompt }) {
         <button
           type="button"
           onClick={save}
-          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
         >
           {t('save')}
         </button>
@@ -1022,7 +1022,7 @@ function ThoughtRecordModal({ open, onClose }) {
       <div className="grid gap-3 sm:grid-cols-3">
         {sliders.map((s) => (
           <label key={s.key} className="rounded-xl border border-line-light bg-canvas p-3 text-xs font-semibold text-ink-2">
-            {s.label}: <span className="text-primary">{form.before[s.key]}</span>
+            {s.label}: <span className="text-primary-text">{form.before[s.key]}</span>
             <input type="range" min={1} max={10} value={form.before[s.key]} onChange={(e) => setBefore(s.key, Number(e.target.value))} className="mt-1 w-full accent-[var(--primary-color)]" />
           </label>
         ))}
@@ -1049,7 +1049,7 @@ function ThoughtRecordModal({ open, onClose }) {
       <div className="grid gap-3 sm:grid-cols-3">
         {sliders.map((s) => (
           <label key={s.key} className="rounded-xl border border-line-light bg-canvas p-3 text-xs font-semibold text-ink-2">
-            {s.label}: <span className="text-primary">{form.after[s.key]}</span>
+            {s.label}: <span className="text-primary-text">{form.after[s.key]}</span>
             <input type="range" min={1} max={10} value={form.after[s.key]} onChange={(e) => setAfter(s.key, Number(e.target.value))} className="mt-1 w-full accent-[var(--primary-color)]" />
           </label>
         ))}
@@ -1058,7 +1058,7 @@ function ThoughtRecordModal({ open, onClose }) {
         <button
           type="button"
           onClick={save}
-          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+          className="rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
         >
           {t('save')}
         </button>

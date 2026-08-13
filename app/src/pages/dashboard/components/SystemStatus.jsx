@@ -60,7 +60,7 @@ export default function SystemStatus() {
           <li className="flex items-center justify-between">
             <span>{t('status_auth')}</span>
             {checks.auth === null ? (
-              <i className="fas fa-circle-notch fa-spin text-primary" />
+              <i className="fas fa-circle-notch fa-spin text-primary-text" />
             ) : checks.auth ? (
               <span className="flex items-center gap-1 font-semibold text-success">
                 <i className="fas fa-check-circle" /> {t('status_ok')}
@@ -74,7 +74,7 @@ export default function SystemStatus() {
           <li className="flex items-center justify-between">
             <span>{t('status_database')}</span>
             {checks.db === null ? (
-              <i className="fas fa-circle-notch fa-spin text-primary" />
+              <i className="fas fa-circle-notch fa-spin text-primary-text" />
             ) : checks.db ? (
               <span className="flex items-center gap-1 font-semibold text-success">
                 <i className="fas fa-check-circle" /> {t('status_ok')}

@@ -82,11 +82,11 @@ export default function GratitudeGame() {
       ]}
       controls={
         <>
-          <button type="button" onClick={save} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={save} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             <i className="fas fa-save mr-2" />
             Save Entry
           </button>
-          <button type="button" onClick={randomPrompt} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={randomPrompt} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             <i className="fas fa-random mr-2" />
             Random Prompt
           </button>
@@ -111,8 +111,8 @@ export default function GratitudeGame() {
             }}
             className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
               prompt === tag.toLowerCase()
-                ? 'border-primary bg-primary/10 text-primary'
-                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary'
+                ? 'border-primary bg-primary/10 text-primary-text'
+                : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             {tag}

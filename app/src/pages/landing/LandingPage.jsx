@@ -100,7 +100,7 @@ function LoadingOverlay() {
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(135deg,#2d6a5f_0%,#1d4a3f_100%)] transition-opacity duration-500 ${
+      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(135deg,#10120e_0%,#1c2318_100%)] transition-opacity duration-500 ${
         phase === 'hiding' ? 'pointer-events-none opacity-0' : 'opacity-100'
       }`}
     >
@@ -108,14 +108,14 @@ function LoadingOverlay() {
         <div className="mx-auto mb-12 flex h-[120px] w-[120px] animate-pulse-soft items-center justify-center rounded-full border-2 border-white/20 bg-white/10 text-[3rem] backdrop-blur-xl">
           <i className="fas fa-brain" />
         </div>
-        <h2 className="mb-4 bg-gradient-to-br from-white to-[#00d4cc] bg-clip-text text-3xl font-bold text-transparent">
+        <h2 className="mb-4 bg-gradient-to-br from-white to-[#9fe870] bg-clip-text text-3xl font-bold text-transparent">
           Campus Mindspace
         </h2>
         <p className="mb-12 text-lg text-white/80">Loading your wellness journey...</p>
         <div className="mx-auto w-[300px]">
           <div className="mb-4 h-2 w-full overflow-hidden rounded-full bg-white/20">
             <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#00b5ad,#00d4cc)] shadow-[0_0_20px_rgba(0,181,173,0.5)] transition-all duration-300"
+              className="h-full rounded-full bg-[linear-gradient(90deg,#9fe870,#cdffad)] shadow-[0_0_20px_rgba(159,232,112,0.5)] transition-all duration-300"
               style={{ width: `${Math.round(progress)}%` }}
             />
           </div>
@@ -147,7 +147,7 @@ function ThemeSwitcher() {
         type="button"
         title="Toggle Theme"
         onClick={() => setOpen((o) => !o)}
-        className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-white/30 bg-white/95 text-xl text-primary shadow-md backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
+        className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-white/30 bg-white/95 text-xl text-primary-text shadow-md backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
       >
         <i className="fas fa-moon" />
       </button>
@@ -166,8 +166,8 @@ function ThemeSwitcher() {
             }}
             className={`flex w-full items-center gap-4 rounded-lg px-4 py-2 text-left text-sm font-medium transition-all ${
               accent === a.key
-                ? 'bg-[rgba(0,181,173,0.15)]'
-                : 'hover:bg-[rgba(0,181,173,0.1)]'
+                ? 'bg-[rgba(159,232,112,0.15)]'
+                : 'hover:bg-[rgba(159,232,112,0.1)]'
             }`}
           >
             <span
@@ -190,7 +190,7 @@ function LanguageSelect() {
         title="Select Language"
         value={lang}
         onChange={(e) => setLang(e.target.value)}
-        className="bg-transparent py-1 font-sans text-sm text-ink-2 outline-none transition-colors hover:text-primary"
+        className="bg-transparent py-1 font-sans text-sm text-ink-2 outline-none transition-colors hover:text-primary-text"
       >
         <option value="en">English</option>
         <option value="es">Español</option>
@@ -301,7 +301,7 @@ export default function LandingPage() {
                   className="animate-fade-up text-center"
                   style={{ animationDelay: `${0.1 + i * 0.1}s` }}
                 >
-                  <div className="mb-1 bg-gradient-to-br from-white to-[#00d4cc] bg-clip-text text-4xl font-bold text-transparent">
+                  <div className="mb-1 bg-gradient-to-br from-white to-[#9fe870] bg-clip-text text-4xl font-bold text-transparent">
                     {s.num}
                   </div>
                   <div className="text-xs font-medium uppercase tracking-[0.05em] text-white/80">
@@ -397,7 +397,7 @@ export default function LandingPage() {
             className="relative mx-auto max-w-[500px] rounded-3xl border border-white/20 bg-white/95 p-12 shadow-2xl backdrop-blur-[30px]"
             style={{ boxShadow: 'var(--shadow-2xl), 0 0 0 1px rgba(255,255,255,0.5)' }}
           >
-            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[linear-gradient(135deg,rgba(0,181,173,0.05),rgba(0,212,204,0.05))]" />
+            <div className="pointer-events-none absolute inset-0 rounded-3xl bg-[linear-gradient(135deg,rgba(159,232,112,0.05),rgba(205,255,173,0.05))]" />
             <div className="relative">
               <div className="mb-8 text-center">
                 <h2
@@ -415,8 +415,8 @@ export default function LandingPage() {
               </div>
 
               <a
-                href="/dashboard.html"
-                className="group relative mt-6 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[linear-gradient(135deg,var(--primary-color)_0%,var(--primary-dark)_100%)] px-6 py-4 text-base font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+                href="dashboard.html"
+                className="group relative mt-6 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[linear-gradient(135deg,var(--primary-color)_0%,var(--primary-dark)_100%)] px-6 py-4 text-base font-semibold text-on-primary shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <span className="pointer-events-none absolute inset-y-0 -left-full w-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)] transition-all duration-300 group-hover:left-full" />
                 <i className="fas fa-arrow-right" />
@@ -427,7 +427,7 @@ export default function LandingPage() {
                 <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
                   Counselor portal?{' '}
                   <a
-                    href="/admin-dashboard.html"
+                    href="admin-dashboard.html"
                     className="font-semibold transition-colors hover:underline"
                     style={{ color: 'var(--primary-color)' }}
                   >
@@ -456,7 +456,7 @@ export default function LandingPage() {
           </div>
 
           {/* Footer */}
-          <footer className="mt-12 rounded-2xl border border-white/10 bg-[rgba(13,36,32,0.55)] p-6 text-[#e8efed] backdrop-blur-[6px] md:p-8">
+          <footer className="mt-12 rounded-2xl border border-white/10 bg-[rgba(14,15,12,0.55)] p-6 text-[#e8efed] backdrop-blur-[6px] md:p-8">
             <div className="mb-6 flex items-center gap-4 rounded-xl border border-red-300/35 bg-[rgba(220,38,38,0.16)] p-4 text-[#fecaca]">
               <i className="fas fa-heart flex-shrink-0 text-xl text-red-300" />
               <p className="m-0 text-[0.9rem] leading-[1.5]">
@@ -479,17 +479,17 @@ export default function LandingPage() {
                 <h4 className="mb-3 text-[0.95rem] font-normal uppercase tracking-[0.04em] text-white">Support</h4>
                 <ul className="m-0 list-none p-0">
                   <li className="mb-1 text-[0.85rem]">
-                    <a href="/support.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
+                    <a href="support.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
                       Contact Support
                     </a>
                   </li>
                   <li className="mb-1 text-[0.85rem]">
-                    <a href="/dashboard.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
+                    <a href="dashboard.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
                       Student Dashboard
                     </a>
                   </li>
                   <li className="mb-1 text-[0.85rem]">
-                    <a href="/admin-dashboard.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
+                    <a href="admin-dashboard.html" className="text-[#e8efed]/80 no-underline transition-colors hover:text-white">
                       Counselor Portal
                     </a>
                   </li>

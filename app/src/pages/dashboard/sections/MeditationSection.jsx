@@ -215,7 +215,7 @@ export default function MeditationSection() {
               <p className="mt-1 flex-1 text-sm text-ink-2">{session.description}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {session.tags.map((tag) => (
-                  <span key={tag} className="rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-semibold text-primary">
+                  <span key={tag} className="rounded-full bg-primary/5 px-2 py-0.5 text-[10px] font-semibold text-primary-text">
                     {tag}
                   </span>
                 ))}
@@ -407,7 +407,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
     <Modal open={open} onClose={onClose} title={session.title} icon="fa-om" maxWidth="max-w-xl">
       <div className="text-center">
         <div
-          className="mx-auto flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-light))] text-white shadow-glow transition-transform ease-in-out"
+          className="mx-auto flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-light))] text-on-primary shadow-glow transition-transform ease-in-out"
           style={{
             width: 180,
             height: 180,
@@ -442,7 +442,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
           <button
             type="button"
             onClick={() => setRunning(true)}
-            className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+            className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
           >
             <i className="fas fa-play mr-2" />Start
           </button>
@@ -530,7 +530,7 @@ function TimerModal({ open, onClose, onComplete }) {
               type="button"
               onClick={() => selectPreset(min)}
               className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors ${
-                durationMin === min ? 'border-primary bg-primary text-white' : 'border-line-light text-ink-2 hover:border-primary hover:text-primary'
+                durationMin === min ? 'border-primary bg-primary text-on-primary' : 'border-line-light text-ink-2 hover:border-primary hover:text-primary-text'
               }`}
             >
               {min}m
@@ -543,7 +543,7 @@ function TimerModal({ open, onClose, onComplete }) {
             <button
               type="button"
               onClick={() => setRunning(true)}
-              className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
+              className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
             >
               <i className="fas fa-play mr-2" />Start
             </button>
@@ -590,7 +590,7 @@ function SoundsModal({ open, onClose }) {
               playing === sound.id ? 'border-primary bg-primary/10 shadow-md' : 'border-line-light bg-canvas hover:border-primary'
             }`}
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-white">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary">
               <i className={`fas ${playing === sound.id ? 'fa-pause' : sound.icon}`} />
             </div>
             <div className="min-w-0 text-left">

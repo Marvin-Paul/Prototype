@@ -75,16 +75,16 @@ export default function StoryGame() {
       description="Create collaborative stories with random prompts and characters!"
       controls={
         <>
-          <button type="button" onClick={generate} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
+          <button type="button" onClick={generate} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
             Generate Elements
           </button>
-          <button type="button" onClick={save} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={save} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Save Story
           </button>
-          <button type="button" onClick={() => { setText(''); notify('Continue where you left off!', 'info') }} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={() => { setText(''); notify('Continue where you left off!', 'info') }} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Continue
           </button>
-          <button type="button" onClick={share} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary">
+          <button type="button" onClick={share} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
             Share
           </button>
         </>
@@ -107,13 +107,13 @@ export default function StoryGame() {
       {elements ? (
         <div className="mt-3 space-y-2 rounded-2xl bg-canvas p-4 text-sm text-ink">
           <p>
-            <strong className="text-primary">Character:</strong> {elements.character}
+            <strong className="text-primary-text">Character:</strong> {elements.character}
           </p>
           <p>
-            <strong className="text-primary">Setting:</strong> {elements.setting}
+            <strong className="text-primary-text">Setting:</strong> {elements.setting}
           </p>
           <p>
-            <strong className="text-primary">Conflict:</strong> {elements.conflict}
+            <strong className="text-primary-text">Conflict:</strong> {elements.conflict}
           </p>
         </div>
       ) : (

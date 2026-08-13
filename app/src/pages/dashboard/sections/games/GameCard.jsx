@@ -3,7 +3,7 @@ export default function GameCard({ icon, title, description, stats, controls, ch
     <div className="flex flex-col rounded-3xl border border-line-light bg-surface p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
       <div className="mb-3">
         <h3 className="flex items-center gap-2 text-lg font-bold text-ink">
-          <i className={`fas ${icon} text-primary`} />
+          <i className={`fas ${icon} text-primary-text`} />
           {title}
         </h3>
         <p className="mt-1 text-sm text-ink-2">{description}</p>

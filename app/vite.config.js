@@ -7,6 +7,7 @@ const entry = (file) => fileURLToPath(new URL(file, import.meta.url))
 
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: './',
   build: {
     rollupOptions: {
       input: {

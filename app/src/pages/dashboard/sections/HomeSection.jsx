@@ -16,7 +16,7 @@ const DAILY_TIPS = [
 ]
 
 const QUICK_ACTIONS = [
-  { section: 'therapy', icon: 'fa-user-md', titleKey: 'therapy_title', descKey: 'therapy_description', pct: 75, iconBg: 'from-violet-500 to-purple-500', badge: { key: 'popular', className: 'bg-primary/10 text-primary' } },
+  { section: 'therapy', icon: 'fa-user-md', titleKey: 'therapy_title', descKey: 'therapy_description', pct: 75, iconBg: 'from-violet-500 to-purple-500', badge: { key: 'popular', className: 'bg-primary/10 text-primary-text' } },
   { section: 'meditation', icon: 'fa-om', titleKey: 'meditation_title', descKey: 'meditation_description', pct: 60, iconBg: 'from-teal-400 to-cyan-500', badge: null },
   { section: 'resources', icon: 'fa-music', titleKey: 'resources_title', descKey: 'resources_description', pct: 45, iconBg: 'from-pink-400 to-rose-500', badge: null },
   { section: 'appointments', icon: 'fa-calendar-check', titleKey: 'appointment_title', descKey: 'appointment_description', pct: 30, iconBg: 'from-indigo-400 to-blue-500', badge: { key: 'new_badge', className: 'bg-success/10 text-success' }, pctTextKey: 'sessions_count' },
@@ -94,7 +94,7 @@ export default function HomeSection({ onNavigate }) {
         <p className="mt-2 text-ink-2">{t('welcome_subtitle')}</p>
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
               <i className="fas fa-calendar-check" />
             </div>
             <div>
@@ -103,7 +103,7 @@ export default function HomeSection({ onNavigate }) {
             </div>
           </div>
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
               <i className="fas fa-heart" />
             </div>
             <div>
@@ -112,7 +112,7 @@ export default function HomeSection({ onNavigate }) {
             </div>
           </div>
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
-            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
               <i className="fas fa-meditation" />
             </div>
             <div>
@@ -124,7 +124,7 @@ export default function HomeSection({ onNavigate }) {
       </section>
 
       {/* Daily tip */}
-      <section className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-8 text-white shadow-2xl">
+      <section className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-8 text-on-primary shadow-2xl">
         <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-3xl backdrop-blur">
             <i className="fas fa-lightbulb" />
@@ -193,7 +193,7 @@ export default function HomeSection({ onNavigate }) {
                     <span className="shrink-0 text-xs font-semibold text-ink-2">{progressText}</span>
                   </div>
                 </div>
-                <i className="fas fa-arrow-right shrink-0 text-xl text-ink-3 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
+                <i className="fas fa-arrow-right shrink-0 text-xl text-ink-3 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary-text" />
                 {card.badge && (
                   <span className={`absolute top-4 right-4 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${card.badge.className}`}>
                     {t(card.badge.key)}
@@ -270,14 +270,14 @@ export default function HomeSection({ onNavigate }) {
       <section className="rounded-3xl border border-line-light bg-surface p-6 shadow-md">
         <h2 className="mb-5 text-center text-2xl font-extrabold text-ink">{t('mood_tracker_title')}</h2>
         <div className="flex flex-col items-center gap-3">
-          <div className={`flex items-center gap-3 rounded-full px-6 py-3 text-lg font-bold ${MOOD_COLORS[mood] ?? 'text-primary'}`}>
+          <div className={`flex items-center gap-3 rounded-full px-6 py-3 text-lg font-bold ${MOOD_COLORS[mood] ?? 'text-primary-text'}`}>
             <i className={`fas ${MOOD_ICONS[mood] ?? 'fa-question'}`} />
             <span>{t(`mood_${mood}`)}</span>
           </div>
           <button
             type="button"
             onClick={updateMood}
-            className="flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
+            className="flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
           >
             <i className="fas fa-smile" /> {t('update_mood')}
           </button>
@@ -285,14 +285,14 @@ export default function HomeSection({ onNavigate }) {
             <button
               type="button"
               onClick={() => onNavigate('insights')}
-              className="rounded-full border border-line-light bg-canvas px-5 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary"
+              className="rounded-full border border-line-light bg-canvas px-5 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
             >
               {t('view_history')}
             </button>
             <button
               type="button"
               onClick={() => onNavigate('insights')}
-              className="rounded-full border border-line-light bg-canvas px-5 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary"
+              className="rounded-full border border-line-light bg-canvas px-5 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
             >
               {t('analytics')}
             </button>

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-const FALLBACK_BG = 'linear-gradient(135deg, #2d6a5f 0%, #1d4a3f 100%)'
+const FALLBACK_BG = 'linear-gradient(135deg, #1c2318 0%, #0e0f0c 100%)'
 
 function Overlay({ gradient }) {
   return <div className="pointer-events-none absolute inset-0 z-[1] backdrop-blur-[2px]" style={{ background: gradient }} />

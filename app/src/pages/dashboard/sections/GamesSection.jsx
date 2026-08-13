@@ -26,7 +26,7 @@ const CATEGORIES = [
 function GroupHeader({ icon, title }) {
   return (
     <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-ink">
-      <i className={`fas ${icon} text-primary`} />
+      <i className={`fas ${icon} text-primary-text`} />
       {title}
     </h3>
   )
@@ -48,8 +48,8 @@ export default function GamesSection() {
             onClick={() => setCategory(cat.id)}
             className={`flex shrink-0 items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-all duration-200 ${
               category === cat.id
-                ? 'border-primary bg-primary/10 text-primary shadow-sm'
-                : 'border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary'
+                ? 'border-primary bg-primary/10 text-primary-text shadow-sm'
+                : 'border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
             <i className={`fas ${cat.icon}`} />

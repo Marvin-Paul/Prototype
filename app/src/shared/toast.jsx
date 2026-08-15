@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Icon from './Icon'
 
 // Tiny event-based toast system. notify() is callable from anywhere
 // (mirrors AppUtils.showNotification in the prototype); <Toasts/> renders them.
@@ -49,7 +50,7 @@ export function Toasts() {
             className="pointer-events-auto animate-slide-up overflow-hidden rounded-2xl border border-line-light bg-surface p-4 shadow-xl"
           >
             <div className="flex items-start gap-3">
-              <i className={`fas ${style.icon} mt-0.5 ${style.color}`} />
+              <Icon icon={style.icon} className={`mt-0.5 ${style.color}`} />
               <p className="flex-1 text-sm leading-snug font-medium text-ink">{toast.message}</p>
             </div>
             <div className={`mt-3 h-0.5 ${style.bar}`} />

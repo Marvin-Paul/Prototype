@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 
 export default function Modal({ open, onClose, title, icon, children, maxWidth = 'max-w-lg' }) {
@@ -31,7 +32,7 @@ export default function Modal({ open, onClose, title, icon, children, maxWidth =
         {title && (
           <div className="mb-5 flex items-start justify-between gap-4">
             <h3 className="flex items-center gap-3 text-lg font-bold text-ink">
-              {icon && <i className={`fas ${icon} text-primary-text`} />}
+              {icon && <Icon icon={icon} className="text-primary-text" />}
               {title}
             </h3>
             <button
@@ -40,7 +41,7 @@ export default function Modal({ open, onClose, title, icon, children, maxWidth =
               onClick={onClose}
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-canvas text-ink-2 transition-colors hover:bg-surface-hover hover:text-primary-text"
             >
-              <i className="fas fa-times text-sm" />
+              <Icon icon="fa-times" className="text-sm" />
             </button>
           </div>
         )}

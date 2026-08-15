@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
 import { get, set as storageSet } from '../../../../shared/storage'
 import { notify } from '../../../../shared/toast'
+import Icon from '../../../../shared/Icon'
 import GameCard from './GameCard'
 
-const EMOJIS = ['🎓', '📚', '✏️', '💡', '🎯', '⭐', '🌈', '🎨']
+const ICONS = ['fa-graduation-cap', 'fa-book', 'fa-pencil-alt', 'fa-lightbulb', 'fa-bullseye', 'fa-star', 'fa-rainbow', 'fa-palette']
 
 function buildDeck() {
-  const pairs = [...EMOJIS, ...EMOJIS]
+  const pairs = [...ICONS, ...ICONS]
   for (let i = pairs.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1))
     ;[pairs[i], pairs[j]] = [pairs[j], pairs[i]]
   }
-  return pairs.map((emoji, index) => ({ id: index, emoji, flipped: false, matched: false }))
+  return pairs.map((icon, index) => ({ id: index, icon, flipped: false, matched: false }))
 }
 
 function formatTime(secs) {
@@ -62,7 +63,7 @@ export default function MemoryGame() {
     const nowFlipped = next.filter((c) => c.flipped && !c.matched)
     if (nowFlipped.length === 2) {
       setMoves((m) => m + 1)
-      if (nowFlipped[0].emoji === nowFlipped[1].emoji) {
+      if (nowFlipped[0].icon === nowFlipped[1].icon) {
         setCards(next.map((c) => (nowFlipped.some((f) => f.id === c.id) ? { ...c, matched: true } : c)))
       } else {
         setLock(true)
@@ -97,7 +98,7 @@ export default function MemoryGame() {
     <GameCard
       icon="fa-brain"
       title="Memory Challenge"
-      description="Match all the emoji pairs to improve your memory!"
+      description="Match all the icon pairs to improve your memory!"
       stats={[
         { label: 'Moves', value: moves },
         { label: 'Matches', value: `${matchedCount}/${cards.length}` },
@@ -131,7 +132,7 @@ export default function MemoryGame() {
                     : 'border-line-light bg-canvas hover:border-primary'
             }`}
           >
-            {card.flipped || card.matched || hintedId === card.id ? card.emoji : '?'}
+            {card.flipped || card.matched || hintedId === card.id ? <Icon icon={card.icon} className="text-2xl" /> : '?'}
           </button>
         ))}
       </div>

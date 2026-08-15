@@ -21,6 +21,17 @@
     --color-accent-orange: var(--accent-orange);
     --color-accent-red: var(--accent-red);
 
+    /* Calm wellness palette */
+    --color-calm-sage-soft: var(--calm-sage-soft);
+    --color-calm-sage: var(--calm-sage);
+    --color-calm-sage-deep: var(--calm-sage-deep);
+    --color-calm-sky-soft: var(--calm-sky-soft);
+    --color-calm-sky: var(--calm-sky);
+    --color-calm-sky-deep: var(--calm-sky-deep);
+    --color-calm-lavender-soft: var(--calm-lavender-soft);
+    --color-calm-lavender: var(--calm-lavender);
+    --color-calm-lavender-deep: var(--calm-lavender-deep);
+
     --color-mood-overwhelmed: var(--mood-overwhelmed);
     --color-mood-sleep: var(--mood-sleep);
     --color-mood-social: var(--mood-social);

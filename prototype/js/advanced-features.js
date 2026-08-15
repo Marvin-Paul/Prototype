@@ -1,14 +1,12 @@
-// Advanced Features - Theme Switcher, 3D Effects, Loading Screen, etc.
+// Advanced Features - Theme Switcher, 3D Effects, etc.
 class AdvancedFeatures {
     constructor() {
         this.currentTheme = 'ocean';
-        this.isLoading = true;
         this.init();
     }
 
     init() {
         this.setupThemeSwitcher();
-        this.setupLoadingScreen();
         this.setup3DEffects();
         this.setupParallaxEffects();
         this.setupTypingAnimation();
@@ -108,37 +106,6 @@ class AdvancedFeatures {
         }
         
         console.log(`🎨 Theme applied: ${theme}`);
-    }
-
-    setupLoadingScreen() {
-        const loadingScreen = document.getElementById('loadingScreen');
-        const progressFill = document.querySelector('.loading-progress .progress-fill');
-        const percentageElement = document.getElementById('loadingPercentage');
-        
-        if (!loadingScreen || !progressFill || !percentageElement) {
-            console.warn('Loading screen elements not found');
-            return;
-        }
-
-        // Simulate loading progress
-        let progress = 0;
-        const loadingInterval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(loadingInterval);
-                
-                // Hide loading screen after completion
-                setTimeout(() => {
-                    loadingScreen.classList.add('hidden');
-                    this.isLoading = false;
-                    console.log('✅ Loading screen completed');
-                }, 500);
-            }
-            
-            progressFill.style.width = progress + '%';
-            percentageElement.textContent = Math.round(progress) + '%';
-        }, 200);
     }
 
     setup3DEffects() {

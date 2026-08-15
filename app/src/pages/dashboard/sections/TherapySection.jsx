@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { get, set as storageSet } from '../../../shared/storage'
 import { notify } from '../../../shared/toast'
@@ -259,11 +260,11 @@ const GRATITUDE_PROMPTS = [
 ]
 
 const MOOD_OPTIONS = [
-  { value: 1, emoji: '😢', label: 'Very Low' },
-  { value: 2, emoji: '😔', label: 'Low' },
-  { value: 3, emoji: '😐', label: 'Neutral' },
-  { value: 4, emoji: '😊', label: 'Good' },
-  { value: 5, emoji: '😄', label: 'Great' },
+  { value: 1, icon: 'fa-sad-tear', label: 'Very Low' },
+  { value: 2, icon: 'fa-frown', label: 'Low' },
+  { value: 3, icon: 'fa-meh', label: 'Neutral' },
+  { value: 4, icon: 'fa-smile', label: 'Good' },
+  { value: 5, icon: 'fa-laugh', label: 'Great' },
 ]
 
 const MOOD_FACTORS = ['sleep', 'exercise', 'social', 'work', 'weather', 'health', 'stress', 'medication']
@@ -366,7 +367,7 @@ export default function TherapySection({ onNavigate }) {
       <section className="flex flex-col items-center justify-between gap-4 rounded-3xl bg-[linear-gradient(135deg,#dc2626,#b91c1c)] p-6 text-white shadow-xl sm:flex-row">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-xl backdrop-blur">
-            <i className="fas fa-hand-holding-heart" />
+            <Icon icon="fa-hand-holding-heart" />
           </div>
           <div>
             <h3 className="text-lg font-bold">Need immediate support?</h3>
@@ -378,24 +379,24 @@ export default function TherapySection({ onNavigate }) {
           onClick={() => setCrisisOpen(true)}
           className="flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-red-700 shadow-md transition-transform hover:scale-105"
         >
-          <i className="fas fa-phone" /> {t('get_help_now')}
+          <Icon icon="fa-phone" /> {t('get_help_now')}
         </button>
       </section>
 
       {/* Progress overview */}
-      <section className="flex flex-wrap items-center justify-center gap-6 rounded-3xl border border-line-light bg-gradient-to-br from-sky-50 to-blue-50 p-6 shadow-md dark:from-primary/5 dark:to-primary/10">
+      <section className="flex flex-wrap items-center justify-center gap-6 rounded-3xl border border-line-light bg-[linear-gradient(135deg,var(--calm-sage-soft),var(--calm-sky-soft))] p-6 shadow-md">
         {[
-          { icon: 'fa-check-circle', value: completedCount, label: 'Exercises Completed' },
-          { icon: 'fa-fire', value: streak, label: 'Day Streak' },
-          { icon: 'fa-chart-line', value: `${pct}%`, label: 'Overall Progress' },
+          { icon: 'fa-calendar-check', value: stats.totalAppointments, label: 'Sessions Completed' },
+          { icon: 'fa-clock', value: stats.totalMinutes, label: 'Total Minutes' },
+          { icon: 'fa-fire', value: stats.streak, label: 'Day Streak' },
         ].map((stat) => (
           <div key={stat.label} className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#10b981,#059669)] text-lg text-white shadow-md">
-              <i className={`fas ${stat.icon}`} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--calm-sage),var(--calm-sky))] text-lg text-white shadow-md">
+              <Icon icon={stat.icon} />
             </div>
             <div>
-              <div className="text-2xl font-extrabold text-gray-800 dark:text-ink">{stat.value}</div>
-              <div className="text-xs font-medium text-gray-500 dark:text-ink-2">{stat.label}</div>
+              <div className="text-2xl font-extrabold text-ink">{stat.value}</div>
+              <div className="text-xs font-medium text-ink-2">{stat.label}</div>
             </div>
           </div>
         ))}
@@ -409,7 +410,7 @@ export default function TherapySection({ onNavigate }) {
             className="group relative overflow-hidden rounded-3xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
           >
             <div className={`mb-4 flex h-20 w-20 items-center justify-center rounded-2xl text-3xl ${cat.iconBg}`}>
-              <i className={`fas ${cat.icon}`} />
+              <Icon icon={cat.icon} />
             </div>
             <h3 className="text-lg font-bold text-ink">{cat.title}</h3>
             <p className="mt-1 text-sm text-ink-2">{cat.tagline}</p>
@@ -468,7 +469,7 @@ export default function TherapySection({ onNavigate }) {
               <span className="absolute top-0 left-0 h-1 w-full origin-left scale-x-0 bg-[linear-gradient(90deg,var(--primary-color),var(--secondary-color))] transition-transform duration-300 group-hover:scale-x-100" />
               <div className="flex items-start justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary shadow-md">
-                  <i className={`fas ${tool.icon}`} />
+                  <Icon icon={tool.icon} />
                 </div>
                 <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-bold text-primary-text">{tool.badge}</span>
               </div>
@@ -480,9 +481,9 @@ export default function TherapySection({ onNavigate }) {
       </section>
 
       {/* Goals */}
-      <section className="rounded-3xl border border-amber-200 bg-[linear-gradient(135deg,#fef3c7,#fde68a)] p-6 shadow-md dark:border-warning/30 dark:from-warning/10 dark:to-warning/20">
-        <h2 className="text-lg font-bold text-amber-900 dark:text-warning">Therapy Goals</h2>
-        <p className="mt-1 text-sm text-amber-800/80 dark:text-ink-2">Set small, achievable goals for your therapy journey</p>
+      <section className="rounded-3xl border border-calm-sage/40 bg-[linear-gradient(135deg,var(--calm-sage-soft),var(--calm-lavender-soft))] p-6 shadow-md">
+        <h2 className="text-lg font-bold text-calm-sage-deep">Therapy Goals</h2>
+        <p className="mt-1 text-sm text-calm-sky-deep/90">Set small, achievable goals for your therapy journey</p>
         <div className="mt-4 flex gap-2">
           <input
             type="text"
@@ -492,12 +493,12 @@ export default function TherapySection({ onNavigate }) {
               if (e.key === 'Enter') addGoal()
             }}
             placeholder="e.g. Practice deep breathing daily"
-            className="flex-1 rounded-xl border border-amber-300 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-amber-500 focus:outline-none"
+            className="flex-1 rounded-xl border border-calm-sage/60 bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-calm-sage focus:outline-none"
           />
           <button
             type="button"
             onClick={addGoal}
-            className="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-colors hover:bg-amber-600"
+            className="rounded-xl bg-[linear-gradient(135deg,#4f7f5a,#3d7a85)] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.03]"
           >
             {t('add_goal')}
           </button>
@@ -507,8 +508,8 @@ export default function TherapySection({ onNavigate }) {
             {goals.map((goal) => (
               <li
                 key={goal.id}
-                className={`flex items-center justify-between gap-3 rounded-xl border bg-white px-4 py-3 text-sm ${
-                  goal.completed ? 'border-green-200 text-ink-3 line-through' : 'border-amber-200 text-ink'
+                className={`flex items-center justify-between gap-3 rounded-xl border bg-surface px-4 py-3 text-sm ${
+                  goal.completed ? 'border-calm-sage/50 text-ink-3 line-through' : 'border-calm-sage/50 text-ink'
                 }`}
               >
                 <span className="flex-1">{goal.text}</span>
@@ -516,9 +517,9 @@ export default function TherapySection({ onNavigate }) {
                   type="button"
                   onClick={() => completeGoal(goal.id)}
                   title={t('complete')}
-                  className="h-8 w-8 rounded-full bg-green-100 text-green-700 transition-colors hover:bg-green-200"
+                  className="h-8 w-8 rounded-full bg-calm-sage/15 text-calm-sage-deep transition-colors hover:bg-calm-sage/30"
                 >
-                  <i className="fas fa-check" />
+                  <Icon icon="fa-check" />
                 </button>
                 <button
                   type="button"
@@ -526,7 +527,7 @@ export default function TherapySection({ onNavigate }) {
                   title={t('delete')}
                   className="h-8 w-8 rounded-full bg-red-100 text-red-600 transition-colors hover:bg-red-200"
                 >
-                  <i className="fas fa-trash" />
+                  <Icon icon="fa-trash" />
                 </button>
               </li>
             ))}
@@ -599,7 +600,7 @@ export default function TherapySection({ onNavigate }) {
                         activeProgress.completedSteps.includes(i) ? 'bg-green-500 text-white' : 'border border-ink-3 text-transparent'
                       }`}
                     >
-                      <i className="fas fa-check" />
+                      <Icon icon="fa-check" />
                     </span>
                     <span>{step}</span>
                   </button>
@@ -643,7 +644,7 @@ export default function TherapySection({ onNavigate }) {
               <ul className="space-y-1.5">
                 {LEARN_MORE_INFO[learnMore].benefits.map((b) => (
                   <li key={b} className="flex items-start gap-2">
-                    <i className="fas fa-check-circle mt-0.5 text-success" /> {b}
+                    <Icon icon="fa-check-circle" className="mt-0.5 text-success" /> {b}
                   </li>
                 ))}
               </ul>
@@ -653,7 +654,7 @@ export default function TherapySection({ onNavigate }) {
               <ul className="space-y-1.5">
                 {LEARN_MORE_INFO[learnMore].techniques.map((tech) => (
                   <li key={tech} className="flex items-start gap-2">
-                    <i className="fas fa-chevron-right mt-0.5 text-primary-text" /> {tech}
+                    <Icon icon="fa-chevron-right" className="mt-0.5 text-primary-text" /> {tech}
                   </li>
                 ))}
               </ul>
@@ -833,7 +834,7 @@ function BreathingModal({ open, onClose }) {
                 onClick={() => setRunning(true)}
                 className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
               >
-                <i className="fas fa-play mr-2" />Start
+                <Icon icon="fa-play" className="mr-2" />Start
               </button>
             ) : (
               <>
@@ -842,14 +843,14 @@ function BreathingModal({ open, onClose }) {
                   onClick={() => setRunning(false)}
                   className="rounded-full bg-warning px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
                 >
-                  <i className="fas fa-pause mr-2" />Pause
+                  <Icon icon="fa-pause" className="mr-2" />Pause
                 </button>
                 <button
                   type="button"
                   onClick={stop}
                   className="rounded-full bg-danger px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
                 >
-                  <i className="fas fa-stop mr-2" />Stop
+                  <Icon icon="fa-stop" className="mr-2" />Stop
                 </button>
               </>
             )}
@@ -879,7 +880,7 @@ function MoodModal({ open, onClose }) {
     const history = get('moodHistory', [])
     storageSet('moodHistory', [
       ...history,
-      { mood, moodText: `${moodOpt.emoji} ${moodOpt.label}`, factors, note, timestamp: new Date().toISOString(), date: new Date().toDateString() },
+      { mood, moodText: moodOpt.label, factors, note, timestamp: new Date().toISOString(), date: new Date().toDateString() },
     ])
     notify(t('mood_updated'), 'success')
     setMood(null)
@@ -901,7 +902,7 @@ function MoodModal({ open, onClose }) {
               mood === m.value ? 'border-primary bg-primary/10 shadow-md' : 'border-line-light bg-canvas hover:border-primary'
             }`}
           >
-            <span className="text-2xl">{m.emoji}</span>
+            <Icon icon={m.icon} className="text-2xl" />
             <span className="text-[11px] font-semibold text-ink-2">{m.label}</span>
           </button>
         ))}
@@ -961,7 +962,7 @@ function GratitudeModal({ open, onClose, prompt }) {
   return (
     <Modal open={open} onClose={onClose} title="Gratitude Journal" icon="fa-heart" maxWidth="max-w-md">
       <div className="mb-4 rounded-xl bg-primary/5 px-4 py-3 text-sm font-medium text-primary-text">
-        <i className="fas fa-lightbulb mr-2" />
+        <Icon icon="fa-lightbulb" className="mr-2" />
         {prompt}
       </div>
       {entries.map((entry, i) => (

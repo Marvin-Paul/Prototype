@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Icon from '../../../../shared/Icon'
 import { get, set as storageSet } from '../../../../shared/storage'
 import { notify } from '../../../../shared/toast'
 import GameCard from './GameCard'
@@ -99,11 +100,11 @@ export default function AffirmationGame() {
       controls={
         <>
           <button type="button" onClick={spin} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
-            <i className="fas fa-sync-alt mr-2" />
+            <Icon icon="fa-sync-alt" className="mr-2" />
             Get Affirmation
           </button>
           <button type="button" onClick={favorite} className="rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
-            <i className="fas fa-heart mr-2" />
+            <Icon icon="fa-heart" className="mr-2" />
             Favorite
           </button>
         </>

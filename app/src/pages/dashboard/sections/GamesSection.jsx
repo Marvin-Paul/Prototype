@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import SectionHeader from '../components/SectionHeader'
 import MemoryGame from './games/MemoryGame'
@@ -26,7 +27,7 @@ const CATEGORIES = [
 function GroupHeader({ icon, title }) {
   return (
     <h3 className="mb-4 flex items-center gap-2 text-xl font-bold text-ink">
-      <i className={`fas ${icon} text-primary-text`} />
+      <Icon icon={icon} className="text-primary-text" />
       {title}
     </h3>
   )
@@ -52,7 +53,7 @@ export default function GamesSection() {
                 : 'border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
-            <i className={`fas ${cat.icon}`} />
+            <Icon icon={cat.icon} />
             {t(cat.key)}
           </button>
         ))}

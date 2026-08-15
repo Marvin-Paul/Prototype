@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { get, set as storageSet } from '../../../../shared/storage'
 import { notify } from '../../../../shared/toast'
+import Icon from '../../../../shared/Icon'
 import GameCard from './GameCard'
 
 const PRESET_COLORS = ['#ef4444', '#22c55e', '#3b82f6', '#eab308', '#a855f7']
@@ -91,8 +92,8 @@ export default function CanvasGame() {
   }
 
   const tools = [
-    { id: 'brush', icon: '🖌️', label: 'Brush' },
-    { id: 'eraser', icon: '🧽', label: 'Eraser' },
+    { id: 'brush', icon: 'fa-paint-brush', label: 'Brush' },
+    { id: 'eraser', icon: 'fa-eraser', label: 'Eraser' },
   ]
 
   return (
@@ -126,7 +127,7 @@ export default function CanvasGame() {
                 tool === t.id ? 'bg-primary/15' : 'hover:bg-surface-hover'
               }`}
             >
-              {t.icon}
+              <Icon icon={t.icon} className="text-base" />
             </button>
           ))}
         </div>

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { getGuestUser } from '../../../shared/guestUser'
 import { notify } from '../../../shared/toast'
@@ -18,6 +19,9 @@ import {
   loadMembers,
   loadMessages,
   saveMessages,
+  loadDMs,
+  saveDMs,
+  seedDm,
   loadPolls,
   savePolls,
   loadPollVotes,
@@ -36,7 +40,7 @@ function SectionTitle({ icon, title, subtitle }) {
   return (
     <div className="mb-5 flex items-start gap-4">
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-xl text-primary-text">
-        <i className={`fas ${icon}`} />
+        <Icon icon={icon} />
       </div>
       <div>
         <h3 className="text-xl font-bold text-ink">{title}</h3>
@@ -66,7 +70,7 @@ function ModalHeader({ title, icon, onClose }) {
   return (
     <div className="mb-5 flex items-center justify-between gap-3">
       <h2 className="flex items-center gap-2 text-lg font-bold text-ink">
-        <i className={`fas ${icon} text-primary-text`} />
+        <Icon icon={icon} className="text-primary-text" />
         {title}
       </h2>
       <button
@@ -97,7 +101,7 @@ function MoodSelector({ currentMood, onSelect }) {
                 : 'border-line-light bg-canvas hover:border-primary hover:shadow-md'
             }`}
           >
-            <span className="text-3xl">{mood.emoji}</span>
+            <Icon icon={mood.icon} className="text-3xl" />
             <span className="text-xs font-semibold text-ink">{mood.description}</span>
             <span className="text-[10px] text-ink-2">{isCurrent ? 'Current' : `Join ${mood.groupName}`}</span>
           </button>
@@ -125,7 +129,7 @@ function CrisisCard({ onCrisis }) {
             className="flex items-center gap-3 rounded-2xl border border-line-light bg-canvas p-4 text-left transition-all duration-200 hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
           >
             <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${item.color}`}>
-              <i className={`fas ${item.icon}`} />
+              <Icon icon={item.icon} />
             </div>
             <div>
               <p className="text-sm font-bold text-ink">{item.title}</p>
@@ -144,7 +148,7 @@ function MoodReportCard({ onReport }) {
       <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
         <div>
           <h2 className="text-xl font-bold sm:text-2xl">
-            <i className="fas fa-heart mr-2" />
+            <Icon icon="fa-heart" className="mr-2" />
             Join a Supportive Community
           </h2>
           <p className="mt-1 text-white/90">Share your current mood and connect with others who feel the same way</p>
@@ -154,7 +158,7 @@ function MoodReportCard({ onReport }) {
           onClick={onReport}
           className="shrink-0 rounded-full bg-white px-6 py-3 text-sm font-bold text-primary-text shadow-md transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl"
         >
-          <i className="fas fa-users mr-2" />
+          <Icon icon="fa-users" className="mr-2" />
           Report My Mood &amp; Join Group
         </button>
       </div>
@@ -184,7 +188,7 @@ function GroupsGrid({ currentMood, onJoin }) {
                   className="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl"
                   style={{ backgroundColor: `${mood.color}1a` }}
                 >
-                  {mood.emoji}
+                  <Icon icon={mood.icon} className="text-2xl" />
                 </span>
                 <div className="min-w-0">
                   <h4 className="truncate text-sm font-bold text-ink">{mood.groupName}</h4>
@@ -193,7 +197,7 @@ function GroupsGrid({ currentMood, onJoin }) {
               </div>
               <div className="mt-4 flex items-center justify-between text-xs text-ink-2">
                 <span>
-                  <i className="fas fa-user mr-1" />
+                  <Icon icon="fa-user" className="mr-1" />
                   {count} {count === 1 ? 'member' : 'members'}
                 </span>
                 <span
@@ -214,7 +218,7 @@ function GroupsGrid({ currentMood, onJoin }) {
                     : 'bg-primary text-on-primary hover:opacity-90'
                 }`}
               >
-                <i className={`fas ${isCurrent ? 'fa-check' : 'fa-sign-in-alt'} mr-2`} />
+                <Icon icon={isCurrent ? 'fa-check' : 'fa-sign-in-alt'} className="mr-2" />
                 {isCurrent ? 'Current Group' : 'Join Group'}
               </button>
             </div>
@@ -233,7 +237,7 @@ function GuidelinesCard() {
         {GUIDELINES.map((g) => (
           <div key={g.icon} className="flex items-center gap-3 rounded-2xl bg-canvas p-3">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary-text">
-              <i className={`fas ${g.icon}`} />
+              <Icon icon={g.icon} />
             </div>
             <p className="text-sm text-ink">{g.text}</p>
           </div>
@@ -266,7 +270,7 @@ function PollCard({ poll, votedIndex, showResults, onToggleResults, onVote }) {
               <div key={idx}>
                 <div className="mb-1 flex items-center justify-between text-xs">
                   <span className={`font-medium ${isSelected ? 'text-primary-text' : 'text-ink'}`}>
-                    {isSelected && <i className="fas fa-check-circle mr-1" />}
+                    {isSelected && <Icon icon="fa-check-circle" className="mr-1" />}
                     {option.text}
                   </span>
                   <span className="text-ink-2">
@@ -309,7 +313,7 @@ function PollCard({ poll, votedIndex, showResults, onToggleResults, onVote }) {
               onClick={() => onVote(poll.id, 0)}
               className="flex items-center gap-1.5 rounded-full bg-primary px-4 py-1.5 text-xs font-semibold text-on-primary transition-opacity hover:opacity-90"
             >
-              <i className="fas fa-vote-yea" />
+              <Icon icon="fa-vote-yea" />
               Vote
             </button>
             <button
@@ -317,7 +321,7 @@ function PollCard({ poll, votedIndex, showResults, onToggleResults, onVote }) {
               onClick={onToggleResults}
               className="flex items-center gap-1.5 rounded-full border border-line-light px-4 py-1.5 text-xs font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
             >
-              <i className="fas fa-chart-bar" />
+              <Icon icon="fa-chart-bar" />
               Results
             </button>
           </>
@@ -327,7 +331,7 @@ function PollCard({ poll, votedIndex, showResults, onToggleResults, onVote }) {
             onClick={onToggleResults}
             className="flex items-center gap-1.5 rounded-full border border-line-light px-4 py-1.5 text-xs font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
           >
-            <i className="fas fa-chart-bar" />
+            <Icon icon="fa-chart-bar" />
             {showResults ? 'Hide Results' : 'Show Results'}
           </button>
         )}
@@ -341,7 +345,7 @@ function ChallengeCard({ challenge, onJoin }) {
     <div className="flex flex-col rounded-2xl border border-line-light bg-surface p-5">
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#667eea,#764ba2)] text-white">
-          <i className={`fas ${challenge.icon}`} />
+          <Icon icon={challenge.icon} />
         </div>
         <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary-text">{challenge.category}</span>
       </div>
@@ -349,11 +353,11 @@ function ChallengeCard({ challenge, onJoin }) {
       <p className="mt-1 flex-1 text-xs leading-relaxed text-ink-2">{challenge.description}</p>
       <div className="mt-3 flex items-center gap-4 text-xs text-ink-2">
         <span>
-          <i className="fas fa-clock mr-1" />
+          <Icon icon="fa-clock" className="mr-1" />
           {challenge.duration}
         </span>
         <span>
-          <i className="fas fa-users mr-1" />
+          <Icon icon="fa-users" className="mr-1" />
           {challenge.participants} participants
         </span>
       </div>
@@ -367,7 +371,7 @@ function ChallengeCard({ challenge, onJoin }) {
         </div>
       </div>
       <div className="mt-3 flex items-center gap-2 rounded-xl bg-warning/10 px-3 py-2 text-xs font-medium text-warning">
-        <i className="fas fa-trophy" />
+        <Icon icon="fa-trophy" />
         Reward: {challenge.reward}
       </div>
       <button
@@ -375,7 +379,7 @@ function ChallengeCard({ challenge, onJoin }) {
         onClick={() => onJoin(challenge)}
         className="mt-4 w-full rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
       >
-        <i className="fas fa-plus mr-2" />
+        <Icon icon="fa-plus" className="mr-2" />
         Join Challenge
       </button>
     </div>
@@ -427,6 +431,11 @@ export default function GroupsSection() {
   const typingTimeoutRef = useRef(null)
   const voiceUrlsRef = useRef({})
 
+  const [dmPartner, setDmPartner] = useState(null)
+  const [dmMessages, setDmMessages] = useState([])
+  const [dmInput, setDmInput] = useState('')
+  const dmChatRef = useRef(null)
+
   useEffect(() => {
     seedAllGroups()
     const membersList = loadMembers(mood, user)
@@ -455,6 +464,12 @@ export default function GroupsSection() {
       chatRef.current.scrollTop = chatRef.current.scrollHeight
     }
   }, [messages, autoScroll])
+
+  useEffect(() => {
+    if (dmChatRef.current) {
+      dmChatRef.current.scrollTop = dmChatRef.current.scrollHeight
+    }
+  }, [dmMessages, dmPartner])
 
   useEffect(() => {
     return () => {
@@ -516,6 +531,43 @@ export default function GroupsSection() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
       sendMessage()
+    }
+  }
+
+  const openDm = (member) => {
+    if (!member || member.id === user.id) return
+    seedDm(user.id, member.id, member.fullName)
+    setDmMessages(loadDMs(user.id, member.id))
+    setDmPartner(member)
+    setDmInput('')
+  }
+
+  const closeDm = () => {
+    setDmPartner(null)
+    setDmMessages([])
+    setDmInput('')
+  }
+
+  const sendDm = () => {
+    const text = dmInput.trim()
+    if (!text || !dmPartner) return
+    const msg = makeMessage({
+      userId: user.id,
+      userName: user.fullName,
+      message: text,
+      timestamp: new Date().toISOString(),
+      type: 'user',
+    })
+    const next = [...dmMessages, msg]
+    saveDMs(user.id, dmPartner.id, next)
+    setDmMessages(next)
+    setDmInput('')
+  }
+
+  const handleDmKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      sendDm()
     }
   }
 
@@ -737,46 +789,79 @@ export default function GroupsSection() {
       <div className="mb-8 overflow-hidden rounded-3xl border border-line-light bg-surface shadow-lg">
         {/* Group header */}
         <div className="flex flex-col gap-4 border-b border-line-light p-5 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
-            <span
-              className="flex h-14 w-14 items-center justify-center rounded-2xl text-3xl"
-              style={{ backgroundColor: `${moodData.color}1a` }}
-            >
-              {moodData.emoji}
-            </span>
-            <div>
-              <h3 className="text-lg font-bold text-ink">{moodData.groupName}</h3>
-              <p className="text-sm text-ink-2">
-                {members.length} {members.length === 1 ? 'member' : 'members'}
-              </p>
+          {dmPartner ? (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={closeDm}
+                title="Back to group chat"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
+              >
+                <Icon icon="fa-arrow-left" />
+              </button>
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">
+                <Icon icon={dmPartner.avatar || 'fa-user'} className="text-3xl" />
+              </span>
+              <div>
+                <h3 className="flex items-center gap-2 text-lg font-bold text-ink">
+                  {dmPartner.fullName}
+                  <span className="flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary-text">
+                    <Icon icon="fa-lock" className="text-[10px]" /> Private
+                  </span>
+                </h3>
+                <p className="flex items-center gap-1.5 text-sm text-ink-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+                  </span>
+                  Online now
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => setModal('mood-update')}
-              className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary-text transition-colors hover:bg-primary/20"
-            >
-              <i className="fas fa-edit mr-2" />
-              Change Mood
-            </button>
-            <button
-              type="button"
-              onClick={() => setModal('chat-settings')}
-              title="Chat Settings"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
-            >
-              <i className="fas fa-cog" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setModal('clear-chat')}
-              title="Clear Chat"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-danger hover:text-danger"
-            >
-              <i className="fas fa-trash" />
-            </button>
-          </div>
+          ) : (
+            <div className="flex items-center gap-3">
+              <span
+                className="flex h-14 w-14 items-center justify-center rounded-2xl text-3xl"
+                style={{ backgroundColor: `${moodData.color}1a` }}
+              >
+                <Icon icon={moodData.icon} className="text-3xl" />
+              </span>
+              <div>
+                <h3 className="text-lg font-bold text-ink">{moodData.groupName}</h3>
+                <p className="text-sm text-ink-2">
+                  {members.length} {members.length === 1 ? 'member' : 'members'}
+                </p>
+              </div>
+            </div>
+          )}
+          {!dmPartner && (
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setModal('mood-update')}
+                className="rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary-text transition-colors hover:bg-primary/20"
+              >
+                <Icon icon="fa-edit" className="mr-2" />
+                Change Mood
+              </button>
+              <button
+                type="button"
+                onClick={() => setModal('chat-settings')}
+                title="Chat Settings"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
+              >
+                <Icon icon="fa-cog" />
+              </button>
+              <button
+                type="button"
+                onClick={() => setModal('clear-chat')}
+                title="Clear Chat"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-danger hover:text-danger"
+              >
+                <Icon icon="fa-trash" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Chat area */}
@@ -785,16 +870,23 @@ export default function GroupsSection() {
           <div className="flex min-w-0 flex-1 flex-col">
             {/* Status bar */}
             <div className="flex items-center justify-between gap-2 border-b border-line-light bg-canvas/60 px-5 py-2.5">
-              <div className="flex items-center gap-4 text-xs text-ink-2">
-                <span className="flex items-center gap-1.5">
-                  <span className="relative flex h-2.5 w-2.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
-                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-success" />
+              {dmPartner ? (
+                <div className="flex items-center gap-1.5 text-xs text-ink-2">
+                  <Icon icon="fa-lock" className="text-[10px] text-primary-text" />
+                  Private chat with {dmPartner.fullName} — only you two can see these messages
+                </div>
+              ) : (
+                <div className="flex items-center gap-4 text-xs text-ink-2">
+                  <span className="flex items-center gap-1.5">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-success" />
+                    </span>
+                    {onlineCount} members online
                   </span>
-                  {onlineCount} members online
-                </span>
-                <span>{messages.length} messages</span>
-              </div>
+                  <span>{messages.length} messages</span>
+                </div>
+              )}
               <div className="flex items-center gap-1">
                 <button
                   type="button"
@@ -802,7 +894,7 @@ export default function GroupsSection() {
                   onClick={() => chatRef.current && (chatRef.current.scrollTop = chatRef.current.scrollHeight)}
                   className="flex h-8 w-8 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-surface-hover hover:text-primary-text"
                 >
-                  <i className="fas fa-arrow-down" />
+                  <Icon icon="fa-arrow-down" />
                 </button>
                 <button
                   type="button"
@@ -812,14 +904,63 @@ export default function GroupsSection() {
                     autoScroll ? 'bg-primary/10 text-primary-text' : 'text-ink-2 hover:bg-surface-hover hover:text-primary-text'
                   }`}
                 >
-                  <i className="fas fa-magic" />
+                  <Icon icon="fa-magic" />
                 </button>
               </div>
             </div>
 
             {/* Messages list */}
-            <div ref={chatRef} className="h-[440px] space-y-3 overflow-y-auto p-5">
-              {messages.map((msg) => {
+            <div ref={dmPartner ? dmChatRef : chatRef} className="h-[440px] space-y-3 overflow-y-auto p-5">
+              {dmPartner ? (
+                dmMessages.length === 0 ? (
+                  <div className="flex h-full flex-col items-center justify-center gap-2 text-center">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-2xl">
+                      <Icon icon={dmPartner.avatar || 'fa-user'} className="text-2xl" />
+                    </span>
+                    <p className="text-sm font-semibold text-ink">This is the start of your private chat with {dmPartner.fullName}</p>
+                    <p className="text-xs text-ink-2">Say hello and check in on each other</p>
+                  </div>
+                ) : (
+                  dmMessages.map((msg) => {
+                    const isOwn = msg.userId === user.id
+                    if (msg.type === 'system') {
+                      return (
+                        <div key={msg.id} className="flex justify-center">
+                          <span className="rounded-full bg-primary/10 px-4 py-1 text-center text-xs font-medium text-primary-text">
+                            {msg.message}
+                          </span>
+                        </div>
+                      )
+                    }
+                    return (
+                      <div key={msg.id} className={`flex ${isOwn ? 'justify-end' : 'justify-start'} items-end gap-2`}>
+                        {!isOwn && (
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg">
+                            <Icon icon={dmPartner.avatar || 'fa-user'} className="text-lg" />
+                          </span>
+                        )}
+                        <div className={`max-w-[75%] ${isOwn ? 'text-right' : ''}`}>
+                          <div className={`flex items-center gap-2 ${isOwn ? 'justify-end' : ''} mb-1`}>
+                            <span className="text-xs font-semibold text-ink">{msg.userName}</span>
+                            <span className="text-[10px] text-ink-2">{formatTime(msg.timestamp)}</span>
+                          </div>
+                          <div
+                            className={`inline-block rounded-2xl px-4 py-2 text-left text-sm break-words ${
+                              isOwn
+                                ? 'rounded-br-md bg-primary text-on-primary'
+                                : 'rounded-bl-md border border-line-light bg-canvas text-ink'
+                            }`}
+                          >
+                            {msg.message}
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                )
+              ) : (
+                <>
+                  {messages.map((msg) => {
                 const isOwn = msg.userId === user.id
                 const isSystem = msg.type === 'system'
                 if (isSystem) {
@@ -846,7 +987,7 @@ export default function GroupsSection() {
                           onClick={() => playStoredVoice(msg.id)}
                           className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/20 text-sm"
                         >
-                          <i className="fas fa-play" />
+                          <Icon icon="fa-play" />
                         </button>
                         <div className="min-w-0">
                           <p className={`text-xs font-semibold ${isOwn ? 'text-white/90' : 'text-ink'}`}>{msg.userName}</p>
@@ -862,9 +1003,17 @@ export default function GroupsSection() {
                 return (
                   <div key={msg.id} className={`flex ${isOwn ? 'justify-end' : 'justify-start'} items-end gap-2`}>
                     {!isOwn && (
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg">
-                        {members.find((m) => m.id === msg.userId)?.avatar || '👤'}
-                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const sender = members.find((m) => m.id === msg.userId)
+                          if (sender) openDm(sender)
+                        }}
+                        title="Start private chat"
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg transition-colors hover:bg-primary/20"
+                      >
+                        <Icon icon={members.find((m) => m.id === msg.userId)?.avatar || 'fa-user'} className="text-lg" />
+                      </button>
                     )}
                     <div className={`max-w-[75%] ${isOwn ? 'text-right' : ''}`}>
                       <div className={`flex items-center gap-2 ${isOwn ? 'justify-end' : ''} mb-1`}>
@@ -890,7 +1039,7 @@ export default function GroupsSection() {
                             }}
                             className="flex items-center gap-1 text-[10px] text-ink-2 transition-colors hover:text-danger"
                           >
-                            <i className="fas fa-flag" />
+                            <Icon icon="fa-flag" />
                             Report
                           </button>
                         </div>
@@ -909,6 +1058,8 @@ export default function GroupsSection() {
                   <span className="text-xs text-ink-2">Someone is typing...</span>
                 </div>
               )}
+                </>
+              )}
             </div>
           </div>
 
@@ -917,7 +1068,7 @@ export default function GroupsSection() {
             <aside className="hidden w-72 shrink-0 flex-col border-l border-line-light lg:flex">
               <div className="flex items-center justify-between border-b border-line-light px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <i className="fas fa-users text-primary-text" />
+                  <Icon icon="fa-users" className="text-primary-text" />
                   <h4 className="text-sm font-bold text-ink">Group Members</h4>
                   <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary-text">
                     {members.length}
@@ -929,24 +1080,45 @@ export default function GroupsSection() {
                   title="Hide Sidebar"
                   className="flex h-8 w-8 items-center justify-center rounded-full text-ink-2 transition-colors hover:bg-surface-hover hover:text-primary-text"
                 >
-                  <i className="fas fa-chevron-right" />
+                  <Icon icon="fa-chevron-right" />
                 </button>
               </div>
               <div className="flex-1 space-y-1 overflow-y-auto p-3">
                 {members.map((member) => {
                   const isYou = member.id === user.id
+                  const activeDm = dmPartner?.id === member.id
                   return (
                     <div
                       key={member.id}
-                      className={`flex items-center gap-2.5 rounded-xl p-2 ${isYou ? 'bg-primary/5' : 'hover:bg-surface-hover'}`}
+                      role={isYou ? undefined : 'button'}
+                      tabIndex={isYou ? undefined : 0}
+                      onClick={() => !isYou && openDm(member)}
+                      onKeyDown={(e) => {
+                        if (!isYou && (e.key === 'Enter' || e.key === ' ')) {
+                          e.preventDefault()
+                          openDm(member)
+                        }
+                      }}
+                      title={isYou ? undefined : `Message ${member.fullName}`}
+                      className={`group flex items-center gap-2.5 rounded-xl p-2 ${
+                        activeDm ? 'bg-primary/10' : isYou ? 'bg-primary/5' : 'cursor-pointer hover:bg-surface-hover'
+                      }`}
                     >
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-lg">
-                        {member.avatar || '👤'}
+                        <Icon icon={member.avatar || 'fa-user'} className="text-lg" />
                       </span>
                       <div className="min-w-0 flex-1">
                         <p className="truncate text-sm font-medium text-ink">{member.fullName}</p>
                         {isYou && <p className="text-[10px] font-semibold text-primary-text">You</p>}
                       </div>
+                      {!isYou && (
+                        <Icon
+                          icon="fa-comment"
+                          className={`shrink-0 text-sm text-primary-text transition-opacity ${
+                            activeDm ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-focus-within:opacity-100'
+                          }`}
+                        />
+                      )}
                     </div>
                   )
                 })}
@@ -957,7 +1129,7 @@ export default function GroupsSection() {
                   onClick={() => setModal('group-info')}
                   className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-ink-2 transition-colors hover:bg-surface-hover hover:text-primary-text"
                 >
-                  <i className="fas fa-info-circle w-4 text-primary-text" />
+                  <Icon icon="fa-info-circle" className="text-primary-text" />
                   Group Info
                 </button>
                 {PANEL_ACTIONS.map((action) => (
@@ -969,7 +1141,7 @@ export default function GroupsSection() {
                       panel === action.id ? 'bg-primary/10 text-primary-text' : 'text-ink-2 hover:bg-surface-hover hover:text-primary-text'
                     }`}
                   >
-                    <i className={`fas ${action.icon} w-4`} />
+                    <Icon icon={action.icon} />
                     {action.label}
                   </button>
                 ))}
@@ -980,7 +1152,28 @@ export default function GroupsSection() {
 
         {/* Chat input / recording */}
         <div className="border-t border-line-light p-4">
-          {previewVoice ? (
+          {dmPartner ? (
+            <div className="flex items-end gap-2">
+              <input
+                type="text"
+                value={dmInput}
+                maxLength={500}
+                onChange={(e) => setDmInput(e.target.value)}
+                onKeyDown={handleDmKeyDown}
+                placeholder={`Message ${dmPartner.fullName}...`}
+                className="min-w-0 flex-1 rounded-2xl border border-line-light bg-canvas px-4 py-3 text-sm text-ink placeholder:text-ink-2/60 focus:border-primary focus:outline-none"
+              />
+              <button
+                type="button"
+                title="Send Message"
+                onClick={sendDm}
+                disabled={!dmInput.trim()}
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <Icon icon="fa-paper-plane" />
+              </button>
+            </div>
+          ) : previewVoice ? (
             <div className="rounded-2xl border border-line-light bg-canvas p-4">
               <div className="flex items-center gap-3">
                 <button
@@ -988,7 +1181,7 @@ export default function GroupsSection() {
                   onClick={() => playAudio(previewVoice.url)}
                   className="flex h-11 w-11 items-center justify-center rounded-full bg-primary text-on-primary"
                 >
-                  <i className="fas fa-play" />
+                  <Icon icon="fa-play" />
                 </button>
                 <div className="flex flex-1 items-center gap-1">
                   {Array.from({ length: 16 }).map((_, i) => (
@@ -1003,7 +1196,7 @@ export default function GroupsSection() {
                   onClick={sendVoiceMessage}
                   className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
                 >
-                  <i className="fas fa-paper-plane" />
+                  <Icon icon="fa-paper-plane" />
                   Send Voice Message
                 </button>
                 <button
@@ -1011,7 +1204,7 @@ export default function GroupsSection() {
                   onClick={startRecording}
                   className="flex items-center justify-center gap-2 rounded-xl border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
                 >
-                  <i className="fas fa-redo" />
+                  <Icon icon="fa-redo" />
                   Re-record
                 </button>
               </div>
@@ -1038,7 +1231,7 @@ export default function GroupsSection() {
                     onClick={stopRecording}
                     className="flex items-center gap-2 rounded-full bg-danger px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                   >
-                    <i className="fas fa-stop" />
+                    <Icon icon="fa-stop" />
                     Stop
                   </button>
                   <button
@@ -1046,7 +1239,7 @@ export default function GroupsSection() {
                     onClick={cancelRecording}
                     className="flex items-center gap-2 rounded-full border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-danger hover:text-danger"
                   >
-                    <i className="fas fa-times" />
+                    <Icon icon="fa-times" />
                     Cancel
                   </button>
                 </div>
@@ -1079,15 +1272,15 @@ export default function GroupsSection() {
                   title="Record voice message"
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
                 >
-                  <i className="fas fa-microphone" />
+                  <Icon icon="fa-microphone" />
                 </button>
                 <button
                   type="button"
-                  title="Add emoji"
+                  title="Add icon"
                   onClick={() => handleInputChange(`${input} `)}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
                 >
-                  <i className="fas fa-smile" />
+                  <Icon icon="fa-smile" />
                 </button>
                 <button
                   type="button"
@@ -1096,7 +1289,7 @@ export default function GroupsSection() {
                   disabled={!input.trim()}
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary text-on-primary transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
                 >
-                  <i className="fas fa-paper-plane" />
+                  <Icon icon="fa-paper-plane" />
                 </button>
               </div>
               <div className="mt-2 flex items-center justify-between text-xs text-ink-2">
@@ -1122,7 +1315,7 @@ export default function GroupsSection() {
             {(MOOD_RESOURCES[mood] || []).map((resource) => (
               <div key={resource.title} className="rounded-2xl border border-line-light bg-canvas p-4">
                 <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary-text">
-                  <i className={`fas ${resource.icon}`} />
+                  <Icon icon={resource.icon} />
                 </div>
                 <h4 className="text-sm font-bold text-ink">{resource.title}</h4>
                 <p className="mt-1 text-xs leading-relaxed text-ink-2">{resource.description}</p>
@@ -1136,7 +1329,7 @@ export default function GroupsSection() {
                   </button>
                 ) : (
                   <a href="#" onClick={(e) => e.preventDefault()} className="mt-3 inline-block text-xs font-semibold text-primary-text">
-                    Learn More <i className="fas fa-external-link-alt ml-1" />
+                    Learn More <Icon icon="fa-external-link-alt" className="ml-1" />
                   </a>
                 )}
               </div>
@@ -1158,13 +1351,13 @@ export default function GroupsSection() {
               onClick={() => setModal('create-poll')}
               className="shrink-0 rounded-full bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
             >
-              <i className="fas fa-plus mr-2" />
+              <Icon icon="fa-plus" className="mr-2" />
               Create New Poll
             </button>
           </div>
           {polls.length === 0 ? (
             <div className="rounded-2xl border border-dashed border-line-light p-10 text-center">
-              <i className="fas fa-poll mb-3 text-3xl text-ink-2/40" />
+              <Icon icon="fa-poll" className="mb-3 text-3xl text-ink-2/40" />
               <p className="text-sm text-ink-2">No polls yet. Create the first one!</p>
             </div>
           ) : (
@@ -1207,7 +1400,7 @@ export default function GroupsSection() {
                     : 'border-line-light bg-canvas text-ink-2 hover:border-primary hover:text-primary-text'
                 }`}
               >
-                <i className={`fas ${tab.icon}`} />
+                <Icon icon={tab.icon} />
                 {tab.label}
               </button>
             ))}
@@ -1223,7 +1416,7 @@ export default function GroupsSection() {
 
           {challengeTab === 'completed' && (
             <div className="rounded-2xl border border-dashed border-line-light p-12 text-center">
-              <i className="fas fa-trophy mb-3 text-4xl text-warning/50" />
+              <Icon icon="fa-trophy" className="mb-3 text-4xl text-warning/50" />
               <h3 className="text-lg font-bold text-ink">No Completed Challenges Yet</h3>
               <p className="mt-1 text-sm text-ink-2">Complete challenges to see them here and earn badges!</p>
             </div>
@@ -1296,7 +1489,7 @@ export default function GroupsSection() {
                     onClick={createChallenge}
                     className="rounded-full bg-primary px-5 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
                   >
-                    <i className="fas fa-plus mr-2" />
+                    <Icon icon="fa-plus" className="mr-2" />
                     Create Challenge
                   </button>
                   <button
@@ -1325,7 +1518,7 @@ export default function GroupsSection() {
             ].map((stat) => (
               <div key={stat.label} className="flex items-center gap-4 rounded-2xl border border-line-light bg-canvas p-4">
                 <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary-text">
-                  <i className={`fas ${stat.icon}`} />
+                  <Icon icon={stat.icon} />
                 </div>
                 <div>
                   <p className="text-xs text-ink-2">{stat.label}</p>
@@ -1339,7 +1532,7 @@ export default function GroupsSection() {
             <h4 className="mb-3 text-sm font-bold text-ink">Mood Journey</h4>
             {analytics.moodTimeline.length === 0 ? (
               <div className="rounded-2xl border border-dashed border-line-light p-8 text-center">
-                <i className="fas fa-heart mb-3 text-3xl text-primary-text/30" />
+                <Icon icon="fa-heart" className="mb-3 text-3xl text-primary-text/30" />
                 <p className="text-sm text-ink-2">Change your mood to start tracking your journey.</p>
               </div>
             ) : (
@@ -1350,7 +1543,7 @@ export default function GroupsSection() {
                     className="flex items-center justify-between rounded-xl border border-line-light bg-canvas px-4 py-2.5"
                   >
                     <span className="flex items-center gap-2 text-sm font-medium text-ink">
-                      <span className="text-lg">{MOODS[entry.mood]?.emoji}</span>
+                      <Icon icon={MOODS[entry.mood]?.icon} className="text-lg" />
                       {MOODS[entry.mood]?.description || entry.mood}
                     </span>
                     <span className="text-xs text-ink-2">{entry.date}</span>
@@ -1371,7 +1564,7 @@ export default function GroupsSection() {
           <p className="mb-4 text-sm text-ink-2">Select your current mood to join a supportive group chat:</p>
           <MoodSelector currentMood={mood} onSelect={selectMood} />
           <p className="mt-4 flex items-start gap-2 rounded-xl bg-primary/5 p-3 text-xs text-ink-2">
-            <i className="fas fa-info-circle mt-0.5 text-primary-text" />
+            <Icon icon="fa-info-circle" className="mt-0.5 text-primary-text" />
             You'll be automatically added to a group chat with others feeling the same way. You can change your mood anytime!
           </p>
         </Modal>
@@ -1381,7 +1574,7 @@ export default function GroupsSection() {
         <Modal onClose={closeModal}>
           <ModalHeader title="Update Your Mood" icon="fa-edit" onClose={closeModal} />
           <p className="mb-4 text-sm text-ink-2">
-            Current mood: <strong className="text-ink">{moodData.emoji} {moodData.description}</strong>
+            Current mood: <strong className="text-ink"><Icon icon={moodData.icon} className="mr-1" />{moodData.description}</strong>
           </p>
           <MoodSelector currentMood={mood} onSelect={selectMood} />
         </Modal>
@@ -1402,7 +1595,7 @@ export default function GroupsSection() {
                     { icon: 'fa-heart', label: 'Free Support' },
                   ].map((item) => (
                     <div key={item.icon} className="rounded-2xl bg-canvas p-3 text-center">
-                      <i className={`fas ${item.icon} mb-1 block text-primary-text`} />
+                      <Icon icon={item.icon} className="mb-1 block text-primary-text" />
                       <span className="text-xs text-ink-2">{item.label}</span>
                     </div>
                   ))}
@@ -1412,7 +1605,7 @@ export default function GroupsSection() {
                     href={`tel:${info.number}`}
                     className="flex items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-on-primary transition-opacity hover:opacity-90"
                   >
-                    <i className={`fas ${info.icon}`} />
+                    <Icon icon={info.icon} />
                     {info.action}
                   </a>
                   <button
@@ -1420,7 +1613,7 @@ export default function GroupsSection() {
                     onClick={closeModal}
                     className="flex items-center justify-center gap-2 rounded-xl border border-line-light px-4 py-3 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
                   >
-                    <i className="fas fa-times" />
+                    <Icon icon="fa-times" />
                     Close
                   </button>
                 </div>
@@ -1471,7 +1664,7 @@ export default function GroupsSection() {
               onClick={submitReport}
               className="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
             >
-              <i className="fas fa-flag mr-2" />
+              <Icon icon="fa-flag" className="mr-2" />
               Submit Report
             </button>
             <button
@@ -1530,7 +1723,7 @@ export default function GroupsSection() {
               onClick={saveSettingsNow}
               className="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
             >
-              <i className="fas fa-save mr-2" />
+              <Icon icon="fa-save" className="mr-2" />
               Save Settings
             </button>
             <button
@@ -1538,7 +1731,7 @@ export default function GroupsSection() {
               onClick={resetSettingsNow}
               className="flex items-center gap-2 rounded-xl border border-line-light px-4 py-2.5 text-sm font-semibold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
             >
-              <i className="fas fa-undo" />
+              <Icon icon="fa-undo" />
               Reset to Default
             </button>
           </div>
@@ -1550,7 +1743,7 @@ export default function GroupsSection() {
           <ModalHeader title="Clear Chat" icon="fa-trash" onClose={closeModal} />
           <div className="rounded-2xl bg-danger/5 p-4">
             <div className="flex items-center gap-3">
-              <i className="fas fa-exclamation-triangle text-2xl text-danger" />
+              <Icon icon="fa-exclamation-triangle" className="text-2xl text-danger" />
               <div>
                 <h3 className="text-base font-bold text-ink">Are you sure?</h3>
                 <p className="text-sm text-ink-2">
@@ -1565,7 +1758,7 @@ export default function GroupsSection() {
               onClick={confirmClearChat}
               className="flex-1 rounded-xl bg-danger px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
-              <i className="fas fa-trash mr-2" />
+              <Icon icon="fa-trash" className="mr-2" />
               Clear Chat
             </button>
             <button
@@ -1654,7 +1847,7 @@ export default function GroupsSection() {
                 onClick={createPoll}
                 className="flex-1 rounded-xl bg-primary px-4 py-2.5 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90"
               >
-                <i className="fas fa-plus mr-2" />
+                <Icon icon="fa-plus" className="mr-2" />
                 Create Poll
               </button>
               <button

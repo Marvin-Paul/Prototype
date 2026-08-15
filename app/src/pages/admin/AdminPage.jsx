@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import Icon from '../../shared/Icon'
 import { useLanguage } from '../../shared/LanguageProvider'
 import { notify } from '../../shared/toast'
 import {
@@ -39,7 +40,7 @@ function SectionTitle({ icon, title, subtitle }) {
   return (
     <div className="mb-6">
       <h2 className={TITLE_BAR}>
-        <i className={`fas ${icon} text-primary-text`} /> {title}
+        <Icon icon={icon} className="text-primary-text" /> {title}
       </h2>
       {subtitle && <p className="text-sm text-ink-2">{subtitle}</p>}
       <div className={UNDERLINE} />
@@ -66,7 +67,7 @@ function StatCard({ icon, label, value, sub, tint, color }) {
         className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-xl"
         style={{ background: tint, color }}
       >
-        <i className={`fas ${icon}`} />
+        <Icon icon={icon} />
       </div>
       <div className="min-w-0">
         <p className="text-xs font-semibold tracking-wide text-ink-3 uppercase">{label}</p>
@@ -81,7 +82,7 @@ function EmptyRow({ colSpan, text }) {
   return (
     <tr>
       <td colSpan={colSpan} className="px-4 py-10 text-center">
-        <i className="mb-2 block text-3xl text-ink-3 fas fa-inbox" />
+        <Icon icon="fa-inbox" className="mb-2 block text-3xl text-ink-3" />
         <p className="text-sm font-medium text-ink-2">{text}</p>
       </td>
     </tr>
@@ -97,7 +98,7 @@ function AdminTopBar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-md">
-            <i className="fas fa-shield-alt" />
+            <Icon icon="fa-shield-alt" />
           </div>
           <div className="leading-tight">
             <p className="text-sm font-extrabold text-ink">Campus Mindspace Admin</p>
@@ -107,7 +108,7 @@ function AdminTopBar() {
 
         <div className="flex items-center gap-3">
           <div className="hidden items-center gap-2 rounded-full border border-line-light bg-canvas px-3 py-1.5 text-sm font-medium text-ink-2 sm:flex">
-            <i className="fas fa-user-shield text-primary-text" />
+            <Icon icon="fa-user-shield" className="text-primary-text" />
             <span>Administrator</span>
           </div>
           <select
@@ -124,7 +125,7 @@ function AdminTopBar() {
             href="index.html"
             className="inline-flex items-center gap-2 rounded-full border border-line-light px-4 py-2 text-sm font-semibold text-ink-2 transition-colors hover:border-danger hover:text-danger"
           >
-            <i className="fas fa-sign-out-alt" /> <span className="hidden sm:inline">Exit Portal</span>
+            <Icon icon="fa-sign-out-alt" /> <span className="hidden sm:inline">Exit Portal</span>
           </a>
         </div>
       </div>
@@ -185,7 +186,7 @@ function FeatureUsage() {
         {FEATURE_USAGE.map((f) => (
           <div key={f.title} className="flex items-center gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-canvas text-sm text-primary-text">
-              <i className={`fas ${f.icon}`} />
+              <Icon icon={f.icon} />
             </div>
             <div className="flex-1">
               <div className="mb-1.5 flex items-center justify-between text-sm">
@@ -226,7 +227,7 @@ function CounselingDemand() {
                     : 'bg-primary/10 text-primary-text'
               }`}
             >
-              <i className="fas fa-signal" /> {d.status}
+              <Icon icon="fa-signal" /> {d.status}
             </span>
           </div>
         ))}
@@ -289,7 +290,7 @@ function RecentActivity() {
         {SAMPLE_ACTIVITIES.map((a, i) => (
           <div key={i} className="flex items-center gap-3">
             <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm ${typeClasses[a.type]}`}>
-              <i className={`fas ${a.icon}`} />
+              <Icon icon={a.icon} />
             </div>
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium text-ink">{a.text}</p>
@@ -328,16 +329,16 @@ function AdminActions({ users, appointments, moodData, activityLog }) {
       <SectionTitle icon="fa-cogs" title="Administrative Actions" subtitle="Manage and export system data" />
       <div className="grid gap-4 sm:grid-cols-2">
         <button onClick={exportAll} className={PRIMARY_BTN}>
-          <i className="fas fa-download" /> <span>Export All Data</span>
+          <Icon icon="fa-download" /> <span>Export All Data</span>
         </button>
         <button onClick={() => setShowReport(true)} className={GHOST_BTN}>
-          <i className="fas fa-file-pdf" /> <span>Generate Report</span>
+          <Icon icon="fa-file-pdf" /> <span>Generate Report</span>
         </button>
         <button onClick={() => setShowLogs(true)} className={GHOST_BTN}>
-          <i className="fas fa-list" /> <span>View Activity Logs</span>
+          <Icon icon="fa-list" /> <span>View Activity Logs</span>
         </button>
         <button onClick={() => setShowUsers(true)} className={GHOST_BTN}>
-          <i className="fas fa-users-cog" /> <span>Manage Users</span>
+          <Icon icon="fa-users-cog" /> <span>Manage Users</span>
         </button>
       </div>
 
@@ -349,7 +350,7 @@ function AdminActions({ users, appointments, moodData, activityLog }) {
               <p className="text-sm text-ink-2">Generated {new Date().toLocaleString()}</p>
             </div>
             <button onClick={() => setShowReport(false)} className="text-ink-3 transition-colors hover:text-ink">
-              <i className="fas fa-times text-xl" />
+              <Icon icon="fa-times" className="text-xl" />
             </button>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -375,7 +376,7 @@ function AdminActions({ users, appointments, moodData, activityLog }) {
             </ul>
           </div>
           <button onClick={() => setShowReport(false)} className={`${PRIMARY_BTN} mt-5 w-full`}>
-            <i className="fas fa-check" /> Done
+            <Icon icon="fa-check" /> Done
           </button>
         </ModalShell>
       )}
@@ -385,7 +386,7 @@ function AdminActions({ users, appointments, moodData, activityLog }) {
           <div className="mb-4 flex items-start justify-between gap-3">
             <h3 className="text-lg font-extrabold text-ink">Activity Logs</h3>
             <button onClick={() => setShowLogs(false)} className="text-ink-3 transition-colors hover:text-ink">
-              <i className="fas fa-times text-xl" />
+              <Icon icon="fa-times" className="text-xl" />
             </button>
           </div>
           <div className="grid grid-cols-2 gap-3">
@@ -415,7 +416,7 @@ function AdminActions({ users, appointments, moodData, activityLog }) {
               <p className="text-sm text-ink-2">{users.length} registered user{users.length !== 1 ? 's' : ''}</p>
             </div>
             <button onClick={() => setShowUsers(false)} className="text-ink-3 transition-colors hover:text-ink">
-              <i className="fas fa-times text-xl" />
+              <Icon icon="fa-times" className="text-xl" />
             </button>
           </div>
           {users.length === 0 ? (
@@ -488,7 +489,7 @@ function MovementsTable({ movements, categories }) {
         </select>
         <input type="date" value={dateFilter} onChange={(e) => setDateFilter(e.target.value)} className={INPUT} />
         <button onClick={exportCsv} className={GHOST_BTN}>
-          <i className="fas fa-download" /> Export Log
+          <Icon icon="fa-download" /> Export Log
         </button>
       </div>
       <div className="overflow-x-auto">
@@ -527,16 +528,16 @@ function MovementsTable({ movements, categories }) {
 function MoodCategories({ categories, onChange }) {
   const [adding, setAdding] = useState(false)
   const [editingKey, setEditingKey] = useState(null)
-  const [form, setForm] = useState({ key: '', description: '', emoji: '', color: '#7ed24b' })
+  const [form, setForm] = useState({ key: '', description: '', icon: 'fa-smile', color: '#7ed24b' })
 
   const openAdd = () => {
-    setForm({ key: '', description: '', emoji: '', color: '#7ed24b' })
+    setForm({ key: '', description: '', icon: 'fa-smile', color: '#7ed24b' })
     setAdding(true)
   }
 
   const openEdit = (key) => {
     const m = categories[key]
-    setForm({ key, description: m.description, emoji: m.emoji, color: m.color })
+    setForm({ key, description: m.description, icon: m.icon || 'fa-smile', color: m.color })
     setEditingKey(key)
   }
 
@@ -549,7 +550,7 @@ function MoodCategories({ categories, onChange }) {
     next[form.key.trim()] = {
       ...(categories[form.key] || {}),
       description: form.description.trim(),
-      emoji: form.emoji || '🙂',
+      icon: form.icon || 'fa-smile',
       color: form.color,
       groupName: `${form.description.trim()} Group`,
       icon: 'fa-heart',
@@ -575,7 +576,7 @@ function MoodCategories({ categories, onChange }) {
           <div key={key} className="flex items-center justify-between gap-3 rounded-2xl border border-line-light bg-canvas/60 p-3.5">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl text-xl" style={{ background: `${m.color}20` }}>
-                {m.emoji}
+                <Icon icon={m.icon || 'fa-smile'} className="text-xl" />
               </span>
               <div>
                 <h4 className="text-sm font-bold text-ink">{m.description}</h4>
@@ -588,21 +589,21 @@ function MoodCategories({ categories, onChange }) {
                 onClick={() => openEdit(key)}
                 className="flex h-8 w-8 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
               >
-                <i className="fas fa-edit" />
+                <Icon icon="fa-edit" />
               </button>
               <button
                 title="Delete"
                 onClick={() => remove(key)}
                 className="flex h-8 w-8 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-danger hover:text-danger"
               >
-                <i className="fas fa-trash" />
+                <Icon icon="fa-trash" />
               </button>
             </div>
           </div>
         ))}
       </div>
       <button onClick={openAdd} className={`${GHOST_BTN} mt-4`}>
-        <i className="fas fa-plus" /> Add New Mood Category
+        <Icon icon="fa-plus" /> Add New Mood Category
       </button>
 
       {(adding || editingKey) && (
@@ -621,8 +622,8 @@ function MoodCategories({ categories, onChange }) {
             </div>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-sm font-semibold text-ink">Emoji</label>
-                <input value={form.emoji} onChange={(e) => setForm({ ...form, emoji: e.target.value })} placeholder="🙂" className={INPUT} />
+                <label className="mb-1 block text-sm font-semibold text-ink">Icon</label>
+                <input value={form.icon} onChange={(e) => setForm({ ...form, icon: e.target.value })} placeholder="fa-smile" className={INPUT} />
               </div>
               <div>
                 <label className="mb-1 block text-sm font-semibold text-ink">Color</label>
@@ -632,7 +633,7 @@ function MoodCategories({ categories, onChange }) {
           </div>
           <div className="mt-5 flex gap-3">
             <button onClick={save} className={`${PRIMARY_BTN} flex-1`}>
-              <i className="fas fa-save" /> Save Category
+              <Icon icon="fa-save" /> Save Category
             </button>
             <button onClick={() => { setAdding(false); setEditingKey(null) }} className={`${GHOST_BTN} flex-1`}>
               Cancel
@@ -689,7 +690,7 @@ function MoodAnalytics({ movements, categories }) {
           <option value="all">All Time</option>
         </select>
         <button onClick={generateReport} className={GHOST_BTN}>
-          <i className="fas fa-chart-line" /> Generate Report
+          <Icon icon="fa-chart-line" /> Generate Report
         </button>
       </div>
 
@@ -718,7 +719,7 @@ function MoodAnalytics({ movements, categories }) {
             return (
               <div key={mood} className="flex items-center gap-3">
                 <span className="w-32 shrink-0 truncate text-sm font-medium text-ink-2">
-                  {m?.emoji} {m?.description || mood}
+                  <Icon icon={m?.icon || 'fa-smile'} className="mr-1 inline" /> {m?.description || mood}
                 </span>
                 <div className="h-3 flex-1 overflow-hidden rounded-full bg-canvas">
                   <div className="h-full rounded-full" style={{ width: `${pct}%`, background: m?.color || '#868685' }} />
@@ -768,7 +769,7 @@ function GroupsManagement() {
         ].map((s) => (
           <div key={s.label} className="flex items-center gap-3 rounded-2xl border border-line-light bg-canvas/60 p-4">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary-text">
-              <i className={`fas ${s.icon}`} />
+              <Icon icon={s.icon} />
             </div>
             <div>
               <p className="text-2xl font-extrabold text-ink">{s.value}</p>
@@ -780,7 +781,7 @@ function GroupsManagement() {
 
       <div className="mb-6">
         <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-ink">
-          <i className="fas fa-eye text-primary-text" /> Real-Time Group Monitoring
+          <Icon icon="fa-eye" className="text-primary-text" /> Real-Time Group Monitoring
         </h3>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {monitor.length === 0 && (
@@ -794,17 +795,17 @@ function GroupsManagement() {
               <div key={mood} className="rounded-2xl border border-line-light bg-canvas/60 p-4">
                 <div className="mb-2 flex items-center justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-xl">{m?.emoji}</span>
+                    <Icon icon={m?.icon || 'fa-smile'} className="text-xl" />
                     <h4 className="text-sm font-bold text-ink">{m?.groupName || mood}</h4>
                   </div>
                   <span className={`${PILL} bg-success/10 text-success`}>
-                    <i className="fas fa-circle text-[8px]" /> Active
+                    <Icon icon="fa-circle" className="text-[8px]" /> Active
                   </span>
                 </div>
                 <p className="text-xs text-ink-2">{stats.memberCount} member{stats.memberCount !== 1 ? 's' : ''}</p>
                 <div className="mt-2 flex items-center gap-3 text-xs text-ink-3">
-                  <span><i className="mr-1 fas fa-comments" />{stats.messagesToday} today</span>
-                  <span><i className="mr-1 fas fa-clock" />{formatTime(stats.lastActivity)}</span>
+                  <span><Icon icon="fa-comments" className="mr-1" />{stats.messagesToday} today</span>
+                  <span><Icon icon="fa-clock" className="mr-1" />{formatTime(stats.lastActivity)}</span>
                 </div>
               </div>
             )
@@ -814,21 +815,21 @@ function GroupsManagement() {
 
       <div className="mb-6">
         <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-ink">
-          <i className="fas fa-exchange-alt text-primary-text" /> User Movement Log
+          <Icon icon="fa-exchange-alt" className="text-primary-text" /> User Movement Log
         </h3>
         <MovementsTable movements={movements} categories={categories} />
       </div>
 
       <div className="mb-6">
         <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-ink">
-          <i className="fas fa-cog text-primary-text" /> Mood Categories Management
+          <Icon icon="fa-cog" className="text-primary-text" /> Mood Categories Management
         </h3>
         <MoodCategories categories={categories} onChange={(next) => setCategories(next)} />
       </div>
 
       <div>
         <h3 className="mb-3 flex items-center gap-2 text-sm font-bold text-ink">
-          <i className="fas fa-chart-bar text-primary-text" /> Mood Distribution Analytics
+          <Icon icon="fa-chart-bar" className="text-primary-text" /> Mood Distribution Analytics
         </h3>
         <MoodAnalytics movements={movements} categories={categories} />
       </div>
@@ -861,31 +862,31 @@ function AppointmentDetails({ appointment, onClose, onEdit }) {
           <p className="text-xs text-ink-3">ID: {appointment.id}</p>
         </div>
         <span className={`${PILL} ${STATUS_BADGE[appointment.status] || 'bg-canvas text-ink-2'}`}>
-          <i className={`fas ${appointment.status === 'completed' ? 'fa-check-double' : appointment.status === 'cancelled' ? 'fa-times-circle' : appointment.status === 'no-show' ? 'fa-user-times' : 'fa-check-circle'}`} />
+          <Icon icon={appointment.status === 'completed' ? 'fa-check-double' : appointment.status === 'cancelled' ? 'fa-times-circle' : appointment.status === 'no-show' ? 'fa-user-times' : 'fa-check-circle'} />
           {(appointment.status || 'unknown').replace(/^\w/, (c) => c.toUpperCase())}
         </span>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <h4 className="text-sm font-bold text-ink"><i className="mr-1 fas fa-user text-primary-text" /> Student</h4>
+          <h4 className="text-sm font-bold text-ink"><Icon icon="fa-user" className="mr-1 text-primary-text" /> Student</h4>
           <Row label="Name" value={appointment.studentName} />
           <Row label="Email" value={appointment.studentEmail} />
           <Row label="Phone" value={appointment.studentPhone} />
         </div>
         <div className="space-y-2">
-          <h4 className="text-sm font-bold text-ink"><i className="mr-1 fas fa-user-md text-primary-text" /> Counselor</h4>
+          <h4 className="text-sm font-bold text-ink"><Icon icon="fa-user-md" className="mr-1 text-primary-text" /> Counselor</h4>
           <Row label="Name" value={counselor?.name || appointment.counselorName} />
           <Row label="Specialty" value={counselor?.specialty || appointment.counselorSpecialty} />
         </div>
         <div className="space-y-2">
-          <h4 className="text-sm font-bold text-ink"><i className="mr-1 fas fa-calendar text-primary-text" /> Schedule</h4>
+          <h4 className="text-sm font-bold text-ink"><Icon icon="fa-calendar" className="mr-1 text-primary-text" /> Schedule</h4>
           <Row label="Date" value={new Date(appointment.date).toLocaleDateString()} />
           <Row label="Time" value={appointment.timeSlot} />
           <Row label="Type" value={(appointment.sessionType || '').replace(/^\w/, (c) => c.toUpperCase())} />
         </div>
         <div className="space-y-2">
-          <h4 className="text-sm font-bold text-ink"><i className="mr-1 fas fa-info-circle text-primary-text" /> Meta</h4>
+          <h4 className="text-sm font-bold text-ink"><Icon icon="fa-info-circle" className="mr-1 text-primary-text" /> Meta</h4>
           <Row label="Booked On" value={appointment.createdAt ? new Date(appointment.createdAt).toLocaleString() : '—'} />
           <Row label="Updated" value={appointment.updatedAt ? new Date(appointment.updatedAt).toLocaleString() : 'Never'} />
           <Row label="Session Focus" value={appointment.sessionFocus} />
@@ -893,8 +894,8 @@ function AppointmentDetails({ appointment, onClose, onEdit }) {
       </div>
 
       <div className="mt-5 flex flex-wrap justify-end gap-3">
-        <button onClick={onEdit} className={GHOST_BTN}><i className="fas fa-edit" /> Edit</button>
-        <button onClick={onClose} className={PRIMARY_BTN}><i className="fas fa-check" /> Close</button>
+        <button onClick={onEdit} className={GHOST_BTN}><Icon icon="fa-edit" /> Edit</button>
+        <button onClick={onClose} className={PRIMARY_BTN}><Icon icon="fa-check" /> Close</button>
       </div>
     </ModalShell>
   )
@@ -969,7 +970,7 @@ function EditAppointment({ appointment, onSave, onClose }) {
           <textarea rows={3} value={form.sessionFocus} onChange={(e) => setForm({ ...form, sessionFocus: e.target.value })} className={`${INPUT} w-full`} />
         </div>
         <div className="flex gap-3 sm:col-span-2">
-          <button type="submit" className={`${PRIMARY_BTN} flex-1`}><i className="fas fa-save" /> Save Changes</button>
+          <button type="submit" className={`${PRIMARY_BTN} flex-1`}><Icon icon="fa-save" /> Save Changes</button>
           <button type="button" onClick={onClose} className={`${GHOST_BTN} flex-1`}>Cancel</button>
         </div>
       </form>
@@ -1087,8 +1088,8 @@ function AppointmentsManagement() {
           </select>
         </div>
         <div className="ml-auto flex gap-2">
-          <button onClick={refresh} className={GHOST_BTN}><i className="fas fa-sync" /> Refresh</button>
-          <button onClick={exportCsv} className={GHOST_BTN}><i className="fas fa-download" /> Export</button>
+          <button onClick={refresh} className={GHOST_BTN}><Icon icon="fa-sync" /> Refresh</button>
+          <button onClick={exportCsv} className={GHOST_BTN}><Icon icon="fa-download" /> Export</button>
         </div>
       </div>
 
@@ -1120,7 +1121,7 @@ function AppointmentsManagement() {
                 </td>
                 <td className="px-3 py-2.5">
                   <span className={`${PILL} bg-accent-purple/10 text-accent-purple`}>
-                    <i className={`fas ${a.sessionType === 'group' ? 'fa-users' : 'fa-user'}`} /> {(a.sessionType || 'individual').replace(/^\w/, (c) => c.toUpperCase())}
+                    <Icon icon={a.sessionType === 'group' ? 'fa-users' : 'fa-user'} /> {(a.sessionType || 'individual').replace(/^\w/, (c) => c.toUpperCase())}
                   </span>
                 </td>
                 <td className="px-3 py-2.5">
@@ -1132,13 +1133,13 @@ function AppointmentsManagement() {
                 <td className="px-3 py-2.5">
                   <div className="flex items-center justify-end gap-1.5" onClick={(e) => e.stopPropagation()}>
                     <button title="View" onClick={() => setDetails(a)} className="flex h-8 w-8 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
-                      <i className="fas fa-eye" />
+                      <Icon icon="fa-eye" />
                     </button>
                     <button title="Edit" onClick={() => setEditing(a)} className="flex h-8 w-8 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
-                      <i className="fas fa-edit" />
+                      <Icon icon="fa-edit" />
                     </button>
                     <button title="Change Status" onClick={() => toggleStatus(a.id)} className="flex h-8 w-8 items-center justify-center rounded-full border border-line-light text-ink-2 transition-colors hover:border-primary hover:text-primary-text">
-                      <i className="fas fa-toggle-on" />
+                      <Icon icon="fa-toggle-on" />
                     </button>
                   </div>
                 </td>
@@ -1177,7 +1178,7 @@ export default function AdminPage() {
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
         <div className="mb-8">
           <h1 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-            <i className="mr-2 fas fa-shield-alt text-primary-text" />
+            <Icon icon="fa-shield-alt" className="mr-2 text-primary-text" />
             Administrator Dashboard
           </h1>
           <p className="mt-1 text-ink-2">Comprehensive analytics and management for Campus Mindspace</p>
@@ -1256,7 +1257,7 @@ function GroupsOverview() {
       ].map((s) => (
         <div key={s.label} className="flex items-center gap-3 rounded-2xl border border-line-light bg-canvas/60 p-4">
           <div className={`flex h-11 w-11 items-center justify-center rounded-xl text-lg ${s.tint}`}>
-            <i className={`fas ${s.icon}`} />
+            <Icon icon={s.icon} />
           </div>
           <div>
             <p className="text-2xl font-extrabold text-ink">{s.value}</p>

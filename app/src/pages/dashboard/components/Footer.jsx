@@ -1,4 +1,5 @@
 import { useLanguage } from '../../../shared/LanguageProvider'
+import Icon from '../../../shared/Icon'
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -10,7 +11,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px]">
         {/* Crisis note */}
         <div className="mb-8 flex items-center gap-4 rounded-xl border border-red-300/35 bg-[rgba(220,38,38,0.16)] p-4 text-[#fecaca]">
-          <i className="fas fa-heart flex-shrink-0 text-xl text-red-300" />
+          <Icon icon="fa-heart" className="flex-shrink-0 text-xl text-red-300" />
           <p className="m-0 text-[0.9rem] leading-[1.5]">
             <strong className="text-white">{t('footer_crisis_title')}</strong>{' '}
             {t('footer_crisis_text').split(' 988 ').length === 2 ? (
@@ -28,7 +29,7 @@ export default function Footer() {
         <div className="mb-8 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div>
             <h4 className="mb-3 flex items-center gap-2 text-[0.95rem] font-normal uppercase tracking-[0.04em] text-white">
-              <i className="fas fa-brain text-primary-text" /> Campus Mindspace
+              <Icon icon="fa-brain" className="text-primary-text" /> Campus Mindspace
             </h4>
             <p className="text-[0.85rem] leading-[1.6] text-[#e8efed]/80">{t('footer_about_desc')}</p>
           </div>

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { get, set as storageSet } from '../../../shared/storage'
 import { notify } from '../../../shared/toast'
@@ -200,7 +201,7 @@ export default function ResourcesSection() {
                 : 'border border-line-light bg-surface text-ink-2 hover:border-primary hover:text-primary-text'
             }`}
           >
-            <i className={`fas ${cat.icon}`} />
+            <Icon icon={cat.icon} />
             {cat.label}
           </button>
         ))}
@@ -225,7 +226,7 @@ export default function ResourcesSection() {
                   title="Shuffle"
                   className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${shuffle ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light text-ink-2'}`}
                 >
-                  <i className="fas fa-random" />
+                  <Icon icon="fa-random" />
                 </button>
                 <button
                   type="button"
@@ -236,24 +237,24 @@ export default function ResourcesSection() {
                   title="Repeat"
                   className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors ${repeat ? 'border-primary bg-primary/10 text-primary-text' : 'border-line-light text-ink-2'}`}
                 >
-                  <i className="fas fa-repeat" />
+                  <Icon icon="fa-repeat" />
                 </button>
               </div>
             </div>
 
             <div className="mt-4 flex items-center justify-center gap-4">
               <button type="button" onClick={prevTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary-text">
-                <i className="fas fa-step-backward" />
+                <Icon icon="fa-step-backward" />
               </button>
               <button
                 type="button"
                 onClick={togglePlay}
                 className="flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-glow transition-transform hover:scale-110"
               >
-                <i className={`fas ${isPlaying ? 'fa-pause' : 'fa-play'}`} />
+                <Icon icon={isPlaying ? 'fa-pause' : 'fa-play'} />
               </button>
               <button type="button" onClick={nextTrack} className="h-10 w-10 rounded-full text-ink-2 transition-colors hover:text-primary-text">
-                <i className="fas fa-step-forward" />
+                <Icon icon="fa-step-forward" />
               </button>
             </div>
 
@@ -305,7 +306,7 @@ export default function ResourcesSection() {
                   >
                     <span className="text-sm font-medium text-ink">{p.title}</span>
                     <span className="flex items-center gap-2 text-xs text-ink-2">
-                      {p.episodes} episodes <i className="fas fa-play text-primary-text" />
+                      {p.episodes} episodes <Icon icon="fa-play" className="text-primary-text" />
                     </span>
                   </button>
                 ))}
@@ -325,7 +326,7 @@ export default function ResourcesSection() {
                       <p className="text-sm font-medium text-ink">{a.title}</p>
                       <p className="text-xs text-ink-3">{a.note}</p>
                     </div>
-                    <i className="fas fa-headphones text-primary-text" />
+                    <Icon icon="fa-headphones" className="text-primary-text" />
                   </button>
                 ))}
               </div>
@@ -349,7 +350,7 @@ export default function ResourcesSection() {
                     className="flex items-center gap-4 rounded-xl bg-canvas px-4 py-3 transition-colors hover:bg-surface-hover"
                   >
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary">
-                      <i className="fas fa-play text-xs" />
+                      <Icon icon="fa-play" className="text-xs" />
                     </span>
                     <div className="min-w-0 flex-1">
                       <h5 className="truncate text-sm font-medium text-ink">{v.title}</h5>
@@ -408,7 +409,7 @@ export default function ResourcesSection() {
                     }}
                     className="flex items-center gap-3 rounded-2xl border border-line-light bg-canvas px-4 py-4 text-left transition-all hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
                   >
-                    <i className="fas fa-toolbox text-primary-text" />
+                    <Icon icon="fa-toolbox" className="text-primary-text" />
                     <span className="text-sm font-medium text-ink">{tool}</span>
                   </button>
                 ))}
@@ -421,7 +422,7 @@ export default function ResourcesSection() {
       {category === 'emergency' && (
         <section className="mx-auto max-w-3xl space-y-5">
           <div className="rounded-3xl bg-[linear-gradient(135deg,#dc2626,#b91c1c)] p-6 text-center text-white shadow-xl">
-            <i className="fas fa-exclamation-triangle mb-2 text-3xl" />
+            <Icon icon="fa-exclamation-triangle" className="mb-2 text-3xl" />
             <h3 className="text-xl font-bold">If you are in crisis, reach out now</h3>
             <p className="mt-1 text-sm text-white/85">Help is available 24/7. You are not alone.</p>
           </div>
@@ -574,7 +575,7 @@ function PomodoroModal({ open, onClose }) {
           onClick={() => setRunning((r) => !r)}
           className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
         >
-          <i className={`fas ${running ? 'fa-pause' : 'fa-play'} mr-2`} />
+          <Icon icon={running ? 'fa-pause' : 'fa-play'} className="mr-2" />
           {running ? 'Pause' : 'Start'}
         </button>
         <button
@@ -585,7 +586,7 @@ function PomodoroModal({ open, onClose }) {
           }}
           className="rounded-full bg-danger px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
         >
-          <i className="fas fa-stop mr-2" />Reset
+          <Icon icon="fa-stop" className="mr-2" />Reset
         </button>
       </div>
 

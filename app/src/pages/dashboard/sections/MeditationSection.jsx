@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { get, set as storageSet } from '../../../shared/storage'
 import { notify } from '../../../shared/toast'
@@ -13,7 +14,7 @@ const SESSIONS = [
     duration: 15,
     difficulty: 'Beginner',
     icon: 'fa-user',
-    iconBg: 'bg-[linear-gradient(135deg,#667eea,#764ba2)]',
+    iconBg: 'bg-[linear-gradient(135deg,#7c68b0,#5f4f93)]',
     tags: ['Relaxation', 'Body Awareness', 'Stress Relief'],
     instructions: [
       'Find a comfortable lying position',
@@ -33,7 +34,7 @@ const SESSIONS = [
     duration: 10,
     difficulty: 'Beginner',
     icon: 'fa-wind',
-    iconBg: 'bg-[linear-gradient(135deg,#4facfe,#00f2fe)]',
+    iconBg: 'bg-[linear-gradient(135deg,#3d7a85,#2c5d68)]',
     tags: ['Calming', 'Focus', 'Quick Practice'],
     instructions: [
       'Sit comfortably with spine straight',
@@ -53,7 +54,7 @@ const SESSIONS = [
     duration: 20,
     difficulty: 'Intermediate',
     icon: 'fa-walking',
-    iconBg: 'bg-[linear-gradient(135deg,#43e97b,#38f9d7)]',
+    iconBg: 'bg-[linear-gradient(135deg,#4f7f5a,#3a5c40)]',
     tags: ['Movement', 'Active', 'Outdoor'],
     instructions: [
       'Choose a quiet, safe path to walk',
@@ -73,7 +74,7 @@ const SESSIONS = [
     duration: 12,
     difficulty: 'Intermediate',
     icon: 'fa-heart',
-    iconBg: 'bg-[linear-gradient(135deg,#fa709a,#fee140)]',
+    iconBg: 'bg-[linear-gradient(135deg,#8f5f7f,#6a4460)]',
     tags: ['Compassion', 'Relationships', 'Emotional'],
     instructions: [
       'Sit comfortably and close your eyes',
@@ -178,19 +179,19 @@ export default function MeditationSection() {
       <SectionHeader title={t('meditation_title')} subtitle={t('meditation_subtitle')} />
 
       {/* Progress overview */}
-      <section className="flex flex-wrap items-center justify-center gap-6 rounded-3xl border border-line-light bg-gradient-to-br from-sky-50 to-blue-50 p-6 shadow-md dark:from-primary/5 dark:to-primary/10">
+      <section className="flex flex-wrap items-center justify-center gap-6 rounded-3xl border border-line-light bg-[linear-gradient(135deg,var(--calm-sage-soft),var(--calm-sky-soft))] p-6 shadow-md">
         {[
           { icon: 'fa-check-circle', value: stats.sessions, label: 'Sessions Completed' },
           { icon: 'fa-clock', value: stats.minutes, label: 'Total Minutes' },
           { icon: 'fa-fire', value: stats.streak, label: 'Day Streak' },
         ].map((stat) => (
           <div key={stat.label} className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#10b981,#059669)] text-lg text-white shadow-md">
-              <i className={`fas ${stat.icon}`} />
+            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--calm-sage),var(--calm-sky))] text-lg text-white shadow-md">
+              <Icon icon={stat.icon} />
             </div>
             <div>
-              <div className="text-2xl font-extrabold text-gray-800 dark:text-ink">{stat.value}</div>
-              <div className="text-xs font-medium text-gray-500 dark:text-ink-2">{stat.label}</div>
+              <div className="text-2xl font-extrabold text-ink">{stat.value}</div>
+              <div className="text-xs font-medium text-ink-2">{stat.label}</div>
             </div>
           </div>
         ))}
@@ -209,7 +210,7 @@ export default function MeditationSection() {
               className="flex flex-col rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
             >
               <div className={`mb-4 flex h-14 w-14 items-center justify-center rounded-full text-xl text-white shadow-md ${session.iconBg}`}>
-                <i className={`fas ${session.icon}`} />
+                <Icon icon={session.icon} />
               </div>
               <h3 className="text-lg font-bold text-ink">{session.title}</h3>
               <p className="mt-1 flex-1 text-sm text-ink-2">{session.description}</p>
@@ -222,11 +223,11 @@ export default function MeditationSection() {
               </div>
               <div className="mt-3 flex items-center justify-between text-xs text-ink-2">
                 <span className="flex items-center gap-1.5">
-                  <i className="fas fa-clock" /> {session.duration} min
+                  <Icon icon="fa-clock" /> {session.duration} min
                 </span>
                 <span
                   className={`rounded-full px-2.5 py-0.5 text-[10px] font-bold ${
-                    session.difficulty === 'Beginner' ? 'bg-green-100 text-green-700 dark:bg-success/15 dark:text-success' : 'bg-amber-100 text-amber-700 dark:bg-warning/15 dark:text-warning'
+                    session.difficulty === 'Beginner' ? 'bg-calm-sage/15 text-calm-sage-deep' : 'bg-calm-lavender/15 text-calm-lavender-deep'
                   }`}
                 >
                   {session.difficulty}
@@ -235,9 +236,9 @@ export default function MeditationSection() {
               <button
                 type="button"
                 onClick={() => setActiveSession({ ...session, quick: false })}
-                className="mt-4 w-full rounded-xl bg-[linear-gradient(135deg,#667eea,#764ba2)] px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.03]"
+                className={`mt-4 w-full rounded-xl px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.03] ${session.iconBg}`}
               >
-                <i className="fas fa-play mr-2" />Start Session
+                <Icon icon="fa-play" className="mr-2" />Start Session
               </button>
             </div>
           ))}
@@ -245,18 +246,18 @@ export default function MeditationSection() {
       </section>
 
       {/* Quick meditation */}
-      <section className="rounded-3xl border border-amber-200 bg-[linear-gradient(135deg,#fef3c7,#fde68a)] p-6 shadow-md dark:border-warning/30 dark:from-warning/10 dark:to-warning/20">
-        <h2 className="text-lg font-bold text-amber-900 dark:text-warning">Quick Meditation</h2>
-        <p className="mt-1 text-sm text-amber-800/80 dark:text-ink-2">Short guided sessions when you need a moment</p>
+      <section className="rounded-3xl border border-calm-lavender/40 bg-[linear-gradient(135deg,var(--calm-lavender-soft),var(--calm-sky-soft))] p-6 shadow-md">
+        <h2 className="text-lg font-bold text-calm-lavender-deep">Quick Meditation</h2>
+        <p className="mt-1 text-sm text-calm-sky-deep/90">Short guided sessions when you need a moment</p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           {QUICK_OPTIONS.map((q) => (
             <button
               key={q.minutes}
               type="button"
               onClick={() => setActiveSession({ title: `${q.minutes}-Minute Quick Meditation`, description: `A ${q.minutes}-minute guided meditation for instant calm`, duration: q.minutes, difficulty: 'Beginner', instructions: QUICK_INSTRUCTIONS, quick: true })}
-              className="flex items-center justify-center gap-2 rounded-2xl bg-white px-4 py-4 text-sm font-bold text-amber-800 shadow-md transition-transform hover:scale-[1.03] dark:bg-surface dark:text-warning"
+              className="flex items-center justify-center gap-2 rounded-2xl bg-surface px-4 py-4 text-sm font-bold text-calm-lavender-deep shadow-md transition-transform hover:scale-[1.03]"
             >
-              <i className={`fas ${q.icon}`} />
+              <Icon icon={q.icon} />
               {q.label}
             </button>
           ))}
@@ -270,8 +271,8 @@ export default function MeditationSection() {
           onClick={() => setTimerOpen(true)}
           className="group rounded-3xl border border-line-light bg-surface p-6 text-left shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
         >
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#8b5cf6,#7c3aed)] text-white shadow-md">
-            <i className="fas fa-stopwatch" />
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--calm-sage),var(--calm-sky))] text-white shadow-md">
+            <Icon icon="fa-stopwatch" />
           </div>
           <h3 className="font-bold text-ink">Meditation Timer</h3>
           <p className="mt-1 text-sm text-ink-2">Set a custom countdown with gentle reminders</p>
@@ -281,8 +282,8 @@ export default function MeditationSection() {
           onClick={() => setSoundsOpen(true)}
           className="group rounded-3xl border border-line-light bg-surface p-6 text-left shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
         >
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#8b5cf6,#7c3aed)] text-white shadow-md">
-            <i className="fas fa-volume-up" />
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--calm-sky),var(--calm-sky-deep))] text-white shadow-md">
+            <Icon icon="fa-volume-up" />
           </div>
           <h3 className="font-bold text-ink">Ambient Sounds</h3>
           <p className="mt-1 text-sm text-ink-2">Soothing soundscapes for deep focus</p>
@@ -298,8 +299,8 @@ export default function MeditationSection() {
           }}
           className="group rounded-3xl border border-line-light bg-surface p-6 text-left shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl"
         >
-          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,#8b5cf6,#7c3aed)] text-white shadow-md">
-            <i className="fas fa-chart-line" />
+          <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--calm-lavender),var(--calm-sage))] text-white shadow-md">
+            <Icon icon="fa-chart-line" />
           </div>
           <h3 className="font-bold text-ink">Progress Tracker</h3>
           <p className="mt-1 text-sm text-ink-2">{stats.sessions} sessions • {stats.minutes} minutes total</p>
@@ -307,9 +308,9 @@ export default function MeditationSection() {
       </section>
 
       {/* Goals */}
-      <section className="rounded-3xl border border-green-200 bg-[linear-gradient(135deg,#f0fdf4,#dcfce7)] p-6 shadow-md dark:border-success/30 dark:from-success/10 dark:to-success/20">
-        <h2 className="text-lg font-bold text-green-900 dark:text-success">Meditation Goals</h2>
-        <p className="mt-1 text-sm text-green-800/80 dark:text-ink-2">What would you like to achieve with meditation?</p>
+      <section className="rounded-3xl border border-calm-sage/40 bg-[linear-gradient(135deg,var(--calm-sage-soft),var(--calm-lavender-soft))] p-6 shadow-md">
+        <h2 className="text-lg font-bold text-calm-sage-deep">Meditation Goals</h2>
+        <p className="mt-1 text-sm text-calm-sky-deep/90">What would you like to achieve with meditation?</p>
         <div className="mt-4 flex gap-2">
           <input
             type="text"
@@ -319,12 +320,12 @@ export default function MeditationSection() {
               if (e.key === 'Enter') addGoal()
             }}
             placeholder="e.g. Meditate for 10 minutes daily"
-            className="flex-1 rounded-xl border border-green-300 bg-white px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-green-500 focus:outline-none"
+            className="flex-1 rounded-xl border border-calm-sage/60 bg-surface px-4 py-2.5 text-sm text-ink placeholder:text-ink-3 focus:border-calm-sage focus:outline-none"
           />
           <button
             type="button"
             onClick={addGoal}
-            className="rounded-xl bg-green-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-colors hover:bg-green-600"
+            className="rounded-xl bg-[linear-gradient(135deg,#4f7f5a,#3d7a85)] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-[1.03]"
           >
             {t('add_goal')}
           </button>
@@ -334,16 +335,16 @@ export default function MeditationSection() {
             {goals.map((goal) => (
               <li
                 key={goal.id}
-                className={`flex items-center justify-between gap-3 rounded-xl border bg-white px-4 py-3 text-sm ${
-                  goal.completed ? 'border-green-200 text-ink-3 line-through' : 'border-green-200 text-ink'
+                className={`flex items-center justify-between gap-3 rounded-xl border bg-surface px-4 py-3 text-sm ${
+                  goal.completed ? 'border-calm-sage/50 text-ink-3 line-through' : 'border-calm-sage/50 text-ink'
                 }`}
               >
                 <span className="flex-1">{goal.text}</span>
-                <button type="button" onClick={() => toggleGoal(goal.id)} title={t('complete')} className="h-8 w-8 rounded-full bg-green-100 text-green-700 transition-colors hover:bg-green-200">
-                  <i className="fas fa-check" />
+                <button type="button" onClick={() => toggleGoal(goal.id)} title={t('complete')} className="h-8 w-8 rounded-full bg-calm-sage/15 text-calm-sage-deep transition-colors hover:bg-calm-sage/30">
+                  <Icon icon="fa-check" />
                 </button>
                 <button type="button" onClick={() => deleteGoal(goal.id)} title={t('delete')} className="h-8 w-8 rounded-full bg-red-100 text-red-600 transition-colors hover:bg-red-200">
-                  <i className="fas fa-trash" />
+                  <Icon icon="fa-trash" />
                 </button>
               </li>
             ))}
@@ -407,7 +408,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
     <Modal open={open} onClose={onClose} title={session.title} icon="fa-om" maxWidth="max-w-xl">
       <div className="text-center">
         <div
-          className="mx-auto flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-light))] text-on-primary shadow-glow transition-transform ease-in-out"
+          className="mx-auto flex items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--calm-sky),var(--calm-sky-deep))] text-white shadow-glow transition-transform ease-in-out"
           style={{
             width: 180,
             height: 180,
@@ -444,7 +445,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
             onClick={() => setRunning(true)}
             className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
           >
-            <i className="fas fa-play mr-2" />Start
+            <Icon icon="fa-play" className="mr-2" />Start
           </button>
         ) : (
           <>
@@ -453,7 +454,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
               onClick={() => setRunning(false)}
               className="rounded-full bg-warning px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
             >
-              <i className="fas fa-pause mr-2" />Pause
+              <Icon icon="fa-pause" className="mr-2" />Pause
             </button>
             <button
               type="button"
@@ -463,7 +464,7 @@ function GuidedSessionModal({ open, session, onClose, onComplete }) {
               }}
               className="rounded-full bg-danger px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
             >
-              <i className="fas fa-stop mr-2" />Stop
+              <Icon icon="fa-stop" className="mr-2" />Stop
             </button>
           </>
         )}
@@ -545,7 +546,7 @@ function TimerModal({ open, onClose, onComplete }) {
               onClick={() => setRunning(true)}
               className="rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-transform hover:scale-105"
             >
-              <i className="fas fa-play mr-2" />Start
+              <Icon icon="fa-play" className="mr-2" />Start
             </button>
           ) : (
             <>
@@ -554,7 +555,7 @@ function TimerModal({ open, onClose, onComplete }) {
                 onClick={() => setRunning(false)}
                 className="rounded-full bg-warning px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
               >
-                <i className="fas fa-pause mr-2" />Pause
+                <Icon icon="fa-pause" className="mr-2" />Pause
               </button>
               <button
                 type="button"
@@ -564,7 +565,7 @@ function TimerModal({ open, onClose, onComplete }) {
                 }}
                 className="rounded-full bg-danger px-6 py-2.5 text-sm font-semibold text-white shadow-md transition-transform hover:scale-105"
               >
-                <i className="fas fa-stop mr-2" />Stop
+                <Icon icon="fa-stop" className="mr-2" />Stop
               </button>
             </>
           )}
@@ -591,7 +592,7 @@ function SoundsModal({ open, onClose }) {
             }`}
           >
             <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-on-primary">
-              <i className={`fas ${playing === sound.id ? 'fa-pause' : sound.icon}`} />
+              <Icon icon={playing === sound.id ? 'fa-pause' : sound.icon} />
             </div>
             <div className="min-w-0 text-left">
               <h4 className="text-sm font-bold text-ink">{sound.name}</h4>
@@ -607,7 +608,7 @@ function SoundsModal({ open, onClose }) {
         ))}
       </div>
       <div className="mt-4 flex items-center gap-3">
-        <i className="fas fa-volume-down text-ink-2" />
+        <Icon icon="fa-volume-down" className="text-ink-2" />
         <input type="range" min={0} max={100} value={volume} onChange={(e) => setVolume(Number(e.target.value))} className="flex-1 accent-[var(--primary-color)]" />
         <span className="text-xs font-semibold text-ink-2">{volume}%</span>
       </div>

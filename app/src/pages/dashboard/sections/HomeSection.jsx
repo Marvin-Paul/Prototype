@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { GuestUser } from '../../../shared/guestUser'
 import { notify } from '../../../shared/toast'
@@ -95,7 +96,7 @@ export default function HomeSection({ onNavigate }) {
         <div className="mt-6 grid gap-4 sm:grid-cols-3">
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
-              <i className="fas fa-calendar-check" />
+              <Icon icon="fa-calendar-check" />
             </div>
             <div>
               <div className="text-2xl font-extrabold text-ink">7</div>
@@ -104,7 +105,7 @@ export default function HomeSection({ onNavigate }) {
           </div>
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
-              <i className="fas fa-heart" />
+              <Icon icon="fa-heart" />
             </div>
             <div>
               <div className="text-2xl font-extrabold text-ink">85%</div>
@@ -113,7 +114,7 @@ export default function HomeSection({ onNavigate }) {
           </div>
           <div className="flex items-center gap-4 rounded-2xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
             <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/15 to-secondary-light/15 text-2xl text-primary-text">
-              <i className="fas fa-meditation" />
+              <Icon icon="fa-meditation" />
             </div>
             <div>
               <div className="text-2xl font-extrabold text-ink">12</div>
@@ -124,14 +125,14 @@ export default function HomeSection({ onNavigate }) {
       </section>
 
       {/* Daily tip */}
-      <section className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] p-8 text-on-primary shadow-2xl">
+      <section className="relative overflow-hidden rounded-3xl bg-[linear-gradient(135deg,var(--calm-sage),var(--calm-sky))] p-8 text-white shadow-2xl">
         <div className="relative z-10 flex flex-col gap-5 sm:flex-row sm:items-center">
           <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-3xl backdrop-blur">
-            <i className="fas fa-lightbulb" />
+            <Icon icon="fa-lightbulb" />
           </div>
           <div className="min-w-0 flex-1">
             <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-bold backdrop-blur">
-              <i className="fas fa-star" /> {t('daily_tip_badge')}
+              <Icon icon="fa-star" /> {t('daily_tip_badge')}
             </div>
             <h3 className="text-xl font-bold">{t('daily_tip_title')}</h3>
             <p className="mt-1 leading-relaxed opacity-95">{tip}</p>
@@ -141,14 +142,14 @@ export default function HomeSection({ onNavigate }) {
                 onClick={nextTip}
                 className="flex items-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur transition-colors hover:bg-white/30"
               >
-                <i className="fas fa-refresh" /> {t('new_tip')}
+                <Icon icon="fa-refresh" /> {t('new_tip')}
               </button>
               <button
                 type="button"
                 onClick={saveTip}
                 className="flex items-center gap-2 rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold backdrop-blur transition-colors hover:bg-white/30"
               >
-                <i className="fas fa-bookmark" /> {t('save_tip')}
+                <Icon icon="fa-bookmark" /> {t('save_tip')}
               </button>
             </div>
           </div>
@@ -178,7 +179,7 @@ export default function HomeSection({ onNavigate }) {
                 className="group relative flex cursor-pointer items-center gap-5 rounded-3xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:border-primary/30 hover:shadow-2xl"
               >
                 <div className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br ${card.iconBg} text-2xl text-white shadow-md`}>
-                  <i className={`fas ${card.icon}`} />
+                  <Icon icon={card.icon} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className="text-lg font-bold text-ink">{t(card.titleKey)}</h3>
@@ -193,7 +194,7 @@ export default function HomeSection({ onNavigate }) {
                     <span className="shrink-0 text-xs font-semibold text-ink-2">{progressText}</span>
                   </div>
                 </div>
-                <i className="fas fa-arrow-right shrink-0 text-xl text-ink-3 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary-text" />
+                <Icon icon="fa-arrow-right" className="shrink-0 text-xl text-ink-3 transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary-text" />
                 {card.badge && (
                   <span className={`absolute top-4 right-4 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${card.badge.className}`}>
                     {t(card.badge.key)}
@@ -221,7 +222,7 @@ export default function HomeSection({ onNavigate }) {
                 className="flex items-center gap-4 rounded-xl px-2 py-3 transition-all duration-300 hover:translate-x-1 hover:bg-surface-elevated"
               >
                 <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.iconBg} text-white`}>
-                  <i className={`fas ${item.icon}`} />
+                  <Icon icon={item.icon} />
                 </div>
                 <div className="min-w-0 flex-1">
                   <h4 className="text-sm font-semibold text-ink">{t(item.titleKey)}</h4>
@@ -255,7 +256,7 @@ export default function HomeSection({ onNavigate }) {
                   badge.earned ? 'bg-gradient-to-br from-primary to-primary-dark' : 'bg-ink-3'
                 }`}
               >
-                <i className={`fas ${badge.icon}`} />
+                <Icon icon={badge.icon} />
               </div>
               <div>
                 <h4 className="text-sm font-bold text-ink">{t(badge.titleKey)}</h4>
@@ -271,7 +272,7 @@ export default function HomeSection({ onNavigate }) {
         <h2 className="mb-5 text-center text-2xl font-extrabold text-ink">{t('mood_tracker_title')}</h2>
         <div className="flex flex-col items-center gap-3">
           <div className={`flex items-center gap-3 rounded-full px-6 py-3 text-lg font-bold ${MOOD_COLORS[mood] ?? 'text-primary-text'}`}>
-            <i className={`fas ${MOOD_ICONS[mood] ?? 'fa-question'}`} />
+            <Icon icon={MOOD_ICONS[mood] ?? 'fa-question'} />
             <span>{t(`mood_${mood}`)}</span>
           </div>
           <button
@@ -279,7 +280,7 @@ export default function HomeSection({ onNavigate }) {
             onClick={updateMood}
             className="flex items-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-6 py-2.5 text-sm font-semibold text-on-primary shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
           >
-            <i className="fas fa-smile" /> {t('update_mood')}
+            <Icon icon="fa-smile" /> {t('update_mood')}
           </button>
           <div className="mt-1 flex flex-wrap justify-center gap-3">
             <button

@@ -92,6 +92,7 @@ const translations = {
     mood_anxious: 'Feeling anxious',
     mood_lonely: 'Feeling lonely',
     mood_updated: 'Mood updated successfully!',
+
     coming_soon: 'Coming Soon',
     coming_soon_desc:
       'This section is being rebuilt in React. In the meantime you can explore it in the original prototype at http://127.0.0.1:8000/dashboard.html',
@@ -150,6 +151,40 @@ const translations = {
     footer_counselor_portal: 'Counselor Portal',
     footer_copyright: '© 2026 Campus Mindspace. All rights reserved.',
     footer_not_medical: 'Not a medical service. For emergencies, call 911.',
+
+    // Settings page
+    nav_settings: 'Settings',
+    settings_subtitle: 'Customize your Campus Mindspace experience',
+    settings_account: 'Account Settings',
+    settings_security: 'Privacy & Security',
+    settings_notifications: 'Notifications',
+    settings_appearance: 'Appearance',
+    settings_language: 'Language & Region',
+    settings_data: 'Data & Privacy',
+    settings_emergency: 'Emergency Contacts',
+    settings_saved: 'Account information updated successfully!',
+    settings_emergency_required: 'Please provide contact name and phone number',
+    settings_emergency_saved: 'Emergency contact saved successfully!',
+    settings_password_required: 'Please fill in all password fields',
+    settings_password_mismatch: 'New passwords do not match',
+    settings_password_short: 'Password must be at least 8 characters',
+    settings_password_updated: 'Password updated successfully!',
+    settings_2fa: 'Two-Factor Authentication',
+    settings_2fa_info: 'Two-factor authentication will be set up via email',
+    settings_anonymous: 'Anonymous Mode',
+    settings_download_data: 'Download My Data',
+    settings_delete_account: 'Delete Account',
+    settings_data_downloaded: 'Your data has been downloaded',
+    settings_delete_confirm:
+      'Are you sure you want to delete your account? This action cannot be undone.',
+    settings_delete_last_chance: 'This is your last chance. Are you absolutely sure?',
+    settings_delete_done: 'Account deleted. Redirecting...',
+
+    // Support page
+    nav_support: 'Help & Support',
+    support_subtitle: "We're here to help you on your wellness journey",
+    support_form_required: 'Please fill in all required fields',
+    support_form_sent: "Thank you for contacting us! We'll respond within 24 hours.",
   },
 
   es: {
@@ -243,6 +278,7 @@ const translations = {
     mood_anxious: 'Sintiéndome ansioso',
     mood_lonely: 'Sintiéndome solo',
     mood_updated: '¡Ánimo actualizado exitosamente!',
+
     coming_soon: 'Próximamente',
     coming_soon_desc:
       'Esta sección se está reconstruyendo en React. Mientras tanto puedes explorarla en el prototipo original en http://127.0.0.1:8000/dashboard.html',
@@ -301,6 +337,40 @@ const translations = {
     footer_counselor_portal: 'Portal del Consejero',
     footer_copyright: '© 2026 Campus Mindspace. Todos los derechos reservados.',
     footer_not_medical: 'No es un servicio médico. Para emergencias, llama al 911.',
+
+    // Settings page
+    nav_settings: 'Ajustes',
+    settings_subtitle: 'Personaliza tu experiencia en Campus Mindspace',
+    settings_account: 'Configuración de la Cuenta',
+    settings_security: 'Privacidad y Seguridad',
+    settings_notifications: 'Notificaciones',
+    settings_appearance: 'Apariencia',
+    settings_language: 'Idioma y Región',
+    settings_data: 'Datos y Privacidad',
+    settings_emergency: 'Contactos de Emergencia',
+    settings_saved: '¡Información de la cuenta actualizada con éxito!',
+    settings_emergency_required: 'Proporciona nombre y número de teléfono de contacto',
+    settings_emergency_saved: '¡Contacto de emergencia guardado con éxito!',
+    settings_password_required: 'Completa todos los campos de contraseña',
+    settings_password_mismatch: 'Las nuevas contraseñas no coinciden',
+    settings_password_short: 'La contraseña debe tener al menos 8 caracteres',
+    settings_password_updated: '¡Contraseña actualizada con éxito!',
+    settings_2fa: 'Autenticación de Dos Factores',
+    settings_2fa_info: 'La autenticación de dos factores se configurará por correo',
+    settings_anonymous: 'Modo Anónimo',
+    settings_download_data: 'Descargar Mis Datos',
+    settings_delete_account: 'Eliminar Cuenta',
+    settings_data_downloaded: 'Tus datos han sido descargados',
+    settings_delete_confirm:
+      '¿Seguro que quieres eliminar tu cuenta? Esta acción no se puede deshacer.',
+    settings_delete_last_chance: 'Esta es tu última oportunidad. ¿Estás absolutamente seguro?',
+    settings_delete_done: 'Cuenta eliminada. Redirigiendo...',
+
+    // Support page
+    nav_support: 'Ayuda y Soporte',
+    support_subtitle: 'Estamos aquí para ayudarte en tu viaje de bienestar',
+    support_form_required: 'Completa todos los campos obligatorios',
+    support_form_sent: '¡Gracias por contactarnos! Responderemos dentro de 24 horas.',
   },
 
   fr: {
@@ -394,6 +464,7 @@ const translations = {
     mood_anxious: 'Me sentir anxieux',
     mood_lonely: 'Me sentir seul',
     mood_updated: 'Humeur mise à jour avec succès !',
+
     coming_soon: 'Bientôt disponible',
     coming_soon_desc:
       "Cette section est en cours de reconstruction en React. En attendant, vous pouvez l'explorer dans le prototype original à http://127.0.0.1:8000/dashboard.html",
@@ -452,6 +523,40 @@ const translations = {
     footer_counselor_portal: 'Portail du Conseiller',
     footer_copyright: '© 2026 Campus Mindspace. Tous droits réservés.',
     footer_not_medical: "Ce n'est pas un service médical. En cas d'urgence, appelez le 911.",
+
+    // Settings page
+    nav_settings: 'Paramètres',
+    settings_subtitle: 'Personnalisez votre expérience Campus Mindspace',
+    settings_account: 'Paramètres du Compte',
+    settings_security: 'Confidentialité et Sécurité',
+    settings_notifications: 'Notifications',
+    settings_appearance: 'Apparence',
+    settings_language: 'Langue et Région',
+    settings_data: 'Données et Confidentialité',
+    settings_emergency: 'Contacts d\'Urgence',
+    settings_saved: 'Informations du compte mises à jour avec succès !',
+    settings_emergency_required: 'Veuillez fournir le nom et le téléphone du contact',
+    settings_emergency_saved: 'Contact d\'urgence enregistré avec succès !',
+    settings_password_required: 'Veuillez remplir tous les champs de mot de passe',
+    settings_password_mismatch: 'Les nouveaux mots de passe ne correspondent pas',
+    settings_password_short: 'Le mot de passe doit contenir au moins 8 caractères',
+    settings_password_updated: 'Mot de passe mis à jour avec succès !',
+    settings_2fa: 'Authentification à Deux Facteurs',
+    settings_2fa_info: 'L\'authentification à deux facteurs sera configurée par e-mail',
+    settings_anonymous: 'Mode Anonyme',
+    settings_download_data: 'Télécharger Mes Données',
+    settings_delete_account: 'Supprimer le Compte',
+    settings_data_downloaded: 'Vos données ont été téléchargées',
+    settings_delete_confirm:
+      'Voulez-vous vraiment supprimer votre compte ? Cette action est irréversible.',
+    settings_delete_last_chance: 'C\'est votre dernière chance. Êtes-vous absolument sûr ?',
+    settings_delete_done: 'Compte supprimé. Redirection...',
+
+    // Support page
+    nav_support: 'Aide et Support',
+    support_subtitle: 'Nous sommes là pour vous accompagner dans votre parcours de bien-être',
+    support_form_required: 'Veuillez remplir tous les champs obligatoires',
+    support_form_sent: 'Merci de nous avoir contactés ! Nous répondrons sous 24 heures.',
   },
 }
 

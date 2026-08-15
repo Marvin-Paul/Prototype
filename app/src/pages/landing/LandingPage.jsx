@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../shared/Icon'
 import { useTheme } from '../../shared/ThemeProvider'
 import { useLanguage } from '../../shared/LanguageProvider'
 import VideoBackground from '../../shared/VideoBackground'
@@ -51,65 +52,6 @@ const PARTICLES = [
   { style: { top: '65%', right: '25%', animationDelay: '0.4s', animationDuration: '3.6s' } },
 ]
 
-/* ---------- Loading overlay ---------- */
-
-function LoadingOverlay() {
-  const [progress, setProgress] = useState(0)
-  const [phase, setPhase] = useState('loading')
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((p) => Math.min(100, p + Math.random() * 15))
-    }, 200)
-    return () => clearInterval(interval)
-  }, [])
-
-  useEffect(() => {
-    if (progress >= 100) {
-      const t = setTimeout(() => setPhase('hiding'), 500)
-      return () => clearTimeout(t)
-    }
-  }, [progress])
-
-  useEffect(() => {
-    if (phase === 'hiding') {
-      const t = setTimeout(() => setPhase('done'), 500)
-      return () => clearTimeout(t)
-    }
-  }, [phase])
-
-  if (phase === 'done') return null
-
-  return (
-    <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center bg-[linear-gradient(135deg,#1c2318_0%,#0e0f0c_100%)] transition-opacity duration-500 ${
-        phase === 'hiding' ? 'pointer-events-none opacity-0' : 'opacity-100'
-      }`}
-    >
-      <div className="text-center text-white">
-        <div className="mx-auto mb-12 flex h-[120px] w-[120px] animate-pulse-soft items-center justify-center rounded-full border-2 border-[#9fe870]/40 bg-white/10 text-[3rem] text-[#cdffad] shadow-[0_0_50px_rgba(159,232,112,0.35)] backdrop-blur-xl">
-          <i className="fas fa-brain" />
-        </div>
-        <h2 className="mb-4 bg-gradient-to-br from-white to-[#9fe870] bg-clip-text text-3xl font-bold text-transparent">
-          Campus Mindspace
-        </h2>
-        <p className="mb-12 text-lg text-white/80">Loading your wellness journey...</p>
-        <div className="mx-auto w-[300px]">
-          <div className="mb-4 h-2.5 w-full overflow-hidden rounded-full bg-white/15">
-            <div
-              className="h-full rounded-full bg-[linear-gradient(90deg,#9fe870,#cdffad)] shadow-[0_0_24px_rgba(159,232,112,0.6)] transition-all duration-300"
-              style={{ width: `${Math.round(progress)}%` }}
-            />
-          </div>
-          <div className="bg-gradient-to-r from-[#cdffad] to-[#9fe870] bg-clip-text text-center text-lg font-bold text-transparent">
-            {Math.round(progress)}%
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-
 /* ---------- Controls ---------- */
 
 function ThemeSwitcher() {
@@ -133,7 +75,7 @@ function ThemeSwitcher() {
         onClick={() => setOpen((o) => !o)}
         className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-white/30 bg-white/95 text-xl text-primary-text shadow-md backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:shadow-lg"
       >
-        <i className="fas fa-moon" />
+        <Icon icon="fa-moon" />
       </button>
       <div
         className={`absolute right-0 top-[60px] min-w-[200px] rounded-2xl border border-white/30 bg-white/95 p-4 shadow-lg backdrop-blur-xl transition-all duration-300 ${
@@ -193,7 +135,6 @@ export default function LandingPage() {
   return (
     <>
       <VideoBackground overlayGradient={overlayGradient} />
-      <LoadingOverlay />
       <LanguageSelect />
       <ThemeSwitcher />
 
@@ -232,7 +173,7 @@ export default function LandingPage() {
                       className="animate-slide-up flex items-center gap-4 rounded-xl border border-white/20 bg-white/10 p-4 backdrop-blur-[10px] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/15 hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)]"
                       style={{ animationDelay: `${0.1 + i * 0.1}s` }}
                     >
-                      <i className={`fas ${f.icon} w-6 text-center text-lg text-white/90`} />
+                      <Icon icon={f.icon} className="text-center text-lg text-white/90" />
                       <span className="text-sm font-medium text-white/90">{f.label}</span>
                     </div>
                   ))}
@@ -243,7 +184,7 @@ export default function LandingPage() {
               <div className="relative flex h-[250px] w-[250px] animate-fade-scale items-center justify-center">
                 <div className="absolute -inset-2.5 animate-pulse-ring rounded-full border-2 border-white/30" />
                 <div className="animate-pulse-soft relative z-[2] flex h-[150px] w-[150px] items-center justify-center rounded-full border-[3px] border-white/30 bg-white/15 text-[4rem] text-white shadow-glow backdrop-blur-xl">
-                  <i className="fas fa-brain" />
+                  <Icon icon="fa-brain" />
                 </div>
                 <div className="absolute inset-0">
                   {PARTICLES.map((p, i) => (
@@ -303,7 +244,7 @@ export default function LandingPage() {
                       </p>
                     </div>
                     <div className="mt-4 text-[2rem]" style={{ color: 'var(--primary-color)' }}>
-                      <i className={`fas ${step.icon}`} />
+                      <Icon icon={step.icon} />
                     </div>
                   </div>
                 </div>
@@ -338,7 +279,7 @@ export default function LandingPage() {
                 className="group relative mt-6 flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-[linear-gradient(135deg,var(--primary-color)_0%,var(--primary-dark)_100%)] px-6 py-4 text-base font-semibold text-on-primary shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <span className="pointer-events-none absolute inset-y-0 -left-full w-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)] transition-all duration-300 group-hover:left-full" />
-                <i className="fas fa-arrow-right" />
+                <Icon icon="fa-arrow-right" />
                 <span>{t('enter_btn')}</span>
               </a>
 
@@ -360,7 +301,7 @@ export default function LandingPage() {
           {/* Footer */}
           <footer className="mt-12 rounded-2xl border border-white/10 bg-[rgba(14,15,12,0.55)] p-6 text-[#e8efed] backdrop-blur-[6px] md:p-8">
             <div className="mb-6 flex items-center gap-4 rounded-xl border border-red-300/35 bg-[rgba(220,38,38,0.16)] p-4 text-[#fecaca]">
-              <i className="fas fa-heart flex-shrink-0 text-xl text-red-300" />
+              <Icon icon="fa-heart" className="flex-shrink-0 text-xl text-red-300" />
               <p className="m-0 text-[0.9rem] leading-[1.5]">
                 <strong className="text-white">In crisis? You are not alone.</strong> Call or text the National Crisis
                 Lifeline at <strong className="text-white">988</strong> — free, confidential and available 24/7. You

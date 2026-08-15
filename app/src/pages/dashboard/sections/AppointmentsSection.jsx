@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { get, set as storageSet } from '../../../shared/storage'
 import { notify } from '../../../shared/toast'
@@ -112,22 +113,22 @@ export default function AppointmentsSection() {
           {Object.entries(COUNSELORS).map(([key, c]) => (
             <div key={key} className="flex flex-col rounded-3xl border border-line-light bg-surface p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
               <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-3xl text-on-primary shadow-glow">
-                <i className={`fas ${c.icon}`} />
+                <Icon icon={c.icon} />
               </div>
               <h3 className="mt-4 text-center font-bold text-ink">{c.name}</h3>
               <p className="mt-1 text-center text-xs font-semibold text-primary-text">{c.specialty}</p>
               <p className="mt-2 flex-1 text-center text-xs leading-relaxed text-ink-2">{c.description}</p>
               <div className="mt-4 flex flex-wrap justify-center gap-2 text-[11px] font-semibold text-ink-2">
-                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><i className="fas fa-star text-amber-400" /> {c.rating}</span>
-                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><i className="fas fa-clock text-primary-text" /> {c.experience}</span>
-                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><i className="fas fa-users text-ink-2" /> {c.sessions} sessions</span>
+                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><Icon icon="fa-star" className="text-amber-400" /> {c.rating}</span>
+                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><Icon icon="fa-clock" className="text-primary-text" /> {c.experience}</span>
+                <span className="flex items-center gap-1 rounded-full bg-canvas px-2.5 py-1"><Icon icon="fa-users" className="text-ink-2" /> {c.sessions} sessions</span>
               </div>
               <button
                 type="button"
                 onClick={() => setBookingFor(key)}
                 className="mt-5 w-full rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] py-2.5 text-sm font-bold text-on-primary shadow-md transition-transform hover:scale-105"
               >
-                <i className="fas fa-calendar-plus mr-2" />
+                <Icon icon="fa-calendar-plus" className="mr-2" />
                 {t('book_session')}
               </button>
             </div>
@@ -140,7 +141,7 @@ export default function AppointmentsSection() {
         <h2 className="mb-4 text-xl font-bold text-ink">Your Appointments</h2>
         {upcoming.length === 0 ? (
           <div className="flex flex-col items-center rounded-3xl border border-line-light bg-surface p-10 text-center shadow-md">
-            <i className="fas fa-calendar-times mb-3 text-4xl text-ink-3" />
+            <Icon icon="fa-calendar-times" className="mb-3 text-4xl text-ink-3" />
             <h3 className="font-bold text-ink">No Upcoming Appointments</h3>
             <p className="mt-1 max-w-sm text-sm text-ink-2">You don't have any upcoming appointments. Book a session with one of our counselors to get started.</p>
           </div>
@@ -159,9 +160,9 @@ export default function AppointmentsSection() {
                       <h4 className="truncate font-bold text-ink">{apt.counselorName}</h4>
                       <p className="text-xs text-primary-text">{counselor?.specialty}</p>
                       <p className="mt-1 flex flex-wrap gap-2 text-xs text-ink-2">
-                        <span><i className="fas fa-clock mr-1" />{apt.timeSlot}</span>
-                        <span className="capitalize"><i className="fas fa-users mr-1" />{apt.sessionType}</span>
-                        <span className="capitalize"><i className="fas fa-video mr-1" />{apt.sessionType === 'individual' ? 'One-on-One' : 'Group'}</span>
+                        <span><Icon icon="fa-clock" className="mr-1" />{apt.timeSlot}</span>
+                        <span className="capitalize"><Icon icon="fa-users" className="mr-1" />{apt.sessionType}</span>
+                        <span className="capitalize"><Icon icon="fa-video" className="mr-1" />{apt.sessionType === 'individual' ? 'One-on-One' : 'Group'}</span>
                       </p>
                     </div>
                   </div>
@@ -172,21 +173,21 @@ export default function AppointmentsSection() {
                       rel="noreferrer"
                       className="flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-bold text-primary-text transition-colors hover:bg-primary hover:text-on-primary"
                     >
-                      <i className="fas fa-video" /> Join
+                      <Icon icon="fa-video" /> Join
                     </a>
                     <button
                       type="button"
                       onClick={() => setBookingFor(apt.counselorType)}
                       className="flex items-center gap-2 rounded-full border border-line-light px-4 py-2 text-xs font-bold text-ink-2 transition-colors hover:border-primary hover:text-primary-text"
                     >
-                      <i className="fas fa-edit" /> Reschedule
+                      <Icon icon="fa-edit" /> Reschedule
                     </button>
                     <button
                       type="button"
                       onClick={() => cancelAppointment(apt.id)}
                       className="flex items-center gap-2 rounded-full border border-line-light px-4 py-2 text-xs font-bold text-danger transition-colors hover:border-danger hover:bg-danger/10"
                     >
-                      <i className="fas fa-times" /> Cancel
+                      <Icon icon="fa-times" /> Cancel
                     </button>
                   </div>
                 </div>
@@ -250,15 +251,15 @@ function BookingModal({ open, counselor, onClose, onConfirm }) {
         <>
           <div className="mb-5 flex items-center gap-4 rounded-2xl bg-canvas p-4">
             <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] text-xl text-on-primary">
-              <i className={`fas ${counselor.icon}`} />
+              <Icon icon={counselor.icon} />
             </span>
             <div>
               <h3 className="font-bold text-ink">{counselor.name}</h3>
               <p className="text-xs font-semibold text-primary-text">{counselor.specialty}</p>
               <p className="mt-1 flex gap-3 text-[11px] text-ink-2">
-                <span><i className="fas fa-star mr-1 text-amber-400" />{counselor.rating}</span>
-                <span><i className="fas fa-clock mr-1" />{counselor.experience}</span>
-                <span><i className="fas fa-users mr-1" />{counselor.sessions} sessions</span>
+                <span><Icon icon="fa-star" className="mr-1 text-amber-400" />{counselor.rating}</span>
+                <span><Icon icon="fa-clock" className="mr-1" />{counselor.experience}</span>
+                <span><Icon icon="fa-users" className="mr-1" />{counselor.sessions} sessions</span>
               </p>
             </div>
           </div>
@@ -314,7 +315,7 @@ function BookingModal({ open, counselor, onClose, onConfirm }) {
                     sessionType === st.id ? 'border-primary bg-primary/5 shadow-md' : 'border-line-light bg-canvas hover:border-primary'
                   }`}
                 >
-                  <span className={`text-lg ${sessionType === st.id ? 'text-primary-text' : 'text-ink-2'}`}><i className={`fas ${st.icon}`} /></span>
+                  <span className={`text-lg ${sessionType === st.id ? 'text-primary-text' : 'text-ink-2'}`}><Icon icon={st.icon} /></span>
                   <p className="mt-1 text-sm font-bold text-ink">{st.label}</p>
                   <p className="text-[11px] text-ink-2">{st.note} &middot; {st.price}</p>
                 </button>
@@ -344,7 +345,7 @@ function BookingModal({ open, counselor, onClose, onConfirm }) {
             onClick={submit}
             className="mt-6 w-full rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] py-3 text-sm font-bold text-on-primary shadow-md transition-transform hover:scale-[1.02]"
           >
-            <i className="fas fa-check-circle mr-2" />
+            <Icon icon="fa-check-circle" className="mr-2" />
             {t('confirm_booking')}
           </button>
         </>
@@ -374,7 +375,7 @@ function ConfirmationModal({ open, appointment, onClose }) {
   return (
     <Modal open={open} onClose={onClose} title="Appointment Confirmed!" icon="fa-check-circle" maxWidth="max-w-md">
       <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-success/15 text-3xl text-success">
-        <i className="fas fa-check-circle" />
+        <Icon icon="fa-check-circle" />
       </div>
       <div className="mt-4 divide-y divide-line rounded-2xl border border-line-light bg-canvas px-5">
         {item('Counselor', appointment.counselorName)}
@@ -390,7 +391,7 @@ function ConfirmationModal({ open, appointment, onClose }) {
           rel="noreferrer"
           className="flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] py-2.5 text-sm font-bold text-on-primary shadow-md transition-transform hover:scale-[1.02]"
         >
-          <i className="fas fa-calendar-plus" /> Add to Calendar
+          <Icon icon="fa-calendar-plus" /> Add to Calendar
         </a>
         <a
           href={appointment.meetingLink}
@@ -398,7 +399,7 @@ function ConfirmationModal({ open, appointment, onClose }) {
           rel="noreferrer"
           className="flex items-center justify-center gap-2 rounded-full border border-line-light py-2.5 text-sm font-bold text-primary-text transition-colors hover:border-primary hover:bg-primary/5"
         >
-          <i className="fas fa-video" /> Join Session
+          <Icon icon="fa-video" /> Join Session
         </a>
       </div>
     </Modal>

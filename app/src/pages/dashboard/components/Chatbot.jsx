@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 
 // Port of prototype/js/chatbot.js (MindSpace AI Assistant).
@@ -58,9 +59,14 @@ function MessageBubble({ sender, text, time }) {
   )
 }
 
-export default function Chatbot() {
+export default function Chatbot({ open: openProp, onOpenChange }) {
   const { t } = useLanguage()
-  const [open, setOpen] = useState(false)
+  const [openInternal, setOpenInternal] = useState(false)
+  const open = openProp !== undefined ? openProp : openInternal
+  const setOpen = (value) => {
+    if (onOpenChange) onOpenChange(value)
+    else setOpenInternal(value)
+  }
   const [messages, setMessages] = useState([])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
@@ -120,7 +126,7 @@ export default function Chatbot() {
         onClick={() => setOpen(true)}
         className={`fixed bottom-5 right-5 z-[80] flex h-14 w-14 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-glow transition-all duration-300 hover:scale-110 ${open ? 'hidden' : ''}`}
       >
-        <i className="fas fa-comments text-xl" />
+        <Icon icon="fa-comments" className="text-xl" />
       </button>
 
       {/* Chatbot window */}
@@ -132,7 +138,7 @@ export default function Chatbot() {
         <div className="flex items-center justify-between bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] px-5 py-4 text-on-primary">
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-lg backdrop-blur">
-              <i className="fas fa-robot" />
+              <Icon icon="fa-robot" />
             </div>
             <div>
               <h3 className="text-sm font-bold leading-tight">{t('chatbot_title')}</h3>
@@ -145,7 +151,7 @@ export default function Chatbot() {
             onClick={() => setOpen(false)}
             className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 transition-colors hover:bg-white/25"
           >
-            <i className="fas fa-times text-sm" />
+            <Icon icon="fa-times" className="text-sm" />
           </button>
         </div>
 
@@ -198,7 +204,7 @@ export default function Chatbot() {
             onClick={sendMessage}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-[linear-gradient(135deg,var(--primary-color),var(--primary-dark))] text-on-primary shadow-md transition-transform hover:scale-110"
           >
-            <i className="fas fa-paper-plane text-sm" />
+            <Icon icon="fa-paper-plane" className="text-sm" />
           </button>
         </div>
       </div>

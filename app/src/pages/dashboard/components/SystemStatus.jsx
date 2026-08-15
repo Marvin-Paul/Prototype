@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import Icon from '../../../shared/Icon'
 import { useLanguage } from '../../../shared/LanguageProvider'
 import { supabaseClient } from '../../../shared/supabase'
 
@@ -60,28 +61,28 @@ export default function SystemStatus() {
           <li className="flex items-center justify-between">
             <span>{t('status_auth')}</span>
             {checks.auth === null ? (
-              <i className="fas fa-circle-notch fa-spin text-primary-text" />
+              <Icon icon="fa-circle-notch" spin className="text-primary-text" />
             ) : checks.auth ? (
               <span className="flex items-center gap-1 font-semibold text-success">
-                <i className="fas fa-check-circle" /> {t('status_ok')}
+                <Icon icon="fa-check-circle" /> {t('status_ok')}
               </span>
             ) : (
               <span className="flex items-center gap-1 font-semibold text-danger">
-                <i className="fas fa-times-circle" /> {t('status_fail')}
+                <Icon icon="fa-times-circle" /> {t('status_fail')}
               </span>
             )}
           </li>
           <li className="flex items-center justify-between">
             <span>{t('status_database')}</span>
             {checks.db === null ? (
-              <i className="fas fa-circle-notch fa-spin text-primary-text" />
+              <Icon icon="fa-circle-notch" spin className="text-primary-text" />
             ) : checks.db ? (
               <span className="flex items-center gap-1 font-semibold text-success">
-                <i className="fas fa-check-circle" /> {t('status_ok')}
+                <Icon icon="fa-check-circle" /> {t('status_ok')}
               </span>
             ) : (
               <span className="flex items-center gap-1 font-semibold text-danger">
-                <i className="fas fa-times-circle" /> {t('status_fail')}
+                <Icon icon="fa-times-circle" /> {t('status_fail')}
               </span>
             )}
           </li>

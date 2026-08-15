@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../shared/Icon'
 import { useLanguage } from '../../shared/LanguageProvider'
 import HomeSection from './sections/HomeSection'
 import TherapySection from './sections/TherapySection'
@@ -68,7 +69,7 @@ export default function DashboardPage() {
       <nav className="sticky top-0 z-40 border-b border-line-light bg-surface/98 shadow-lg backdrop-blur">
         <div className="flex items-center justify-between gap-3 px-4 py-3 sm:px-6">
           <a href="index.html" className="flex shrink-0 items-center gap-3 text-xl font-bold text-primary-text">
-            <i className="fas fa-brain bg-[linear-gradient(135deg,var(--primary-color),var(--secondary-color))] bg-clip-text text-2xl text-transparent" />
+            <Icon icon="fa-brain" className="text-2xl text-primary-text" />
             <span className="hidden sm:inline">{t('welcome_title')}</span>
           </a>
 
@@ -110,7 +111,7 @@ export default function DashboardPage() {
               title="Admin Portal"
               className="hidden items-center gap-2 rounded-full border border-line-light px-4 py-2 text-sm font-medium text-ink-2 transition-all duration-200 hover:border-primary hover:text-primary-text xl:flex"
             >
-              <i className="fas fa-shield-alt" />
+              <Icon icon="fa-shield-alt" />
               <span>{t('admin_shortcut')}</span>
             </a>
 
@@ -121,7 +122,7 @@ export default function DashboardPage() {
                 onClick={() => setMenuOpen((open) => !open)}
                 className="relative flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:scale-105 hover:bg-surface-hover hover:text-primary-text"
               >
-                <i className="fas fa-user-circle" />
+                <Icon icon="fa-user-circle" />
                 <span className="absolute top-1 right-1 h-2.5 w-2.5 rounded-full border-2 border-surface bg-success" />
               </button>
 
@@ -133,13 +134,13 @@ export default function DashboardPage() {
                 }`}
               >
                 <a href="settings.html" className={dropdownItemClass}>
-                  <i className="fas fa-cog mr-3 w-4 text-primary-text" /> {t('profile_settings')}
+                  <Icon icon="fa-cog" className="mr-3 text-primary-text" /> {t('profile_settings')}
                 </a>
                 <a href="support.html" className={dropdownItemClass}>
-                  <i className="fas fa-life-ring mr-3 w-4 text-primary-text" /> {t('profile_help')}
+                  <Icon icon="fa-life-ring" className="mr-3 text-primary-text" /> {t('profile_help')}
                 </a>
                 <a href="index.html" className={`${dropdownItemClass} font-semibold text-danger hover:bg-danger/10 hover:text-danger`}>
-                  <i className="fas fa-sign-out-alt mr-3 w-4" /> {t('exit_home')}
+                  <Icon icon="fa-sign-out-alt" className="mr-3" /> {t('exit_home')}
                 </a>
               </div>
             </div>
@@ -151,7 +152,7 @@ export default function DashboardPage() {
               onClick={() => setMobileOpen((open) => !open)}
               className="flex h-11 w-11 items-center justify-center rounded-full text-xl text-ink-2 transition-all duration-200 hover:bg-surface-hover hover:text-primary-text lg:hidden"
             >
-              <i className={`fas ${mobileOpen ? 'fa-times' : 'fa-bars'}`} />
+              <Icon icon={mobileOpen ? 'fa-times' : 'fa-bars'} />
             </button>
           </div>
         </div>

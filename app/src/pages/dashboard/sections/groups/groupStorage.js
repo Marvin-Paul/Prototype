@@ -13,6 +13,32 @@ export const SETTINGS_STORAGE_KEY = 'campusMindspace_chat_settings'
 export const movementsKey = () => 'user_movements'
 export const reportedKey = () => 'reported_messages'
 
+// Private 1:1 chat. Key is built from the sorted member ids so both sides
+// address the same thread (and a real backend could use the same pairing).
+export const dmKey = (userId, otherId) => {
+  const [a, b] = [userId, otherId].sort()
+  return `direct_chat_${a}_${b}`
+}
+
+export function loadDMs(userId, otherId) {
+  return get(dmKey(userId, otherId), [])
+}
+
+export function saveDMs(userId, otherId, messages) {
+  set(dmKey(userId, otherId), messages)
+}
+
+export function seedDm(userId, otherId, otherName) {
+  if (!get(dmKey(userId, otherId))) {
+    set(dmKey(userId, otherId), [
+      makeMessage({
+        id: `${Date.now()}-dm-sys`,
+        message: `You and ${otherName} are now connected. This is a private, confidential space.`,
+      }),
+    ])
+  }
+}
+
 export function seedGroup(mood) {
   if (!get(chatKey(mood))) {
     const now = Date.now()
@@ -55,7 +81,7 @@ export function loadMembers(mood, currentUser) {
       id: currentUser.id,
       fullName: currentUser.fullName,
       currentMood: mood,
-      avatar: currentUser.avatar || '🙂',
+      avatar: currentUser.avatar || 'fa-smile',
     })
     set(membersKey(mood), list)
   }

@@ -32,6 +32,19 @@
     --accent-orange: #ffc091;
     --accent-red: #d03238;
 
+    /* Calm wellness palette (sage / sky / lavender).
+       Used for reflective surfaces (meditation, breathing, mood).
+       Soft = large-surface tints, deep = readable text on soft. */
+    --calm-sage-soft: #eef5ee;
+    --calm-sage: #6f966f;
+    --calm-sage-deep: #3f5c40;
+    --calm-sky-soft: #eaf4f6;
+    --calm-sky: #5ba7b5;
+    --calm-sky-deep: #2e5d68;
+    --calm-lavender-soft: #f4f0fa;
+    --calm-lavender: #9a86c8;
+    --calm-lavender-deep: #5b4b82;
+
     /* Status colors */
     --danger-color: #d03238;
     --success-color: #2ead4b;
@@ -129,6 +142,16 @@
     --accent-orange: #ffc091;
     --accent-red: #ef5350;
 
+    --calm-sage-soft: #17201a;
+    --calm-sage: #7da37d;
+    --calm-sage-deep: #c7dcc8;
+    --calm-sky-soft: #152229;
+    --calm-sky: #6fb2c0;
+    --calm-sky-deep: #c4e0e8;
+    --calm-lavender-soft: #201d2e;
+    --calm-lavender: #a99bd6;
+    --calm-lavender-deep: #ddd6f0;
+
     --danger-color: #ef5350;
     --success-color: #4ade80;
     --warning-color: #fbbf24;
@@ -178,6 +201,16 @@
         --accent-green: #34d399;
         --accent-orange: #ffc091;
         --accent-red: #ef5350;
+
+        --calm-sage-soft: #17201a;
+        --calm-sage: #7da37d;
+        --calm-sage-deep: #c7dcc8;
+        --calm-sky-soft: #152229;
+        --calm-sky: #6fb2c0;
+        --calm-sky-deep: #c4e0e8;
+        --calm-lavender-soft: #201d2e;
+        --calm-lavender: #a99bd6;
+        --calm-lavender-deep: #ddd6f0;
 
         --danger-color: #ef5350;
         --success-color: #4ade80;

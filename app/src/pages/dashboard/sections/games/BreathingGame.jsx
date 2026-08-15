@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import Icon from '../../../../shared/Icon'
 import { get, set as storageSet } from '../../../../shared/storage'
 import { notify } from '../../../../shared/toast'
 import GameCard from './GameCard'
@@ -90,12 +91,12 @@ export default function BreathingGame() {
         <>
           {!running ? (
             <button type="button" onClick={start} className="rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-on-primary transition-opacity hover:opacity-90">
-              <i className="fas fa-play mr-2" />
+              <Icon icon="fa-play" className="mr-2" />
               Start Exercise
             </button>
           ) : (
             <button type="button" onClick={stop} className="rounded-xl bg-danger px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90">
-              <i className="fas fa-stop mr-2" />
+              <Icon icon="fa-stop" className="mr-2" />
               Stop
             </button>
           )}
@@ -119,10 +120,10 @@ export default function BreathingGame() {
     >
       <div className="flex items-center justify-center py-4">
         <div
-          className={`flex h-44 w-44 items-center justify-center rounded-full border-4 border-primary/30 bg-primary/10 transition-transform duration-700 ease-in-out ${scale}`}
+          className={`flex h-44 w-44 items-center justify-center rounded-full border-4 border-calm-sky/40 bg-calm-sky-soft shadow-[0_0_40px_rgba(95,168,171,0.25)] transition-transform duration-700 ease-in-out ${scale}`}
         >
           <div className="text-center">
-            <div className="text-lg font-bold text-primary-text capitalize">{phase === 'ready' ? 'Get Ready' : phase}</div>
+            <div className="text-lg font-bold text-calm-sky-deep capitalize">{phase === 'ready' ? 'Get Ready' : phase}</div>
             <div className="mt-1 px-4 text-xs text-ink-2">{instruction}</div>
           </div>
         </div>

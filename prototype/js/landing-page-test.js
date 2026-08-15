@@ -20,7 +20,6 @@ class LandingPageTest {
         this.testThemeSwitcher();
         this.testTestimonialCarousel();
         this.testTypingAnimation();
-        this.testLoadingScreen();
         this.testAuthForms();
         this.testMoodCheckin();
         this.test3DEffects();
@@ -73,18 +72,6 @@ class LandingPageTest {
             feature: 'Typing Animation',
             status: typingElement ? 'PASS' : 'FAIL',
             details: typingElement ? 'Typing animation element found' : 'Typing animation element missing'
-        };
-        this.testResults.push(result);
-    }
-
-    testLoadingScreen() {
-        const loadingScreen = document.getElementById('loadingScreen');
-        const progressBar = document.querySelector('.loading-progress .progress-fill');
-        
-        const result = {
-            feature: 'Loading Screen',
-            status: (loadingScreen && progressBar) ? 'PASS' : 'FAIL',
-            details: `Loading screen: ${!!loadingScreen}, Progress bar: ${!!progressBar}`
         };
         this.testResults.push(result);
     }
